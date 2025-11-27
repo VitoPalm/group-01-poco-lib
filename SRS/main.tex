@@ -1,0 +1,133 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+% Impostazioni pagina
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Software Requirements Specification}}
+\fancyhead[R]{\textit{Gruppo 1}}
+\fancyfoot[C]{\thepage}
+
+% Colori personalizzati
+\definecolor{sectioncolor}{RGB}{0,102,204}
+
+\title{\textbf{\Large Software Requirements Specification}\\
+\large Software per la gestione di una biblioteca}
+\author{Autori: Marino Francesco, Pepe Daniele, Orsini Giovanni, Palmieri Vito \\ Gruppo 1}
+
+\begin{document}
+
+    \maketitle
+    \thispagestyle{empty}
+
+    \newpage
+    \tableofcontents
+    \newpage
+
+%===============================================
+    \section{Introduzione}\label{sec:introduzione}
+%===============================================
+
+    \subsection{Descrizione del progetto}\label{subsec:descrizione-progetto}
+
+%Da inserire
+
+    Il presente documento descrive le specifiche dei requisiti software di un sistema di gestione di una biblioteca (es.\ universitaria).
+    Il sistema permette l'inserimento, modifica e cancellazione di libri in una libreria digitale, il tutto memorizzato localmente in un file.
+    Permette inoltre di registrare, modificare e rimuovere gli utenti per tracciarne i prestiti.
+
+    \subsection{Convenzioni adottate nel documento}\label{subsec:convenzioni-documento}
+
+    Convenzioni sulla priorità dei requisiti:
+
+    \begin{table}[H]
+        \centering
+
+        \begin{tabular}{|c|p{7cm}|c|}
+            \hline
+            \textbf{Termine} & \textbf{Descrizione} \\
+            \hline
+            ALTA & Il requisito deve essere necessariamente implementato \\
+            \hline
+            MEDIO & Il requisito può essere implementato ma non è strettamente necessario\\
+            \hline
+            BASSA & Il requisito si può implementare se non richiede grandi sforzi\\
+            \hline
+        \end{tabular}
+        \caption{Convenzioni sulla priorità dei requisiti}
+        \label{tab:priorities}
+    \end{table}
+
+    \noindent Convenzioni sulla numerazione dei requisiti:
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|p{7.7cm}|c|}
+            \hline
+            \textbf{Numero del requisito} & \textbf{Descrizione} \\
+            \hline
+            FBR-XX & Functional Book Requirements \\
+            \hline
+            FUR-XX & Functional User Requirements\\
+            \hline
+            FLR-XX & Functional Loan Requirements \\
+            \hline
+            FDR-XX & Functional Data Requirements\\
+            \hline
+            NUR-XX & Non-Functional Usability Requirements\\
+            \hline
+            NRR-XX & Non-Functional Reliability Requirements\\
+            \hline
+            NMR-XX & Non-Functional Maintainability Requirements\\
+            \hline
+            NPR-XX & Non-Functional Platform Requirements\\
+            \hline
+
+        \end{tabular}
+        \caption{Convenzioni sulla numerazione dei requisiti}
+        \label{tab:req-numbering}
+    \end{table}
+
+%===============================================
+    \section{Specifica dei requisiti}\label{sec:requirements}
+    \input{specifica-dei-requisiti}
+
+    \section{Casi d'Uso}\label{sec:use-cases}
+    \input{casi-d'uso}
+
+    \section{Tracciabilità (WIP)}\label{sec:traceability}
+%===============================================
+
+    \subsection{Tabella di tracciabilità}\label{subsec:trace-table}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|p{8cm}|c|}
+            \hline
+            \textbf{ID Requisito} & \textbf{Componente} & \textbf{Casi di test} \\
+            \hline
+%Da inserire
+
+            \hline
+        \end{tabular}
+        \caption{Tabella di tracciabilità}
+        \label{tab:traceability}
+    \end{table}
+
+
+
+
+
+\end{document}

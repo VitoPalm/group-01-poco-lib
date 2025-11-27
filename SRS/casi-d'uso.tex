@@ -1,0 +1,211 @@
+%===============================================
+
+%MODEL
+    \subsubsection{UC-XX: Title}
+    \begin{itemize}
+        \item \textbf{Attori}:
+        \item \textbf{Precondizioni}:
+        \item \textbf{Postcondizioni}:
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item
+            \item
+            \item
+            \item
+            \item
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item
+        \end{itemize}
+    \end{itemize}
+
+
+    \subsection{Descrizione dei Casi d'Uso Principali}\label{subsec:use-case-descriptions}
+
+    \subsubsection{UC-01: Inserimento Libro}\label{subsubsec:insert-book}
+% Diagramma UML + descrizione use case
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello di gestione dei libri.
+        \item \textbf{Postcondizioni}: Il libro è nell'archivio.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario clicca il bottone per aggiungere un libro.
+            \item Il bibliotecario inserisce: titolo, autori, anno, ISBN e numero copie.
+            \item Il sistema valida l'ISBN (se implementato: NFR-06).
+            \item Il sistema aggiunge il libro all'archivio.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 3a.\ Il sistema mostra un messaggio di errore se i dati non sono validi e chiede di correggere(se implementato: NFR-02).
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-02: Modifica libro}\label{subsubsec:modify-book}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il libro da modificare esiste nell'archivio.
+        \item \textbf{Postcondizioni}: I dati del libro sono aggiornati e salvati.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario seleziona un libro da modificare.
+            \item Il bibliotecario clicca il bottone per modificare il libro.
+            \item Il bibliotecario aggiorna i campi desiderati.
+            \item Il sistema valida i nuovi dati (se implementato: NFR-06).
+            \item Il sistema aggiorna le informazioni del libro.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item Il sistema mostra un messaggio di errore se i dati non sono validi e chiede di correggere (se implementato: NFR-02).
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-03: Cancellazione Libro}\label{subsubsec:delete-book}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il libro da eliminare esiste nell'archivio.
+        \item \textbf{Postcondizioni}: Il libro non è più presente nell'archivio.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario seleziona il libro da rimuovere.
+            \item Il bibliotecario clicca sul pulsante per eliminare il libro.
+            \item Il sistema chiede esplicitamente conferma dell'eliminazione (se implementato NFR-03).
+            \item Il bibliotecario conferma.
+            \item Il sistema rimuove il libro.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 4a Il bibliotecario nega la conferma e l'operazione viene annullata.
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-04: Visita Ordinata Libri}\label{subsubsec:list-books}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: L'archivio contiene almeno un libro.
+        \item \textbf{Postcondizioni}: Viene mostrata la lista ordinata.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario accede alla sezione libri.
+            \item Il sistema mostra la lista ordinata alfabeticamente per Titolo (Default).
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 2a.\ Il bibliotecario sceglie l'ordinamento per Autore, Anno o Numero Copie.
+            Il sistema riordina la lista secondo il criterio scelto.
+        \end{itemize}
+    \end{itemize}
+
+
+    \subsubsection{UC-05: Ricerca Libro}\label{subsubsec:search-book}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello di gestione dei libri.
+        \item \textbf{Postcondizioni}: Vengono mostrati i risultati corrispondenti.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario clicca sulla barra di ricerca.
+            \item Il bibliotecario inserisce la stringa di ricerca (Titolo, Autore, Anno o ISBN).
+            \item Il sistema filtra l'archivio e mostra i libri che corrispondono ai criteri.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 3a Se nessun libro corrisponde alla ricerca viene mostrato un messaggio di errore (se implementato: NFR-02).
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-06: Inserimento utente}\label{subsubsec:insert-user}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello gestione utenti.
+        \item \textbf{Postcondizioni}: Il nuovo utente è registrato nell'archivio.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario clicca sul tasto per aggiungere un nuovo utente.
+            \item Il bibliotecario inserisce Nome, Cognome, Matricola ed Email.
+            \item Il sistema valida l'Email (se implementato: NFR-04).
+            \item Il sistema valida la Matricola (NFR-05).
+            \item Il sistema aggiunge l'utente all'archivio.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 3a Il sistema mostra un errore se almeno uno dei dati non è valido (se implementato: NFR-02).
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-07: Modifica Utente}\label{subsubsec:modify-user}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: L'utente da modificare esiste nell'archivio.
+        \item \textbf{Postcondizioni}: I dati dell'utente sono aggiornati.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario seleziona un utente.
+            \item Il bibliotecario modifica i dati dell'utente.
+            \item Il sistema valida i nuovi dati.
+            (se implementato: NFR-04) (NFR-05).
+            \item Il sistema aggiorna l'archivio.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 3a Se la modifica crea un conflitto, viene annullata e viene segnalato un errore (se implementato: NFR-02).
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-08: Cancellazione Utente}\label{subsubsec:delete-user}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: L'utente da eliminare esiste.
+        \item \textbf{Postcondizioni}: L'utente non è più nell'archivio.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario seleziona l'utente da rimuovere.
+            \item Il bibliotecario clicca sul pulsante per eliminare l'utente.
+            \item Il sistema chiede conferma (se implementato NFR-03).
+            Il bibliotecario conferma.
+            \item Il sistema rimuove l'utente dall'archivio.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 3a.\ Il sistema impedisce la cancellazione se l'utente ha libri non restituiti.
+            \item 4a.\ Il bibliotecario nega la conferma; l'operazione viene annullata.
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-09: Visita Ordinata Utenti}\label{subsubsec:list-users}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso alla pagina utenti.
+        \item \textbf{Postcondizioni}: La lista è visualizzata secondo il criterio scelto.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario accede alla sezione utenti.
+            \item Il sistema mostra gli utenti ordinati per Cognome e poi Nome (Default).
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 2a.\ Il bibliotecario sceglie l'ordinamento per matricola; il sistema aggiorna la lista.
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-10: Ricerca Utente}\label{subsubsec:search-user}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello di gestione utenti.
+        \item \textbf{Postcondizioni}: Vengono mostrati i risultati corrispondenti.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario clicca sulla barra di ricerca.
+            \item
+            \item
+            \item
+            \item
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item
+        \end{itemize}
+    \end{itemize}
+
+%===============================================

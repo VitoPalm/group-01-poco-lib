@@ -1,0 +1,189 @@
+%===============================================
+
+    \subsection{Requisiti Funzionali (FR)}\label{subsec:functional-req}
+
+    \subsubsection{Gestione dei libri (FBR)}\label{subsubsec:book-management}
+
+
+    \begin{table}[H]
+        \centering
+        {\setlength{\extrarowheight}{4pt}
+            \begin{tabular}{|l|l|m{10cm}|}
+                \hline
+                \textbf{ID requisito} & \textbf{Priorità} & \textbf{Descrizione} \\
+                \hline
+                FBR-01 & ALTA & \textbf{INSERIMENTO LIBRO:} Deve essere possibile inserire un nuovo libro nell'archivio indicando titolo, autori, anno di pubblicazione, codice ISBN e quante copie sono possedute dalla biblioteca \\[20pt]
+                \hline
+                FBR-02 & ALTA & \textbf{MODIFICA LIBRO:} Deve essere possibile modificare i dati di un libro già presente nell'archivio \\
+                \hline
+                FBR-03 & ALTA & \textbf{CANCELLAZIONE LIBRO:} Deve essere possibile rimuovere un libro dall'archivio. \\
+                \hline
+                FBR-04 & ALTA & \textbf{VISITA ORDINATA (PER TITOLO):} Deve essere possibile visualizzare la lista dei libri ordinata alfabeticamente per titolo \\
+                \hline
+                FBR-04.1 & BASSA & \textbf{VISITA ORDINATA (PER AUTORE, ANNO O NUMERO COPIE):} La lista dei libri può essere visualizzata anche ordinata per autore, anno di pubblicazione o numero di copie disponibili \\
+                \hline
+                FBR-05 & ALTA & \textbf{RICERCA LIBRO(PER TITOLO, AUTORE, ISBN):} Deve essere possibile cercare un libro nell'archivio inserendo titolo, autore o codice ISBN \\
+                \hline
+                FBR-05.1 & BASSA & \textbf{RICERCA LIBRO (PER ANNO):} La ricerca può essere fatta anche per anno di pubblicazione \\
+                \hline
+            \end{tabular}}
+        \caption{Requisiti funzionali - Gestione dei libri}
+        \label{tab:req-books}
+    \end{table}
+
+    \subsubsection{Gestione degli utenti (FUR)}\label{subsubsec:user-management}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|p{9cm}|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Descrizione} \\
+            \hline
+            FUR-01 & ALTA & \textbf{INSERIMENTO UTENTE:} Deve essere possibile registrare un nuovo utente indicando nome, cognome, matricola ed email istituzionale \\
+            \hline
+            FUR-02 & ALTA & \textbf{MODIFICA UTENTE:} Deve essere possibile modificare i dati di un utente già registrato nell'archivio \\
+            \hline
+            FUR-03 & ALTA & \textbf{CANCELLAZIONE UTENTE:} Deve essere possibile rimuovere un utente dall'archivio. \\
+            \hline
+            FUR-04 & ALTA & \textbf{VISITA ORDINATA (ORIDINE LESSICOGRAFICO):} Deve essere possibile visualizzare la lista degli utenti ordinata per cognome e poi per nome \\
+            \hline
+            FUR-05.1 & BASSA & \textbf{VISITA ORDINATA (PER MATRICOLA):} La lista degli utenti può essere visualizzata anche ordinata per matricola \\
+            \hline
+            FUR-06 & ALTA & \textbf{RICERCA UTENTE (PER COGNOME O MATRICOLA):} Deve essere possibile cercare un utente nell'archivio inserendo cognome o matricola \\
+            \hline
+            FUR-06.1 & BASSA & \textbf{RICERCA UTENTE (PER NOME O EMAIL):} La ricerca può essere fatta anche per nome o email istituzionale \\
+            \hline
+        \end{tabular}
+        \caption{Requisiti funzionali - Gestione degli utenti}
+        \label{tab:req-users}
+    \end{table}
+
+    \subsubsection{Gestione dei prestiti (FLR)}\label{subsubsec:loan-management}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|p{9cm}|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Descrizione} \\
+            \hline
+            FLR-01 & ALTA & \textbf{REGISTRAZIONE PRESTITO:} Deve essere possibile registrare un prestito scegliendo l'utente e il libro, indicando anche quando il libro va restituito.
+            Il prestito viene registrato solo se ci sono copie disponibili del libro, e se l'utente non ha già 3 libri in prestito\\
+            \hline
+            FLR-02 & ALTA & \textbf{ELENCO PRESTITI ATTIVI:} Deve essere possibile visualizzare l'elenco dei prestiti attivi, ordinato per data prevista di restituzione, evidenziando quelli in ritardo \\
+            \hline
+            FLR-03 & ALTA & \textbf{REGISTRAZIONE RESTITUZIONE:} Deve essere possibile registrare la restituzione di un libro preso in prestito, aggiornando così lo stato del prestito e il numero di copie disponibili del libro \\
+            \hline
+
+        \end{tabular}
+        \caption{Requisiti funzionali - Gestione dei prestiti}
+        \label{tab:req-loans}
+    \end{table}
+
+
+    \subsection{Requisiti sui dati (FDR)}\label{subsec:data-req}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|p{9cm}|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Descrizione} \\
+            \hline
+            FDR-01 & ALTA & \textbf{SALVATAGGIO LIBRI:} Bisogna salvare Titolo, Autori, Anno di pubblicazione, Codice ISBN e numero di copie disponibili di ogni libro\\
+            \hline
+            FDR-02 & ALTA & \textbf{SALVATAGGIO UTENTI:} Bisogna salvare Nome, Cognome, Matricola, Email istituzionale e Lista dei libri in prestito (con data di restituzione prevista) di ogni utente\\
+            \hline
+            FDR-03 & ALTA & \textbf{SALVATAGGIO PRESTITI:} Bisogna salvare per ogni prestito l'utente che ha preso il libro, il libro preso in prestito, la data di inizio prestito e la data di restituzione prevista \\
+            \hline
+            FDR-04 & ALTA & \textbf{CARICAMENTO DATI ALL' AVVIO:} All'avvio del programma, tutti i dati salvati (libri, utenti e prestiti) devono essere caricati automaticamente dall'archivio \\
+            \hline
+            FDR-05 & MEDIA & \textbf{SALVATAGGIO LIBRI:} Ogni volta che si apporta una modifica (inserimento, modifica, cancellazione di libri, utenti o prestiti), i dati devono essere salvati automaticamente sull'archivio senza richiedere un'azione manuale da parte dell'utente\\
+            \hline
+
+
+        \end{tabular}
+        \caption{Requisiti sui dati}
+        \label{tab:req-data}
+    \end{table}
+
+    \subsection{Requisiti Non Funzionali (NFR)}\label{subsec:nonfunctional-req}
+
+    \subsubsection{Requisiti di Usabilità (NUR)}\label{subsubsec:usability-req}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|p{9cm}|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Descrizione} \\
+            \hline
+            NUR-01 & ALTA & \textbf{INTERFACCIA UTENTE:} Tutte le funzioni (public) del programma devono essere accessibili tramite un'interfaccia grafica (GUI)\\
+            \hline
+            NUR-02 & MEDIA & \textbf{ERRORI ESPLICATIVI:} In caso di errore (es.\ dati non validi) deve essere mostrato un messaggio chiaro che spiega il problema e come risolverlo\\
+            \hline
+            NUR-03 & MEDIA & \textbf{CONFERMA ELIMINAZIONE:} Prima di cancellare qualcosa (libro, utente, ecc.) il programma deve sempre chiedere conferma\\
+            \hline
+        \end{tabular}
+        \caption{Requisiti di usabilità}
+        \label{tab:req-usability}
+    \end{table}
+
+    \subsubsection{Requisiti di Affidabilità (NRR)}\label{subsubsec:reliability-req}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|p{9cm}|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Descrizione} \\
+            \hline
+            NRR-01 & MEDIA & \textbf{VALIDITÀ EMAIL:} Quando si inserisce un nuovo utente, bisogna controllare che l'email istituzionale sia valida e univoca\\
+            \hline
+            NRR-02 & ALTA & \textbf{VALIDITÀ MATRICOLA:} Quando si inserisce la matricola, bisogna controllare che sia univoca e che segua il formato prestabilito (ad esempio 10 cifre)\\
+            \hline
+            NRR-03 & MEDIA & \textbf{VALIDITÀ ISBN:} Quando si inserisce un nuovo libro, bisogna controllare che l'ISBN sia univoco e che segua il formato corretto (10 o 13 cifre con eventuali trattini) \\
+            \hline
+            NRR-04 & MEDIA & \textbf{CREAZIONE BACKUP:} Prima di salvare, il programma crea automaticamente una copia di backup (tenendo le ultime versioni)\\
+            \hline
+            NRR-05 & MEDIA & \textbf{RIPRISTINO DA BACKUP:} Se ci sono problemi nel leggere il file deve essere possibile ripristinare l'ultima versione funzionante.\\
+            \hline
+        \end{tabular}
+        \caption{Requisiti di affidabilità}
+        \label{tab:req-reliability}
+    \end{table}
+
+    \subsubsection{Requisiti di Manutenibilità (NMR)}\label{subsubsec:maintainability-req}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|p{9cm}|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Descrizione} \\
+            \hline
+            NMR-01 & MEDIA & \textbf{ORGANIZZAZIONE CODICE:} Il codice va organizzato secondo il pattern MVC (Model-View-Controller) per facilitare modifiche future\\
+            \hline
+            NMR-02 & ALTA & \textbf{DOCUMENTAZIONE INTERFACCE PUBBLICHE:} Le classi e i metodi pubblici devono essere documentati secondo lo standard di doxygen\\
+            \hline
+            NMR-02.1 & BASSA & \textbf{DOCUMENTAZIONE INTERFACCE PRIVATE:} Anche le classi e i metodi privati devono essere documentati\\
+            \hline
+            NMR-03 & MEDIA & \textbf{CONVEZIONE SUI NOMI:} Nomi di variabili e funzioni devono seguire le stesse convenzioni in tutto il progetto (es.\ camelCase per variabili)\\
+            \hline
+            NMR-04 & ALTA & \textbf{TESTING AUTOMATICO:} Il progetto deve includere test automatici implementati tramite JUnit per le funzionalità principali (non GUI)\\
+            \hline
+        \end{tabular}
+        \caption{Requisiti di manutenibilità}
+        \label{tab:req-maintainability}
+    \end{table}
+
+    \subsubsection{Requisiti di Piattaforma (NPR)}\label{subsubsec:platform-req}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|p{9cm}|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Descrizione} \\
+            \hline
+            NPR-01 & ALTA & \textbf{LINGUAGGIO:} Il programma deve scritto in Java per garantire portabilità tra diversi sistemi operativi\\
+            \hline
+            NPR-02 & ALTA & \textbf{BUILD AUTOMATICO:} Deve essere possibile compilare ed eseguire il programma tramite Maven\\
+            \hline
+        \end{tabular}
+        \caption{Requisiti di piattaforma}
+        \label{tab:req-platform}
+    \end{table}
+
+
+%===============================================
