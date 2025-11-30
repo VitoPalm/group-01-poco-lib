@@ -4,8 +4,6 @@
 \usepackage[main=italian,english]{babel}
 \usepackage{geometry}
 \usepackage{array}
-\usepackage{tabularx}
-\usepackage{cellspace}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -13,15 +11,9 @@
 \usepackage{float}
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
-\usepackage{tablefootnote}
-
-
-% Impostazioni tabelle - padding uniforme per le celle
-\addparagraphcolumntypes{X}
-\cellspacetoplimit=5pt
-\cellspacebottomlimit=5pt
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\tabularxcolumn}[1]{m{#1}}
+\usepackage{footnote}
+\usepackage{footnotehyper}
+\usepackage{svg}
 
 % Impostazioni pagina
 \geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
@@ -53,8 +45,6 @@
 
     \subsection{Descrizione del progetto}\label{subsec:descrizione-progetto}
 
-%Da inserire
-
     Il presente documento descrive le specifiche dei requisiti software di un sistema di gestione di una biblioteca (es.\ universitaria).
     Il sistema permette l'inserimento, modifica e cancellazione di libri in una libreria digitale, il tutto memorizzato localmente in un file.
     Permette inoltre di registrare, modificare e rimuovere gli utenti per tracciarne i prestiti.
@@ -79,25 +69,6 @@
         \end{tabular}
         \label{tab:priorities}
     \end{table}
-
-    Convenzioni sul rischio tecnico dei requisiti:
-    \begin{table}[H]
-        \centering
-
-        \begin{tabular}{|c|p{7cm}|c|}
-            \hline
-            \textbf{Termine} & \textbf{Descrizione} \\
-            \hline
-            ALTA & È difficile prevedere se si riuscirà a realizzare il requisito (in assoluto, o semplicemente nei tempi e nei costi previsti)\\
-            \hline
-            MEDIO & Si ritiene di poter realizzare il requisito, ma ci sono alcuni fattori di rischio che non possono essere controllati\\
-            \hline
-            BASSA & Si ha piena fiducia nella propria capacità di realizzarlo\\
-            \hline
-        \end{tabular}
-        \label{tab:risks}
-    \end{table}
-
 
     \noindent Convenzioni sulla numerazione dei requisiti:
 
@@ -128,13 +99,11 @@
         \label{tab:req-numbering}
     \end{table}
 
-
-
-
 %===============================================
     \section{Specifica dei requisiti}\label{sec:requirements}
     \input{specifica-dei-requisiti}
 
+    \newpage
     \section{Casi d'Uso}\label{sec:use-cases}
     \input{casi-d'uso}
 
@@ -149,7 +118,7 @@
             \hline
             \textbf{ID Requisito} & \textbf{Componente} & \textbf{Casi di test} \\
             \hline
-% Da inserire
+
 
             \hline
         \end{tabular}
