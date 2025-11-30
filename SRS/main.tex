@@ -4,6 +4,8 @@
 \usepackage[main=italian,english]{babel}
 \usepackage{geometry}
 \usepackage{array}
+\usepackage{tabularx}
+\usepackage{cellspace}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -11,9 +13,16 @@
 \usepackage{float}
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
-\usepackage{footnote}
-\usepackage{footnotehyper}
+\usepackage{tablefootnote}
 \usepackage{svg}
+
+
+% Impostazioni tabelle - padding uniforme per le celle
+\addparagraphcolumntypes{X}
+\cellspacetoplimit=5pt
+\cellspacebottomlimit=5pt
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
 
 % Impostazioni pagina
 \geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
@@ -45,6 +54,8 @@
 
     \subsection{Descrizione del progetto}\label{subsec:descrizione-progetto}
 
+%Da inserire
+
     Il presente documento descrive le specifiche dei requisiti software di un sistema di gestione di una biblioteca (es.\ universitaria).
     Il sistema permette l'inserimento, modifica e cancellazione di libri in una libreria digitale, il tutto memorizzato localmente in un file.
     Permette inoltre di registrare, modificare e rimuovere gli utenti per tracciarne i prestiti.
@@ -55,8 +66,7 @@
 
     \begin{table}[H]
         \centering
-
-        \begin{tabular}{|c|p{7cm}|c|}
+        \begin{tabularx}{10cm}{|Sc|S{X}|}
             \hline
             \textbf{Termine} & \textbf{Descrizione} \\
             \hline
@@ -66,17 +76,35 @@
             \hline
             BASSA & Il requisito si può implementare se non richiede grandi sforzi\\
             \hline
-        \end{tabular}
+        \end{tabularx}
         \label{tab:priorities}
     \end{table}
 
+    Convenzioni sul rischio tecnico dei requisiti:
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{10cm}{|Sc|S{X}|}
+            \hline
+            \textbf{Termine} & \textbf{Descrizione} \\
+            \hline
+            ALTA & È difficile prevedere se si riuscirà a realizzare il requisito (in assoluto, o semplicemente nei tempi e nei costi previsti)\\
+            \hline
+            MEDIO & Si ritiene di poter realizzare il requisito, ma ci sono alcuni fattori di rischio che non possono essere controllati\\
+            \hline
+            BASSA & Si ha piena fiducia nella propria capacità di realizzarlo\\
+            \hline
+        \end{tabularx}
+        \label{tab:risks}
+    \end{table}
+
+    \newpage
     \noindent Convenzioni sulla numerazione dei requisiti:
 
     \begin{table}[H]
         \centering
-        \begin{tabular}{|c|p{7.7cm}|c|}
+        \begin{tabularx}{13.2cm}{|Sc|S{X}|}
             \hline
-            \textbf{Numero del requisito} & \textbf{Descrizione} \\
+            \textbf{Codice del requisito} & \textbf{Descrizione} \\
             \hline
             FBR-XX & Functional Book Requirements \\
             \hline
@@ -95,15 +123,17 @@
             NPR-XX & Non-Functional Platform Requirements\\
             \hline
 
-        \end{tabular}
+        \end{tabularx}
         \label{tab:req-numbering}
     \end{table}
+
+
+
 
 %===============================================
     \section{Specifica dei requisiti}\label{sec:requirements}
     \input{specifica-dei-requisiti}
 
-    \newpage
     \section{Casi d'Uso}\label{sec:use-cases}
     \input{casi-d'uso}
 
@@ -118,8 +148,6 @@
             \hline
             \textbf{ID Requisito} & \textbf{Componente} & \textbf{Casi di test} \\
             \hline
-
-
             \hline
         \end{tabular}
         \label{tab:traceability}
