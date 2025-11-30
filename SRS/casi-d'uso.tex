@@ -113,7 +113,7 @@
     \subsubsection{Diagramma dei casi d'uso sugli utenti}\label{subsubsec:users-uml}
     \begin{figure}[H]
         \centering
-        \includesvg[width=1\linewidth]{gestioneUtenti.svg}
+        \includesvg[width=1\linewidth]{UML-users.svg}
         \label{fig:gestione-utenti}
     \end{figure}
 
@@ -290,7 +290,7 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il bibliotecario si trova nella scheda prestiti.
         \item \textbf{Postcondizioni}: La lista dei prestiti è visualizzata con evidenziazione ritardi.
-        \item \textbf{Requisiti Implementati}: \hyperref[FLR:02]{FLR-02}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:04]{FLR-04}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario accede alla sezione Prestiti.
@@ -308,7 +308,7 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Esiste un prestito attivo per quell'utente/libro.
         \item \textbf{Postcondizioni}: Prestito eliminato, copie libro incrementate.
-        \item \textbf{Requisiti Implementati}: \hyperref[FLR:03]{FLR-03}, \hyperref[FDR:02]{FDR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:05]{FLR-05}, \hyperref[FDR:02]{FDR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona un prestito attivo dalla sezione prestiti.
@@ -325,7 +325,7 @@
     \subsubsection{Diagramma dei casi d'uso sui dati}\label{subsubsec:data-uml}
     \begin{figure}[H]
         \centering
-        \includesvg[width=1\linewidth]{persistenza.svg}
+        % \includesvg[width=1\linewidth]{persistenza.svg}
         \label{fig:gestioneDati}
     \end{figure}
 
