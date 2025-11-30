@@ -1,13 +1,21 @@
 %===============================================
 
-    \subsection{Descrizione dei Casi d'Uso sulla gestione dei libri}\label{subsec:books-use-cases}
+    \subsection{Descrizione dei Casi d'Uso sulla Gestione dei Libri}\label{subsec:books-use-cases}
+
+    \subsubsection{Diagramma dei casi d'uso sui libri}\label{subsubsec:books-uml}
+    \begin{figure}[H]
+        \centering
+        % \includesvg[width=1\linewidth]{gestioneLibri.svg}
+        \label{fig:placeholder}
+    \end{figure}
 
     \subsubsection{UC-01: Inserimento Libro}\label{UC:01}
-% Diagramma UML + descrizione use case
+
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello di gestione dei libri.
         \item \textbf{Postcondizioni}: Il libro è nell'archivio.
+        \item \textbf{Requisiti Implementati}: \hyperref[FBR:01]{FBR-01}, \hyperref[FDR:01]{FDR-01}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario clicca il bottone per aggiungere un libro.
@@ -17,7 +25,7 @@
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
-            \item[4a.] Il sistema mostra un messaggio di errore se l'ISBN non è valido (se implementato: \hyperref[NUR:02]{NUR-02}).
+            \item[3a.] Il sistema mostra un messaggio di errore se l'ISBN non è valido (se implementato: \hyperref[NUR:02]{NUR-02}).
         \end{itemize}
     \end{itemize}
 
@@ -26,6 +34,7 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il libro da modificare esiste nell'archivio.
         \item \textbf{Postcondizioni}: I dati del libro sono aggiornati e salvati.
+        \item \textbf{Requisiti Implementati}: \hyperref[FBR:02]{FBR-02}, \hyperref[FDR:01]{FDR-01}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona un libro da modificare.
@@ -46,6 +55,7 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il libro da eliminare esiste nell'archivio e non ci sono prestiti attivi che lo coinvolgono.
         \item \textbf{Postcondizioni}: Il libro non è più presente nell'archivio.
+        \item \textbf{Requisiti Implementati}: \hyperref[FBR:03]{FBR-03}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona il libro da rimuovere.
@@ -65,19 +75,24 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: L'archivio contiene almeno un libro.
         \item \textbf{Postcondizioni}: Viene mostrata la lista ordinata.
+        \item \textbf{Requisiti Implementati}: \hyperref[FBR:04]{FBR-04}, \hyperref[FBR:04.1]{FBR-04.1}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario accede alla sezione libri.
             \item Il sistema mostra la lista ordinata alfabeticamente per Titolo (Default).
         \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{enumerate}
+            \item[2a.] Il bibliotecario può richiedere l'ordinamento per Autore, Anno, ISBN o Numero di Copie, premendo l'header della colonna corrispondente alla proprietà, e ri-premendo per invertire l'ordinamento rispetto alla stessa proprietà. (se implementato: \hyperref[FBR:04.1]{FBR-04.1})
+        \end{enumerate}
     \end{itemize}
-
 
     \subsubsection{UC-05: Ricerca Libro}\label{UC:05}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello di gestione dei libri.
         \item \textbf{Postcondizioni}: Vengono mostrati i risultati corrispondenti.
+        \item \textbf{Requisiti Implementati}: \hyperref[FBR:05]{FBR-05}, \hyperref[FBR:05.1]{FBR-05.1}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario clicca sulla barra di ricerca.
@@ -90,19 +105,22 @@
         \end{itemize}
     \end{itemize}
 
-    \subsubsection{Diagramma dei casi d'uso sui libri}\label{subsubsec:books-uml}
+
+    \subsection{Descrizione dei Casi d'Uso sulla Gestione degli Utenti}\label{subsec:users-use-cases}
+
+    \subsubsection{Diagramma dei casi d'uso sugli utenti}\label{subsubsec:users-uml}
     \begin{figure}[H]
         \centering
-        % \includesvg[width=1\linewidth]{gestioneLibri.svg}
-        \label{fig:placeholder}
+        % \includesvg[width=1\linewidth]{gestioneUtenti.svg}
+        \label{fig:gestione-utenti}
     \end{figure}
-    \subsection{Descrizione dei Casi d'Uso sulla gestione degli utenti}\label{subsec:users-use-cases}
 
     \subsubsection{UC-06: Inserimento utente}\label{UC:06}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello gestione utenti.
         \item \textbf{Postcondizioni}: Il nuovo utente è registrato nell'archivio.
+        \item \textbf{Requisiti Implementati}: \hyperref[FUR:01]{FUR-01}, \hyperref[FDR:02]{FDR-02}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario clicca sul tasto per aggiungere un nuovo utente.
@@ -121,6 +139,7 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: L'utente da modificare esiste nell'archivio.
         \item \textbf{Postcondizioni}: I dati dell'utente sono aggiornati.
+        \item \textbf{Requisiti Implementati}: \hyperref[FUR:02]{FUR-02}, \hyperref[FDR:02]{FDR-02}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona un utente.
@@ -139,6 +158,7 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: L'utente da eliminare esiste e non ha libri non restituiti.
         \item \textbf{Postcondizioni}: L'utente non è più nell'archivio.
+        \item \textbf{Requisiti Implementati}: \hyperref[FUR:03]{FUR-03}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona l'utente da rimuovere.
@@ -158,12 +178,16 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il bibliotecario si trova nella scheda utenti.
         \item \textbf{Postcondizioni}: La lista è visualizzata secondo il criterio scelto.
+        \item \textbf{Requisiti Implementati}: \hyperref[FUR:04]{FUR-04}, \hyperref[FUR:04.1]{FUR-04.1}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario accede alla sezione utenti.
             \item Il sistema mostra gli utenti ordinati per Cognome e poi Nome (Default).
         \end{enumerate}
-    
+        \item \textbf{Scenari Alternativi}:
+        \begin{enumerate}
+            \item[2a.] Il bibliotecario può richiedere l'ordinamento per Matricola, premendo l'header della colonna corrispondente alla proprietà, e ri-premendo per invertire l'ordinamento rispetto alla stessa proprietà. (se implementato: \hyperref[FUR:04.1]{FUR-04.1})
+        \end{enumerate}
     \end{itemize}
 
     \subsubsection{UC-10: Ricerca Utente}\label{UC:10}
@@ -171,6 +195,7 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello di gestione utenti.
         \item \textbf{Postcondizioni}: Vengono mostrati i risultati corrispondenti.
+        \item \textbf{Requisiti Implementati}: \hyperref[FUR:05]{FUR-05}, \hyperref[FUR:05.1]{FUR-05.1}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario clicca sulla barra di ricerca.
@@ -183,20 +208,22 @@
         \end{itemize}
     \end{itemize}
 
-    \subsubsection{Diagramma dei casi d'uso sugli utenti}\label{subsubsec:users-uml}
+
+    \subsection{Descrizione dei Casi d'Uso sulla Gestione dei Prestiti}\label{subsec:lendings-use-cases}
+
+    \subsubsection{Diagramma dei casi d'uso sui prestiti}\label{subsubsec:lendings-uml}
     \begin{figure}[H]
         \centering
-        % \includesvg[width=1\linewidth]{gestioneUtenti.svg}
-        \label{fig:gestione-utenti}
+        % \includesvg[width=1\linewidth]{gestionePrestiti.svg}
+        \label{fig:placeholder}
     \end{figure}
-
-    \subsection{Descrizione dei Casi d'Uso sulla gestione dei prestiti}\label{subsec:lendings-use-cases}
 
     \subsubsection{UC-11: Registrazione Prestito}\label{UC:11}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Utente e Libro esistono, l'utente ha meno di 3 libri in prestito e ci sono copie disponibili del libro.
         \item \textbf{Postcondizioni}: Prestito registrato, copie libro decrementate, lista prestiti utente aggiornata.
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:01]{FLR-01}, \hyperref[FDR:02]{FDR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona un Utente e un Libro (è possibile la sola selezione di libri e utenti che rispettano le precondizioni - vedere \hyperref[UC:11.1a]{scenario 1a}).
@@ -210,12 +237,12 @@
         \end{itemize}
     \end{itemize}
 
-
     \subsubsection{UC-12: Visualizzazione Prestiti Attivi}\label{UC:12}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il bibliotecario si trova nella scheda prestiti.
         \item \textbf{Postcondizioni}: La lista dei prestiti è visualizzata con evidenziazione ritardi.
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:02]{FLR-02}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario accede alla sezione Prestiti.
@@ -228,12 +255,12 @@
         \end{itemize}
     \end{itemize}
 
-
     \subsubsection{UC-13: Registrazione Restituzione}\label{UC:13}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Esiste un prestito attivo per quell'utente/libro.
         \item \textbf{Postcondizioni}: Prestito eliminato, copie libro incrementate.
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:03]{FLR-03}, \hyperref[FDR:02]{FDR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona un prestito attivo dalla sezione prestiti.
@@ -243,31 +270,33 @@
             \item Il sistema rimuove il libro dalla lista dei prestiti correnti dell'utente.
         \end{enumerate}
     \end{itemize}
-        
-    \subsubsection{Diagramma dei casi d'uso sui prestiti}\label{subsubsec:lendings-uml}
+
+
+    \subsection{Descrizione dei Casi d'Uso sulla Gestione dei Dati}\label{subsec:data-use-cases}
+
+    \subsubsection{Diagramma dei casi d'uso sui dati}\label{subsubsec:data-uml}
     \begin{figure}[H]
         \centering
-        % \includesvg[width=1\linewidth]{gestionePrestiti.svg}
+        % \includesvg[width=1\linewidth]{persistenza.svg}
         \label{fig:placeholder}
     \end{figure}
-
-    \subsection{Descrizione dei Casi d'Uso sulla gestione dei dati}\label{subsec:data-use-cases}
 
     \subsubsection{UC-14: Salvataggio Automatico (con Backup)}\label{UC:14}
     \begin{itemize}
         \item \textbf{Attori}: Sistema
         \item \textbf{Precondizioni}: È stata effettuata un'operazione di scrittura.
         \item \textbf{Postcondizioni}: I dati sono salvati su file e il backup è aggiornato.
+        \item \textbf{Requisiti Implementati}: \hyperref[FDR:05]{FDR-05}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item L'utente completa un'operazione di modifica dati.
-            \item Il sistema crea automaticamente una copia di backup dei file attuali (se implementato NFR-07).
+            \item Il sistema crea automaticamente una copia di backup dei file attuali (se implementato \hyperref[NRR:04]{NRR-04}).
             \item Il sistema sovrascrive i file principali con i nuovi dati.
             \item Il sistema conferma l'avvenuto salvataggio.
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
-            \item[3a.] Se si è verificato un errore il sistema notifica l'utente che il salvataggio è fallito e mantiene i dati in memoria (se implementato NFR-02).
+            \item[3a.] Se si è verificato un errore il sistema notifica l'utente che il salvataggio è fallito e mantiene i dati in memoria (se implementato \hyperref[NUR:02]{NUR-02}).
         \end{itemize}
     \end{itemize}
 
@@ -276,6 +305,7 @@
         \item \textbf{Attori}: Sistema
         \item \textbf{Precondizioni}: L'applicazione viene lanciata.
         \item \textbf{Postcondizioni}: Dati caricati dall'archivio.
+        \item \textbf{Requisiti Implementati}: \hyperref[FDR:04]{FDR-04}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item L'applicazione si avvia.
@@ -285,15 +315,9 @@
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
-            %DA FINIRE...
             \item[3a.] Se non esistono file (primo avvio), il sistema inizializza file vuoti.
-            \item[3b.] Se i file sono corrotti o illeggibili, il sistema tenta automaticamente di caricare l'ultima versione di backup funzionante (NFR-08).
+            \item[3b.] Se i file sono corrotti o illeggibili, il sistema tenta automaticamente di caricare l'ultima versione di backup funzionante (se implementato \hyperref[NRR:05]{NRR-05}).
         \end{itemize}
     \end{itemize}
-    \subsubsection{Diagramma dei casi d'uso sui dati}\label{subsubsec:data-uml}
-    \begin{figure}[H]
-        \centering
-        % \includesvg[width=1\linewidth]{persistenza.svg}
-        \label{fig:placeholder}
-    \end{figure}
+
 %===============================================
