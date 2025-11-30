@@ -5,7 +5,7 @@
 \usepackage{geometry}
 \usepackage{array}
 \usepackage{tabularx}
-\usepackage{cellspace}
+% \usepackage{cellspace} % Removed due to conflict
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -18,9 +18,10 @@
 
 
 % Impostazioni tabelle - padding uniforme per le celle
-\addparagraphcolumntypes{X}
-\cellspacetoplimit=5pt
-\cellspacebottomlimit=5pt
+% \addparagraphcolumntypes{X} % Removed
+% \cellspacetoplimit=5pt % Removed
+% \cellspacebottomlimit=5pt % Removed
+\renewcommand{\arraystretch}{1.5} % Added for spacing
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\tabularxcolumn}[1]{m{#1}}
 
@@ -66,7 +67,7 @@
 
     \begin{table}[H]
         \centering
-        \begin{tabularx}{10cm}{|Sc|S{X}|}
+        \begin{tabularx}{10cm}{|c|X|}
             \hline
             \textbf{Termine} & \textbf{Descrizione} \\
             \hline
@@ -83,7 +84,7 @@
     Convenzioni sul rischio tecnico dei requisiti:
     \begin{table}[H]
         \centering
-        \begin{tabularx}{10cm}{|Sc|S{X}|}
+        \begin{tabularx}{10cm}{|c|X|}
             \hline
             \textbf{Termine} & \textbf{Descrizione} \\
             \hline
@@ -102,7 +103,7 @@
 
     \begin{table}[H]
         \centering
-        \begin{tabularx}{13.2cm}{|Sc|S{X}|}
+        \begin{tabularx}{13.2cm}{|c|X|}
             \hline
             \textbf{Codice del requisito} & \textbf{Descrizione} \\
             \hline
@@ -131,9 +132,11 @@
 
 
 %===============================================
+    \newpage
     \section{Specifica dei requisiti}\label{sec:requirements}
     \input{specifica-dei-requisiti}
 
+    \newpage
     \section{Casi d'Uso}\label{sec:use-cases}
     \input{casi-d'uso}
 
