@@ -1,26 +1,5 @@
 %===============================================
 
-%MODEL
-    \subsubsection{UC-XX: Title}
-    \begin{itemize}
-        \item \textbf{Attori}:
-        \item \textbf{Precondizioni}:
-        \item \textbf{Postcondizioni}:
-        \item \textbf{Scenario Principale}:
-        \begin{enumerate}
-            \item
-            \item
-            \item
-            \item
-            \item
-        \end{enumerate}
-        \item \textbf{Scenari Alternativi}:
-        \begin{itemize}
-            \item
-        \end{itemize}
-    \end{itemize}
-
-
     \subsection{Descrizione dei Casi d'Uso Principali}\label{subsec:use-case-descriptions}
 
     \subsubsection{UC-01: Inserimento Libro}\label{subsubsec:insert-book}
@@ -205,6 +184,96 @@
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
             \item
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-11: Registrazione Prestito}\label{subsubsec:register-loan}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Utente e Libro esistono.
+        \item \textbf{Postcondizioni}: Prestito registrato, copie libro decrementate, lista prestiti utente aggiornata.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario seleziona un Utente e un Libro.
+            \item Il bibliotecario indica la data di restituzione prevista.
+            \item Il sistema verifica che ci siano copie disponibili del libro e che l'utente abbia meno di 3 libri in prestito.
+            \item Il sistema registra il prestito, decrementa le copie del libro, associa il libro all'utente
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 4a. Se non ci sono copie disponibili o l'utente ha già 3 libri in prestito, il sistema mostra un messaggio di errore (se implementato: NFR-02).
+        \end{itemize}
+    \end{itemize}
+
+
+    \subsubsection{UC-12: Registrazione Restituzione}\label{subsubsec:list-loans}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Almeno un prestito attivo esiste.
+        \item \textbf{Postcondizioni}: La lista dei prestiti è visualizzata con evidenziazione ritardi.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario accede alla sezione Prestiti.
+            \item Il sistema mostra l'elenco ordinato per data di restituzione prevista.
+            \item Il sistema evidenzia i prestiti la cui data prevista è antecedente alla data odierna.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 4a. Il bibliotecario cambia il criterio di ordinamento. Il sistema riordina la lista secondo il criterio scelto.
+        \end{itemize}
+    \end{itemize}
+
+
+    \subsubsection{UC-13: Registrazione Restituzione}\label{subsubsec:register-return}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Esiste un prestito attivo per quell'utente/libro.
+        \item \textbf{Postcondizioni}: Prestito eliminato, copie libro incrementate.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario seleziona un prestito attivo dalla sezione prestiti.
+            \item Il bibliotecario clicca sul tasto per registrare la restituzione.
+            \item Il sistema aggiorna lo stato del prestito.
+            \item Il sistema incrementa il numero di copie disponibili del libro.
+            \item Il sistema rimuove il libro dalla lista dei prestiti correnti dell'utente.
+        \end{enumerate}
+    \end{itemize}
+
+    \subsubsection{UC-14: Salvataggio Automatico (con Backup)}\label{subsubsec:auto-save}
+    \begin{itemize}
+        \item \textbf{Attori}: Sistema
+        \item \textbf{Precondizioni}: È stata effettuata un'operazione di scrittura.
+        \item \textbf{Postcondizioni}: I dati sono salvati su file e il backup è aggiornato.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item L'utente completa un'operazione di modifica dati.
+            \item Il sistema crea automaticamente una copia di backup dei file attuali (se implementato NFR-07).
+            \item Il sistema sovrascrive i file principali con i nuovi dati.
+            \item Il sistema conferma l'avvenuto salvataggio.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item 3a. Se si è verificato un errore il sistema notifica l'utente che il salvataggio è fallito e mantiene i dati in memoria (se implementato NFR-02).
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-15: Caricamento Automatico al Boot}\label{subsubsec:auto-load}
+    \begin{itemize}
+        \item \textbf{Attori}: Sistema
+        \item \textbf{Precondizioni}: L'applicazione viene lanciata.
+        \item \textbf{Postcondizioni}: Dati caricati dall'archivio.
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item L'applicazione si avvia.
+            \item Il sistema cerca i file di salvataggio.
+            \item Il sistema legge e carica i dati di Libri, Utenti e Prestiti.
+            \item L'interfaccia grafica viene mostrata con i dati popolati.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            %DA FINIRE...
+            \item Se non esistono file (primo avvio), il sistema inizializza file vuoti.
+            \item Se i file sono corrotti o illeggibili, il sistema tenta automaticamente di caricare l'ultima versione di backup funzionante (NFR-08).
         \end{itemize}
     \end{itemize}
 
