@@ -85,7 +85,6 @@
     \label{tab:req-loans}
 \end{table}
 
-
 \subsubsection{Requisiti sui dati (FDR)}\label{subsubsec:data-req}
 
     \begin{table}[H]
@@ -109,6 +108,47 @@
     \label{tab:req-data}
 \end{table}
 
+\subsubsection{Requisiti sull'interfaccia (FIR)}\label{subsubsec:interface-req}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.9\linewidth]{Main-page-lending}
+        \label{fig:main-lending-page-mockup}
+        \caption{Tab per la gestione dei prestiti attiva}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.9\linewidth]{Main-page-books}
+        \label{fig:main-books-page-mockup}
+        \caption{Tab per la gestione dei libri attiva}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.9\linewidth]{Main-page-users}
+        \label{fig:main-users-page-mockup}
+        \caption{Tab per la gestione degli utenti attiva}
+    \end{figure}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{\textwidth}{|l|c|c|X|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
+            \hline
+            FIR-01\label{FIR:01} & ALTA & BASSO & \textbf{Layout Chiaro e Intuitivo:} La pagina principale deve avere un layout semplice e intuitivo, che permette l'accesso alle sezioni principali (Gestione Libri, Gestione Utenti, Gestione Prestiti)\\
+            \hline
+            FIR-01.1\label{FIR:01.1} & ALTA & BASSO & \textbf{Accesso Gestione Libri:} Dalla pagina principale deve essere possibile accedere alla sezione di gestione dei libri tramite una tab dedicata\\
+            \hline
+            FIR-01.2\label{FIR:01.2} & ALTA & BASSO & \textbf{Accesso Gestione Utenti:} Dalla pagina principale deve essere possibile accedere alla sezione di gestione degli utenti tramite una tab dedicata\\
+            \hline
+            FIR-01.3\label{FIR:01.3} & ALTA & BASSO & \textbf{Accesso Gestione Prestiti:} Dalla pagina principale deve essere possibile accedere alla sezione di gestione dei prestiti tramite una tab dedicata\\
+            \hline
+        \end{tabularx}
+        \label{tab:req-main-page}
+    \end{table}
+
 \subsection{Requisiti Non Funzionali (NFR)}\label{subsec:nonfunctional-req}
 
     \subsubsection{Requisiti di Usabilità (NUR)}\label{subsubsec:usability-req}
@@ -127,7 +167,6 @@
         \end{tabularx}
         \label{tab:req-usability}
     \end{table}
-
 
     \subsubsection{Requisiti di Affidabilità (NRR)}\label{subsubsec:reliability-req}
     \begin{table}[H]

@@ -62,7 +62,6 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" text="Return" />
                               <Button mnemonicParsing="false" text="Mark as returned" />
                            </children>
                            <padding>
