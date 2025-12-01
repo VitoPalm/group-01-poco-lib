@@ -2,7 +2,6 @@
 
     \subsection{Descrizione dei Casi d'Uso sulla Gestione dei Libri}\label{subsec:books-use-cases}
 
-    \subsubsection{Diagramma dei casi d'uso sui libri}\label{subsubsec:books-uml}
     \begin{figure}[H]
         \centering
         \includesvg[width=1\linewidth]{gestioneLibri.svg}
@@ -110,10 +109,9 @@
 
     \subsection{Descrizione dei Casi d'Uso sulla Gestione degli Utenti}\label{subsec:users-use-cases}
 
-    \subsubsection{Diagramma dei casi d'uso sugli utenti}\label{subsubsec:users-uml}
     \begin{figure}[H]
         \centering
-        \includesvg[width=1\linewidth]{UML-users.svg}
+        \includesvg[width=1\linewidth]{gestioneUtenti.svg}
         \label{fig:gestione-utenti}
     \end{figure}
 
@@ -216,7 +214,6 @@
 
     \subsection{Descrizione dei Casi d'Uso sulla Gestione dei Prestiti}\label{subsec:lendings-use-cases}
 
-    \subsubsection{Diagramma dei casi d'uso sui prestiti}\label{subsubsec:lendings-uml}
     \begin{figure}[H]
         \centering
         \includesvg[width=1\linewidth]{gestionePrestiti.svg}
@@ -303,12 +300,31 @@
         \end{itemize}
     \end{itemize}
 
-    \subsubsection{UC-15: Registrazione Restituzione}\label{UC:15}
+    \subsubsection{UC-15: Ricerca Prestito}\label{UC:10}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello di gestione prestiti.
+        \item \textbf{Postcondizioni}: Vengono mostrati i risultati corrispondenti.
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:05]{FLR-05}, \hyperref[FLR:05.1]{FLR-05.1}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario clicca sulla barra di ricerca.
+            \item Il bibliotecario inserisce la stringa di ricerca (Data di restituzione, Titolo/Autori/ISBN
+del libro e/o Nome/Cognome/ID utente).
+            \item Il sistema filtra l'archivio e mostra i prestiti che corrispondono ai criteri.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item[3a.] Se nessun prestito corrisponde alla ricerca viene mostrato un messaggio di errore (se implementato: \hyperref[NUR:02]{NUR-02}).
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-16: Registrazione Restituzione}\label{UC:16}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Esiste un prestito attivo per quell'utente/libro.
         \item \textbf{Postcondizioni}: Prestito eliminato, copie libro incrementate.
-        \item \textbf{Requisiti Implementati}: \hyperref[FLR:05]{FLR-05}, \hyperref[FDR:02]{FDR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:06]{FLR-06}, \hyperref[FDR:02]{FDR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona un prestito attivo dalla sezione prestiti.
@@ -322,14 +338,13 @@
 
     \subsection{Descrizione dei Casi d'Uso sulla Gestione dei Dati}\label{subsec:data-use-cases}
 
-    \subsubsection{Diagramma dei casi d'uso sui dati}\label{subsubsec:data-uml}
     \begin{figure}[H]
         \centering
-        % \includesvg[width=1\linewidth]{persistenza.svg}
+        \includesvg[width=1\linewidth]{persistenza.svg}
         \label{fig:gestioneDati}
     \end{figure}
 
-    \subsubsection{UC-16: Salvataggio Automatico (con Backup)}\label{UC:16}
+    \subsubsection{UC-17: Salvataggio Automatico (con Backup)}\label{UC:17}
     \begin{itemize}
         \item \textbf{Attori}: Sistema
         \item \textbf{Precondizioni}: È stata effettuata un'operazione di scrittura.
@@ -348,7 +363,7 @@
         \end{itemize}
     \end{itemize}
 
-    \subsubsection{UC-17: Caricamento Automatico al Boot}\label{UC:17}
+    \subsubsection{UC-18: Caricamento Automatico al Boot}\label{UC:18}
     \begin{itemize}
         \item \textbf{Attori}: Sistema
         \item \textbf{Precondizioni}: L'applicazione viene lanciata.
