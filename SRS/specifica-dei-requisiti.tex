@@ -97,9 +97,9 @@
             \hline
             FDR-02\label{FDR:02} & ALTA & BASSO & \textbf{Salvataggio Utenti:} Bisogna salvare Nome, Cognome, Matricola, Email istituzionale e Lista dei libri in prestito (con data di restituzione prevista) di ogni utente\\
             \hline
-            FDR-03\label{FDR:03} & ALTA & BASSO & \textbf{Salvataggio Prestiti:} Bisogna salvare per ogni prestito l'utente che ha preso il libro, il libro preso in prestito, la data di inizio prestito e la data di restituzione prevista \\
+            FDR-03\label{FDR:03} & ALTA & BASSO & \textbf{Salvataggio Prestiti:} Bisogna salvare per ogni prestito l'utente che ha preso il libro, il libro preso in prestito, la data di inizio prestito e la data di restituzione prevista\\
             \hline
-            FDR-04\label{FDR:04} & ALTA & BASSO & \textbf{Caricamento Dati all'Avvio:} All'avvio del programma, tutti i dati salvati (libri, utenti e prestiti) devono essere caricati automaticamente dall'archivio \\
+            FDR-04\label{FDR:04} & ALTA & BASSO & \textbf{Caricamento Dati all'Avvio:} All'avvio del programma, tutti i dati salvati (libri, utenti e prestiti) devono essere caricati automaticamente dall'archivio\\
             \hline
             FDR-05\label{FDR:05} & MEDIA & BASSO & \textbf{Salvataggio Automatico:} Ogni volta che si apporta una modifica (inserimento, modifica, cancellazione di libri, utenti o prestiti), i dati devono essere salvati automaticamente sull'archivio senza richiedere un'azione manuale da parte dell'utente\\
             \hline
@@ -131,28 +131,171 @@
         \caption{Tab per la gestione degli utenti attiva}
     \end{figure}
 
+    \begin{longtable}{|l|c|c|p{8cm}|}
+        \hline
+        \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
+        \hline
+        \endfirsthead
+
+        \hline
+        \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
+        \hline
+        \endhead
+
+        \hline
+        \multicolumn{4}{r}{\textit{continua nella pagina successiva}} \\
+        \endfoot
+
+        \hline
+        \endlastfoot
+
+        FIR-01\label{FIR:01} & ALTA & BASSO & \textbf{Layout Chiaro e Intuitivo:} La pagina principale deve avere un layout semplice e intuitivo, che permette l'accesso alle sezioni principali (Gestione Libri, Gestione Utenti, Gestione Prestiti)\\
+        \hline
+        FIR-01.1\label{FIR:01.1} & ALTA & BASSO & \textbf{Accesso Gestione Libri in Prestito:} Dalla pagina principale deve essere possibile accedere alla sezione di gestione dei libri in prestito tramite una tab dedicata\\
+        \hline
+        FIR-01.1.1\label{FIR:01.1.1} & ALTA & BASSO & \textbf{Ricerca dei Libri in Prestito:} Deve essere possibile cercare tra i libri attualmente in prestito inserendo dati del libro o dell'utente, inclusa la data di restituzione\\
+        \hline
+        FIR-01.1.2\label{FIR:01.1.2} & ALTA & BASSO & \textbf{Visualizzazione Elenco Libri in Prestito Ordinata:} Deve essere possibile visualizzare l'elenco dei libri attualmente in prestito, con l'indicazione dell'utente che li ha presi in prestito e la data di restituzione prevista\\
+        \hline
+        FIR-01.1.3\label{FIR:01.1.3} & ALTA & BASSO & \textbf{Area di Controllo:} Deve essere presente un'area che permetta di accedere alle proprietà, e di contrassegnare come restituito un libro selezionato dall'elenco\\
+        \hline
+        FIR-01.2\label{FIR:01.2} & ALTA & BASSO & \textbf{Accesso Gestione Libri:} Dalla pagina principale deve essere possibile accedere alla sezione di gestione dei libri tramite una tab dedicata\\
+        \hline
+        FIR-01.2.1\label{FIR:01.2.1} & ALTA & BASSO & \textbf{Ricerca dei Libri:} Deve essere possibile cercare tra i libri in catalogo inserendo dati del libro\\
+        \hline
+        FIR-01.2.2\label{FIR:01.2.2} & ALTA & BASSO & \textbf{Visualizzazione Elenco Libri:} Deve essere possibile visualizzare l'elenco dei libri in catalogo\\
+        \hline
+        FIR-01.2.3\label{FIR:01.2.3} & ALTA & BASSO & \textbf{Area di Controllo:} Deve essere presente un'area che permetta di accedere alle proprietà, aggiungere e prestare un libro selezionato dall'elenco\\
+        \hline
+        FIR-01.3\label{FIR:01.3} & ALTA & BASSO & \textbf{Accesso Gestione Utenti:} Dalla pagina principale deve essere possibile accedere alla sezione di gestione degli utenti tramite una tab dedicata\\
+        \hline
+        FIR-01.3.1\label{FIR:01.3.1} & ALTA & BASSO & \textbf{Ricerca degli Utenti:} Deve essere possibile cercare tra gli utenti registrati inserendo i loro dati\\
+        \hline
+        FIR-01.3.2\label{FIR:01.3.2} & ALTA & BASSO & \textbf{Visualizzazione Elenco Utenti:} Deve essere possibile visualizzare l'elenco degli utenti registrati\\
+        \hline
+        FIR-01.3.3\label{FIR:01.3.3} & ALTA & BASSO & \textbf{Area di Controllo:} Deve essere presente un'area che permetta di accedere alle proprietà, aggiungere e prestare a un utente selezionato dall'elenco\\
+        \hline
+    \end{longtable}
+    \label{tab:req-main-page}
+
+% ===============================================
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.45\linewidth]{Mockup-view-lending}
+        \label{fig:view-lending-mockup}
+        \caption{Finestra di visualizzazione delle proprietà di un prestito}
+    \end{figure}
+
     \begin{table}[H]
         \centering
         \begin{tabularx}{\textwidth}{|l|c|c|X|}
             \hline
             \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
             \hline
-            FIR-01\label{FIR:01} & ALTA & BASSO & \textbf{Layout Chiaro e Intuitivo:} La pagina principale deve avere un layout semplice e intuitivo, che permette l'accesso alle sezioni principali (Gestione Libri, Gestione Utenti, Gestione Prestiti)\\
-            \hline
-            FIR-01.1\label{FIR:01.1} & ALTA & BASSO & \textbf{Accesso Gestione Libri:} Dalla pagina principale deve essere possibile accedere alla sezione di gestione dei libri tramite una tab dedicata\\
-            \hline
-            FIR-01.1.1\label{FIR:01.1.1} & ALTA & BASSO & \textbf{Ricerca dei Libri in Prestito:} Deve essere possibile cercare tra i libri attualmente in prestito inserendo dati del libro o dell'utente, inclusa la data di restituzione\\
-            \hline
-            FIR-01.1.2\label{FIR:01.1.2} & ALTA & BASSO & \textbf{Visualizzazione Elenco Libri in Prestito Ordinata:} Deve essere possibile visualizzare l'elenco dei libri attualmente in prestito, con l'indicazione dell'utente che li ha presi in prestito e la data di restituzione prevista\\
-            \hline
-            FIR-01.1.3\label{FIR:01.1.3} & ALTA & BASSO & \textbf{Area di Controllo:} Deve essere presente un'area che permetta di
-            \hline
-            FIR-01.2\label{FIR:01.2} & ALTA & BASSO & \textbf{Accesso Gestione Utenti:} Dalla pagina principale deve essere possibile accedere alla sezione di gestione degli utenti tramite una tab dedicata\\
-            \hline
-            FIR-01.3\label{FIR:01.3} & ALTA & BASSO & \textbf{Accesso Gestione Prestiti:} Dalla pagina principale deve essere possibile accedere alla sezione di gestione dei prestiti tramite una tab dedicata\\
+            FIR-02\label{FIR:02} & ALTA & BASSO & \textbf{Visualizzazione Proprietà Prestito:} Deve essere possibile visualizzare le proprietà di un prestito in una finestra dedicata (libro, utente, data restituzione, ID prestito)\\
             \hline
         \end{tabularx}
-        \label{tab:req-main-page}
+        \label{tab:req-property-windows}
+    \end{table}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.45\linewidth]{Mockup-edit-lending}
+        \label{fig:edit-lending-mockup}
+        \caption{Finestra di modifica delle proprietà di un prestito}
+    \end{figure}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{\textwidth}{|l|c|c|X|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
+            \hline
+            FIR-03\label{FIR:03} & ALTA & BASSO & \textbf{Modifica Proprietà Prestito:} Deve essere possibile modificare le proprietà di un prestito in una finestra dedicata (solo data di restituzione)\\
+            \hline
+        \end{tabularx}
+        \label{tab:req-edit-windows}
+    \end{table}
+
+% ===============================================
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.45\linewidth]{Mockup-view-book}
+        \label{fig:view-book-mockup}
+        \caption{Finestra di visualizzazione delle proprietà di un libro}
+    \end{figure}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{\textwidth}{|l|c|c|X|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
+            \hline
+            FIR-04\label{FIR:04} & ALTA & BASSO & \textbf{Visualizzazione Proprietà Libro:} Deve essere possibile visualizzare le proprietà di un libro in una finestra dedicata (titolo, autori, anno di pubblicazione, codice ISBN, numero di copie disponibili, numero di copie attualmente in prestito)\\
+            \hline
+        \end{tabularx}
+        \label{tab:req-view-book}
+    \end{table}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.45\linewidth]{Mockup-edit-book}
+        \label{fig:edit-book-mockup}
+        \caption{Finestra di modifica delle proprietà di un libro}
+    \end{figure}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{\textwidth}{|l|c|c|X|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
+            \hline
+            FIR-05\label{FIR:05} & ALTA & BASSO & \textbf{Modifica Proprietà Libro:} Deve essere possibile modificare le proprietà di un libro in una finestra dedicata (titolo, autori, anno di pubblicazione, codice ISBN, numero di copie disponibili)\\
+            \hline
+        \end{tabularx}
+        \label{tab:req-edit-book}
+    \end{table}
+
+% ===============================================
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.45\linewidth]{Mockup-view-user}
+        \label{fig:view-user-mockup}
+        \caption{Finestra di visualizzazione delle proprietà di un utente}
+    \end{figure}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{\textwidth}{|l|c|c|X|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
+            \hline
+            FIR-06\label{FIR:06} & ALTA & BASSO & \textbf{Visualizzazione Proprietà Utente:} Deve essere possibile visualizzare le proprietà di un utente in una finestra dedicata (nome, cognome, ID utente, email3, numero di libri presi in prestito attualmente e in totale)\\
+            \hline
+        \end{tabularx}
+        \label{tab:req-view-user}
+    \end{table}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.45\linewidth]{Mockup-edit-user}
+        \label{fig:edit-user-mockup}
+        \caption{Finestra di modifica delle proprietà di un utente}
+    \end{figure}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{\textwidth}{|l|c|c|X|}
+            \hline
+            \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
+            \hline
+            FIR-07\label{FIR:07} & ALTA & BASSO & \textbf{Modifica Proprietà Utente:} Deve essere possibile modificare le proprietà di un utente in una finestra dedicata (nome, cognome, ID utente, email)\\
+            \hline
+        \end{tabularx}
+        \label{tab:req-edit-user}
     \end{table}
 
 \subsection{Requisiti Non Funzionali (NFR)}\label{subsec:nonfunctional-req}
