@@ -3,6 +3,6 @@ module poco.company.group01pocolib {
     requires javafx.fxml;
 
 
-    opens poco.company.group01pocolib to javafx.fxml;
-    exports poco.company.group01pocolib;
+    exports poco.company.group01pocolib.mvc;
+    opens poco.company.group01pocolib.mvc to javafx.fxml;
 }
