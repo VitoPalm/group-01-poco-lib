@@ -282,12 +282,12 @@
         \end{itemize}
     \end{itemize}
 
-    \subsubsection{UC-14: Visualizzazione Prestiti Attivi}\label{UC:14}
+    \subsubsection{UC-14: Visualizzazione Prestiti}\label{UC:14}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il bibliotecario si trova nella scheda prestiti.
         \item \textbf{Postcondizioni}: La lista dei prestiti è visualizzata con evidenziazione ritardi.
-        \item \textbf{Requisiti Implementati}: \hyperref[FLR:04]{FLR-04}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:04]{FLR-04}, \hyperref[FLR:04.1]{FLR-04.1}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario accede alla sezione Prestiti.
@@ -379,7 +379,7 @@ del libro e/o Nome/Cognome/ID utente).
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
             \item[3a.] Se non esistono file (primo avvio), il sistema inizializza file vuoti.
-            \item[3b.] Se i file sono corrotti o illeggibili, il sistema tenta automaticamente di caricare l'ultima versione di backup funzionante (se implementato \hyperref[NRR:05]{NRR-05}).
+            \item[3b.] Se i file sono corrotti o illeggibili, il sistema mostra un errore e tenta automaticamente di caricare l'ultima versione di backup funzionante (se implementato \hyperref[NUR:02]{NUR-02}, \hyperref[NRR:05]{NRR-05}).
         \end{itemize}
     \end{itemize}
 
