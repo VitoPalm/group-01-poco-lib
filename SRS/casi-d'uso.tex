@@ -2,11 +2,10 @@
 
     \subsection{Descrizione dei Casi d'Uso sulla Gestione dei Libri}\label{subsec:books-use-cases}
 
-    \subsubsection{Diagramma dei casi d'uso sui libri}\label{subsubsec:books-uml}
     \begin{figure}[H]
         \centering
-        % \includesvg[width=1\linewidth]{gestioneLibri.svg}
-        \label{fig:placeholder}
+        \includesvg[width=1\linewidth]{gestioneLibri.svg}
+        \label{fig:books-uml}
     \end{figure}
 
     \subsubsection{UC-01: Inserimento Libro}\label{UC:01}
@@ -59,13 +58,15 @@
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona il libro da rimuovere.
-            \item Il bibliotecario clicca sul pulsante per eliminare il libro.
+            \item Il bibliotecario clicca il bottone per visualizzare le proprietà del libro.
+            \item Il bibliotecario clicca sul pulsante per eliminare il libro (è possibile solo se sono rispettate le precondizioni: vedi \hyperref[UC:03.1a]{scenario 3a}).
             \item Il sistema chiede esplicitamente conferma dell'eliminazione (se implementato \hyperref[NUR:03]{NUR-03}).
             \item Il bibliotecario conferma.
             \item Il sistema rimuove il libro.
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
+            \item[3a.]\label{UC:03.1a} Il bottone elimina è disabilitato nel caso non siano soddisfatte le precondizioni (on hover se implementato: \hyperref[NUR:02]{NUR-02}).
             \item[4a.] Il bibliotecario nega la conferma e l'operazione viene annullata.
         \end{itemize}
     \end{itemize}
@@ -108,10 +109,9 @@
 
     \subsection{Descrizione dei Casi d'Uso sulla Gestione degli Utenti}\label{subsec:users-use-cases}
 
-    \subsubsection{Diagramma dei casi d'uso sugli utenti}\label{subsubsec:users-uml}
     \begin{figure}[H]
         \centering
-        % \includesvg[width=1\linewidth]{gestioneUtenti.svg}
+        \includesvg[width=1\linewidth]{gestioneUtenti.svg}
         \label{fig:gestione-utenti}
     \end{figure}
 
@@ -143,6 +143,7 @@
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona un utente.
+            \item Il bibliotecario clicca il bottone per visualizzare le proprietà dell'utente.
             \item Il bibliotecario modifica i dati dell'utente: il sistema valida i nuovi dati (se implementato: \hyperref[NRR:01]{NRR-01}, \hyperref[NRR:02]{NRR-02}).
             \item Il bibliotecario clicca il pulsante per il salvataggio dei dati.
             \item Il sistema aggiorna l'archivio.
@@ -153,7 +154,7 @@
         \end{itemize}
     \end{itemize}
 
-    \subsubsection{UC-08: Cancellazione Utente}\label{UC:08}
+    \subsubsection{UC-08: Eliminazione Utente}\label{UC:08}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: L'utente da eliminare esiste e non ha libri non restituiti.
@@ -162,14 +163,16 @@
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona l'utente da rimuovere.
-            \item Il bibliotecario clicca sul pulsante per eliminare l'utente.
+            \item Il bibliotecario clicca il bottone per visualizzare le proprietà dell'utente.
+            \item Il bibliotecario clicca sul pulsante per eliminare l'utente (è possibile solo se sono rispettate le precondizioni: vedi \hyperref[UC:08.3a]{scenario 3a}).
             \item Il sistema chiede conferma (se implementato: \hyperref[NUR:03]{NUR-03}).
             \item Il bibliotecario conferma.
             \item Il sistema rimuove l'utente dall'archivio.
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
-            \item [4a.] Il bibliotecario nega la conferma; l'operazione viene annullata.
+            \item[3a.]\label{UC:08.3a} Il bottone elimina è disabilitato nel caso non siano soddisfatte le precondizioni (on hover se implementato: \hyperref[NUR:02]{NUR-02}).
+            \item[4a.] Il bibliotecario nega la conferma; l'operazione viene annullata.
         \end{itemize}
     \end{itemize}
 
@@ -211,11 +214,10 @@
 
     \subsection{Descrizione dei Casi d'Uso sulla Gestione dei Prestiti}\label{subsec:lendings-use-cases}
 
-    \subsubsection{Diagramma dei casi d'uso sui prestiti}\label{subsubsec:lendings-uml}
     \begin{figure}[H]
         \centering
-        % \includesvg[width=1\linewidth]{gestionePrestiti.svg}
-        \label{fig:placeholder}
+        \includesvg[width=1\linewidth]{gestionePrestiti.svg}
+        \label{fig:gestionePrestiti}
     \end{figure}
 
     \subsubsection{UC-11: Registrazione Prestito}\label{UC:11}
@@ -223,26 +225,69 @@
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Utente e Libro esistono, l'utente ha meno di 3 libri in prestito e ci sono copie disponibili del libro.
         \item \textbf{Postcondizioni}: Prestito registrato, copie libro decrementate, lista prestiti utente aggiornata.
-        \item \textbf{Requisiti Implementati}: \hyperref[FLR:01]{FLR-01}, \hyperref[FDR:02]{FDR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:01]{FLR-01}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona un Utente e un Libro (è possibile la sola selezione di libri e utenti che rispettano le precondizioni - vedere \hyperref[UC:11.1a]{scenario 1a}).
             \item Il bibliotecario indica la data di restituzione prevista.
-            \item Il sistema verifica che ci siano copie disponibili del libro e che l'utente abbia meno di 3 libri in prestito.
-            \item Il sistema registra il prestito, decrementa le copie del libro, associa il libro all'utente
+            \item Il bibliotecario clicca il pulsante per il salvataggio dei dati.
+            \item Il sistema registra il prestito (associa il libro all'utente), decrementa le copie del libro, incrementa i prestiti dell'utente.
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
             \item[1a.]\label{UC:11.1a} L'utente/libro con precondizioni non soddisfatte non è selezionabile (mostrato on hover se implementato: \hyperref[NUR:02]{NUR-02})
+            \item[3a.] Il sistema mostra un errore se la data non è valida (se implementato: \hyperref[NUR:02]{NUR-02}).
         \end{itemize}
     \end{itemize}
 
-    \subsubsection{UC-12: Visualizzazione Prestiti Attivi}\label{UC:12}
+    \subsubsection{UC-12: Modifica Data di Restituzione Prestito}\label{UC:12}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il prestito da modificare esiste nell'archivio.
+        \item \textbf{Postcondizioni}: I dati del prestito sono aggiornati.
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:02]{FLR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario seleziona un prestito.
+            \item Il bibliotecario clicca il bottone per visualizzare le proprietà del prestito.
+            \item Il bibliotecario modifica la data di restituzione prevista.
+            \item Il bibliotecario clicca il pulsante per il salvataggio dei dati.
+            \item Il sistema aggiorna l'archivio.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item[3a.] Il sistema mostra un errore se la data non è valida (se implementato: \hyperref[NUR:02]{NUR-02}).
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-13: Eliminazione Prestito}\label{UC:13}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il prestito da eliminare esiste nell'archivio ed è stato restituito.
+        \item \textbf{Postcondizioni}: Il prestito non è più nell'archivio.
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:03]{FLR-03}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario seleziona il prestito da eliminare.
+            \item Il bibliotecario clicca il bottone per visualizzare le proprietà del prestito.
+            \item Il bibliotecario clicca sul pulsante per eliminare il prestito (è possibile solo se sono rispettate le precondizioni: vedi \hyperref[UC:13.3a]{scenario 3a}).
+            \item Il sistema chiede conferma (se implementato: \hyperref[NUR:03]{NUR-03}).
+            \item Il bibliotecario conferma.
+            \item Il sistema rimuove il prestito dall'archivio.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item[3a.]\label{UC:13.3a} Il bottone elimina è disabilitato nel caso non siano soddisfatte le precondizioni (on hover se implementato: \hyperref[NUR:02]{NUR-02}).
+            \item[4a.] Il bibliotecario nega la conferma; l'operazione viene annullata.
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-14: Visualizzazione Prestiti Attivi}\label{UC:14}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Il bibliotecario si trova nella scheda prestiti.
         \item \textbf{Postcondizioni}: La lista dei prestiti è visualizzata con evidenziazione ritardi.
-        \item \textbf{Requisiti Implementati}: \hyperref[FLR:02]{FLR-02}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:04]{FLR-04}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario accede alla sezione Prestiti.
@@ -255,12 +300,31 @@
         \end{itemize}
     \end{itemize}
 
-    \subsubsection{UC-13: Registrazione Restituzione}\label{UC:13}
+    \subsubsection{UC-15: Ricerca Prestito}\label{UC:10}
+    \begin{itemize}
+        \item \textbf{Attori}: Bibliotecario
+        \item \textbf{Precondizioni}: Il bibliotecario ha effettuato l'accesso al pannello di gestione prestiti.
+        \item \textbf{Postcondizioni}: Vengono mostrati i risultati corrispondenti.
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:05]{FLR-05}, \hyperref[FLR:05.1]{FLR-05.1}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Scenario Principale}:
+        \begin{enumerate}
+            \item Il bibliotecario clicca sulla barra di ricerca.
+            \item Il bibliotecario inserisce la stringa di ricerca (Data di restituzione, Titolo/Autori/ISBN
+del libro e/o Nome/Cognome/ID utente).
+            \item Il sistema filtra l'archivio e mostra i prestiti che corrispondono ai criteri.
+        \end{enumerate}
+        \item \textbf{Scenari Alternativi}:
+        \begin{itemize}
+            \item[3a.] Se nessun prestito corrisponde alla ricerca viene mostrato un messaggio di errore (se implementato: \hyperref[NUR:02]{NUR-02}).
+        \end{itemize}
+    \end{itemize}
+
+    \subsubsection{UC-16: Registrazione Restituzione}\label{UC:16}
     \begin{itemize}
         \item \textbf{Attori}: Bibliotecario
         \item \textbf{Precondizioni}: Esiste un prestito attivo per quell'utente/libro.
         \item \textbf{Postcondizioni}: Prestito eliminato, copie libro incrementate.
-        \item \textbf{Requisiti Implementati}: \hyperref[FLR:03]{FLR-03}, \hyperref[FDR:02]{FDR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
+        \item \textbf{Requisiti Implementati}: \hyperref[FLR:06]{FLR-06}, \hyperref[FDR:02]{FDR-02}, \hyperref[FDR:03]{FDR-03}, \hyperref[NUR:01]{NUR-01}
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario seleziona un prestito attivo dalla sezione prestiti.
@@ -274,14 +338,13 @@
 
     \subsection{Descrizione dei Casi d'Uso sulla Gestione dei Dati}\label{subsec:data-use-cases}
 
-    \subsubsection{Diagramma dei casi d'uso sui dati}\label{subsubsec:data-uml}
     \begin{figure}[H]
         \centering
-        % \includesvg[width=1\linewidth]{persistenza.svg}
-        \label{fig:placeholder}
+        \includesvg[width=1\linewidth]{persistenza.svg}
+        \label{fig:gestioneDati}
     \end{figure}
 
-    \subsubsection{UC-14: Salvataggio Automatico (con Backup)}\label{UC:14}
+    \subsubsection{UC-17: Salvataggio Automatico (con Backup)}\label{UC:17}
     \begin{itemize}
         \item \textbf{Attori}: Sistema
         \item \textbf{Precondizioni}: È stata effettuata un'operazione di scrittura.
@@ -300,7 +363,7 @@
         \end{itemize}
     \end{itemize}
 
-    \subsubsection{UC-15: Caricamento Automatico al Boot}\label{UC:15}
+    \subsubsection{UC-18: Caricamento Automatico al Boot}\label{UC:18}
     \begin{itemize}
         \item \textbf{Attori}: Sistema
         \item \textbf{Precondizioni}: L'applicazione viene lanciata.
