@@ -1,6 +1,6 @@
 # Software Design Document (SDD)
-## Layout fornito
-### Architettura del sistema
+
+## Architettura del sistema
 
 L'architettura del sistema è organizzata secondo il pattern Model-View-Controller (MVC). I moduli principali sono divisi in package che riflettono questa struttura adattata alla complessità del progetto e alle esigenze specifiche dell'applicazione:
 
@@ -21,20 +21,106 @@ MISSING TEST CLASSES.
 
 
 
-### Modello statico
+## Modello statico
 
 *Includere il diagramma delle classi.
 Descrivere le classi (responsabilità, attributi principali, metodi pubblici, relazioni rilevanti).
 Documentare le scelte progettuali in termini di coesione, accoppiamento e principi di buona progettazione.*
 
-### Modello dinamico
+## Modello dinamico
 
 Documentare le interazioni tra le classi per i casi d’uso più significativi.
 Utilizzare diagrammi di sequenza (ma anche diagrammi di attività o di macchina a stati se utili).
 Commentare ogni diagramma.
 
-### Design dell’interfaccia utente
+## Design dell’interfaccia utente
 
 *Includere eventuali mock-up delle schermate principali.
 Descrivere i mock-up illustrando le principali interazioni previste con l’utente.*
 
+L'interfaccia utente è progettata per essere intuitiva e user-friendly, con un layout chiaro e funzionale.
+### Schermate principali dell'applicazione
+<!-- Descrivere le schermate principali dell'applicazione (generico) -->
+
+La schermata principale dell'applicazione presenta una tabella che elenca i contenuti in base alla sezione selezionata mediante la barra di navigazione superiore che permette di passare tra le sezioni "Prestiti", "Libri" e "Utenti" (all'avvio é mostrata la sezione dei prestiti).
+Ogni pagina permette di visualizzare, modificare e aggiungere elementi specifici per quella sezione mediante i bottoni posti sotto la tabella o cliccando su un elemento della tabella stessa.
+
+In ogni schermata principale è presenta una barra di ricerca che permette di effettuare una ricerca testuale sugli elementi visualizzati nella tabella. La suddetta ricerca è in grado di restituire risultati anche in caso di ricerche parziali o con errori di battitura, mostrando i risultati simili a quanto ricercato.
+
+<!-- Descrivo la lending page -->
+
+Nella pagina dei prestiti è possibile visualizzare in tabella le seguenti infomazioni:
+- Lending ID: l'identificativo univoco del prestito
+- Return Date: la data di restituzione del libro
+- ISBN: l'identificativo univoco del libro prestato
+- Title: il titolo del libro prestato
+- User ID: l'identificativo univoco dell'utente che ha preso in prestito il libro
+- User: il nome dell'utente che ha preso in prestito il libro
+
+La seguente pagina permette inoltre, cliccando l'apposito bottone, di segnare come restituiti un libro selezionato dalla tabella, aggiornando automaticamente la disponibilità del libro nel sistema.
+È anche possibile, sempre cliccando il relativo bottone, visualizzare e modificare un prestito selezionato dalla tabella.
+
+![alt text](../../SRS/Resources/Main-page-lending.png)
+
+<!-- Descrivo la book page -->
+Nella pagina dei libri è possibile visualizzare in tabella le seguenti infomazioni:
+- ISBN: l'identificativo univoco del libro
+- Title: il titolo del libro
+- Authors: gli autori del libro
+- Year: l'anno di pubblicazione del libro
+- Available: il numero di copie disponibili del libro
+- Lent: il numero di copie del libro attualmente in prestito
+
+La seguente pagina permette cliccando i relativi bottoni di aggiungere un nuovo libro al sistema, visualizzare e modificare un libro selezionato dalla tabella, avviare la procedura di prestito di un libro selezionato dalla tabella (se disponibile).
+
+![alt text](../../SRS/Resources/Main-page-books.png)
+
+<!-- Descrivo la user page -->
+Nella pagina degli utenti è possibile visualizzare in tabella le seguenti infomazioni:
+- ID: l'identificativo univoco dell'utente <!-- perché non User ID? Modificare il mockup? @Giors -->
+- Name: il nome dell'utente
+- Surname: il cognome dell'utente
+- Email: l'email dell'utente
+- Lent: il numero di libri attualmente in prestito dall'utente
+
+La seguente pagina permette cliccando i relativi bottoni di aggiungere un nuovo utente al sistema, visualizzare e modificare le informazioni di un utente selezionato dalla tabella e attivare la procedura di prestito di un libro per l'utente selezionato dalla tabella.
+
+![alt text](../../SRS/Resources/Main-page-users.png)
+
+### Finestre di visualizzazione
+
+Le seguenti finestre permettono di visualizzare le informazioni relative a prestiti, libri e utenti. Vengono aperte cliccando il bottore "View and Edit" nelle rispettive schermate principali. Sono inoltre presenti dei bottoni modificare o eliminare l'elemento visualizzato, e dei collegamenti rapidi per visualizzare le informazioni relative agli altri elementi collegati (ad esempio dalla finestra di un prestito è possibile accedere alle informazioni del libro prestato e dell'utente che ha preso in prestito il libro).
+
+<!-- Descrivo la lending view -->
+La seguente finestra permette di visualizzare l'ID del prestito, la data di restituzione, il libro prestato e l'utente che ha preso in prestito il libro. I pulstanti presenti permettono rispettivamente di modificare le informazioni del prestito, eliminare il prestito dal sistema (se il libro è stato restituito) e segnare come restituito il libro prestato. Sono inoltre presenti dei collegamenti rapidi per visualizzare le informazioni relative al libro prestato e all'utente che ha preso in prestito il libro.
+
+![alt text](../../SRS/Resources/Mockup-view-lending.png)
+
+<!-- Descrivo la book view -->
+La seguente finestra permette di visualizzare l'ISBN del libro, il titolo, gli autori, l'anno di pubblicazione e il numero di copie disponibili. I pulstanti presenti permettono rispettivamente di modificare il libro visualizzato, eliminare il libro dal sistema (se non ci sono copie in prestito) e avviare la procedura di prestito del libro visualizzato. É inoltre presente un collegamento rapido per visualizzare le informazioni relative ai prestiti attivi del libro.
+
+![alt text](../../SRS/Resources/Mockup-view-book.png)
+
+<!-- Descrivo la user view -->
+La seguente finestra permette di visualizzare l'ID dell'utente, il nome, il cognome, l'email e il numero di libri attualmente in prestito dall'utente. I pulstanti presenti permettono rispettivamente di modificare le informazioni dell'utente, eliminare l'utente dal sistema (se non ha libri in prestito) e avviare la procedura di prestito di un libro per l'utente visualizzato. É inoltre presente un collegamento rapido per visualizzare le informazioni relative ai prestiti attivi dell'utente.
+
+![alt text](../../SRS/Resources/Mockup-view-user.png)
+
+### Finestre di modifica 
+
+Le seguenti finestre permettono di modificare le informazioni relative a prestiti, libri e utenti. Vengono aperte cliccando il bottone "Edit" nelle rispettive schermate di visualizzazione.
+
+<!-- Descrivo la lending edit -->
+La seguente finestra permette di modificare la data di restituzione di un prestito esistente inserendo una nuova data nel campo apposito e cliccando il bottone "Save" per salvare le modifiche.
+
+![alt text](../../SRS/Resources/Mockup-edit-lending.png)
+
+<!-- Descrivo la book edit -->
+La seguente finestra permette di modificare le informazioni di un libro esistente (ISBN, titolo, autori, anno di pubblicazione, copie disponibili) inserendo i nuovi valori nei campi appositi e cliccando il bottone "Save" per salvare le modifiche.
+
+![alt text](../../SRS/Resources/Mockup-edit-book.png)
+
+<!-- Descrivo la user edit -->
+La seguente finestra permette di modificare le informazioni di un utente esistente (ID, nome, cognome, email) inserendo i nuovi valori nei campi appositi e cliccando il bottone "Save" per salvare le modifiche.
+
+![alt text](../../SRS/Resources/Mockup-edit-user.png)
