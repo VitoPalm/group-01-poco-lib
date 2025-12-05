@@ -29,14 +29,48 @@ Documentare le scelte progettuali in termini di coesione, accoppiamento e princi
 
 ## Modello dinamico
 
-Documentare le interazioni tra le classi per i casi d’uso più significativi.
+<!-- Documentare le interazioni tra le classi per i casi d’uso più significativi.
 Utilizzare diagrammi di sequenza (ma anche diagrammi di attività o di macchina a stati se utili).
-Commentare ogni diagramma.
+Commentare ogni diagramma. -->
+
+In questa sezione vengono presentati i diagrammi di sequenza per i casi d'uso più significativi dell'applicazione.
+
+### Diagramma di sequenza: Aggiunta di un nuovo libro
+
+Nel seguente diagramma di sequenza viene illustrato il processo di aggiunta di un nuovo libro al sistema. L'utente interagisce con l'interfaccia utente per inserire i dettagli del libro, che vengono poi elaborati dal controller e salvati nel catalogo dei libri (nel modello). I dati vengono poi salvati su un file tramite la classe DB e viene creato anche un backup.
+
+In caso di errori durante il processo (ad esempio, se il libro esiste già), viene sollevata un'eccezione che viene gestita dal controller per informare l'utente se implementato il relativo requisito non funzionale (NUR-02).
+
+![alt text](../svg/sequence_add_book.svg)
+
+
+### Diagramma di sequenza: Prestito di un libro
+
+Nel seguente diagramma di sequenza viene illustrato il processo di attivazione della procedura di prestito di un libro da parte del bibliotercario. 
+Il bibliotecario seleziona l'utente che desidera prendere in prestito il libro e il libro che vuole avere in prestito tramite l'interfaccia utente.
+Il controller verifica le condizioni necessarie per procedere con il prestito cioè che l'utente non abbia superato il limite massimo di prestiti e che il libro sia disponibile. Se le condizioni sono soddisfatte, viene creato un nuovo prestito nel modello, aggiornato lo stato del libro (numero di copie disponibili e in prestito) e aggiunto il prestito al catalogo dei prestiti.
+I dati vengono poi salvati su un file tramite la classe DB e viene creato anche un backup.
+
+Nel caso in cui una delle condizioni non sia soddisfatta, viene sollevata un'eccezione che viene gestita dal controller per informare il bibliotecario se implementato il relativo requisito non funzionale (NUR-03).
+
+![alt text](../svg/sequence_lend_book.svg)
+
+### Diagramma di Attività: Avvio dell'Applicazione e Caricamento Dati
+
+Nel seguente diagramma di attività viene illustrato il processo di avvio dell'applicazione.
+
+All'avvio l'applicazione verifica l'esisteza di un file di salvataggio, nel caso in cui non esista viene creato un nuovo file di salvataggio vuoto così come indicato nel caso d'uso UC-18 e le strutture dati del modello vengono inizializzate come vuote.
+
+Se il file di salvataggio esiste, l'applicazione tenta di caricare i dati dal file, se il caricamento va a buon fine le strutture dati del modello vengono popolate con i dati caricati.
+
+Nel caso in cui il caricamento dei dati fallisca (ad esempio a causa di un file corrotto), viene tentato il ripristino dei dati da un backup precedente. Se il ripristino va a buon fine, le strutture dati del modello vengono popolate con i dati ripristinati. Nel caso in cui anche il ripristino fallisca, viene restituito un errore critico, inizializzato un nuovo file di salvataggio vuoto e le strutture dati del modello vengono inizializzate come vuote.
+
+![alt text](../svg/activity_startup.svg)
 
 ## Design dell’interfaccia utente
 
-*Includere eventuali mock-up delle schermate principali.
-Descrivere i mock-up illustrando le principali interazioni previste con l’utente.*
+<!--*Includere eventuali mock-up delle schermate principali.
+Descrivere i mock-up illustrando le principali interazioni previste con l’utente.*-->
 
 L'interfaccia utente è progettata per essere intuitiva e user-friendly, con un layout chiaro e funzionale.
 ### Schermate principali dell'applicazione
