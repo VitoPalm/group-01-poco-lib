@@ -51,7 +51,7 @@ Il bibliotecario seleziona l'utente che desidera prendere in prestito il libro e
 Il controller verifica le condizioni necessarie per procedere con il prestito cioè che l'utente non abbia superato il limite massimo di prestiti e che il libro sia disponibile. Se le condizioni sono soddisfatte, viene creato un nuovo prestito nel modello, aggiornato lo stato del libro (numero di copie disponibili e in prestito) e aggiunto il prestito al catalogo dei prestiti.
 I dati vengono poi salvati su un file tramite la classe DB e viene creato anche un backup.
 
-Nel caso in cui una delle condizioni non sia soddisfatta, viene sollevata un'eccezione che viene gestita dal controller per informare il bibliotecario se implementato il relativo requisito non funzionale (NUR-03).
+Nel caso in cui una delle condizioni non sia soddisfatta, viene sollevata un'eccezione che viene gestita dal controller per informare il bibliotecario se implementato il relativo requisito non funzionale (NUR-02).
 
 ![alt text](../svg/sequence_lend_book.svg)
 
