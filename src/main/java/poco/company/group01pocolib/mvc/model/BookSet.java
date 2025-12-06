@@ -4,7 +4,7 @@
  * @author Francesco Marino
  * @date 6 December 2025
  */
-package poco.company.group01pocolib.mvc.model.datastructures;
+package poco.company.group01pocolib.mvc.model;
 
 import java.util.HashMap;
 import java.util.Map;

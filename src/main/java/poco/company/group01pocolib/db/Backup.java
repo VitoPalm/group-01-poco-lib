@@ -4,7 +4,7 @@
  * @author Francesco Marino
  * @date 6 December 2025
  */
-package poco.company.group01pocolib.mvc.model.dbhandling;
+package poco.company.group01pocolib.db;
 
 /**
  * @class Backup

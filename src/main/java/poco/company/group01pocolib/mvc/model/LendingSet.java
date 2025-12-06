@@ -5,7 +5,7 @@
  * @date 6 December 2025
  * @version 0.1
  */
-package poco.company.group01pocolib.mvc.model.datastructures;
+package poco.company.group01pocolib.mvc.model;
 
 import java.util.Collection;
 
@@ -21,18 +21,21 @@ public class LendingSet {
     public LendingSet(){
         // TODO: implement
     }
+
     /** @brief Adds a Lending to the LendingSet.
      * @param lending The Lending to add.
     */
     public void add(Lending lending){
         // TODO: implement
     }
+
     /** @brief Removes a Lending from the LendingSet.
      * @param lending The Lending to remove.
     */
     public void remove(Lending lending){
         // TODO: implement
     }
+
     /** @brief Gets all Lendings of a specific User. 
      * @param user The User whose Lendings to retrieve.
      * @return A collection of Lendings associated with the specified User.
@@ -41,6 +44,7 @@ public class LendingSet {
         // TODO: implement
         return null;
     }
+
     /** @brief Gets all Lendings of a specific Book.
      * @param book The Book whose Lendings to retrieve.
      * @return A collection of Lendings associated with the specified Book.
@@ -49,6 +53,7 @@ public class LendingSet {
         // TODO: implement
         return null;
     }
+    
     /** @brief Returns a string representation of the LendingSet.
      * @return A string representation of the LendingSet.
     */

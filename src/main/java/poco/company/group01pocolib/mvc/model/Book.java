@@ -5,7 +5,7 @@
  * @date 5 December 2025
  * @version 0.1
  */
-package poco.company.group01pocolib.mvc.model.datastructures;
+package poco.company.group01pocolib.mvc.model;
 
 import java.util.List;
 

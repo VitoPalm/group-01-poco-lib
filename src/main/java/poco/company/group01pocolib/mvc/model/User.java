@@ -7,7 +7,7 @@
  */
 
 
-package poco.company.group01pocolib.mvc.model.datastructures;
+package poco.company.group01pocolib.mvc.model;
 
 import poco.company.group01pocolib.exceptions.UserDataNotValidException;
 

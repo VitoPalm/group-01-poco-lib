@@ -1,4 +1,4 @@
-package poco.company.group01pocolib.mvc.model.dbhandling;
+package poco.company.group01pocolib.db;
 
 import java.io.*;
 import java.nio.file.Path;
