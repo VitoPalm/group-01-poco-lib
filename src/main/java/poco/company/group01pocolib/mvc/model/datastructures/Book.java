@@ -9,7 +9,7 @@ package poco.company.group01pocolib.mvc.model.datastructures;
 
 import java.util.List;
 
-import poco.company.group01pocolib.exceptions.BookDataNotValidException;
+import poco.company.group01pocolib.exceptions.IsbnNotValidException;
 /**
  * @class Book
  * @brief Represents a Book in the library.
@@ -27,11 +27,11 @@ public class Book {
      * @param isbn The ISBN of the Book.
      * @param year The release year of the Book.
      * @param copies The number of copies available of the Book.
-     * @throws BookDataNotValidException if the provided ISBN is not valid.
+     * @throws IsbnNotValidException if the provided ISBN is not valid.
      */
     public Book(String title, List<String> authors, String isbn, int year, int copies) {
         if (!isValidIsbn(isbn)) {
-            throw new BookDataNotValidException("Invalid ISBN: " + isbn);
+            throw new IsbnNotValidException("Invalid ISBN: " + isbn);
         }
         this.title = title;
         this.authors = authors;
@@ -93,11 +93,11 @@ public class Book {
     /** @brief Sets the authors of the Book. */
     public void setAuthors(List<String> authors) {this.authors = authors;}
     /** @brief Sets the ISBN of the Book.
-     * @throws BookDataNotValidException if the provided ISBN is not valid.
+     * @throws IsbnNotValidException if the provided ISBN is not valid.
     */
     public void setIsbn(String isbn) {
         if (!isValidIsbn(isbn)) {
-            throw new BookDataNotValidException("Invalid ISBN: " + isbn);
+            throw new IsbnNotValidException("Invalid ISBN: " + isbn);
         }
         this.isbn = isbn;
     }
