@@ -25,7 +25,7 @@ public class Launcher extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        URL urlRisorsa = getClass().getResource("/poco/company/group01pocolib/view/Mockup.fxml");
+        URL urlRisorsa = getClass().getResource("/poco/company/group01pocolib/mvc/view/Mockup.fxml");
         Parent root = FXMLLoader.load(urlRisorsa);
         stage.setScene(new Scene(root));
         stage.setTitle("Mockup");
