@@ -110,4 +110,7 @@ public class User {
         // TODO Auto-generated method stub
         return super.toString();
     }
+
+    //TODO: Add methods overrides to ensure the correct functionality of the UserSet
+
 }
