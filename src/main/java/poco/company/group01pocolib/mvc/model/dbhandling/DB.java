@@ -71,7 +71,8 @@ public class DB implements Serializable {
      * @return {@code true} if the cache was successfully built, {@code false} otherwise.
      */
     public boolean buildCache() {
-
+        this.cache.clear();
+        this.cache.add("2");
         return false;
     }
 
