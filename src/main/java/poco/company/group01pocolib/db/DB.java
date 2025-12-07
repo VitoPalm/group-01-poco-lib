@@ -23,16 +23,23 @@ import java.util.regex.Pattern;
  * is always modified when writing or removing lines, and the cache is rebuilt accordingly. The class is built with the
  * idea of never having an edit on the DB file without updating the cache, so the two are always in sync.
  * </p>
+ * <p>
+ * The reason for an additional data support for the application (which already obtains data permanence between sessions
+ * through serialization of objects) is reliability and, most importantly, the ability to support future changes to the
+ * base data models. The serialized objects are not human-readable, and any change to the data models would make it not
+ * possible to retrieve previously saved data. The DB class, being reliant on a simple text file, allows easy "legacy
+ * support" by any future versions of the application, as well as easy manual editing of the data if needed. (and, if
+ * needed, importing and exporting data from and to other machines through these simple text files).
+ * </p>
  */
 public class DB implements Serializable {
-    private Path DBPath;
-    private ArrayList<String> cache;
+    private String DBPath;
+    private final ArrayList<String> cache;
     private String DBFileHash;
 
-
     public DB(Path DBPath) {
-        this.DBPath = DBPath;
-        this.DBFileHash = Hash.getFileHash(this.DBPath);
+        this.DBPath = DBPath.toString();
+        this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
 
         // Preload lines into cache
         this.cache = new ArrayList<>(45000);
@@ -40,20 +47,28 @@ public class DB implements Serializable {
     }
 
     public DB(String DBPath) {
-        this.DBPath = FileSystems.getDefault().getPath(DBPath);
-        this.DBFileHash = Hash.getFileHash(this.DBPath);
+        this.DBPath = DBPath;
+        this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
 
         // Preload lines into cache
         this.cache = new ArrayList<>(45000);
         this.buildCache();
     }
 
-    public Path getDBPath() {
+    public String getDBPath() {
         return DBPath;
     }
 
-    public void setDBPath(Path DBPath) {
+    public void setDBPath(String DBPath) {
         this.DBPath = DBPath;
+    }
+
+    public Path getDBPathAsPath() {
+        return FileSystems.getDefault().getPath(this.DBPath);
+    }
+
+    public void setDBPath(Path DBPath) {
+        this.DBPath = DBPath.toString();
     }
 
     public String getDBFileHash() {
@@ -61,7 +76,7 @@ public class DB implements Serializable {
     }
 
     public void updateDBFileHash() {
-        this.DBFileHash = Hash.getFileHash(this.DBPath);
+        this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
     }
 
     /**
@@ -73,6 +88,15 @@ public class DB implements Serializable {
     public boolean buildCache() {
         this.cache.clear();
         this.cache.add("2");
+        return false;
+    }
+
+    /**
+     * @brief Updates the DB file from cache.
+     * @details This method completely overwrites the database file using the lines saved in cache. Use with caution.
+     * @return {@code true} if the DB file was successfully updated, {@code false} otherwise.
+     */
+    public boolean updateDBFromCache() {
         return false;
     }
 
@@ -91,7 +115,8 @@ public class DB implements Serializable {
      * @brief Helper method to write a line at the N-th position with configurable behavior.
      * @details This method writes a new line at the N-th position in the database file. Depending on the {@code shift}
      * parameter, it either shifts existing lines down or replaces the existing line at that position. It also updates
-     * the internal cache.
+     * the internal cache. (The updated cache is used to rebuild the DB file, overwriting its previous content
+     * completely).
      * @param N Index of line to write (0-based).
      * @param newLine The new line to be added at index N.
      * @param shift If {@code true}, shifts existing lines down; if {@code false}, replaces the existing line.
@@ -124,9 +149,10 @@ public class DB implements Serializable {
     /**
      * @brief Removes the N-th line from DB.
      * @details This method removes the N-th line from the database file and updates the internal cache accordingly. It
-     * returns the line that was removed, or {@code null} if the line did not exist.
+     * returns the removed string, or {@code null} if the line did not exist. (The updated cache is used to rebuild the
+     * DB file, overwriting its previous content completely).
      * @param N Index of line to remove (0-based).
-     * @return The removed line, or {@code null} if the line did not exist.
+     * @return String removed, or {@code null} if the line did not exist.
      */
     public String removeNthLine(int N) {
         return "";
@@ -171,10 +197,10 @@ public class DB implements Serializable {
     /**
      * @brief Deletes the first line containing a regex pattern found in DB.
      * @details This method searches for the first line in DB that matches the specified regex pattern and removes it.
-     * It returns the removed line if a deletion was made, or {@code null} otherwise. It updates both the database file
-     * and the internal cache accordingly.
+     * It updates both the database file and the internal cache accordingly. It returns the removed line if it was found
+     * and deleted, or {@code null} otherwise.
      * @param pattern The regex pattern to search for.
-     * @return {@code true} if a deletion was made, {@code false} otherwise.
+     * @return The removed line, or {@code null} if no deletion was made.
      */
     public String deleteFirstLineContainingPattern(Pattern pattern) {
         return "";
@@ -186,8 +212,7 @@ public class DB implements Serializable {
      * @return {@code true} if the line was successfully appended, {@code false} otherwise.
      */
     public boolean appendLine(String newLine) {
-        // There's no way DB is longer than 2^31-1 lines, so this will always append at the end
-        return writeNthLineWShift(Integer.MAX_VALUE, newLine);
+        return writeNthLineWShift(this.cache.size(), newLine);
     }
 
     @Override
