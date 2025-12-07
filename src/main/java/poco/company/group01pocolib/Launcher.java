@@ -1,7 +1,8 @@
 /**
  * @file Launcher.java
  * @brief This file contains the Launcher class which starts the PocoLib application.
- * @author Francesco Marino, Giovanni Orsini
+ * @author Francesco Marino
+ * @author Giovanni Orsini
  * @date 6 December 2025
  */
 package poco.company.group01pocolib;

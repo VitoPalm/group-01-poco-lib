@@ -1,7 +1,8 @@
 /**
  * @file BookDataNotValidException.java
  * @brief This file contains the definition of the IsbnNotValidException class.
- * @author Francesco Marino, Giovanni Orsini
+ * @author Francesco Marino
+ * @author Giovanni Orsini
  * @date 6 December 2025
  */
 
