@@ -2,8 +2,6 @@
  * @file LendingTest.java
  * @brief Unit tests for the Lending class.
  * @author Daniele Pepe
- * @date 6 December 2025
- * @version 0.1
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -22,12 +20,12 @@ public class LendingTest {
     public void testLendingCreationValid() {
         // TODO : implementation
     }
+    
     /**
-     * @brief Tests the setReturnDate method to ensure the return date is updated correctly.
+     * @brief Tests the editing functionality of a Lending object(setReturnDate, setReturned, setNotReturned).
      */
-    @Test
-    public void testSetReturnDate() {
+    public void testLendingEdit() {
         // TODO : implementation
     }
-
+    
 }

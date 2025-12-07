@@ -2,8 +2,6 @@
  * @file BookTest.java
  * @brief Unit tests for the Book class.
  * @author Daniele Pepe
- * @date 6 December 2025
- * @version 0.1
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -28,6 +26,14 @@ public class BookTest {
      */
     @Test
     public void testBookCreationInvalidIsbn() {
+        // TODO : implementation
+    }
+    
+    /**
+     * @brief Tests the edit method to ensure book details are updated correctly. 
+     */
+    @Test
+    public void testBookEdit(){
         // TODO : implementation
     }
 

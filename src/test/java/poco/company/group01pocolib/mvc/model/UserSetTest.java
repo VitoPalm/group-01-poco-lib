@@ -2,8 +2,6 @@
  * @file UserSetTest.java
  * @brief Unit tests for the UserSet class.
  * @author Daniele Pepe
- * @date 6 December 2025
- * @version 0.1
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -54,4 +52,21 @@ public class UserSetTest {
     public void testGetUserByIdNotFound() {
         // TODO : implementation
     }
+
+    /**
+     * @brief Tests the sortedUsersByName method to ensure users are sorted correctly by name lexicographically.
+     */
+    @Test
+    public void testSortedUsersByName() {
+        // TODO : implementation
+    }
+
+    /**
+     * @brief Tests the sortedUsersById method to ensure users are sorted correctly by their ID.
+     */
+    @Test
+    public void testSortedUsersById() {
+        // TODO : implementation
+    }
+
 }

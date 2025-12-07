@@ -2,7 +2,6 @@
  * @file UserDataNotValidException.java
  * @brief This file contains the definition of the UserDataNotValidException class.
  * @author Giovanni Orsini
- * @date 5 December 2025
  */
 
 package poco.company.group01pocolib.exceptions;

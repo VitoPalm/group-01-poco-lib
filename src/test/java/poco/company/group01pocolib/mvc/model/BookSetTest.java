@@ -2,8 +2,6 @@
  * @file BookSetTest.java
  * @brief Unit tests for the BookSet class.
  * @author Daniele Pepe
- * @date 6 December 2025
- * @version 0.1
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -60,6 +58,37 @@ public class BookSetTest {
      */
     @Test
     public void testGetBookNotFound() {
+        // TODO : implementation
+    }
+
+    /**
+     * @brief Tests the sortedBooksByTitle method to ensure books are sorted correctly by title.
+     */
+    @Test
+    public void testSortedBooksByTitle() {
+        // TODO : implementation
+    }
+
+    /**
+     * @brief Tests the sortedBooksByAuthor method to ensure books are sorted correctly by author.
+     */    @Test
+    public void testSortedBooksByAuthor() {
+        // TODO : implementation
+    }
+
+    /**
+     * @brief Tests the sortedBooksByYear method to ensure books are sorted correctly by year.
+     */
+    @Test
+    public void testSortedBooksByYear() {
+        // TODO : implementation
+    }
+
+    /**
+     * @brief Tests the sortedBooksByCopies method to ensure books are sorted correctly by number of copies.
+     */
+    @Test
+    public void testSortedBooksByCopies() {
         // TODO : implementation
     }
 }

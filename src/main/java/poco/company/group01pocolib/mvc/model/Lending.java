@@ -2,8 +2,6 @@
  * @file Lending.java
  * @brief This file contains the definition of the Lending class, which represents a Lending in the library.
  * @author Daniele Pepe
- * @date 6 December 2025
- * @version 0.1
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -18,6 +16,7 @@ public class Lending {
     private LocalDate returnDate;
     static private int lendingCounter = 0;
     private int lendingId;
+    private boolean returned;
     /**
      * @brief Constructs a new Lending object.
      * @param book The Book being lent.
@@ -29,6 +28,7 @@ public class Lending {
         this.user = user;
         this.returnDate = returnDate;
         this.lendingId = lendingCounter++;
+        this.returned = false;
         //TODO : implement lending logic
     }
     /** @brief Gets the Book being lent.
@@ -48,6 +48,10 @@ public class Lending {
      * @return The unique ID of the Lending.
     */
     public int getLendingId() {return lendingId;}
+    /** @brief Checks if the Book has been returned.
+     * @return true if the Book has been returned, false otherwise.
+    */
+    public boolean isReturned() {return returned;}
     /** @brief Sets the return date for the Book.
      * @param returnDate The new return date for the Book.
     */
@@ -60,5 +64,10 @@ public class Lending {
      * @param book The new Book being lent.
     */
     public void setBook(Book book) {this.book = book;}
-    
+    /** @brief Marks the Book as returned.
+    */
+    public void setReturned() {this.returned = true;}
+    /** @brief Marks the Book as not returned.
+    */
+    public void setNotReturned() {this.returned = false;}
 }

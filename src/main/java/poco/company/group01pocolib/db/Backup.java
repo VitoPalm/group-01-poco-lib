@@ -2,7 +2,6 @@
  * @file Backup.java
  * @brief This file contains the Backup class responsible for creating and restoring database backups
  * @author Francesco Marino
- * @date 6 December 2025
  */
 package poco.company.group01pocolib.db;
 

@@ -2,13 +2,14 @@
  * @file UserSet.java
  * @brief This file contains the definition of the UserSet class, which represents a collection of users
  * @author Francesco Marino
- * @date 6 December 2025 
+ * @author Daniele Pepe
  */
 
 package poco.company.group01pocolib.mvc.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 /**
  * @class UserSet
@@ -48,6 +49,24 @@ public class UserSet {
      */
     public User getUserById(String id){
         //TODO: Implement get by id
+        return null;
+    }
+
+    /**
+     * @brief Sorts the Users lexicographically by surname and name
+     * @return A list of users sorted by surname, then name
+     */
+    public List<User> sortedUsersByName(){
+        // TODO: Implement
+        return null;
+    }
+
+    /**
+     * @brief Sorts the Users by their ID
+     * @return A list of users sorted by ID
+     */
+    public List<User> sortedUsersById(){
+        // TODO: Implement
         return null;
     }
 }

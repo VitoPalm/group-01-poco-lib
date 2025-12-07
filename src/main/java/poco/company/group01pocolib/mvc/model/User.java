@@ -2,8 +2,6 @@
  * @file User.java
  * @brief This file contains the definition of the User class, which represents Library User .
  * @author Giovanni Orsini
- * @date 5 December 2025
- * @version 0.1
  */
 
 

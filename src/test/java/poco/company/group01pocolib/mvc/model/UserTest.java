@@ -2,8 +2,6 @@
  * @file UserTest.java
  * @brief Unit tests for the User class.
  * @author Daniele Pepe
- * @date 6 December 2025
- * @version 0.1
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -36,6 +34,14 @@ public class UserTest {
      */
     @Test
     public void testUserCreationInvalidId() {
+        // TODO : implementation
+    }
+
+    /**
+     * @brief Tests the edit method to ensure User details are updated correctly. 
+     */
+    @Test
+    public void testUserEdit(){
         // TODO : implementation
     }
 }

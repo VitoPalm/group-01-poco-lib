@@ -2,8 +2,6 @@
  * @file LendingSetTest.java
  * @brief Unit tests for the LendingSet class.
  * @author Daniele Pepe
- * @date 6 December 2025
- * @version 0.1
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -68,6 +66,22 @@ public class LendingSetTest {
      */
     @Test
     public void testGetByBookEmpty() {
+        // TODO : implementation
+    }
+
+    /**
+     * @brief Tests the getLendingsByReturnDate method to ensure it returns the correct lendings for a return date.
+     */
+    @Test
+    public void testGetLendingsByReturnDate() {
+        // TODO : implementation
+    }
+
+    /**
+     * @brief Tests the sortedLendingsByReturnDate method to ensure lendings are sorted correctly by ReturnDate.
+     */
+    @Test
+    public void testSortedLendingsByReturnDate() {
         // TODO : implementation
     }
 
