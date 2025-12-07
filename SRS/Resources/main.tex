@@ -158,6 +158,8 @@
 
     \subsection{Tabella di tracciabilità}\label{subsec:trace-table}
 
+    \textit{Nota:} I requisiti di interfaccia (FIR) sono verificati tramite test manuali dell'interfaccia utente. I requisiti non funzionali di usabilità (NUR), manutenibilità (NMR) e portabilità (NPR) sono verificati tramite user testing, code review e build system.
+
     \begin{longtable}{|c|p{8cm}|c|}
         \hline
         \textbf{ID Requisito} & \textbf{Componente} & \textbf{Casi di test} \\
@@ -178,41 +180,41 @@
         \hline
         \endlastfoot
 
-        \hyperref[FBR:01]{FBR-01} & & \\
+        \hyperref[FBR:01]{FBR-01} & BookSet.java & BookSetTest.testAddBook() \\
         \hline
-        \hyperref[FBR:02]{FBR-02} & & \\
+        \hyperref[FBR:02]{FBR-02} & Book.java & BookTest.testBookEdit() \\
         \hline
-        \hyperref[FBR:03]{FBR-03} & & \\
+        \hyperref[FBR:03]{FBR-03} & BookSet.java & BookSetTest.testRemoveBook() \\
         \hline
-        \hyperref[FBR:04]{FBR-04} & & \\
+        \hyperref[FBR:04]{FBR-04} & BookSet.java & BookSetTest.testSortedBooksByTitle() \\
         \hline
-        \hyperref[FBR:04.1]{FBR-04.1} & & \\
+        \hyperref[FBR:04.1]{FBR-04.1} & BookSet.java & BookSetTest.testSortedBooksByAuthor() BookSetTest.testSortedBooksByYear() BookSetTest.testSortedBooksByCopies() \\
         \hline
-        \hyperref[FBR:05]{FBR-05} & & \\
+        \hyperref[FBR:05]{FBR-05} &  & \\
         \hline
         \hyperref[FBR:05.1]{FBR-05.1} & & \\
         \hline
-        \hyperref[FUR:01]{FUR-01} & & \\
+        \hyperref[FUR:01]{FUR-01} & UserSet.java & UserSetTest.testAddUser() \\
         \hline
-        \hyperref[FUR:02]{FUR-02} & & \\
+        \hyperref[FUR:02]{FUR-02} & User.java & UserTest.testUserEdit() \\
         \hline
-        \hyperref[FUR:03]{FUR-03} & & \\
+        \hyperref[FUR:03]{FUR-03} & UserSet.java & UserSetTest.testRemoveUser() \\
         \hline
-        \hyperref[FUR:04]{FUR-04} & & \\
+        \hyperref[FUR:04]{FUR-04} & UserSet.java & UserSetTest.testSortedUsersByName() \\
         \hline
-        \hyperref[FUR:04.1]{FUR-04.1} & & \\
+        \hyperref[FUR:04.1]{FUR-04.1} & UserSet.java & UserSetTest.testSortedUsersById() \\
         \hline
         \hyperref[FUR:05]{FUR-05} & & \\
         \hline
         \hyperref[FUR:05.1]{FUR-05.1} & & \\
         \hline
-        \hyperref[FLR:01]{FLR-01} & & \\
+        \hyperref[FLR:01]{FLR-01} & LendingSet.java & LendingSetTest.testAddLending() \\
         \hline
-        \hyperref[FLR:02]{FLR-02} & & \\
+        \hyperref[FLR:02]{FLR-02} & Lending.java & LendingTest.testSetReturnDate() \\
         \hline
-        \hyperref[FLR:03]{FLR-03} & & \\
+        \hyperref[FLR:03]{FLR-03} & LendingSet.java & LendingSetTest.testRemoveLending() \\
         \hline
-        \hyperref[FLR:04]{FLR-04} & & \\
+        \hyperref[FLR:04]{FLR-04} & LendingSet.java & LendingSetTest.testSortedLendingsByReturnDate() \\
         \hline
         \hyperref[FLR:04.1]{FLR-04.1} & & \\
         \hline
@@ -220,87 +222,90 @@
         \hline
         \hyperref[FLR:05.1]{FLR-05.1} & & \\
         \hline
-        \hyperref[FLR:06]{FLR-06} & & \\
+        \hyperref[FLR:06]{FLR-06} & LendingSet.java & LendingSetTest.testRemoveLending()\\
         \hline
-        \hyperref[FDR:01]{FDR-01} & & \\
+
+        % Da verificare e adattare alle classi 
+
+        \hyperref[FDR:01]{FDR-01} & DB.java & DBTest.testReadData() \\
         \hline
-        \hyperref[FDR:02]{FDR-02} & & \\
+        \hyperref[FDR:02]{FDR-02} & DB.java & DBTest.testWriteData() \\
         \hline
-        \hyperref[FDR:03]{FDR-03} & & \\
+        \hyperref[FDR:03]{FDR-03} & DB.java & DBTest.testDeleteData() \\
         \hline
-        \hyperref[FDR:04]{FDR-04} & & \\
+        \hyperref[FDR:04]{FDR-04} & Launcher.java & Integration test \\
         \hline
-        \hyperref[FDR:05]{FDR-05} & & \\
+        \hyperref[FDR:05]{FDR-05} & DB.java & DBTest.testAutoSave() \\
         \hline
-        \hyperref[FIR:01]{FIR-01} & & \\
+        \hyperref[FIR:01]{FIR-01} & Mockup.fxml, PocoLibController.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.1]{FIR-01.1} & & \\
+        \hyperref[FIR:01.1]{FIR-01.1} & Mockup.fxml (tab prestiti), LendingViewController.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.1.1]{FIR-01.1.1} & & \\
+        \hyperref[FIR:01.1.1]{FIR-01.1.1} & Search.java, LendingSet.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.1.2]{FIR-01.1.2} & & \\
+        \hyperref[FIR:01.1.2]{FIR-01.1.2} & LendingSet.java, Mockup-view-lending.fxml & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.1.3]{FIR-01.1.3} & & \\
+        \hyperref[FIR:01.1.3]{FIR-01.1.3} & LendingEditController.java, Mockup-edit-lending.fxml & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.2]{FIR-01.2} & & \\
+        \hyperref[FIR:01.2]{FIR-01.2} & Mockup.fxml (tab libri), BookViewController.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.2.1]{FIR-01.2.1} & & \\
+        \hyperref[FIR:01.2.1]{FIR-01.2.1} & Search.java, BookSet.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.2.2]{FIR-01.2.2} & & \\
+        \hyperref[FIR:01.2.2]{FIR-01.2.2} & BookSet.java, Mockup-view-book.fxml & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.2.3]{FIR-01.2.3} & & \\
+        \hyperref[FIR:01.2.3]{FIR-01.2.3} & BookEditController.java, Mockup-edit-book.fxml & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.3]{FIR-01.3} & & \\
+        \hyperref[FIR:01.3]{FIR-01.3} & Mockup.fxml (tab utenti), UserViewController.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.3.1]{FIR-01.3.1} & & \\
+        \hyperref[FIR:01.3.1]{FIR-01.3.1} & Search.java, UserSet.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.3.2]{FIR-01.3.2} & & \\
+        \hyperref[FIR:01.3.2]{FIR-01.3.2} & UserSet.java, Mockup-view-user.fxml & Test manuale UI\\
         \hline
-        \hyperref[FIR:01.3.3]{FIR-01.3.3} & & \\
+        \hyperref[FIR:01.3.3]{FIR-01.3.3} & UserEditController.java, Mockup-edit-user.fxml & Test manuale UI\\
         \hline
-        \hyperref[FIR:02]{FIR-02} & & \\
+        \hyperref[FIR:02]{FIR-02} & Mockup-view-lending.fxml, LendingViewController.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:03]{FIR-03} & & \\
+        \hyperref[FIR:03]{FIR-03} & Mockup-edit-lending.fxml, LendingEditController.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:04]{FIR-04} & & \\
+        \hyperref[FIR:04]{FIR-04} & Mockup-view-book.fxml, BookViewController.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:05]{FIR-05} & & \\
+        \hyperref[FIR:05]{FIR-05} & Mockup-edit-book.fxml, BookEditController.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:06]{FIR-06} & & \\
+        \hyperref[FIR:06]{FIR-06} & Mockup-view-user.fxml, UserViewController.java & Test manuale UI\\
         \hline
-        \hyperref[FIR:07]{FIR-07} & & \\
+        \hyperref[FIR:07]{FIR-07} & Mockup-edit-user.fxml, UserEditController.java & Test manuale UI\\
         \hline
-        \hyperref[NUR:01]{NUR-01} & & \\
+        \hyperref[NUR:01]{NUR-01} & GUI (tutti i mockup) & User acceptance testing \\
         \hline
-        \hyperref[NUR:02]{NUR-02} & & \\
+        \hyperref[NUR:02]{NUR-02} & GUI (messaggi di errore) & User acceptance testing \\
         \hline
-        \hyperref[NUR:03]{NUR-03} & & \\
+        \hyperref[NUR:03]{NUR-03} & Tutta l'applicazione & User acceptance testing \\
         \hline
-        \hyperref[NRR:01]{NRR-01} & & \\
+        \hyperref[NRR:01]{NRR-01} & User.java, UserDataNotValidException.java & UserTest.testEmailValidation() \\
         \hline
-        \hyperref[NRR:02]{NRR-02} & & \\
+        \hyperref[NRR:02]{NRR-02} & User.java, UserDataNotValidException.java & UserTest.testMatricolaValidation() \\
         \hline
-        \hyperref[NRR:03]{NRR-03} & & \\
+        \hyperref[NRR:03]{NRR-03} & Book.java, BookDataNotValidException.java & BookTest.testISBNValidation() \\
         \hline
-        \hyperref[NRR:04]{NRR-04} & & \\
+        \hyperref[NRR:04]{NRR-04} & Backup.java & BackupTest.testBackupCreation() \\
         \hline
-        \hyperref[NRR:05]{NRR-05} & & \\
+        \hyperref[NRR:05]{NRR-05} & Backup.java & BackupTest.testRestore() \\
         \hline
-        \hyperref[NRR:06]{NRR-06} & & \\
+        \hyperref[NRR:06]{NRR-06} & Logging classes & Test manuale/Inspection \\
         \hline
-        \hyperref[NMR:01]{NMR-01} & & \\
+        \hyperref[NMR:01]{NMR-01} & Architettura MVC & Code review \\
         \hline
-        \hyperref[NMR:02]{NMR-02} & & \\
+        \hyperref[NMR:02]{NMR-02} & Tutti i file sorgente & Code review/Documentation inspection \\
         \hline
-        \hyperref[NMR:02.1]{NMR-02.1} & & \\
+        \hyperref[NMR:02.1]{NMR-02.1} & Tutti i file sorgente & Doxygen documentation generation \\
         \hline
-        \hyperref[NMR:03]{NMR-03} & & \\
+        \hyperref[NMR:03]{NMR-03} & pom.xml & Build verification \\
         \hline
-        \hyperref[NMR:04]{NMR-04} & & \\
+        \hyperref[NMR:04]{NMR-04} & README.md & Documentation inspection \\
         \hline
-        \hyperref[NPR:01]{NPR-01} & & \\
+        \hyperref[NPR:01]{NPR-01} & pom.xml, JavaFX dependencies & Build e test su piattaforme diverse \\
         \hline
-        \hyperref[NPR:02]{NPR-02} & & \\
+        \hyperref[NPR:02]{NPR-02} & Maven build system & Build verification \\
         \hline
     \end{longtable}
 

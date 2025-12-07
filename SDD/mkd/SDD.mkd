@@ -5,19 +5,18 @@
 L'architettura del sistema è organizzata secondo il pattern Model-View-Controller (MVC). I moduli principali sono divisi in package che riflettono questa struttura adattata alla complessità del progetto e alle esigenze specifiche dell'applicazione:
 
 
-![alt text](../svg/packagediagram.svg)
+![alt text](../svg/packagediagram.svg) <!-- Incompelto>
 
-| Modulo | Responsabilità | Dipendenze |
-|--------|----------------|------------|
-| `mvc` | Contiene l'entry point dell'applicazione (Launcher, PocoLibApplication) e i componenti core MVC (PocoLibController, PocoLibModel, PocoLibView). Coordina l'intera applicazione e gestisce la navigazione tra le viste. | `mvc.controllers`, `mvc.model`, JavaFX |
-| `mvc.controllers` | Gestisce la logica di presentazione e l'interazione utente per le diverse schermate (BookViewController, UserViewController, LendingViewController e relative finestre di modifica). | `mvc.model`, JavaFX FXML |
-| `mvc.model` | Implementa la logica di business. Mantiene lo stato dell'applicazione. | `mvc.model.datastructures`, `mvc.model.dbhandling` |
-| `mvc.model.datastructures` | Definisce le strutture dati usate e le collezioni che le gestiscono.Fornisce metodi per operazioni in memoria. | Nessuna dipendenza interna |
-| `mvc.model.dbhandling` | Responsabile della persistenza dei dati su file system (DB) e della gestione dei backup (Backup). Serializza e deserializza le strutture dati. | `mvc.model.datastructures`, Java I/O |
-| `search` | Implementa la funzionalità di ricerca avanzata (OmniSearch) attraverso algoritmi e utilità dedicate. | `mvc.model.datastructures` |
-| `exceptions` | Contiene la gerarchia delle eccezioni personalizzate per la gestione degli errori specifici dell'applicazione. | Nessuna dipendenza interna |
+| Modulo | Responsabilità | Dipendenze | Test |
+|--------|----------------|------------|------|
+| `mvc` | Contiene l'entry point dell'applicazione (Launcher, PocoLibApplication) e i componenti core MVC (PocoLibController, PocoLibModel, PocoLibView). Coordina l'intera applicazione e gestisce la navigazione tra le viste. | `mvc.controllers`, `mvc.model`, JavaFX | - |
+| `mvc.controllers` | Gestisce la logica di presentazione e l'interazione utente per le diverse schermate (BookViewController, UserViewController, LendingViewController e relative finestre di modifica). | `mvc.model`, JavaFX FXML | - |
+| `mvc.model` | Implementa la logica di business. Mantiene lo stato dell'applicazione. | `mvc.model.datastructures`, `mvc.model.dbhandling` | - |
+| `mvc.model.datastructures` | Definisce le strutture dati usate e le collezioni che le gestiscono.Fornisce metodi per operazioni in memoria. | Nessuna dipendenza interna | `BookTest`, `BookSetTest`, `UserTest`, `UserSetTest`, `LendingTest`, `LendingSetTest` |
+| `mvc.model.dbhandling` | Responsabile della persistenza dei dati su file system (DB) e della gestione dei backup (Backup). Serializza e deserializza le strutture dati. | `mvc.model.datastructures`, Java I/O | - |
+| `search` | Implementa la funzionalità di ricerca avanzata (OmniSearch) attraverso algoritmi e utilità dedicate. | `mvc.model.datastructures` | - |
+| `exceptions` | Contiene la gerarchia delle eccezioni personalizzate per la gestione degli errori specifici dell'applicazione. | Nessuna dipendenza interna | - |
 
-MISSING TEST CLASSES.
 
 
 
