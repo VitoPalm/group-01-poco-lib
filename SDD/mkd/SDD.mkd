@@ -71,6 +71,7 @@ Il package `exceptions` contiene la gerarchia delle eccezioni personalizzate per
 - `BookDataNotValidException`: Eccezione sollevata quando i dati di un libro non sono validi.
 - `UserDataNotValidException`: Eccezione sollevata quando i dati di un utente non sono validi.
 
+> Tali eccezioni sono state create poiché in questo modo qualsiasi `model` istanziato conterrà sempre dati validi, nonostante si prevede che il bibliotecario non avrà possibilità di salvare un nuovo `model` se la validazione dei dati al momento dell'input risulterà errata. Il loro inserimento è correlato quindi all'idea che i model sono un componente funzionante autonomamente, poi interfacciato con la GUI 
 
 ### Scelte progettuali
 
