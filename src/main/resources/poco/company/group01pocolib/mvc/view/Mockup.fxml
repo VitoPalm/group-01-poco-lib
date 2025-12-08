@@ -15,182 +15,157 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane rotateGraphic="true" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-   <tabs>
-      <Tab text="Lending Page">
-         <content>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
-               <children>
-                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                   <image>
-                     <Image url="@poco-logo.png" />
-                   </image>
-                 </ImageView>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                     <children>
-                        <TextField alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch lent" />
-                     </children>
-                  </HBox>
-                  <TableView>
-                    <columns>
-                        <TableColumn prefWidth="91.0" text="Lending ID" />
-                        <TableColumn prefWidth="183.0" text="Return date" />
-                        <TableColumn prefWidth="170.0" text="ISBN" />
-                      <TableColumn minWidth="0.0" prefWidth="400.0" text="Title" />
-                      <TableColumn prefWidth="141.0" text="User ID" />
-                        <TableColumn prefWidth="234.0" text="User" />
-                    </columns>
-                  </TableView>
-                  <GridPane>
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                              <Button mnemonicParsing="false" text="View &amp; Edit" />
-                           </children>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
-                           <children>
-                              <Button mnemonicParsing="false" text="Mark as returned" />
-                           </children>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                  </GridPane>
-               </children>
-               <padding>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </padding>
-            </VBox>
-         </content>
-      </Tab>
-      <Tab text="Books">
-         <content>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@poco-logo.png" />
-                     </image>
-                  </ImageView>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                     <children>
-                        <TextField alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch books" />
-                     </children>
-                  </HBox>
-                  <TableView>
-                    <columns>
-                        <TableColumn prefWidth="170.0" text="ISBN" />
-                      <TableColumn minWidth="0.0" prefWidth="400.0" text="Title" />
-                      <TableColumn prefWidth="350.0" text="Authors" />
-                        <TableColumn prefWidth="100.0" text="Year" />
-                        <TableColumn prefWidth="100.0" text="Available" />
-                        <TableColumn prefWidth="100.0" text="Lent" />
-                    </columns>
-                  </TableView>
-                  <GridPane>
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                              <Button mnemonicParsing="false" text="Add" />
-                              <Button mnemonicParsing="false" text="View &amp; Edit" />
-                           </children>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
-                           <children>
-                              <Button mnemonicParsing="false" text="Lend" />
-                           </children>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                  </GridPane>
-               </children>
-               <padding>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </padding>
-            </VBox>
-         </content>
-      </Tab>
-      <Tab text="Users">
-         <content>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@poco-logo.png" />
-                     </image>
-                  </ImageView>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                     <children>
-                        <TextField alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch users" />
-                     </children>
-                  </HBox>
-                  <TableView>
-                    <columns>
-                        <TableColumn prefWidth="170.0" text="ID" />
-                      <TableColumn minWidth="0.0" prefWidth="291.0" text="Name" />
-                      <TableColumn prefWidth="341.0" text="Surname" />
-                        <TableColumn prefWidth="213.0" text="Email" />
-                        <TableColumn prefWidth="204.0" text="Lent" />
-                    </columns>
-                  </TableView>
-                  <GridPane>
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                              <Button mnemonicParsing="false" text="Add" />
-                              <Button mnemonicParsing="false" text="View &amp; Edit" />
-                           </children>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
-                           <children>
-                              <Button mnemonicParsing="false" text="Lend to" />
-                           </children>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                  </GridPane>
-               </children>
-               <padding>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </padding>
-            </VBox>
-         </content>
-      </Tab>
-   </tabs>
+<TabPane xmlns:fx="http://javafx.com/fxml/1" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE"
+         fx:controller="poco.company.group01pocolib.mvc.controller.PocoLibController"
+         xmlns="http://javafx.com/javafx/25" fx:id="mainTabPane">
+    <Tab text="Lending Page" fx:id="lendingTab">
+        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            </padding>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@poco-logo.png"/>
+            </ImageView>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                <TextField alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch lent"
+                           fx:id="lendingSearchField"/>
+            </HBox>
+            <TableView fx:id="lendingTable">
+                <columns>
+                    <TableColumn prefWidth="91.0" text="Lending ID" fx:id="lendingIdColumn"/>
+                    <TableColumn prefWidth="183.0" text="Return date" fx:id="lendingReturnDateColumn"/>
+                    <TableColumn prefWidth="170.0" text="ISBN" fx:id="lendingIsbnColumn"/>
+                    <TableColumn minWidth="0.0" prefWidth="400.0" text="Title" fx:id="lendingTitleColumn"/>
+                    <TableColumn prefWidth="141.0" text="User ID" fx:id="lendingUserIdColumn"/>
+                    <TableColumn prefWidth="234.0" text="User" fx:id="lendingUserColumn"/>
+                </columns>
+            </TableView>
+            <GridPane>
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                    <Button mnemonicParsing="false" text="View &amp; Edit" fx:id="lendingViewEditButton"
+                            onAction="#handleLendingEdit"/>
+                </HBox>
+                <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
+                      GridPane.columnIndex="1">
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                    <Button mnemonicParsing="false" text="Mark as returned" fx:id="lendingReturnedButton"
+                            onAction="#handleMarkAsReturned"/>
+                </HBox>
+            </GridPane>
+        </VBox>
+    </Tab>
+    <Tab text="Books" fx:id="bookTab">
+        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            </padding>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@poco-logo.png"/>
+            </ImageView>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                <TextField alignment="CENTER" prefHeight="26.0" prefWidth="381.0"
+                           promptText="OmniSearch books" fx:id="bookSearchField"/>
+            </HBox>
+            <TableView fx:id="bookTable">
+                <columns>
+                    <TableColumn prefWidth="170.0" text="ISBN" fx:id="bookIsbnColumn"/>
+                    <TableColumn minWidth="0.0" prefWidth="400.0" text="Title" fx:id="bookTitleColumn"/>
+                    <TableColumn prefWidth="350.0" text="Authors" fx:id="bookAuthorsColumn"/>
+                    <TableColumn prefWidth="100.0" text="Year" fx:id="bookYearColumn"/>
+                    <TableColumn prefWidth="100.0" text="Available" fx:id="bookAvailableColumn"/>
+                    <TableColumn prefWidth="100.0" text="Lent" fx:id="bookLentColumn"/>
+                </columns>
+            </TableView>
+            <GridPane>
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                    <Button mnemonicParsing="false" text="Add" fx:id="bookAddButton"
+                            onAction="#handleBookAdd"/>
+                    <Button mnemonicParsing="false" text="View &amp; Edit" fx:id="bookViewEditButton"
+                            onAction="#handleBookViewEdit"/>
+                </HBox>
+                <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
+                      GridPane.columnIndex="1">
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                    <Button mnemonicParsing="false" text="Lend" fx:id="bookLendButton"
+                            onAction="#handleBookLend"/>
+                </HBox>
+            </GridPane>
+        </VBox>
+    </Tab>
+    <Tab text="Users" fx:id="userTab">
+        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            </padding>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@poco-logo.png"/>
+            </ImageView>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                <TextField alignment="CENTER" prefHeight="26.0" prefWidth="381.0"
+                           promptText="OmniSearch users" fx:id="userSearchField"/>
+            </HBox>
+            <TableView fx:id="userTable">
+                <columns>
+                    <TableColumn prefWidth="170.0" text="ID" fx:id="userIdColumn"/>
+                    <TableColumn minWidth="0.0" prefWidth="291.0" text="Name" fx:id="userNameColumn"/>
+                    <TableColumn prefWidth="341.0" text="Surname" fx:id="userSurnameColumn"/>
+                    <TableColumn prefWidth="213.0" text="Email" fx:id="userEmailColumn"/>
+                    <TableColumn prefWidth="204.0" text="Lent" fx:id="userLentColumn"/>
+                </columns>
+            </TableView>
+            <GridPane>
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                    <Button mnemonicParsing="false" text="Add" fx:id="userAddButton"
+                            onAction="#handleUserAdd"/>
+                    <Button mnemonicParsing="false" text="View &amp; Edit" fx:id="userViewEditButton"
+                            onAction="#handleUserViewEdit"/>
+                </HBox>
+                <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
+                      GridPane.columnIndex="1">
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                    <Button mnemonicParsing="false" text="Lend to" fx:id="userLendButton"
+                            onAction="#handleUserLend"/>
+                </HBox>
+            </GridPane>
+        </VBox>
+    </Tab>
 </TabPane>
