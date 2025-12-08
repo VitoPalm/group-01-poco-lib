@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<Tab text="Lending Page" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:id="lendingTab"
+     fx:controller="poco.company.group01pocolib.mvc.controller.LendingTabController">
+    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
+        <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+        </padding>
+        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@poco-logo.png"/>
+        </ImageView>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch lent"
+                       fx:id="lendingSearchField"/>
+        </HBox>
+        <TableView fx:id="lendingTable">
+            <columns>
+                <TableColumn prefWidth="91.0" text="Lending ID" fx:id="lendingIdColumn"/>
+                <TableColumn prefWidth="183.0" text="Return date" fx:id="lendingReturnDateColumn"/>
+                <TableColumn prefWidth="170.0" text="ISBN" fx:id="lendingIsbnColumn"/>
+                <TableColumn minWidth="0.0" prefWidth="400.0" text="Title" fx:id="lendingTitleColumn"/>
+                <TableColumn prefWidth="141.0" text="User ID" fx:id="lendingUserIdColumn"/>
+                <TableColumn prefWidth="234.0" text="User" fx:id="lendingUserColumn"/>
+            </columns>
+        </TableView>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                <padding>
+                    <Insets top="10.0"/>
+                </padding>
+                <Button mnemonicParsing="false" text="View &amp; Edit" fx:id="lendingViewEditButton"
+                        onAction="#handleLendingEdit"/>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
+                  GridPane.columnIndex="1">
+                <padding>
+                    <Insets top="10.0"/>
+                </padding>
+                <Button mnemonicParsing="false" text="Mark as returned" fx:id="lendingReturnedButton"
+                        onAction="#handleMarkAsReturned"/>
+            </HBox>
+        </GridPane>
+    </VBox>
+</Tab>

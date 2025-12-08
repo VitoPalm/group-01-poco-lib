@@ -20,6 +20,8 @@ public class Hash {
         return "";
     }
 
+
+
     /**
      * This method takes 2 files as input (through their paths) and calculates the hashes for both of them. Then, it returns
      * the result of the comparison

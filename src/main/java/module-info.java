@@ -8,7 +8,9 @@ module poco.company.group01pocolib {
     exports poco.company.group01pocolib.db;
     exports poco.company.group01pocolib.db.omnisearch;
     exports poco.company.group01pocolib.exceptions;
+    exports poco.company.group01pocolib;
     
     opens poco.company.group01pocolib.mvc.controller to javafx.fxml;
+    opens poco.company.group01pocolib to javafx.graphics;
     opens poco.company.group01pocolib.mvc.model to javafx.fxml;
 }

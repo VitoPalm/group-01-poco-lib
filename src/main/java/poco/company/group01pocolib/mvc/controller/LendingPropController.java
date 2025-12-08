@@ -5,21 +5,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.*;
 
 public class LendingPropController {
-    // ---------------   //
-    // Edit declarations //
-    // ---------------   //
-    @FXML private DatePicker returnDatePicker;
 
-    @FXML private Label errorLabel;
-    @FXML private Button saveButton;
-
-    // ---------------   //
+    // ----------------- //
     // View declarations //
-    // ---------------   //
+    // ----------------- //
+    @FXML private VBox viewBox;
     @FXML private Label lendingIdLabel;
     @FXML private Label returnDateLabel;
 
@@ -29,9 +24,18 @@ public class LendingPropController {
     @FXML private Button deleteButton;
     @FXML private Button returnButton;
 
-    // ---------------   //
-    // Shared fields     //
-    // ---------------   //
+    // ----------------- //
+    // Edit declarations //
+    // ----------------- //
+    @FXML private VBox editBox;
+    @FXML private DatePicker returnDatePicker;
+
+    @FXML private Label errorLabel;
+    @FXML private Button saveButton;
+
+    // ------------- //
+    // Shared fields //
+    // ------------- //
     private Stage dialogStage;
     private Lending lending;
     private boolean saveClicked = false;
@@ -40,10 +44,9 @@ public class LendingPropController {
     private UserSet userSet;
     private PocoLibController mainController;
 
-    // --------------- //
-    // Edit methods    //
-    // --------------- //
-
+    // ------------ //
+    // Edit methods //
+    // ------------ //
     /**
      * @brief   Initializes the controller class allowing real time id and email verification. This method is
      *          automatically called after the fxml file has been loaded.
@@ -102,10 +105,37 @@ public class LendingPropController {
         // TODO: implement method to update lending details for the dialog
     }
 
-    // ---------------------- //
-    // Edit button handlers   //
-    // ---------------------- //
 
+    // -------------------- //
+    // View button handlers //
+    // -------------------- //
+    /**
+     * @brief   Handles the edit button click event. It opens the lending edit dialog and refreshes afterward.
+     */
+    @FXML
+    private void handleEdit() {
+        // TODO: implement edit logic
+    }
+
+    /**
+     * @brief   Handles the mark as returned button click event. It marks the lending as returned.
+     */
+    @FXML
+    private void handleMarkAsReturned() {
+        // TODO: implement mark as returned logic
+    }
+
+    /**
+     * @brief   Handles the delete button click event. It deletes the lending after confirmation.
+     */
+    @FXML
+    private void handleDelete() {
+        // TODO: implement delete logic
+    }
+
+    // -------------------- //
+    // Edit button handlers //
+    // -------------------- //
     /**
      * @brief   Handles the save button click event. It validates the input fields and saves the lending details if
      *          valid, then, it closes the dialog.
@@ -134,38 +164,9 @@ public class LendingPropController {
         return false;
     }
 
-    // ---------------------- //
-    // View button handlers   //
-    // ---------------------- //
-
-    /**
-     * @brief   Handles the edit button click event. It opens the lending edit dialog and refreshes afterward.
-     */
-    @FXML
-    private void handleEdit() {
-        // TODO: implement edit logic
-    }
-
-    /**
-     * @brief   Handles the mark as returned button click event. It marks the lending as returned.
-     */
-    @FXML
-    private void handleMarkAsReturned() {
-        // TODO: implement mark as returned logic
-    }
-
-    /**
-     * @brief   Handles the delete button click event. It deletes the lending after confirmation.
-     */
-    @FXML
-    private void handleDelete() {
-        // TODO: implement delete logic
-    }
-
     // ------------- //
     // Link Handlers //
     // ------------- //
-
     /**
      * @brief   Handles the view book link click event. It opens the book view dialog.
      */

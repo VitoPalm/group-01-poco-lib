@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TabPane?>
+
+<TabPane xmlns:fx="http://javafx.com/fxml/1" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE"
+         fx:controller="poco.company.group01pocolib.mvc.controller.PocoLibController"
+         xmlns="http://javafx.com/javafx/25" fx:id="mainTabPane">
+    <fx:include fx:id="lendingTab" source="tab-lending.fxml" />
+    <fx:include fx:id="bookTab" source="tab-book.fxml"/>
+    <fx:include fx:id="userTab" source="tab-user.fxml"/>
+</TabPane>

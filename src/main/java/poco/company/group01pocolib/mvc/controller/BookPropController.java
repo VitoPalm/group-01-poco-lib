@@ -5,14 +5,33 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.Book;
 import poco.company.group01pocolib.mvc.model.BookSet;
 
 public class BookPropController {
-    // ---------------   //
+
+    // ----------------- //
+    // View declarations //
+    // ----------------- //
+    @FXML private VBox viewBox;
+
+    @FXML private Label isbnLabel;
+    @FXML private Label titleLabel;
+    @FXML private Label authorsLabel;
+    @FXML private Label yearLabel;
+    @FXML private Label copiesLabel;
+    @FXML private Hyperlink lentToLink;
+
+    @FXML private Button deleteButton;
+    @FXML private Button lendButton;
+
+    // ----------------- //
     // Edit declarations //
-    // ---------------   //
+    // ----------------- //
+    @FXML private VBox editBox;
+
     @FXML private TextField isbnField;
     @FXML private TextField titleField;
     @FXML private TextField authorsField;
@@ -25,34 +44,21 @@ public class BookPropController {
     @FXML private Label errorLabel;
     @FXML private Button saveButton;
 
-    // ---------------   //
-    // View declarations //
-    // ---------------   //
-    @FXML private Label isbnLabel;
-    @FXML private Label titleLabel;
-    @FXML private Label authorsLabel;
-    @FXML private Label yearLabel;
-    @FXML private Label copiesLabel;
-    @FXML private Hyperlink lentToLink;
 
-    @FXML private Button deleteButton;
-    @FXML private Button lendButton;
-
-    // ---------------   //
-    // Shared fields     //
-    // ---------------   //
+    // ------------- //
+    // Shared fields //
+    // ------------- //
     private Stage dialogStage;
     private Book book;
     private boolean saveClicked = false;
     private BookSet bookSet;
     private PocoLibController mainController;
 
-    // --------------- //
-    // Edit methods    //
-    // --------------- //
-
+    // ------------ //
+    // Edit methods //
+    // ------------ //
     /**
-     * @brief   Initializes the controller class allowing real time ISBN verification This method is automatically
+     * @brief   Initializes the controller class allowing real time ISBN verification. This method is automatically
      *          called after the fxml file has been loaded.
      */
     @FXML
@@ -103,9 +109,46 @@ public class BookPropController {
         // TODO: implement method to update book details for the dialog
     }
 
-    // --------------- //
-    // Button handlers //
-    // --------------- //
+    // -------------------- //
+    // View button handlers //
+    // -------------------- //
+    /**
+     * @brief   Handles the edit button click event. It opens the book edit dialog and refreshes afterward.
+     */
+    @FXML
+    private void handleEdit() {
+        // TODO: implement edit logic
+    }
+
+    /**
+     * @brief   Handles the delete button click event. It deletes the book after confirmation.
+     */
+    @FXML
+    private void handleDelete() {
+        // TODO: implement delete logic
+    }
+
+    /**
+     * @brief   Handles the lend button click event. It switches to the User tab if no user was selected, if user was
+     *          selected, it opens the dialog for a new lending (allowing the user to set the return date).
+     */
+    @FXML
+    private void handleLend() {
+        // TODO: implement lend logic
+    }
+
+    /**
+     * @brief   Handles the lent to hyperlink click event. It switches to the User tab and selects the user who has
+     *          currently borrowed the book.
+     */
+    @FXML
+    private void handleViewHistory() {
+        // TODO: implement view history logic
+    }
+
+    // -------------------- //
+    // Edit Button handlers //
+    // -------------------- //
 
     /**
      * @brief   Handles the decrement button click event. It simply decreases the number in the 'copiesField' by 1.
@@ -158,44 +201,5 @@ public class BookPropController {
     private boolean validateInput() {
         // TODO: implement validation logic
         return false;
-    }
-
-
-    // ---------------------- //
-    // View button handlers   //
-    // ---------------------- //
-
-    /**
-     * @brief   Handles the edit button click event. It opens the book edit dialog and refreshes afterward.
-     */
-    @FXML
-    private void handleEdit() {
-        // TODO: implement edit logic
-    }
-
-    /**
-     * @brief   Handles the delete button click event. It deletes the book after confirmation.
-     */
-    @FXML
-    private void handleDelete() {
-        // TODO: implement delete logic
-    }
-
-    /**
-     * @brief   Handles the lend button click event. It switches to the User tab if no user was selected, if user was
-     *          selected, it opens the dialog for a new lending (allowing the user to set the return date).
-     */
-    @FXML
-    private void handleLend() {
-        // TODO: implement lend logic
-    }
-
-    /**
-     * @brief   Handles the lent to hyperlink click event. It switches to the User tab and selects the user who has
-     *          currently borrowed the book.
-     */
-    @FXML
-    private void handleViewHistory() {
-        // TODO: implement view history logic
     }
 }

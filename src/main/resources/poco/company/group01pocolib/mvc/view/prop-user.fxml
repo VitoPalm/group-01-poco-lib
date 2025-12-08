@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.TextField?>
+
+<Pane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25"
+      fx:controller="poco.company.group01pocolib.mvc.controller.UserPropController">
+    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          spacing="20.0" visible="true" fx:id="viewBox">
+
+        <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+        </padding>
+
+        <GridPane hgap="10.0" vgap="10.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+
+            <Label text="ID">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+            <Label text="Name" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+            <Label text="Surname" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+            <Label text="Email" GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+            <Label text="Borrowed" GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+
+            <Label fx:id="idLabel" text="..." GridPane.columnIndex="1"/>
+            <Label fx:id="nameLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label fx:id="surnameLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label fx:id="emailLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            <Hyperlink fx:id="borrowedLink" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4"
+                       onAction="#handleViewHistory"/>
+        </GridPane>
+
+        <HBox alignment="CENTER" spacing="10.0">
+            <Button text="Edit" onAction="#handleEdit"/>
+            <Button fx:id="deleteButton" text="Delete" textFill="#e00000" disable="true" onAction="#handleDelete">
+                <tooltip>
+                    <Tooltip text="User mustn't have active borrows"/>
+                </tooltip>
+            </Button>
+            <Button fx:id="lendToButton" text="Lend to" onAction="#handleLendTo"/>
+        </HBox>
+    </VBox>
+    <VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+          minHeight="-Infinity"
+          minWidth="-Infinity" spacing="20.0" visible="false" fx:id="editBox">
+        <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+        </padding>
+        <GridPane hgap="10.0" vgap="10.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Label text="ID">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+            <Label text="Name" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+            <Label text="Surname" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+            <Label text="Email" GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+            <TextField fx:id="idField" GridPane.columnIndex="1"/>
+            <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <TextField fx:id="surnameField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <TextField fx:id="emailField" text="inv@lid" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+        <Label fx:id="errorLabel" text="Email seems to be invalid" textFill="#e00000"/>
+        <HBox alignment="CENTER" spacing="10.0">
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="Cancel"/>
+            <Button fx:id="saveButton" defaultButton="true" disable="true" mnemonicParsing="false"
+                    onAction="#handleSave"
+                    text="Save"/>
+        </HBox>
+    </VBox>
+
+</Pane>

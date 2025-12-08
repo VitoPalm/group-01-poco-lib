@@ -25,6 +25,7 @@ public class Search {
     /**
      * @brief   Searches the given index for items matching the query. It returns a list of SearchResult objects,
      *          each containing an item and the number of hits it had in the index.
+     *
      * @param   query The search query string.
      * @param   index The index to search within.
      * @return  A list of SearchResult objects containing the items found and their hit counts.
@@ -36,6 +37,7 @@ public class Search {
 
     /**
      * @brief   Calculates the distance between two strings.
+     *
      * @param   s1 The first string.
      * @param   s2 The second string.
      * @return  The distance between the two strings as an integer.
@@ -47,6 +49,7 @@ public class Search {
 
     /**
      * @brief   Orders a list of strings based on their distance from the query string.
+     *
      * @param   query The reference string to compare against.
      * @param   input The list of strings to be ordered.
      * @return  A new list of strings ordered by their distance from the query string.

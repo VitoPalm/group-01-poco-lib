@@ -38,7 +38,7 @@ public class DB implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String DBPath;
-    private final ArrayList<String> cache;          ///< TODO : change into List, initialize as ArrayList in constructor
+    private final ArrayList<String> cache;
     private String DBFileHash;
 
     private static final int INITIAL_CACHE_CAPACITY = 45000;

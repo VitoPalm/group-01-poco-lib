@@ -124,7 +124,6 @@ public class LendingTabController {
     // --------------- //
     // Button Handlers //
     // --------------- //
-
     /**
      * @brief   Allows to view or edit the selected lending when the "View & Edit" button is clicked on the Lending tab.
      * @details This method handles both the model and the orchestration of the popup dialog for viewing or editing
