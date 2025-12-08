@@ -26,7 +26,7 @@
 
         \hyperref[FBR:01]{FBR-01} & BookSet.java & BookSetTest\newline \hspace*{1em}.testAddBook() \\
         \hline
-        \hyperref[FBR:02]{FBR-02} & Book.java & BookTest\newline \hspace*{1em}.testBookEdit() \\
+        \hyperref[FBR:02]{FBR-02} & Book.java & BookTest\newline \hspace*{1em}.testBookEdit()\newline \hspace*{1em}.testAddCopy()\newline \hspace*{1em}.testRemoveCopyValid() \\
         \hline
         \hyperref[FBR:03]{FBR-03} & BookSet.java & BookSetTest\newline \hspace*{1em}.testRemoveBook() \\
         \hline
@@ -34,11 +34,11 @@
         \hline
         \hyperref[FBR:04.1]{FBR-04.1} & BookSet.java & BookSetTest\newline \hspace*{1em}.testSortedBooksByAuthor() \newline \hspace*{1em}.testSortedBooksByYear() \newline \hspace*{1em}.testSortedBooksByCopies() \\
         \hline
-        \hyperref[FBR:05]{FBR-05} &  & \\
+        \hyperref[FBR:05]{FBR-05} & Search.java, Index.java & SearchTest\newline \hspace*{1em}.testSearch() \\
         \hline
-        \hyperref[FBR:05.1]{FBR-05.1} & & \\
+        \hyperref[FBR:05.1]{FBR-05.1} & Search.java & SearchTest\newline \hspace*{1em}.testOrderByDistance() \\
         \hline
-        \hyperref[FUR:01]{FUR-01} & UserSet.java & UserSetTest\newline \hspace*{1em}.testAddUser() \\
+        \hyperref[FUR:01]{FUR:01} & UserSet.java, User.java & UserSetTest\newline \hspace*{1em}.testAddUser()\newline UserTest\newline \hspace*{1em}.testUserCreationValid() \\
         \hline
         \hyperref[FUR:02]{FUR-02} & User.java & UserTest\newline \hspace*{1em}.testUserEdit() \\
         \hline
@@ -48,23 +48,23 @@
         \hline
         \hyperref[FUR:04.1]{FUR-04.1} & UserSet.java & UserSetTest\newline \hspace*{1em}.testSortedUsersById() \\
         \hline
-        \hyperref[FUR:05]{FUR-05} & & \\
+        \hyperref[FUR:05]{FUR-05} & Search.java, Index.java & SearchTest\newline \hspace*{1em}.testSearch() \\
         \hline
-        \hyperref[FUR:05.1]{FUR-05.1} & & \\
+        \hyperref[FUR:05.1]{FUR-05.1} & Search.java & SearchTest\newline \hspace*{1em}.testOrderByDistance() \\
         \hline
-        \hyperref[FLR:01]{FLR-01} & LendingSet.java & LendingSetTest\newline \hspace*{1em}.testAddLending() \\
+        \hyperref[FLR:01]{FLR-01} & LendingSet.java, Lending.java & LendingSetTest\newline \hspace*{1em}.testAddLending()\newline LendingTest\newline \hspace*{1em}.testLendingCreationValid() \\
         \hline
-        \hyperref[FLR:02]{FLR-02} & Lending.java & LendingTest\newline \hspace*{1em}.testSetReturnDate() \\
+        \hyperref[FLR:02]{FLR-02} & Lending.java & LendingTest\newline \hspace*{1em}.testLendingEdit() \\
         \hline
         \hyperref[FLR:03]{FLR-03} & LendingSet.java & LendingSetTest\newline \hspace*{1em}.testRemoveLending() \\
         \hline
-        \hyperref[FLR:04]{FLR-04} & LendingSet.java & LendingSetTest\newline \hspace*{1em}.testSortedLendingsByReturnDate() \\
+        \hyperref[FLR:04]{FLR-04} & LendingSet.java & LendingSetTest\newline \hspace*{1em}.testGetByUser()\newline \hspace*{1em}.testGetByBook() \\
         \hline
-        \hyperref[FLR:04.1]{FLR-04.1} & & \\
+        \hyperref[FLR:04.1]{FLR-04.1} & LendingViewController.java, Mockup-view-lending.fxml & Test manuale UI\\
         \hline
-        \hyperref[FLR:05]{FLR-05} & & \\
+        \hyperref[FLR:05]{FLR-05} & Search.java, Index.java & SearchTest\newline \hspace*{1em}.testSearch() \\
         \hline
-        \hyperref[FLR:05.1]{FLR-05.1} & & \\
+        \hyperref[FLR:05.1]{FLR-05.1} & Search.java & SearchTest\newline \hspace*{1em}.testOrderByDistance() \\
         \hline
         \hyperref[FLR:06]{FLR-06} & LendingSet.java & LendingSetTest\newline \hspace*{1em}.testRemoveLending()\\
         \hline
@@ -79,7 +79,7 @@
         \hline
         \hyperref[FDR:04]{FDR-04} & Launcher.java & Integration test \\
         \hline
-        \hyperref[FDR:05]{FDR-05} & DB.java & DBTest.testAutoSave() \\
+        \hyperref[FDR:05]{FDR-05} & DB.java & DBTest\newline \hspace*{1em}.testAutoSave() \\
         \hline
         \hyperref[FIR:01]{FIR-01} & Mockup.fxml, PocoLibController.java & Test manuale UI\\
         \hline
@@ -118,37 +118,5 @@
         \hyperref[FIR:06]{FIR-06} & Mockup-view-user.fxml, UserViewController.java & Test manuale UI\\
         \hline
         \hyperref[FIR:07]{FIR-07} & Mockup-edit-user.fxml, UserEditController.java & Test manuale UI\\
-        \hline
-        \hyperref[NUR:01]{NUR-01} & GUI (tutti i mockup) & User acceptance testing \\
-        \hline
-        \hyperref[NUR:02]{NUR-02} & GUI (messaggi di errore) & User acceptance testing \\
-        \hline
-        \hyperref[NUR:03]{NUR-03} & Tutta l'applicazione & User acceptance testing \\
-        \hline
-        \hyperref[NRR:01]{NRR-01} & User.java, UserDataNotValidException.java & UserTest\newline \hspace*{1em}.testEmailValidation() \\
-        \hline
-        \hyperref[NRR:02]{NRR-02} & User.java, UserDataNotValidException.java & UserTest\newline \hspace*{1em}.testMatricolaValidation() \\
-        \hline
-        \hyperref[NRR:03]{NRR-03} & Book.java, BookDataNotValidException.java & BookTest\newline \hspace*{1em}.testISBNValidation() \\
-        \hline
-        \hyperref[NRR:04]{NRR-04} & Backup.java & BackupTest\newline \hspace*{1em}.testBackupCreation() \\
-        \hline
-        \hyperref[NRR:05]{NRR-05} & Backup.java & BackupTest\newline \hspace*{1em}.testRestore() \\
-        \hline
-        \hyperref[NRR:06]{NRR-06} & Logging classes & Test manuale/Inspection \\
-        \hline
-        \hyperref[NMR:01]{NMR-01} & Architettura MVC & Code review \\
-        \hline
-        \hyperref[NMR:02]{NMR-02} & Tutti i file sorgente & Code review/Documentation inspection \\
-        \hline
-        \hyperref[NMR:02.1]{NMR-02.1} & Tutti i file sorgente & Doxygen documentation generation \\
-        \hline
-        \hyperref[NMR:03]{NMR-03} & pom.xml & Build verification \\
-        \hline
-        \hyperref[NMR:04]{NMR-04} & README.md & Documentation inspection \\
-        \hline
-        \hyperref[NPR:01]{NPR-01} & pom.xml, JavaFX dependencies & Build e test su piattaforme diverse \\
-        \hline
-        \hyperref[NPR:02]{NPR-02} & Maven build system & Build verification \\
         \hline
     \end{longtable}
