@@ -51,8 +51,8 @@ public class Index<T> implements Serializable {
      * @param   searchableContent The content to generate trigrams from.
      * @return  A list of generated trigrams.
      */
-    public ArrayList<String> generateTrigrams(String searchableContent) {
-        // TODO: implement
+    public List<String> generateTrigrams(String searchableContent) {
+        // TODO: implement -- as ArrayList
         return null;
     }
 

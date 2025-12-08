@@ -29,7 +29,7 @@ public class BookSet implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private HashSet<Book> bookSet;
+    private HashSet<Book> bookSet;      ///< TODO : change into Set, initialize as HashSet in constructor
     private Index<Book> bookIndex;
     private DB bookDB;
 

@@ -24,7 +24,7 @@ public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String title;
-    private ArrayList<String> authors;
+    private ArrayList<String> authors;      ///< TODO : change into List, initialize as ArrayList in constructor
     private String isbn;
     private int year;
     private int copies;
@@ -55,17 +55,6 @@ public class Book implements Serializable {
         this.copies = copies;
         this.copiesLent = 0;
         this.timesLent = 0;
-    }
-
-    /**
-     * @brief   Validates the given ISBN.
-     *
-     * @param   isbn The ISBN to validate.
-     * @return  @c true if the ISBN is valid, @c false otherwise.
-     */
-    public static boolean isValidIsbn(String isbn) {
-        // TODO: Implement ISBN validation logic
-        return false;
     }
 
     /**
@@ -101,7 +90,7 @@ public class Book implements Serializable {
     /**
      * @brief   Sets the list of authors of the Book using a single `String` with authors separated by semicolons.
      */
-    public void setAuthorsFromString(String authorsStr) {
+    public void setAuthors(String authorsStr) {
         // TODO: Implement
     }
 
@@ -122,6 +111,17 @@ public class Book implements Serializable {
             throw new BookDataNotValidException("Invalid ISBN: " + isbn);
         }
         this.isbn = isbn;
+    }
+
+    /**
+     * @brief   Validates the given ISBN.
+     *
+     * @param   isbn The ISBN to validate.
+     * @return  @c true if the ISBN is valid, @c false otherwise.
+     */
+    public static boolean isValidIsbn(String isbn) {
+        // TODO: Implement ISBN validation logic
+        return false;
     }
 
     /**
