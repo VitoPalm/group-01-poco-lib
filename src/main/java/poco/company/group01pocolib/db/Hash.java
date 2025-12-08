@@ -12,7 +12,7 @@ import java.util.Base64;
  */
 public class Hash {
     /**
-     * This method takes a {@code path} as input, and calculates a hash for the corresponding file using SHA-256.
+     * This method takes a `path` as input, and calculates a hash for the corresponding file using SHA-256.
      * @param path Path to the file we intend to hash
      * @return String containing the hash of the input file, calculated using SHA-256
      */
@@ -25,7 +25,7 @@ public class Hash {
      * the result of the comparison
      * @param p1 Path to the first file
      * @param p2 Path to the second file
-     * @return {@code true} if the hashes correspond, {@code false} if they don't
+     * @return `true` if the hashes correspond, `false` if they don't
      */
     static public boolean compareFileHashes(Path p1, Path p2) {
         return getFileHash(p1).equals(getFileHash(p2));

@@ -2,6 +2,7 @@ package poco.company.group01pocolib.db;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
@@ -12,37 +13,42 @@ import java.util.regex.Pattern;
 
 
 /**
- * @class DB
- * @brief Allows creation and simple handling of a database (UTF-8 encoded file).
+ * @class   DB
+ * @brief   Allows creation and simple handling of a database (UTF-8 encoded file).
  * @details This class is based on the assumption that the entries on the DB are separated on different lines, but
- * makes no further assumptions on how fields for a given entry are defined or separated. It allows reading, writing,
- * and removing specific lines from a database file, it also includes a few methods to edit, remove and return lines
- * based on regex patterns.
- * <p>
- * The class preloads the DB lines into an internal cache for faster access. The original file
- * is always modified when writing or removing lines, and the cache is rebuilt accordingly. The class is built with the
- * idea of never having an edit on the DB file without updating the cache, so the two are always in sync.
- * </p>
- * <p>
- * The reason for an additional data support for the application (which already obtains data permanence between sessions
- * through serialization of objects) is reliability and, most importantly, the ability to support future changes to the
- * base data models. The serialized objects are not human-readable, and any change to the data models would make it not
- * possible to retrieve previously saved data. The DB class, being reliant on a simple text file, allows easy "legacy
- * support" by any future versions of the application, as well as easy manual editing of the data if needed. (and, if
- * needed, importing and exporting data from and to other machines through these simple text files).
- * </p>
+ *          makes no further assumptions on how fields for a given entry are defined or separated. It allows reading,
+ *          writing, and removing specific lines from a database file, it also includes a few methods to edit, remove
+ *          and return lines based on regex patterns.
+ *          <br><br>
+ *          The class preloads the DB lines into an internal cache for faster access. The original file is always
+ *          modified when writing or removing lines, and the cache is rebuilt accordingly. The class is built with the
+ *          idea of never having an edit on the DB file without updating the cache, so the two are always in sync.
+ *          <br><br>
+ *          The reason for an additional data support for the application (which already obtains data permanence between
+ *          sessions through serialization of objects) is reliability and, most importantly, the ability to support
+ *          future changes to the base data models. The serialized objects are not human-readable, and any change to the
+ *          data models would make it not possible to retrieve previously saved data.
+ *          <br><br>
+ *          The DB class, being reliant on a simple text file, allows easy "legacy support" by any future versions of
+ *          the application, as well as easy manual editing of the data if needed. (and, if needed, importing and
+ *          exporting data from and to other machines through these simple text files).
  */
 public class DB implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private String DBPath;
     private final ArrayList<String> cache;
     private String DBFileHash;
+
+    private static final int INITIAL_CACHE_CAPACITY = 45000;
 
     public DB(Path DBPath) {
         this.DBPath = DBPath.toString();
         this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
 
         // Preload lines into cache
-        this.cache = new ArrayList<>(45000);
+        this.cache = new ArrayList<>(INITIAL_CACHE_CAPACITY);
         this.buildCache();
     }
 
@@ -51,7 +57,7 @@ public class DB implements Serializable {
         this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
 
         // Preload lines into cache
-        this.cache = new ArrayList<>(45000);
+        this.cache = new ArrayList<>(INITIAL_CACHE_CAPACITY);
         this.buildCache();
     }
 
@@ -79,11 +85,18 @@ public class DB implements Serializable {
         this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
     }
 
+    public String updateAndGetDBFileHash() {
+        this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
+
+        return this.DBFileHash;
+    }
+
     /**
-     * @brief Builds the cache of lines from the DB file.
+     * @brief   Builds the cache of lines from the DB file.
      * @details This method reads all lines from the database file and stores them in an internal cache for faster
-     * access. It clears any existing cached lines before rebuilding the cache.
-     * @return {@code true} if the cache was successfully built, {@code false} otherwise.
+     *          access. It clears any existing cached lines before rebuilding the cache.
+     *
+     * @return  `true` if the cache was successfully built, `false` otherwise.
      */
     public boolean buildCache() {
         this.cache.clear();
@@ -92,124 +105,135 @@ public class DB implements Serializable {
     }
 
     /**
-     * @brief Updates the DB file from cache.
+     * @brief   Updates the DB file from cache.
      * @details This method completely overwrites the database file using the lines saved in cache. Use with caution.
-     * @return {@code true} if the DB file was successfully updated, {@code false} otherwise.
+     *
+     * @return  `true` if the DB file was successfully updated, `false` otherwise.
      */
-    public boolean updateDBFromCache() {
+    private boolean updateDBFromCache() {
         return false;
     }
 
     /**
-     * @brief Reads the N-th line from the cached DB.
+     * @brief   Reads the N-th line from the cached DB.
      * @details This method retrieves the N-th line from the cached lines of DB. In case the cache is empty, it
-     * re-builds the cache and then gets the line.
-     * @param N Index of line to read (0-based).
-     * @return Content of N-th line, or {@code null} if line does not exist.
+     *          re-builds the cache and then gets the line.
+     *
+     * @param   N Index of line to read (0-based).
+     * @return  Content of N-th line, or `null` if line does not exist.
      */
     public String readNthLine(int N) {
         return "";
     }
 
     /**
-     * @brief Helper method to write a line at the N-th position with configurable behavior.
-     * @details This method writes a new line at the N-th position in the database file. Depending on the {@code shift}
-     * parameter, it either shifts existing lines down or replaces the existing line at that position. It also updates
-     * the internal cache. (The updated cache is used to rebuild the DB file, overwriting its previous content
-     * completely).
-     * @param N Index of line to write (0-based).
-     * @param newLine The new line to be added at index N.
-     * @param shift If {@code true}, shifts existing lines down; if {@code false}, replaces the existing line.
-     * @return {@code true} if the line was successfully written, {@code false} otherwise.
+     * @brief   Helper method to write a line at the N-th position with configurable behavior.
+     * @details This method writes a new line at the N-th position in the database file. Depending on the `shift`
+     *          parameter, it either shifts existing lines down or replaces the existing line at that position. It also
+     *          updates the internal cache. (The updated cache is used to rebuild the DB file, overwriting its previous
+     *          content completely).
+     *
+     * @param   N       Index of line to write (0-based).
+     * @param   newLine The new line to be added at index N.
+     * @param   shift   If `true`, shifts existing lines down; if `false`, replaces the existing line.
+     * @return  `true` if the line was successfully written, `false` otherwise.
      */
     private boolean writeNthLine(int N, String newLine, boolean shift) {
         return false;
     }
 
     /**
-     * @brief Writes a new line at the N-th position in DB, shifting existing lines down.
-     * @param N Index of line to write (0-based).
-     * @param newLine The new line to be added at index N.
-     * @return {@code true} if the line was successfully written, {@code false} otherwise.
+     * @brief   Writes a new line at the N-th position in DB, shifting existing lines down.
+     *
+     * @param   N       Index of line to write (0-based).
+     * @param   newLine The new line to be added at index N.
+     * @return  `true` if the line was successfully written, `false` otherwise.
      */
     public boolean writeNthLineWShift(int N, String newLine) {
         return writeNthLine(N, newLine, true);
     }
 
     /**
-     * @brief Writes a new line at the N-th position in DB, replacing the existing line.
-     * @param N Index of line to write (0-based).
-     * @param newLine The new line to be added at index N.
-     * @return {@code true} if the line was successfully written, {@code false} otherwise.
+     * @brief   Writes a new line at the N-th position in DB, replacing the existing line.
+     *
+     * @param   N       Index of line to write (0-based).
+     * @param   newLine The new line to be added at index N.
+     * @return  `true` if the line was successfully written, `false` otherwise.
      */
     public boolean writeNthLineReplace(int N, String newLine) {
         return writeNthLine(N, newLine, false);
     }
 
     /**
-     * @brief Removes the N-th line from DB.
+     * @brief   Removes the N-th line from DB.
      * @details This method removes the N-th line from the database file and updates the internal cache accordingly. It
-     * returns the removed string, or {@code null} if the line did not exist. (The updated cache is used to rebuild the
-     * DB file, overwriting its previous content completely).
-     * @param N Index of line to remove (0-based).
-     * @return String removed, or {@code null} if the line did not exist.
+     *          returns the removed string, or `null` if the line did not exist. (The updated cache is used to
+     *          rebuild the DB file, overwriting its previous content completely).
+     *
+     * @param   N Index of line to remove (0-based).
+     * @return  String removed, or `null` if the line did not exist.
      */
     public String removeNthLine(int N) {
         return "";
     }
 
     /**
-     * @brief Finds the first instance of a regex pattern in DB.
+     * @brief   Finds the first instance of a regex pattern in DB.
      * @details This method searches through the cached lines of DB to find the first occurrence of a specified regex
-     * pattern. It returns the index of the line where the pattern is first found. If the pattern is not found, it
-     * returns {@code -1}. If the cache is empty, it re-builds the cache before searching.
-     * @param pattern Regex pattern to search for.
-     * @return Index of line where pattern is first found, {@code -1} if not found.
+     *          pattern. It returns the index of the line where the pattern is first found. If the pattern is not found,
+     *          it returns `-1`. If the cache is empty, it re-builds the cache before searching.
+     *
+     * @param   pattern Regex pattern to search for.
+     * @return  Index of line where pattern is first found, `-1` if not found.
      */
     public int findFirstInstanceOfPattern(Pattern pattern) {
         return -1;
     }
 
     /**
-     * @brief Reads the first line containing a regex pattern from DB.
+     * @brief   Reads the first line containing a regex pattern from DB.
      * @details This method searches through the cached lines of DB to find the first occurrence of a specified regex
-     * pattern. It returns the content of the line where the pattern is first found. If the pattern is not found, it
-     * returns {@code null}. If the cache is empty, it re-builds the cache before searching.
-     * @param pattern Regex pattern to search for.
-     * @return The first line containing the pattern, or {@code null} if not found.
+     *          pattern. It returns the content of the line where the pattern is first found. If the pattern is not
+     *          found, it returns `null`. If the cache is empty, it re-builds the cache before searching.
+     *
+     * @param   pattern Regex pattern to search for.
+     * @return  The first line containing the pattern, or `null` if not found.
      */
     public String readFirstLineContainingPattern(Pattern pattern) {
         return null;
     }
 
     /**
-     * @brief Substitutes the first instance of a regex pattern in the database file with a new line.
-     * @details This method searches for the first line in DB that matches the specified regex pattern and replaces it with
-     * the provided new line. It updates both the database file and the internal cache accordingly.
-     * @param pattern The regex pattern to search for.
-     * @param newLine The new line to replace the found line.
-     * @return {@code true} if a substitution was made, {@code false} otherwise.
+     * @brief   Substitutes the first instance of a regex pattern in the database file with a new line.
+     * @details This method searches for the first line in DB that matches the specified regex pattern and replaces it
+     *          with the provided new line. It updates both the database file and the internal cache accordingly.
+     *
+     * @param   pattern The regex pattern to search for.
+     * @param   newLine The new line to replace the found line.
+     * @return  `true` if a substitution was made, `false` otherwise.
      */
     public boolean substituteFirstLineContainingPattern(Pattern pattern, String newLine) {
         return false;
     }
 
     /**
-     * @brief Deletes the first line containing a regex pattern found in DB.
+     * @brief   Deletes the first line containing a regex pattern found in DB.
      * @details This method searches for the first line in DB that matches the specified regex pattern and removes it.
-     * It updates both the database file and the internal cache accordingly. It returns the removed line if it was found
-     * and deleted, or {@code null} otherwise.
-     * @param pattern The regex pattern to search for.
-     * @return The removed line, or {@code null} if no deletion was made.
+     *          It updates both the database file and the internal cache accordingly. It returns the removed line if it
+     *          was found and deleted, or `null` otherwise.
+     *
+     * @param   pattern The regex pattern to search for.
+     * @return  The removed line, or `null` if no deletion was made.
      */
     public String deleteFirstLineContainingPattern(Pattern pattern) {
         return "";
     }
 
     /**
-     * @brief Appends a new line at the end of DB.
-     * @param newLine The new line to be appended.
-     * @return {@code true} if the line was successfully appended, {@code false} otherwise.
+     * @brief   Appends a new line at the end of DB.
+     *
+     * @param   newLine The new line to be appended.
+     * @return  `true` if the line was successfully appended, `false` otherwise.
      */
     public boolean appendLine(String newLine) {
         return writeNthLineWShift(this.cache.size(), newLine);
