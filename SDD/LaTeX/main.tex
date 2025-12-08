@@ -1,0 +1,336 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[main=italian,english]{babel}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{tablefootnote}
+\usepackage{svg}
+\usepackage[htt]{hyphenat}
+
+% Metadata setup
+\hypersetup{
+    pdftitle={Software Design Document},
+    pdfauthor={Marino Francesco, Pepe Daniele, Orsini Giovanni, Palmieri Vito},
+    pdfsubject={Software per la gestione di una biblioteca},
+    pdfkeywords={SDD, architettura, mvc, classi, sequenza},
+    pdfcreator={Gruppo 1},
+    pdfproducer={Gruppo 1}
+}
+
+% Table settings
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+% Page layout
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Software Design Document}}
+\fancyhead[R]{\textit{Gruppo 1}}
+\fancyfoot[C]{\thepage}
+
+% Custom colors
+\definecolor{sectioncolor}{RGB}{0,102,204}
+
+\title{\textbf{\Large Software Design Document (SDD)}\\
+\large Software per la gestione di una biblioteca}
+\author{Autori: Marino Francesco, Pepe Daniele, Orsini Giovanni, Palmieri Vito \\ Gruppo 1}
+
+\begin{document}
+
+    \maketitle
+    \thispagestyle{empty}
+
+    \newpage
+    \tableofcontents
+    \newpage
+
+%===============================================
+    \section{Architettura del sistema}
+%===============================================
+
+    L'architettura del sistema è organizzata secondo il pattern Model-View-Controller (MVC). I moduli principali sono divisi in package che riflettono questa struttura adattata alla complessità del progetto e alle esigenze specifiche dell'applicazione:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../png/Packages@4x}
+        \caption{Diagramma dei Package}\label{fig:figure8}
+    \end{figure}
+
+    \begin{table}[H]
+        \centering
+        \small
+        \begin{tabularx}{\textwidth}{|m{3cm}|X|m{3cm}|m{2,5cm}|}
+            \hline
+            \textbf{Modulo} & \textbf{Responsabilità} & \textbf{Dipendenze} & \textbf{Test} \\
+            \hline
+            \texttt{poco.company.\newline group01pocolib} & Contiene l'entry point dell'applicazione (\texttt{Launcher}) e coordina l'inizializzazione del sistema. & \texttt{mvc.controller}, \texttt{mvc.model}, JavaFX & - \\
+            \hline
+            \texttt{mvc.controller} & Gestisce la logica di presentazione e l'interazione utente.
+            Include i controller per le proprietà degli elementi (\texttt{BookPropController}, ecc.) e per le tab. Il \texttt{PocoLibController} coordina i controller delle tab e gestisce la navigazione. & \texttt{mvc.model}, JavaFX FXML & - \\
+            \hline
+            \texttt{mvc.model} & Implementa la logica di business e mantiene lo stato dell'applicazione. Contiene le entità (\texttt{Book}, \texttt{User}, \texttt{Lending}) e le collezioni che le gestiscono. Fornisce metodi per operazioni CRUD e ricerca. & \texttt{db}, Java I/O & \texttt{BookTest}, \texttt{UserTest}, \texttt{LendingTest} (e relativi Set) \\
+            \hline
+            \texttt{db} & Responsabile della persistenza dei dati su file system (\texttt{DB}), gestione dei backup (\texttt{Backup}) e calcolo hash per l'integrità dei file (\texttt{Hash}). Serializza e deserializza le strutture dati. & \texttt{mvc.model}, Java I/O & \texttt{DBTest}, \texttt{BackupTest}, \texttt{HashTest} \\
+            \hline
+            \texttt{db.omnisearch} & Implementa la funzionalità di ricerca avanzata tramite indicizzazione trigram (\texttt{Index}) e algoritmi di ricerca fuzzy (\texttt{Search}). Supporta ricerche parziali e tolleranti agli errori di battitura. & \texttt{mvc.model} & \texttt{SearchTest} \\
+            \hline
+            \texttt{exceptions} & Contiene la gerarchia delle eccezioni personalizzate per la gestione degli errori specifici dell'applicazione (\texttt{BookDataNotValidException}, ecc.). & Nessuna dipendenza interna & - \\
+            \hline
+        \end{tabularx}\label{tab:table}
+    \end{table}
+
+%===============================================
+    \section{Modello statico}
+%===============================================
+
+    Le classi del sistema sono state organizzate secondo il pattern Model-View-Controller (MVC) per separare la logica di business dalla logica di presentazione e dalla persistenza dei dati.
+
+    \subsection{Diagramma delle classi correlate a Launcher}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../png/Classes-launcher@4x}
+        \caption{Diagramma delle classi correlate a Launcher}\label{fig:figure-launcher}
+    \end{figure}
+
+    \subsubsection{Classe \texttt{Launcher}}
+    Questa classe contiene il metodo \texttt{main} e il metodo \texttt{start} per avviare l'app JavaFX.
+    Contiene inoltre i metodi \texttt{restoreBookSet}, \texttt{restoreUserSet} e \texttt{restoreLendingSet} per caricare i dati.
+
+    \subsection{Diagramma delle classi di MVC}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{../png/Classes-mvc@4x}
+        \caption{Class Diagram MVC}\label{fig:figure-mvc}
+    \end{figure}
+
+    \subsubsection{Classi di \texttt{mvc.model}}
+    Il model contiene le classi che implementano la logica di business. Le principali classi sono:
+    \begin{itemize}
+        \item \texttt{Book}: È responsabile della rappresentazione di un oggetto libro con attributi come ISBN, titolo, autori, anno di pubblicazione e numero di copie disponibili. Fornisce metodi per accedere e modificare questi attributi.
+        \item \texttt{User}: È responsabile della rappresentazione di un utente con attributi come ID, nome, cognome, email e numero di telefono. Fornisce metodi per accedere e modificare questi attributi.
+        \item \texttt{Lending}: È responsabile della rappresentazione di un prestito, collegando un \texttt{Book} a un \texttt{User} con attributi come data di prestito e data di restituzione prevista.
+        \item \texttt{BookSet}, \texttt{UserSet}, \texttt{LendingSet}: Collezioni responsabili della gestione rispettivamente di libri, utenti e prestiti. Forniscono metodi per aggiungere, rimuovere e cercare elementi all'interno delle collezioni.
+    \end{itemize}
+
+    \subsubsection{Classi di \texttt{mvc.controller}}
+    Il controller è responsabile del collegamento tra il model (la logica di business) e la view (la logica di presentazione). Le principali classi sono:
+    \begin{itemize}
+        \item \texttt{BookPropController}, \texttt{UserPropController}, \texttt{LendingPropController}: Gestiscono le operazioni di visualizzazione e modifica delle proprietà. I metodi permettono di gestire azioni come visualizzazione dettagli, salvataggio e annullamento modifiche.
+        \item \texttt{BookTabController}, \texttt{UserTabController}, \texttt{LendingTabController}: Gestiscono le operazioni sulle tabelle principali. I metodi permettono di gestire interazioni come reindirizzamento ai dettagli o aggiornamento dati.
+        \item \texttt{PocoLibController}: È responsabile della gestione delle interazioni generali dell'applicazione, coordinando le operazioni tra i vari controller specifici di entità.
+    \end{itemize}
+
+    \subsubsection{Artifacts di \texttt{mvc.view}}
+    La view contiene i file FXML che implementano l'interfaccia grafica dell'app.
+    \begin{itemize}
+        \item \texttt{BookPropView}, \texttt{UserPropView}, \texttt{LendingPropView}: Finestre di visualizzazione e modifica delle proprietà.
+        \item \texttt{BookTabView}, \texttt{UserTabView}, \texttt{LendingTabView}: Tab corrispondenti alla visualizzazione e interazione con le tabelle.
+    \end{itemize}
+
+    \paragraph{Esempio delle interazioni di un Model-View-Controller specifico (UserSet)}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../png/Classes-mvc-specific@4x}
+        \caption{Esempio interazioni MVC specifico (UserSet)}\label{fig:figure-mvc-specific}
+    \end{figure}
+
+    \paragraph{Esempio delle interazioni di un modello e della sua aggregazione (Book e BookSet)}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../png/Classes-bookv2@4x}
+        \caption{Esempio delle interazioni Book e BookSet}\label{fig:figure-book-bookset}
+    \end{figure}
+
+    \subsection{Diagramma delle classi di \texttt{db} e \texttt{db.omnisearch}}\label{subsec:diagramma-delle-classi-di-db-e-db.omnisearch}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{../png/Classes-db@4x}
+        \caption{Class Diagram DB}\label{fig:figure2}
+    \end{figure}
+
+    \subsubsection{Classi di \texttt{db}}
+    Il package \texttt{db} è responsabile della persistenza dei dati e della gestione dei backup.
+    \begin{itemize}
+        \item \texttt{DB}: Responsabile della creazione, lettura, scrittura e aggiornamento del file di database.
+        I metodi principali prevedono la costruzione e aggiornamento del file da una Cache.
+        \item \texttt{Backup}: Responsabile della creazione effettiva dei backup del file di database.
+        \item \texttt{Hash}: Responsabile del calcolo dell'hash del file di database per garantire l'integrità dei dati.
+    \end{itemize}
+
+    \subsubsection{Classi di \texttt{db.omnisearch}}
+    Il package \texttt{db.omnisearch} implementa la funzionalità di ricerca avanzata.
+    \begin{itemize}
+        \item \texttt{Index}: Responsabile dell'indicizzazione trigram per ricerche più efficienti.
+        \item \texttt{Search}: Implementa algoritmi di ricerca fuzzy per trovare corrispondenze parziali, permettendo ricerche tolleranti agli errori di battitura.
+    \end{itemize}
+
+    \subsection{Diagramma delle classi di \texttt{exceptions}}\label{subsec:diagramma-delle-classi-di-exceptions}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../png/Classes-exceptions@4x}
+        \caption{Class Diagram Exceptions}\label{fig:figure3}
+    \end{figure}
+
+    \subsubsection{Classi di \texttt{exceptions}}
+    Il package \texttt{exceptions} contiene la gerarchia delle eccezioni personalizzate.
+    \begin{itemize}
+        \item \texttt{BookDataNotValidException}: Sollevata quando i dati di un libro non sono validi.
+        \item \texttt{UserDataNotValidException}: Sollevata quando i dati di un utente non sono validi.
+    \end{itemize}
+
+    \begin{quote}
+        Tali eccezioni sono state create poiché in questo modo qualsiasi \texttt{model} istanziato conterrà sempre dati validi, nonostante si prevede che il bibliotecario non avrà possibilità di salvare un nuovo \texttt{model} se la validazione dei dati al momento dell'input risulterà errata.
+        Il loro inserimento è correlato quindi all'idea che i model sono un componente funzionante autonomamente, poi interfacciato con la GUI.
+    \end{quote}
+
+    \subsection{Scelte Progettuali}\label{subsec:scelte-progettuali}
+
+    Il sistema è stato progettato con l'obiettivo di garantire manutenibilità, modularità e facilità di estensione.
+
+    \begin{itemize}
+        \item \textbf{Adozione del pattern MVC}: Isola la logica di business, la logica di presentazione e la gestione degli eventi.
+        \item \textbf{Progettazione orientata agli oggetti}: Segue principi come incapsulamento, ereditarietà e polimorfismo.
+        \item \textbf{Implementazione di un sistema di ricerca avanzata}: L'uso di indici trigram e algoritmi di fuzzy search offre funzionalità di ricerca potenti.
+        \item \textbf{Gestione della persistenza}: Classi dedicate (\texttt{DB}, \texttt{Backup}, \texttt{Hash}) isolano la logica di accesso ai dati.
+        \item \textbf{Utilizzo di eccezioni personalizzate}: Facilitano la gestione degli errori e migliorano la robustezza.
+    \end{itemize}
+
+    \subsection{Principi di buona progettazione}\label{subsec:principi-di-buona-progettazione}
+    Il sistema rispetta diversi principi di buona progettazione software:
+    \begin{itemize}
+        \item \textbf{Single Responsibility Principle (SRP)}: Ogni classe ha una singola responsabilità ben definita (es. \texttt{DB} serializzazione, \texttt{Backup} backup).
+        \item \textbf{Don't Repeat Yourself (DRY)}: La logica di validazione è centralizzata nel model; la ricerca fuzzy è implementata una sola volta in \texttt{db.omnisearch}.
+        \item \textbf{Separation of Concerns}: Netta separazione tra View, Model e DB.
+        \item \textbf{Information Hiding}: I dettagli implementativi delle strutture dati interne sono nascosti dietro interfacce pubbliche.
+    \end{itemize}
+
+%===============================================
+    \section{Modello dinamico}\label{sec:modello-dinamico}
+%===============================================
+
+    In questa sezione vengono presentati i diagrammi UML per i casi d'uso più significativi dell'applicazione.
+
+    \subsection{Diagramma di sequenza: Aggiunta di un nuovo libro}\label{subsec:diagramma-di-sequenza:-aggiunta-di-un-nuovo-libro}
+    Nel seguente diagramma viene illustrato il processo di aggiunta di un nuovo libro.
+    I dati vengono elaborati dal controller, salvati nel model, e successivamente su file tramite la classe DB, creando anche un backup.
+    In caso di errori, viene sollevata un'eccezione gestita dal controller.
+
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=\textwidth]{../svg/sequence_add_book.svg}
+        \caption{Sequence Diagram: Add Book}\label{fig:figure4}
+    \end{figure}
+
+    \subsection{Diagramma di sequenza: Prestito di un libro}\label{subsec:diagramma-di-sequenza:-prestito-di-un-libro}
+    Il bibliotecario seleziona utente e libro.
+    Il controller verifica le condizioni (limite prestiti, disponibilità libro).
+    Se soddisfatte, viene creato il prestito, aggiornato lo stato del libro e salvato tutto su file (con backup).
+    In caso contrario, viene sollevata un'eccezione.
+
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=\textwidth]{../svg/sequence_lend_book.svg}
+        \caption{Sequence Diagram: Lend Book}\label{fig:figure5}
+    \end{figure}
+
+    \subsection{Diagramma di Attività: Avvio dell'Applicazione e Caricamento Dati}\label{subsec:diagramma-di-attivita:-avvio-dell'applicazione-e-caricamento-dati}
+    All'avvio, l'app verifica l'esistenza del file di salvataggio.
+    Se non esiste, ne crea uno vuoto.
+    Se esiste, tenta il caricamento.
+    In caso di fallimento del caricamento, tenta il ripristino da backup.
+    Se anche il ripristino fallisce, restituisce errore critico e inizializza un nuovo file vuoto.
+
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=\textwidth]{../svg/activity_startup.svg}
+        \caption{Activity Diagram: Startup}\label{fig:figure6}
+    \end{figure}
+
+%===============================================
+    \section{Design dell’interfaccia utente}\label{sec:design-dellinterfaccia-utente}
+%===============================================
+
+    L'interfaccia utente è progettata per essere intuitiva e user-friendly, con un layout chiaro e funzionale.
+
+    \subsection{Schermate principali dell'applicazione}\label{subsec:schermate-principali-dell'applicazione}
+    La schermata principale presenta una tabella che elenca i contenuti in base alla sezione selezionata (Prestiti, Libri, Utenti) tramite barra di navigazione.
+    Include funzionalità di ricerca testuale (anche parziale/fuzzy) e bottoni per azioni CRUD\@.
+
+    \subsubsection*{Pagina dei Prestiti}
+    Permette di visualizzare: Lending ID, Return Date, ISBN, Title, User ID, User.
+    Include bottoni per segnare come restituito un libro e per visualizzare/modificare un prestito.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../../SRS/Resources/Main-page-lending}
+        \caption{Main Page: Lending}\label{fig:figure7}
+    \end{figure}
+
+    \subsubsection*{Pagina dei Libri}
+    Permette di visualizzare: ISBN, Title, Authors, Year, Available, Lent. Include bottoni per aggiungere, visualizzare/modificare e prestare libri.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../../SRS/Resources/Main-page-books}
+        \caption{Main Page: Books}
+    \end{figure}
+
+    \subsubsection*{Pagina degli Utenti}
+    Permette di visualizzare: ID, Name, Surname, Email, Lent (numero libri in prestito). Include bottoni per aggiungere, visualizzare/modificare e avviare prestiti per l'utente.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../../SRS/Resources/Main-page-users}
+        \caption{Main Page: Users}
+    \end{figure}
+
+    \subsection{Finestre di visualizzazione}
+    Finestre aperte tramite ``View and Edit''. Mostrano dettagli e offrono collegamenti rapidi agli elementi collegati.
+
+    \begin{itemize}
+        \item \textbf{Lending View}: Mostra dettagli prestito. Bottoni per modifica, eliminazione (se restituito), restituzione libro.
+        \item \textbf{Book View}: Mostra dettagli libro. Bottoni per modifica, eliminazione (se non in prestito), avvio prestito.
+        \item \textbf{User View}: Mostra dettagli utente. Bottoni per modifica, eliminazione (se senza prestiti), avvio prestito.
+    \end{itemize}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.45\textwidth]{../../SRS/Resources/Mockup-view-lending}
+        \hfill
+        \includegraphics[width=0.45\textwidth]{../../SRS/Resources/Mockup-view-book}
+        \caption{Finestre di visualizzazione: Prestito (sx) e Libro (dx)}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.45\textwidth]{../../SRS/Resources/Mockup-view-user}
+        \caption{Finestra di visualizzazione: Utente}
+    \end{figure}
+
+    \subsection{Finestre di modifica}
+    Finestre aperte tramite bottone ``Edit'' nelle schermate di visualizzazione. Permettono di salvare le modifiche ai dati.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{../../SRS/Resources/Mockup-edit-lending}
+        \hfill
+        \includegraphics[width=0.3\textwidth]{../../SRS/Resources/Mockup-edit-book}
+        \hfill
+        \includegraphics[width=0.3\textwidth]{../../SRS/Resources/Mockup-edit-user}
+        \caption{Finestre di modifica: Prestito, Libro, Utente}
+    \end{figure}
+
+\end{document}
