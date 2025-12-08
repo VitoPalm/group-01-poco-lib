@@ -58,14 +58,14 @@ public class Launcher extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        URL url = getClass().getResource("/poco/company/group01pocolib/mvc/view/MainView.fxml");
+        URL url = getClass().getResource("/poco/company/group01pocolib/mvc/view/main-view.fxml");
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         PocoLibController controller = loader.getController();
         controller.loadData(restoreBookSet(), restoreUserSet(), restoreLendingSet());
 
         stage.setScene(new Scene(root));
-        stage.setTitle("Mockup");
+        stage.setTitle("PocoLib");
         stage.show();
     }
 
