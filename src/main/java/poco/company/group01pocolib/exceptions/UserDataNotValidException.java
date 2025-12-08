@@ -23,7 +23,7 @@ public class UserDataNotValidException extends RuntimeException {
      * @brief Constructor with a message
      * @param msg The message describing the error and the invalid value.
      */
-    public UserDataNotValidException(String message) {
-        super(message);
+    public UserDataNotValidException(String msg) {
+        super(msg);
     }
 }
