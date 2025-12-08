@@ -18,14 +18,15 @@ public class LendingTest {
      */
     @Test
     public void testLendingCreationValid() {
-        // TODO : implementation
+        // TODO :implementation
     }
     
     /**
      * @brief Tests the editing functionality of a Lending object(setReturnDate, setReturned, setNotReturned).
      */
+    @Test
     public void testLendingEdit() {
-        // TODO : implementation
+        // TODO :implementation
     }
     
 }

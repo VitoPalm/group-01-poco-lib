@@ -18,7 +18,7 @@ public class UserTest {
      */
     @Test
     public void testUserCreationValid() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -26,7 +26,7 @@ public class UserTest {
      */
     @Test
     public void testUserCreationInvalidEmail() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -34,7 +34,7 @@ public class UserTest {
      */
     @Test
     public void testUserCreationInvalidId() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -42,6 +42,6 @@ public class UserTest {
      */
     @Test
     public void testUserEdit(){
-        // TODO : implementation
+        // TODO: implementation
     }
 }

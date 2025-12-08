@@ -18,7 +18,7 @@ public class BookTest {
      */
     @Test
     public void testBookCreationValid() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -26,7 +26,7 @@ public class BookTest {
      */
     @Test
     public void testBookCreationInvalidIsbn() {
-        // TODO : implementation
+        // TODO: implementation
     }
     
     /**
@@ -34,7 +34,7 @@ public class BookTest {
      */
     @Test
     public void testBookEdit(){
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -42,7 +42,7 @@ public class BookTest {
      */
     @Test
     public void testAddCopy() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -50,7 +50,7 @@ public class BookTest {
      */
     @Test
     public void testRemoveCopyValid() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -58,6 +58,6 @@ public class BookTest {
      */
     @Test
     public void testRemoveCopyInvalid() {
-        // TODO : implementation
+        // TODO: implementation
     }
 }

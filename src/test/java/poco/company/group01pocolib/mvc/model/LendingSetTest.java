@@ -18,7 +18,7 @@ public class LendingSetTest {
      */
     @Test
     public void testLendingSetCreation() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -26,7 +26,7 @@ public class LendingSetTest {
      */
     @Test
     public void testAddLending() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -34,7 +34,7 @@ public class LendingSetTest {
      */
     @Test
     public void testRemoveLending() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -42,7 +42,7 @@ public class LendingSetTest {
      */
     @Test
     public void testGetByUser() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -50,7 +50,7 @@ public class LendingSetTest {
      */
     @Test
     public void testGetByBook() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -58,7 +58,7 @@ public class LendingSetTest {
      */
     @Test
     public void testGetByUserEmpty() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -66,23 +66,6 @@ public class LendingSetTest {
      */
     @Test
     public void testGetByBookEmpty() {
-        // TODO : implementation
+        // TODO: implementation
     }
-
-    /**
-     * @brief Tests the getLendingsByReturnDate method to ensure it returns the correct lendings for a return date.
-     */
-    @Test
-    public void testGetLendingsByReturnDate() {
-        // TODO : implementation
-    }
-
-    /**
-     * @brief Tests the sortedLendingsByReturnDate method to ensure lendings are sorted correctly by ReturnDate.
-     */
-    @Test
-    public void testSortedLendingsByReturnDate() {
-        // TODO : implementation
-    }
-
 }

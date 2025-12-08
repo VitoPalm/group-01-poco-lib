@@ -18,7 +18,7 @@ public class BookSetTest {
      */
     @Test
     public void testBookSetCreation() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -26,7 +26,7 @@ public class BookSetTest {
      */
     @Test
     public void testAddBook() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -34,7 +34,7 @@ public class BookSetTest {
      */
     @Test
     public void testAddBookNull() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -42,7 +42,7 @@ public class BookSetTest {
      */
     @Test
     public void testRemoveBook() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -50,7 +50,7 @@ public class BookSetTest {
      */
     @Test
     public void testGetBook() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -58,37 +58,6 @@ public class BookSetTest {
      */
     @Test
     public void testGetBookNotFound() {
-        // TODO : implementation
-    }
-
-    /**
-     * @brief Tests the sortedBooksByTitle method to ensure books are sorted correctly by title.
-     */
-    @Test
-    public void testSortedBooksByTitle() {
-        // TODO : implementation
-    }
-
-    /**
-     * @brief Tests the sortedBooksByAuthor method to ensure books are sorted correctly by author.
-     */    @Test
-    public void testSortedBooksByAuthor() {
-        // TODO : implementation
-    }
-
-    /**
-     * @brief Tests the sortedBooksByYear method to ensure books are sorted correctly by year.
-     */
-    @Test
-    public void testSortedBooksByYear() {
-        // TODO : implementation
-    }
-
-    /**
-     * @brief Tests the sortedBooksByCopies method to ensure books are sorted correctly by number of copies.
-     */
-    @Test
-    public void testSortedBooksByCopies() {
-        // TODO : implementation
+        // TODO: implementation
     }
 }

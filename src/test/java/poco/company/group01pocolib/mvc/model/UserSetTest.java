@@ -18,7 +18,7 @@ public class UserSetTest {
      */
     @Test
     public void testUserSetCreation() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -26,7 +26,7 @@ public class UserSetTest {
      */
     @Test
     public void testAddUser() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -34,7 +34,7 @@ public class UserSetTest {
      */
     @Test
     public void testRemoveUser() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -42,7 +42,7 @@ public class UserSetTest {
      */
     @Test
     public void testGetUserById() {
-        // TODO : implementation
+        // TODO: implementation
     }
 
     /**
@@ -50,23 +50,6 @@ public class UserSetTest {
      */
     @Test
     public void testGetUserByIdNotFound() {
-        // TODO : implementation
+        // TODO: implementation
     }
-
-    /**
-     * @brief Tests the sortedUsersByName method to ensure users are sorted correctly by name lexicographically.
-     */
-    @Test
-    public void testSortedUsersByName() {
-        // TODO : implementation
-    }
-
-    /**
-     * @brief Tests the sortedUsersById method to ensure users are sorted correctly by their ID.
-     */
-    @Test
-    public void testSortedUsersById() {
-        // TODO : implementation
-    }
-
 }
