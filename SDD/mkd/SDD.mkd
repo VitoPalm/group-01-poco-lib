@@ -5,17 +5,16 @@
 L'architettura del sistema è organizzata secondo il pattern Model-View-Controller (MVC). I moduli principali sono divisi in package che riflettono questa struttura adattata alla complessità del progetto e alle esigenze specifiche dell'applicazione:
 
 
-![alt text](../svg/Packages.svg) <!-- Incompelto>
+![alt text](../svg/Packages.svg) 
 
 | Modulo | Responsabilità | Dipendenze | Test |
 |--------|----------------|------------|------|
-| `mvc` | Contiene l'entry point dell'applicazione (Launcher, PocoLibApplication) e i componenti core MVC (PocoLibController, PocoLibModel, PocoLibView). Coordina l'intera applicazione e gestisce la navigazione tra le viste. | `mvc.controllers`, `mvc.model`, JavaFX | - |
-| `mvc.controllers` | Gestisce la logica di presentazione e l'interazione utente per le diverse schermate (BookViewController, UserViewController, LendingViewController e relative finestre di modifica). | `mvc.model`, JavaFX FXML | - |
-| `mvc.model` | Implementa la logica di business. Mantiene lo stato dell'applicazione. | `mvc.model.datastructures`, `mvc.model.dbhandling` | - |
-| `mvc.model.datastructures` | Definisce le strutture dati usate e le collezioni che le gestiscono.Fornisce metodi per operazioni in memoria. | Nessuna dipendenza interna | `BookTest`, `BookSetTest`, `UserTest`, `UserSetTest`, `LendingTest`, `LendingSetTest` |
-| `mvc.model.dbhandling` | Responsabile della persistenza dei dati su file system (DB) e della gestione dei backup (Backup). Serializza e deserializza le strutture dati. | `mvc.model.datastructures`, Java I/O | - |
-| `search` | Implementa la funzionalità di ricerca avanzata (OmniSearch) attraverso algoritmi e utilità dedicate. | `mvc.model.datastructures` | - |
-| `exceptions` | Contiene la gerarchia delle eccezioni personalizzate per la gestione degli errori specifici dell'applicazione. | Nessuna dipendenza interna | - |
+| `poco.company.group01pocolib` | Contiene l'entry point dell'applicazione (`Launcher`) e coordina l'inizializzazione del sistema. | `mvc.controller`, `mvc.model`, JavaFX | - |
+| `mvc.controller` | Gestisce la logica di presentazione e l'interazione utente. Include i controller per le proprietà degli elementi (`BookPropController`, `UserPropController`, `LendingPropController`) e per le tab (`BookTabController`, `UserTabController`, `LendingTabController`). Il `PocoLibController` coordina i controller delle tab e gestisce la navigazione. | `mvc.model`, JavaFX FXML | - |
+| `mvc.model` | Implementa la logica di business e mantiene lo stato dell'applicazione. Contiene le entità (`Book`, `User`, `Lending`) e le collezioni che le gestiscono (`BookSet`, `UserSet`, `LendingSet`). Fornisce metodi per operazioni CRUD e ricerca. | `db`, Java I/O | `BookTest`, `BookSetTest`, `UserTest`, `UserSetTest`, `LendingTest`, `LendingSetTest` |
+| `db` | Responsabile della persistenza dei dati su file system (`DB`), gestione dei backup (`Backup`) e calcolo hash per l'integrità dei file (`Hash`). Serializza e deserializza le strutture dati. | `mvc.model`, Java I/O | `DBTest`, `BackupTest`, `HashTest` |
+| `db.omnisearch` | Implementa la funzionalità di ricerca avanzata tramite indicizzazione trigram (`Index`) e algoritmi di ricerca fuzzy (`Search`). Supporta ricerche parziali e tolleranti agli errori di battitura. | `mvc.model` | `SearchTest` |
+| `exceptions` | Contiene la gerarchia delle eccezioni personalizzate per la gestione degli errori specifici dell'applicazione (`BookDataNotValidException`, `UserDataNotValidException`). | Nessuna dipendenza interna | - |
 
 
 
@@ -25,6 +24,52 @@ L'architettura del sistema è organizzata secondo il pattern Model-View-Controll
 *Includere il diagramma delle classi.
 Descrivere le classi (responsabilità, attributi principali, metodi pubblici, relazioni rilevanti).
 Documentare le scelte progettuali in termini di coesione, accoppiamento e principi di buona progettazione.*
+
+Le classi del sistema sono organizzate secondo il pattern Model-View-Controller (MVC) per garantire una chiara separazione delle responsabilità.
+
+### Diagramma delle classi di MVC
+
+![alt text](../png/Classes-mvc@4x.png)
+
+
+#### Classi di `mvc.model`
+
+Il model contiene le classi che implementano la logica di business e mantengono lo stato dell'applicazione. Le principali classi sono:
+- `Book`: Rappresenta un libro con attributi come ISBN, titolo, autori, anno di pubblicazione, copie disponibili e in prestito. Fornisce metodi per accedere e modificare questi attributi.
+- `User`: Rappresenta un utente con attributi come ID, nome, cognome, email e numero di libri in prestito. Fornisce metodi per accedere e modificare questi attributi.
+- `Lending`: Rappresenta un prestito con attributi come ID del prestito, data di restituzione, libro prestato e utente che ha preso in prestito il libro. Fornisce metodi per accedere e modificare questi attributi.
+- `BookSet`, `UserSet`, `LendingSet`: Collezioni che gestiscono rispettivamente i libri, gli utenti e i prestiti. Forniscono metodi per aggiungere, rimuovere e cercare elementi all'interno delle collezioni.
+
+#### Classi di `mvc.controllers`
+
+Il controller gestisce la logica di presentazione e l'interazione utente. Le principali classi sono:
+- `BookPropController`, `UserPropController`, `LendingPropController`: Gestiscono le operazioni di visualizzazione e modifica delle proprietà di libri, utenti e prestiti.
+- `BookTabController`, `UserTabController`, `LendingTabController`: Gestiscono le operazioni in tabella per libri, utenti e prestiti. 
+
+### Diagramma delle classi di `db` e `db.omnisearch`
+
+![alt text](../png/Classes-db@4x.png)
+
+#### Classi di `db`
+Il package `db` è responsabile della persistenza dei dati e della gestione dei backup. Le principali classi sono:
+- `DB`: Gestisce la lettura e scrittura dei dati su file system. Fornisce metodi per salvare e caricare le strutture dati del modello.
+- `Backup`: Gestisce la creazione e il ripristino dei backup dei dati.
+- `Hash`: Fornisce metodi per calcolare e verificare gli hash dei file per garantire l'integrità dei dati.
+#### Classi di `db.omnisearch`
+Il package `db.omnisearch` implementa la funzionalità di ricerca avanzata. Le principali classi sono:
+- `Index`: Implementa l'indicizzazione trigram per i libri e gli utenti, permettendo ricerche efficienti.
+- `Search`: Implementa algoritmi di ricerca fuzzy per trovare corrispondenze parziali e tolleranti agli errori di battitura.
+
+### Diagramma delle classi di `exceptions`
+
+![alt text](../png/Classes-exceptions@4x.png)
+
+#### Classi di `exceptions`
+Il package `exceptions` contiene la gerarchia delle eccezioni personalizzate per la gestione degli errori specifici dell'applicazione. Le principali classi sono:
+- `BookDataNotValidException`: Eccezione sollevata quando i dati di un libro non sono validi.
+- `UserDataNotValidException`: Eccezione sollevata quando i dati di un utente non sono validi.
+
+
 
 ## Modello dinamico
 
