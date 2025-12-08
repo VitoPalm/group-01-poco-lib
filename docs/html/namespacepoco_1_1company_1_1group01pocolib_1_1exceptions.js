@@ -1,0 +1,5 @@
+var namespacepoco_1_1company_1_1group01pocolib_1_1exceptions =
+[
+    [ "BookDataNotValidException", "classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1BookDataNotValidException.html", "classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1BookDataNotValidException" ],
+    [ "UserDataNotValidException", "classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1UserDataNotValidException.html", "classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1UserDataNotValidException" ]
+];

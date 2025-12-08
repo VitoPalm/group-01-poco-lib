@@ -1,0 +1,17 @@
+var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending =
+[
+    [ "Lending", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#ad866b75162899081062ed7743e7d6734", null ],
+    [ "getBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a5acde1953be055bb6d3ad7794452e820", null ],
+    [ "getLendingId", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a6cda9180b43507970d682d1347f28436", null ],
+    [ "getReturnDate", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#af99327b57a720593f9c08da50aeb1fa1", null ],
+    [ "getUser", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#acdc6bf39a1d23701fc3138d53d9927fa", null ],
+    [ "hashCode", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a830c807d21de368e5a8a9d26f65d2c72", null ],
+    [ "isReturned", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#afab472ac4acb87801a1746cce214ae98", null ],
+    [ "setBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a3c5c560d8ef841705fa750832a70f3d2", null ],
+    [ "setNotReturned", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a699aae1116e39cf430607dc52112a1f7", null ],
+    [ "setReturnDate", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#abfae0baf7035355e5f2d32b6f7b1c70b", null ],
+    [ "setReturned", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a4a803ebae1fb5523f496e7f07997becf", null ],
+    [ "setUser", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#af7e4a7b23370ce606589672c949397cd", null ],
+    [ "toSearchableString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a0cbdca3592053d1d580d2cecdf899d88", null ],
+    [ "toString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a1497c5e85fdcd3a3ecd111b384a77fb9", null ]
+];

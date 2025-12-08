@@ -1,0 +1,23 @@
+var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet =
+[
+    [ "BookSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#af509c3efe269646259ce601fe97d600d", null ],
+    [ "addOrEditBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#aeb982062bce3b5afdea3587af0c851a1", null ],
+    [ "getBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a2fc96a88016b915435711305c128f3c0", null ],
+    [ "getBookDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a5c616214ad39d286be2d402c8bcd3026", null ],
+    [ "getBookIndex", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#ad4e722f5f0f51ccf9a9f10a55f95d7d9", null ],
+    [ "getBookSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a3eb99e25d97aff124275a6b150e5abea", null ],
+    [ "getDBPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a7bed433dcfa164a34ab955ec8026e12d", null ],
+    [ "getLastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#aaff0928fd1621c4b1f54b63d54e15c47", null ],
+    [ "getListOfBooks", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a2e8e007ca2034a9bd361b0a9acf3b27d", null ],
+    [ "getSerializationPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a9f735270a6341a755430960ec913c930", null ],
+    [ "rebuildFromDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#adab5eecb7ed65793b96b2756a6d11288", null ],
+    [ "removeBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a5b2b1aa29b8d1bbcc01e7ac739c0b146", null ],
+    [ "search", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a22da634ed441420c9178da917bc56eb2", null ],
+    [ "setBookDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a17bb627d5f1e58b5ab831d03a6cdeba2", null ],
+    [ "setBookIndex", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#accb09547bdb295b7d23780bfa4a8d898", null ],
+    [ "setBookSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#aefe1ed554c8f32cd5eff960b36e4fd82", null ],
+    [ "setDBPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#af35ba3d62680312ed2be520dcf8d0f39", null ],
+    [ "setSerializationPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#aedfadafc8d1720d7a56d9ccf6a4bac0d", null ],
+    [ "toString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a3f6d69121eff712c1b07699a4369d394", null ],
+    [ "updateLastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#adfdb9e38427b5fbd505cc196bca18755", null ]
+];
