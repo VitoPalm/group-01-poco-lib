@@ -5,23 +5,35 @@
  */
 package poco.company.group01pocolib.mvc.model;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 /**
- * @class Lending
- * @brief Represents a Lending in the library.
+ * @class   Lending
+ * @brief   Represents a Lending in the library.
+ * @details Each Lending has a unique ID, a book being lent, a user who is borrowing the book, a return date,
+ *          and a status indicating whether the book has been returned. The lending ID is auto-incremented for each new
+ *          lending created. The class can be serialized for persistence.
  */
-public class Lending {
+public class Lending implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    private int lendingId;
     private Book book;
     private User user;
     private LocalDate returnDate;
     static private int lendingCounter = 0;
-    private int lendingId;
     private boolean returned;
+
+    private static final String FIELD_SEPARATOR = "\u001C";
+
     /**
-     * @brief Constructs a new Lending object.
-     * @param book The Book being lent.
-     * @param user The User who is borrowing the Book.
-     * @param returnDate The date by which the Book should be returned.
+     * @brief   Constructs a new Lending object.
+     *
+     * @param   book        The Book being lent.
+     * @param   user        The User who is borrowing the Book.
+     * @param   returnDate  The date by which the Book should be returned.
      */
     public Lending (Book book, User user, LocalDate returnDate) {
         this.book = book;
@@ -29,45 +41,126 @@ public class Lending {
         this.returnDate = returnDate;
         this.lendingId = lendingCounter++;
         this.returned = false;
-        //TODO : implement lending logic
     }
-    /** @brief Gets the Book being lent.
-     * @return The Book being lent.
-    */
-    public Book getBook() {return book;}
-    
-    /** @brief Gets the User who is borrowing the Book.
-     * @return The User who is borrowing the Book.
-    */
-    public User getUser() {return user;}
-    /** @brief Gets the return date for the Book.
-     * @return The return date for the Book.
-    */
-    public LocalDate getReturnDate() {return returnDate;}
-    /** @brief Gets the unique ID of the Lending.
-     * @return The unique ID of the Lending.
-    */
-    public int getLendingId() {return lendingId;}
-    /** @brief Checks if the Book has been returned.
-     * @return true if the Book has been returned, false otherwise.
-    */
-    public boolean isReturned() {return returned;}
-    /** @brief Sets the return date for the Book.
-     * @param returnDate The new return date for the Book.
-    */
-    public void setReturnDate(LocalDate returnDate) {this.returnDate = returnDate;}
-    /** @brief Sets the User who is borrowing the Book.
-     * @param user The new User who is borrowing the Book.
-    */
-    public void setUser(User user) {this.user = user;}
-    /** @brief Sets the Book being lent.
-     * @param book The new Book being lent.
-    */
-    public void setBook(Book book) {this.book = book;}
-    /** @brief Marks the Book as returned.
-    */
-    public void setReturned() {this.returned = true;}
-    /** @brief Marks the Book as not returned.
-    */
-    public void setNotReturned() {this.returned = false;}
+
+    /**
+     * @brief   Gets the Book being lent.
+     * @return  The Book being lent.
+     */
+    public Book getBook() {
+        return book;
+    }
+
+    /**
+     * @brief   Sets the Book being lent.
+     * @param   book The new Book being lent.
+     */
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    /**
+     * @brief   Gets the User who is borrowing the Book.
+     * @return  The User who is borrowing the Book.
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @brief   Sets the User who is borrowing the Book.
+     * @param   user The new User who is borrowing the Book.
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * @brief   Gets the return date for the Book.
+     * @return  The return date for the Book.
+     */
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    /**
+     * @brief   Sets the return date for the Book.
+     * @param   returnDate The new return date for the Book.
+     */
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    /**
+     * @brief   Gets the unique ID of the Lending.
+     * @return  The unique ID of the Lending.
+     */
+    public int getLendingId() {
+        return lendingId;
+    }
+
+    /**
+     * @brief   Checks if the Book has been returned.
+     * @return  true if the Book has been returned, false otherwise.
+     */
+    public boolean isReturned() {
+        return returned;
+    }
+
+    /**
+     * @brief   Marks the Book as returned.
+     */
+    public void setReturned() {
+        this.returned = true;
+    }
+
+    /**
+     * @brief   Marks the Book as not returned.
+     */
+    public void setNotReturned() {
+        this.returned = false;
+    }
+
+    /**
+     * @brief   Overrides `hashCode` method to use the lending ID as unique identifier.
+     * @return  The hash code of the Lending.
+     */
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(lendingId);
+    }
+
+    /**
+     * @brief   Creates a Lending object from its string representation.
+     * @details The string representation format is TODO: implement.
+     *
+     * @param   lendingStr The string representation of the Lending.
+     * @return  A Lending object created from the string representation.
+     */
+    public static Lending fromString(String lendingStr) {
+        // TODO: Implement
+        return null;
+    }
+
+    /**
+     * @brief   Get a string containing only the searchable info of the lending
+     * @details The searchable version of the string will include the searchable info of the book and user, plus the
+     *          return date, and the id of the lending. The string representation format is TODO: implement.
+     *
+     * @return  A string containing the searchable info of the lending
+     */
+    public String toSearchableString() {
+        // TODO: Implement
+        return "";
+    }
+
+    /**
+     * @brief   Returns a string representation of the Lending.
+     * @return  A string representation of the Lending.
+     */
+    @Override
+    public String toString() {
+        // TODO: Implement
+        return "";
+    }
 }
