@@ -36,10 +36,24 @@ Il model contiene le classi che implementano la logica di business. Le principal
 
 #### Classi di `mvc.controller`
 
-Il controller é responsabile del collegamento tra il model(la logica di business) e la view(la logica di presentazione). Le principali classi sono:
+Il controller è responsabile del collegamento tra il model(la logica di business) e la view(la logica di presentazione). Le principali classi sono:
 - `BookPropController`, `UserPropController`, `LendingPropController`: Sono responsabili della gestione delle operazioni di visualizzazione e modifica delle proprietà di, rispettivamente, libri, utenti e prestiti. I metodi principali permettono di gestire le principali azioni dell'utente come la visualizzazione di una delle schermate di dettaglio, il click sul pulsante di salvataggio delle modifiche e sul pulsante di annullamento delle modifiche.
 - `BookTabController`, `UserTabController`, `LendingTabController`: Sono responsabili della gestione delle operazioni sulle tabelle principali di, rispettivamente, libri, utenti e prestiti. I metodi principali permettono di gestire le principali interazioni dell'utente in tabella, come il reindirizzamento alla schermata di dettaglio delle proprietà di un elemento selezionato, il caricamento dei dati nella tabella e relativo aggiornamento.
 - `PocoLibController`: È responsabile della gestione delle interazioni generali dell'applicazione, coordinando le operazioni tra i vari controller specifici di entità. <!-- NON SO CHE METODI HA -->
+
+#### Artifacts di `mvc.view`
+
+La view contiene i file FXML che implementano l'interfaccia grafica dell'app.
+- `BookPropView`, `UserPropView`, `LendingPropView`: Sono le fineste di visualizzazione e modifica delle proprietà di, rispettivamente, libri, utenti e prestiti.
+- `BookTabView`, `UserTabView`, `LendingTabView`: Costituiscono le tab corrispondenti alla visualizzazione e interazione con le tabelle di libri, utenti e prestiti.
+
+#### Esempio delle interazioni di un Model-View-Controller specifico (UserSet)
+
+![alt text](../png/Classes-mvc-specific@4x.png)
+
+#### Esempio delle interazioni di un modello e della sua aggregazione (Book e BookSet)
+
+![alt text](../png/Classes-Bookv2@4x.png)
 
 ### Diagramma delle classi di `db` e `db.omnisearch`
 
@@ -68,7 +82,7 @@ Il package `exceptions` contiene la gerarchia delle eccezioni personalizzate per
 
 ### Scelte Progettuali
 
-Il sistema é stato progettato con l'obiettivo di garantire manutenibilità, modularità e facilità di estensione. Ció é stato ottenuto attraverso diverse scelte progettuali per massimizzare la coesione e minimizzare l'accoppiamento tra i componenti del sistema.
+Il sistema è stato progettato con l'obiettivo di garantire manutenibilità, modularità e facilità di estensione. Ció è stato ottenuto attraverso diverse scelte progettuali per massimizzare la coesione e minimizzare l'accoppiamento tra i componenti del sistema.
 
 - **Adozione del pattern MVC**: La separazione tra Model, View e Controller consente di isolare la logica di business, la logica di presentazione e la gestione degli eventi, garantendo un'alta coesione all'interno di ciascun componente e un basso accoppiamento tra di essi.
 
@@ -142,7 +156,7 @@ L'interfaccia utente è progettata per essere intuitiva e user-friendly, con un 
 ### Schermate principali dell'applicazione
 <!-- Descrivere le schermate principali dell'applicazione (generico) -->
 
-La schermata principale dell'applicazione presenta una tabella che elenca i contenuti in base alla sezione selezionata mediante la barra di navigazione superiore che permette di passare tra le sezioni "Prestiti", "Libri" e "Utenti" (all'avvio é mostrata la sezione dei prestiti).
+La schermata principale dell'applicazione presenta una tabella che elenca i contenuti in base alla sezione selezionata mediante la barra di navigazione superiore che permette di passare tra le sezioni "Prestiti", "Libri" e "Utenti" (all'avvio è mostrata la sezione dei prestiti).
 Ogni pagina permette di visualizzare, modificare e aggiungere elementi specifici per quella sezione mediante i bottoni posti sotto la tabella o cliccando su un elemento della tabella stessa.
 
 In ogni schermata principale è presenta una barra di ricerca che permette di effettuare una ricerca testuale sugli elementi visualizzati nella tabella. La suddetta ricerca è in grado di restituire risultati anche in caso di ricerche parziali o con errori di battitura, mostrando i risultati simili a quanto ricercato.
