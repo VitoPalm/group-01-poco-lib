@@ -1,7 +1,7 @@
 module poco.company.group01pocolib {
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires javafx.graphics;
+    requires transitive javafx.controls;
+    requires transitive javafx.fxml;
+    requires transitive javafx.graphics;
 
     exports poco.company.group01pocolib.mvc.model;
     exports poco.company.group01pocolib.mvc.controller;
