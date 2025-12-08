@@ -2,29 +2,56 @@ package poco.company.group01pocolib.mvc.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.*;
 
-public class LendingViewController {
-    @FXML public Label lendingIdLabel;
-    @FXML public Label returnDateLabel;
+public class LendingPropController {
+    // ---------------   //
+    // Edit declarations //
+    // ---------------   //
+    @FXML private DatePicker returnDatePicker;
 
-    @FXML public Hyperlink bookLink;
-    @FXML public Hyperlink userLink;
+    @FXML private Label errorLabel;
+    @FXML private Button saveButton;
 
-    @FXML public Button deleteButton;
-    @FXML public Button returnButton;
+    // ---------------   //
+    // View declarations //
+    // ---------------   //
+    @FXML private Label lendingIdLabel;
+    @FXML private Label returnDateLabel;
 
+    @FXML private Hyperlink bookLink;
+    @FXML private Hyperlink userLink;
+
+    @FXML private Button deleteButton;
+    @FXML private Button returnButton;
+
+    // ---------------   //
+    // Shared fields     //
+    // ---------------   //
     private Stage dialogStage;
     private Lending lending;
-
-    // Dependencies needed for complex updates
+    private boolean saveClicked = false;
     private LendingSet lendingSet;
     private BookSet bookSet;
     private UserSet userSet;
     private PocoLibController mainController;
+
+    // --------------- //
+    // Edit methods    //
+    // --------------- //
+
+    /**
+     * @brief   Initializes the controller class allowing real time id and email verification. This method is
+     *          automatically called after the fxml file has been loaded.
+     */
+    @FXML
+    private void initialize() {
+        // TODO: implement initialization logic
+    }
 
     /**
      * @brief   Sets the dialog stage
@@ -51,24 +78,65 @@ public class LendingViewController {
     }
 
     /**
-     * @brief   Sets the lending to be viewed in the dialog
+     * @brief   Sets the lending to be edited/viewed in the dialog
      * @param   lending The lending to set
      */
     public void setLending(Lending lending) {
         this.lending = lending;
+        // TODO: implement method to set lending details in the dialog
+    }
+
+    /**
+     * @brief   Returns whether the save button was clicked
+     * @return  `true` if the save button was clicked, `false` otherwise
+     */
+    public boolean isSaveClicked() {
+        return saveClicked;
     }
 
     /**
      * @brief   Updates the view with the current lending details
      * @details This method is needed to refresh the dialog when the lending details are changed by editing it.
      */
-    private void updateView() {
+    public void updateView() {
         // TODO: implement method to update lending details for the dialog
     }
 
-    // --------------- //
-    // Button Handlers //
-    // --------------- //
+    // ---------------------- //
+    // Edit button handlers   //
+    // ---------------------- //
+
+    /**
+     * @brief   Handles the save button click event. It validates the input fields and saves the lending details if
+     *          valid, then, it closes the dialog.
+     */
+    @FXML
+    private void handleSave() {
+        // TODO: implement save logic
+    }
+
+    /**
+     * @brief   Handles the cancel button click event. It simply closes the dialog without saving any changes.
+     */
+    @FXML
+    private void handleCancel() {
+        dialogStage.close();
+    }
+
+    /**
+     * @brief   Validates the input fields in the dialog.
+     * @details This method validates all input fields and displays error messages if any field is empty or not valid.
+     *
+     * @return  `true` if all fields are valid, `false` otherwise
+     */
+    private boolean validateInput() {
+        // TODO: implement validation logic
+        return false;
+    }
+
+    // ---------------------- //
+    // View button handlers   //
+    // ---------------------- //
 
     /**
      * @brief   Handles the edit button click event. It opens the lending edit dialog and refreshes afterward.
@@ -114,4 +182,3 @@ public class LendingViewController {
         // TODO: implement view user logic
     }
 }
-

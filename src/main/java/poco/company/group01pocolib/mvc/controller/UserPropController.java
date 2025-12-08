@@ -4,11 +4,26 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.User;
 import poco.company.group01pocolib.mvc.model.UserSet;
 
-public class UserViewController {
+public class UserPropController {
+    // ---------------   //
+    // Edit declarations //
+    // ---------------   //
+    @FXML private TextField idField;
+    @FXML private TextField nameField;
+    @FXML private TextField surnameField;
+    @FXML private TextField emailField;
+    
+    @FXML private Label errorLabel;
+    @FXML private Button saveButton;
+
+    // ---------------   //
+    // View declarations //
+    // ---------------   //
     @FXML private Label idLabel;
     @FXML private Label nameLabel;
     @FXML private Label surnameLabel;
@@ -18,10 +33,27 @@ public class UserViewController {
     @FXML private Button deleteButton;
     @FXML private Button lendToButton;
 
+    // ---------------   //
+    // Shared fields     //
+    // ---------------   //
     private Stage dialogStage;
     private User user;
+    private boolean saveClicked = false;
     private UserSet userSet;
     private PocoLibController mainController;
+
+    // --------------- //
+    // Edit methods    //
+    // --------------- //
+
+    /**
+     * @brief   Initializes the controller class allowing real time id and email verification. This method is
+     *          automatically called after the fxml file has been loaded.
+     */
+    @FXML
+    private void initialize() {
+        // TODO: implement initialization logic
+    }
 
     /**
      * @brief   Sets the dialog stage
@@ -42,11 +74,20 @@ public class UserViewController {
     }
 
     /**
-     * @brief   Sets the user to be viewed in the dialog
+     * @brief   Sets the user to be edited/viewed in the dialog
      * @param   user The user to set
      */
     public void setUser(User user) {
         this.user = user;
+        // TODO: implement method to set user details in the dialog
+    }
+
+    /**
+     * @brief   Returns whether the save button was clicked
+     * @return  `true` if the save button was clicked, `false` otherwise
+     */
+    public boolean isSaveClicked() {
+        return saveClicked;
     }
 
     /**
@@ -57,9 +98,41 @@ public class UserViewController {
         // TODO: implement method to update user details for the dialog
     }
 
-    // --------------- //
-    // Button handlers //
-    // --------------- //
+    // ---------------------- //
+    // Edit button handlers   //
+    // ---------------------- //
+
+    /**
+     * @brief   Handles the save button click event. It validates the input fields and saves the user details if valid.
+     *          Then, it closes the dialog.
+     */
+    @FXML
+    private void handleSave() {
+        // TODO: implement save logic
+    }
+
+    /**
+     * @brief   Handles the cancel button click event. It simply closes the dialog without saving any changes.
+     */
+    @FXML
+    private void handleCancel() {
+        dialogStage.close();
+    }
+
+    /**
+     * @brief   Validates the input fields in the dialog.
+     * @details This method validates all input fields and displays error messages if any field is empty or not valid.
+     *
+     * @return  `true` if all fields are valid, `false` otherwise
+     */
+    private boolean validateInput() {
+        // TODO: implement validation logic
+        return false;
+    }
+
+    // ---------------------- //
+    // View button handlers   //
+    // ---------------------- //
 
     /**
      * @brief   Handles the edit button click event. It opens the user edit dialog and refreshes afterward.
