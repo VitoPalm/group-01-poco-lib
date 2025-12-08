@@ -95,11 +95,7 @@ Il sistema rispetta diversi principi di buona progettazione software:
 
 ## Modello dinamico
 
-<!-- Documentare le interazioni tra le classi per i casi d’uso più significativi.
-Utilizzare diagrammi di sequenza (ma anche diagrammi di attività o di macchina a stati se utili).
-Commentare ogni diagramma. -->
-
-In questa sezione vengono presentati i diagrammi di sequenza per i casi d'uso più significativi dell'applicazione.
+In questa sezione vengono presentati i diagrammi UML per i casi d'uso più significativi dell'applicazione.
 
 ### Diagramma di sequenza: Aggiunta di un nuovo libro
 
@@ -135,12 +131,8 @@ Nel caso in cui il caricamento dei dati fallisca (ad esempio a causa di un file 
 
 ## Design dell’interfaccia utente
 
-<!--*Includere eventuali mock-up delle schermate principali.
-Descrivere i mock-up illustrando le principali interazioni previste con l’utente.*-->
-
 L'interfaccia utente è progettata per essere intuitiva e user-friendly, con un layout chiaro e funzionale.
 ### Schermate principali dell'applicazione
-<!-- Descrivere le schermate principali dell'applicazione (generico) -->
 
 La schermata principale dell'applicazione presenta una tabella che elenca i contenuti in base alla sezione selezionata mediante la barra di navigazione superiore che permette di passare tra le sezioni "Prestiti", "Libri" e "Utenti" (all'avvio é mostrata la sezione dei prestiti).
 Ogni pagina permette di visualizzare, modificare e aggiungere elementi specifici per quella sezione mediante i bottoni posti sotto la tabella o cliccando su un elemento della tabella stessa.
