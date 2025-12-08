@@ -5,7 +5,7 @@
 L'architettura del sistema è organizzata secondo il pattern Model-View-Controller (MVC). I moduli principali sono divisi in package che riflettono questa struttura adattata alla complessità del progetto e alle esigenze specifiche dell'applicazione:
 
 
-![alt text](../svg/Packages.svg) 
+![alt text](../png/Packages@4x.png) 
 
 | Modulo | Responsabilità | Dipendenze | Test |
 |--------|----------------|------------|------|
@@ -21,9 +21,10 @@ L'architettura del sistema è organizzata secondo il pattern Model-View-Controll
 
 ## Modello statico
 
+<!--
 *Includere il diagramma delle classi.
 Descrivere le classi (responsabilità, attributi principali, metodi pubblici, relazioni rilevanti).
-Documentare le scelte progettuali in termini di coesione, accoppiamento e principi di buona progettazione.*
+Documentare le scelte progettuali in termini di coesione, accoppiamento e principi di buona progettazione.*-->
 
 Le classi del sistema sono organizzate secondo il pattern Model-View-Controller (MVC) per garantire una chiara separazione delle responsabilità.
 
@@ -40,11 +41,12 @@ Il model contiene le classi che implementano la logica di business e mantengono 
 - `Lending`: Rappresenta un prestito con attributi come ID del prestito, data di restituzione, libro prestato e utente che ha preso in prestito il libro. Fornisce metodi per accedere e modificare questi attributi.
 - `BookSet`, `UserSet`, `LendingSet`: Collezioni che gestiscono rispettivamente i libri, gli utenti e i prestiti. Forniscono metodi per aggiungere, rimuovere e cercare elementi all'interno delle collezioni.
 
-#### Classi di `mvc.controllers`
+#### Classi di `mvc.controller`
 
 Il controller gestisce la logica di presentazione e l'interazione utente. Le principali classi sono:
 - `BookPropController`, `UserPropController`, `LendingPropController`: Gestiscono le operazioni di visualizzazione e modifica delle proprietà di libri, utenti e prestiti.
-- `BookTabController`, `UserTabController`, `LendingTabController`: Gestiscono le operazioni in tabella per libri, utenti e prestiti. 
+- `BookTabController`, `UserTabController`, `LendingTabController`: Gestiscono le operazioni in tabella per libri, utenti e prestiti.
+- `PocoLibController`: Controller principale che coordina i controller delle tab e gestisce la navigazione tra le sezioni dell'applicazione.
 
 ### Diagramma delle classi di `db` e `db.omnisearch`
 
@@ -69,6 +71,48 @@ Il package `exceptions` contiene la gerarchia delle eccezioni personalizzate per
 - `BookDataNotValidException`: Eccezione sollevata quando i dati di un libro non sono validi.
 - `UserDataNotValidException`: Eccezione sollevata quando i dati di un utente non sono validi.
 
+
+### Scelte progettuali
+
+#### Coesione
+
+Il sistema è progettato per garantire un'elevata coesione funzionale all'interno di ciascun modulo:
+
+- **Model**: Le classi `Book`, `User` e `Lending` sono entità coese che rappresentano concetti specifici del dominio. Ogni classe mantiene solo gli attributi e i metodi direttamente correlati alla propria responsabilità. Le collezioni `BookSet`, `UserSet` e `LendingSet` hanno un'alta coesione sequenziale, poiché gestiscono esclusivamente operazioni CRUD e di ricerca sugli elementi della rispettiva collezione.
+
+- **Controller**: La separazione tra controller delle proprietà (`*PropController`) e controller delle tab (`*TabController`) garantisce coesione funzionale. I primi si occupano esclusivamente della gestione delle finestre di dettaglio (visualizzazione e modifica), mentre i secondi gestiscono solo le operazioni sulla tabella principale e la ricerca. Il `PocoLibController` ha coesione comunicazionale, coordinando le interazioni tra i diversi controller.
+
+- **Persistenza**: Le classi `DB`, `Backup` e `Hash` nel package `db` hanno coesione funzionale, ognuna dedicata a un aspetto specifico della persistenza: serializzazione, backup e integrità dei dati.
+
+- **Ricerca**: Le classi `Index` e `Search` nel package `db.omnisearch` dimostrano coesione sequenziale, dove `Index` prepara i dati per la ricerca e `Search` utilizza questi indici per eseguire query fuzzy.
+
+#### Accoppiamento
+
+Il sistema minimizza l'accoppiamento attraverso diverse strategie:
+
+- **Accoppiamento dati**: I controller comunicano con il model attraverso interfacce ben definite, scambiando solo dati necessari (oggetti `Book`, `User`, `Lending`). Non esiste dipendenza da strutture dati interne del model.
+
+- **Accoppiamento di controllo**: Le eccezioni personalizzate (`BookDataNotValidException`, `UserDataNotValidException`) nel package `exceptions` permettono una gestione degli errori disaccoppiata, evitando che il controller debba conoscere i dettagli di validazione del model.
+
+- **Separazione delle responsabilità**: Il package `db` è indipendente dai controller e dipende solo dal model, permettendo di modificare la strategia di persistenza senza impattare la logica di presentazione.
+
+- **Dipendenze unidirezionali**: Il flusso delle dipendenze segue il pattern MVC: View → Controller → Model → DB. Non esistono dipendenze inverse che creerebbero accoppiamento ciclico.
+
+#### Principi di buona progettazione
+
+Il sistema aderisce ai principi SOLID e ad altri principi fondamentali di progettazione:
+
+- **Single Responsibility Principle (SRP)**: Ogni classe ha una singola responsabilità ben definita. Ad esempio, `DB` si occupa solo della serializzazione, `Backup` solo dei backup, `Hash` solo del calcolo degli hash. La divisione tra `*PropController` e `*TabController` rispetta ulteriormente questo principio.
+
+- **Open/Closed Principle (OCP)**: Le collezioni `BookSet`, `UserSet` e `LendingSet` forniscono un'interfaccia stabile per operazioni CRUD, permettendo l'estensione del comportamento (es. aggiunta di nuovi criteri di ricerca) senza modificare il codice esistente.
+
+- **Dependency Inversion Principle (DIP)**: I controller dipendono da astrazioni (le entità del model) piuttosto che da implementazioni concrete. Questo permette di sostituire o modificare l'implementazione del model senza impattare i controller.
+
+- **Don't Repeat Yourself (DRY)**: La logica di validazione è centralizzata nelle classi del model, evitando duplicazione nei controller. Il sistema di ricerca fuzzy è implementato una sola volta in `db.omnisearch` e riutilizzato per tutte le entità.
+
+- **Separation of Concerns**: Il pattern MVC garantisce una netta separazione tra logica di presentazione (controller), logica di business (model) e persistenza (db). Questa separazione facilita il testing, la manutenzione e l'evoluzione del sistema.
+
+- **Information Hiding**: I dettagli implementativi delle strutture dati interne (es. come `BookSet` memorizza i libri) sono nascosti dietro interfacce pubbliche, permettendo di modificare l'implementazione senza impattare i client.
 
 
 ## Modello dinamico
