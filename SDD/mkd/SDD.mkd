@@ -73,28 +73,68 @@ Il package `exceptions` contiene la gerarchia delle eccezioni personalizzate per
 
 > Tali eccezioni sono state create poiché in questo modo qualsiasi `model` istanziato conterrà sempre dati validi, nonostante si prevede che il bibliotecario non avrà possibilità di salvare un nuovo `model` se la validazione dei dati al momento dell'input risulterà errata. Il loro inserimento è correlato quindi all'idea che i model sono un componente funzionante autonomamente, poi interfacciato con la GUI 
 
-### Scelte progettuali
+## Modello statico
 
-#### Coesione
+Le classi del sistema sono state organizzate secondo il pattern Model-View-Controller (MVC) per separare la logica di business dalla logica di presentazione e dalla persistenza dei dati.
 
-Il sistema è progettato per garantire un'elevata coesione funzionale all'interno di ciascun modulo:
+### Diagramma delle classi di MVC
 
-- **Model**: Le classi `Book`, `User` e `Lending` sono entità coese che rappresentano concetti specifici del dominio. Ogni classe mantiene solo gli attributi e i metodi direttamente correlati alla propria responsabilità. Le collezioni `BookSet`, `UserSet` e `LendingSet` hanno un'alta coesione sequenziale, poiché gestiscono esclusivamente operazioni standard e di ricerca sugli elementi della rispettiva collezione.
+![alt text](../png/Classes-mvc@4x.png)
 
-- **Controller**: La separazione tra controller delle proprietà (`*PropController`) e controller delle tab (`*TabController`) garantisce coesione funzionale. I primi si occupano esclusivamente della gestione delle finestre di dettaglio (visualizzazione e modifica), mentre i secondi gestiscono solo le operazioni sulla tabella principale e la ricerca. Il `PocoLibController` ha coesione comunicazionale, coordinando le interazioni tra i diversi controller.
 
-- **Persistenza**: Le classi `DB`, `Backup` e `Hash` nel package `db` hanno coesione funzionale, perché ognuna è dedicata a un aspetto specifico della persistenza.
+#### Classi di `mvc.model`
 
-- **Ricerca**: Le classi `Index` e `Search` nel package `db.omnisearch` dimostrano coesione sequenziale, dove `Index` prepara i dati per la ricerca e `Search` utilizza questi indici per eseguire query per la fuzzy search.
+Il model contiene le classi che implementano la logica di business. Le principali classi sono:
+- `Book`: È responsabile della rappresentazione di un oggetto libro con attributi come ISBN, titolo, autori, anno di pubblicazione e numero di copie disponibili. Fornisce metodi per accedere e modificare questi attributi.
+- `User`: È responsabile della rappresentazione di un utente con attributi come ID, nome, cognome, email e numero di telefono. Fornisce metodi per accedere e modificare questi attributi.
+- `Lending`: È responsabile della rappresentazione di un prestito, collegando un `Book` a un `User` con attributi come data di prestito e data di restituzione prevista. Fornisce metodi per accedere e modificare questi attributi.
+- `BookSet`, `UserSet`, `LendingSet`: Collezioni responsabili della gestione rispettivamente di libri, utenti e prestiti. Forniscono metodi per aggiungere, rimuovere e cercare elementi all'interno delle collezioni.
 
-#### Accoppiamento
+#### Classi di `mvc.controller`
 
-Il sistema minimizza l'accoppiamento attraverso diverse strategie:
+Il controller é responsabile del collegamento tra il model(la logica di business) e la view(la logica di presentazione). Le principali classi sono:
+- `BookPropController`, `UserPropController`, `LendingPropController`: Sono responsabili della gestione delle operazioni di visualizzazione e modifica delle proprietà di, rispettivamente, libri, utenti e prestiti. I metodi principali permettono di gestire le principali azioni dell'utente come la visualizzazione di una delle schermate di dettaglio, il click sul pulsante di salvataggio delle modifiche e sul pulsante di annullamento delle modifiche.
+- `BookTabController`, `UserTabController`, `LendingTabController`: Sono responsabili della gestione delle operazioni sulle tabelle principali di, rispettivamente, libri, utenti e prestiti. I metodi principali permettono di gestire le principali interazioni dell'utente in tabella, come il reindirizzamento alla schermata di dettaglio delle proprietà di un elemento selezionato, il caricamento dei dati nella tabella e relativo aggiornamento.
+- `PocoLibController`: È responsabile della gestione delle interazioni generali dell'applicazione, coordinando le operazioni tra i vari controller specifici di entità. <!-- NON SO CHE METODI HA -->
 
-- **Accoppiamento dati**: I controller comunicano con i model attraverso interfacce ben definite, scambiando solo i dati necessari.
+### Diagramma delle classi di `db` e `db.omnisearch`
 
-- **Accoppiamento di controllo**: Le eccezioni personalizzate (`BookDataNotValidException`, `UserDataNotValidException`) nel package `exceptions` permettono una gestione degli errori disaccoppiata, evitando che il controller debba conoscere i dettagli di validazione del model.
+![alt text](../png/Classes-db@4x.png)
 
+#### Classi di `db`
+Il package `db` è responsabile della persistenza dei dati e della gestione dei backup. Le principali classi sono:
+- `DB`: La classe DB è responsabile della creazione, lettura, scrittura e aggiornamento di un file di database che memorizza i dati dell'applicazione in formato serializzato. I metodi principali di DB prevedono la costruzione e aggiornamento del file da una Cache, oltre a vari metodi di scrittura nel file.
+- `Backup`: La classe Backup è responsabile della creazione effettiva dei backup del file di database. Fornisce metodi per creare e ripristinare backup.
+- `Hash`: È responsabile del calcolo dell'hash del file di database per garantire l'integrità dei dati. Fornisce metodi per calcolare e verificare l'hash.
+#### Classi di `db.omnisearch`
+Il package `db.omnisearch` implementa la funzionalità di ricerca avanzata. Le principali classi sono:
+- `Index`: È responsabile dell'indicizzazione trigram per gli oggetti che possono essere ricercati nel sistema, permettendo ricerche più efficienti.
+- `Search`: È responsabile dell'implementazione degli algoritmi di ricerca fuzzy per trovare corrispondenze parziali tra la query string e gli oggetti nelle tabelle, permette ricerche più flessibili e tolleranti agli errori di battitura.
+
+### Diagramma delle classi di `exceptions`
+
+![alt text](../png/Classes-exceptions@4x.png)
+
+#### Classi di `exceptions`
+Il package `exceptions` contiene la gerarchia delle eccezioni personalizzate per la gestione degli errori specifici dell'applicazione. Le principali classi sono:
+- `BookDataNotValidException`: Eccezione sollevata quando i dati di un libro non sono validi.
+- `UserDataNotValidException`: Eccezione sollevata quando i dati di un utente non sono validi.
+
+> Tali eccezioni sono state create poiché in questo modo qualsiasi `model` istanziato conterrà sempre dati validi, nonostante si prevede che il bibliotecario non avrà possibilità di salvare un nuovo `model` se la validazione dei dati al momento dell'input risulterà errata. Il loro inserimento è correlato quindi all'idea che i model sono un componente funzionante autonomamente, poi interfacciato con la GUI
+
+### Scelte Progettuali
+
+Il sistema é stato progettato con l'obiettivo di garantire manutenibilità, modularità e facilità di estensione. Ció é stato ottenuto attraverso diverse scelte progettuali per massimizzare la coesione e minimizzare l'accoppiamento tra i componenti del sistema.
+
+- **Adozione del pattern MVC**: La separazione tra Model, View e Controller consente di isolare la logica di business, la logica di presentazione e la gestione degli eventi, garantendo un'alta coesione all'interno di ciascun componente e un basso accoppiamento tra di essi.
+
+- **Progettazione orientata agli oggetti**: Le classi sono state progettate seguendo i principi della programmazione orientata agli oggetti, come l'incapsulamento, l'ereditarietà e il polimorfismo. Ciò consente di creare componenti riutilizzabili e facilmente estendibili.
+
+- **Implementazione di un sistema di ricerca avanzata**: L'uso di indici trigram e algoritmi di fuzzy search offre all'utente funzionalità di ricerca potenti e flessibili, migliorando l'esperienza utente.
+
+- **Gestione della persistenza**: L'implementazione di classi dedicate alla gestione della persistenza dei dati (come `DB`, `Backup` e `Hash`) consente di isolare la logica di accesso ai dati dal resto dell'applicazione, facilitando la manutenzione e l'evoluzione del sistema.
+
+- **Utilizzo di eccezioni personalizzate**: Le eccezioni specifiche per la validazione dei dati (come `BookDataNotValidException` e `UserDataNotValidException`) facilitano la gestione degli errori, migliorando la robustezza del sistema.
 
 #### Principi di buona progettazione
 
@@ -107,6 +147,7 @@ Il sistema rispetta diversi principi di buona progettazione software:
 - **Separation of Concerns**: Il pattern MVC garantisce una netta separazione tra logica di presentazione (controller), logica di business (model) e persistenza (db). Questa separazione facilita il testing, la manutenzione e l'evoluzione del sistema.
 
 - **Information Hiding**: I dettagli implementativi delle strutture dati interne (es. come `BookSet` memorizza i libri) sono nascosti dietro interfacce pubbliche, permettendo di modificare l'implementazione senza impattare i client.
+
 
 
 ## Modello dinamico
