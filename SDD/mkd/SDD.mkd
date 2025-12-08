@@ -21,6 +21,15 @@ L'architettura del sistema è organizzata secondo il pattern Model-View-Controll
 
 Le classi del sistema sono state organizzate secondo il pattern Model-View-Controller (MVC) per separare la logica di business dalla logica di presentazione e dalla persistenza dei dati.
 
+### Diagramma delle classi correlate a Launcher
+
+![alt text](../png/Classes-launcher@4x.png)
+
+#### Classe `Launcher`
+
+Questa classe contiene il metodo `main` e il metodo `start` per avviare l'app JavaFX.
+Contiene inoltre i metodi `restoreBookSet`, `restoreUserSet` e `restoreLendingSet` per caricare i dati .
+
 ### Diagramma delle classi di MVC
 
 ![alt text](../png/Classes-mvc@4x.png)
@@ -47,11 +56,11 @@ La view contiene i file FXML che implementano l'interfaccia grafica dell'app.
 - `BookPropView`, `UserPropView`, `LendingPropView`: Sono le fineste di visualizzazione e modifica delle proprietà di, rispettivamente, libri, utenti e prestiti.
 - `BookTabView`, `UserTabView`, `LendingTabView`: Costituiscono le tab corrispondenti alla visualizzazione e interazione con le tabelle di libri, utenti e prestiti.
 
-#### Esempio delle interazioni di un Model-View-Controller specifico (UserSet)
+### Esempio delle interazioni di un Model-View-Controller specifico (UserSet)
 
 ![alt text](../png/Classes-mvc-specific@4x.png)
 
-#### Esempio delle interazioni di un modello e della sua aggregazione (Book e BookSet)
+### Esempio delle interazioni di un modello e della sua aggregazione (Book e BookSet)
 
 ![alt text](../png/Classes-Bookv2@4x.png)
 
