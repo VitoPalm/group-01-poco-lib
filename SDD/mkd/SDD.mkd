@@ -78,35 +78,28 @@ Il package `exceptions` contiene la gerarchia delle eccezioni personalizzate per
 
 Il sistema è progettato per garantire un'elevata coesione funzionale all'interno di ciascun modulo:
 
-- **Model**: Le classi `Book`, `User` e `Lending` sono entità coese che rappresentano concetti specifici del dominio. Ogni classe mantiene solo gli attributi e i metodi direttamente correlati alla propria responsabilità. Le collezioni `BookSet`, `UserSet` e `LendingSet` hanno un'alta coesione sequenziale, poiché gestiscono esclusivamente operazioni CRUD e di ricerca sugli elementi della rispettiva collezione.
+- **Model**: Le classi `Book`, `User` e `Lending` sono entità coese che rappresentano concetti specifici del dominio. Ogni classe mantiene solo gli attributi e i metodi direttamente correlati alla propria responsabilità. Le collezioni `BookSet`, `UserSet` e `LendingSet` hanno un'alta coesione sequenziale, poiché gestiscono esclusivamente operazioni standard e di ricerca sugli elementi della rispettiva collezione.
 
 - **Controller**: La separazione tra controller delle proprietà (`*PropController`) e controller delle tab (`*TabController`) garantisce coesione funzionale. I primi si occupano esclusivamente della gestione delle finestre di dettaglio (visualizzazione e modifica), mentre i secondi gestiscono solo le operazioni sulla tabella principale e la ricerca. Il `PocoLibController` ha coesione comunicazionale, coordinando le interazioni tra i diversi controller.
 
-- **Persistenza**: Le classi `DB`, `Backup` e `Hash` nel package `db` hanno coesione funzionale, ognuna dedicata a un aspetto specifico della persistenza: serializzazione, backup e integrità dei dati.
+- **Persistenza**: Le classi `DB`, `Backup` e `Hash` nel package `db` hanno coesione funzionale, perché ognuna è dedicata a un aspetto specifico della persistenza.
 
-- **Ricerca**: Le classi `Index` e `Search` nel package `db.omnisearch` dimostrano coesione sequenziale, dove `Index` prepara i dati per la ricerca e `Search` utilizza questi indici per eseguire query fuzzy.
+- **Ricerca**: Le classi `Index` e `Search` nel package `db.omnisearch` dimostrano coesione sequenziale, dove `Index` prepara i dati per la ricerca e `Search` utilizza questi indici per eseguire query per la fuzzy search.
 
 #### Accoppiamento
 
 Il sistema minimizza l'accoppiamento attraverso diverse strategie:
 
-- **Accoppiamento dati**: I controller comunicano con il model attraverso interfacce ben definite, scambiando solo dati necessari (oggetti `Book`, `User`, `Lending`). Non esiste dipendenza da strutture dati interne del model.
+- **Accoppiamento dati**: I controller comunicano con i model attraverso interfacce ben definite, scambiando solo i dati necessari.
 
 - **Accoppiamento di controllo**: Le eccezioni personalizzate (`BookDataNotValidException`, `UserDataNotValidException`) nel package `exceptions` permettono una gestione degli errori disaccoppiata, evitando che il controller debba conoscere i dettagli di validazione del model.
 
-- **Separazione delle responsabilità**: Il package `db` è indipendente dai controller e dipende solo dal model, permettendo di modificare la strategia di persistenza senza impattare la logica di presentazione.
-
-- **Dipendenze unidirezionali**: Il flusso delle dipendenze segue il pattern MVC: View → Controller → Model → DB. Non esistono dipendenze inverse che creerebbero accoppiamento ciclico.
 
 #### Principi di buona progettazione
 
-Il sistema aderisce ai principi SOLID e ad altri principi fondamentali di progettazione:
+Il sistema rispetta diversi principi di buona progettazione software:
 
 - **Single Responsibility Principle (SRP)**: Ogni classe ha una singola responsabilità ben definita. Ad esempio, `DB` si occupa solo della serializzazione, `Backup` solo dei backup, `Hash` solo del calcolo degli hash. La divisione tra `*PropController` e `*TabController` rispetta ulteriormente questo principio.
-
-- **Open/Closed Principle (OCP)**: Le collezioni `BookSet`, `UserSet` e `LendingSet` forniscono un'interfaccia stabile per operazioni CRUD, permettendo l'estensione del comportamento (es. aggiunta di nuovi criteri di ricerca) senza modificare il codice esistente.
-
-- **Dependency Inversion Principle (DIP)**: I controller dipendono da astrazioni (le entità del model) piuttosto che da implementazioni concrete. Questo permette di sostituire o modificare l'implementazione del model senza impattare i controller.
 
 - **Don't Repeat Yourself (DRY)**: La logica di validazione è centralizzata nelle classi del model, evitando duplicazione nei controller. Il sistema di ricerca fuzzy è implementato una sola volta in `db.omnisearch` e riutilizzato per tutte le entità.
 
