@@ -5,7 +5,7 @@
 L'architettura del sistema è organizzata secondo il pattern Model-View-Controller (MVC). I moduli principali sono divisi in package che riflettono questa struttura adattata alla complessità del progetto e alle esigenze specifiche dell'applicazione:
 
 
-![alt text](../svg/packagediagram.svg) <!-- Incompelto>
+![alt text](../svg/Packages.svg) <!-- Incompelto>
 
 | Modulo | Responsabilità | Dipendenze | Test |
 |--------|----------------|------------|------|
