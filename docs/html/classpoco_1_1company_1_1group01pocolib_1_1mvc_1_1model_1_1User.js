@@ -2,6 +2,7 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User =
 [
     [ "User", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a5b68d36f684e18d34db7919cd551054e", null ],
     [ "canBorrow", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ad92eb0a7ba1b6e805b206ace78f39264", null ],
+    [ "fromString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a01efbbd234bc35daf19674d1b589c2e9", null ],
     [ "getBorrowedBooksCount", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ad327a25ceaf0f84a8378345192ce903e", null ],
     [ "getBorrowedBooksEverCount", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#aaca65ea474bc61f39f869d4e7990af51", null ],
     [ "getEmail", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a6b87fd54f56be3b897719d8fbebff613", null ],
@@ -9,6 +10,8 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User =
     [ "getName", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ad1be5d7f5bf54f73febdfd349bb7533c", null ],
     [ "getSurname", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a44448fedf1e4069fa6510d203b593327", null ],
     [ "hashCode", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ac24d60d9df4800a93e232a66e7d881a4", null ],
+    [ "isValidEmail", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a96390e594df9f357f71fe25acb292f3f", null ],
+    [ "isValidID", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a13643cf083aff233a4bd41632211d4fc", null ],
     [ "setBorrowedBooksCount", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a94ff88ad10c61bee77f8af9d99e3bed0", null ],
     [ "setBorrowedBooksEverCount", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#afdb271781a8c349a940433da2d958949", null ],
     [ "setEmail", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#adc90354ec00795f37b1d4fa025bd0aef", null ],
@@ -16,5 +19,14 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User =
     [ "setName", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#aeef513cd2c998c5572da643f3966eeff", null ],
     [ "setSurname", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ae3e3da51c4ac05f8cd90ec4acc70b367", null ],
     [ "toSearchableString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a9166c46659bff516770fbd017fc56193", null ],
-    [ "toString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a23157b8ad17d2bde03d6441768ace3e7", null ]
+    [ "toString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a23157b8ad17d2bde03d6441768ace3e7", null ],
+    [ "borrowedBooksCount", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ac6ec79201efea56932f83a40f023e6dc", null ],
+    [ "borrowedBooksEverCount", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a34edec9c83af44a5aea989561f726e66", null ],
+    [ "email", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a545d9d715498771a30b865fe97272a27", null ],
+    [ "FIELD_SEPARATOR", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#aa30cb9e1410d540bf500fb15c36bbbfd", null ],
+    [ "id", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#aeb92c73e151f8ad645e8c9ae0259db5a", null ],
+    [ "MAX_BORROWED_BOOKS", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a65038f55c8c70a8bdb414e0d0811dc2b", null ],
+    [ "name", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#af4bbaf48ee389362cff69c42a84667c5", null ],
+    [ "serialVersionUID", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a84bcdf89928868d8774e6d2f5e723c28", null ],
+    [ "surname", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#aade8d20c46dd038e4f6813e8e518f70f", null ]
 ];

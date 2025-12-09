@@ -6,11 +6,11 @@ var annotated_dup =
           [ "db", "namespacepoco_1_1company_1_1group01pocolib_1_1db.html", [
             [ "omnisearch", "namespacepoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch.html", [
               [ "Index", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index" ],
-              [ "Search", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Search.html", null ]
+              [ "Search", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Search.html", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Search" ]
             ] ],
-            [ "Backup", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Backup.html", null ],
+            [ "Backup", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Backup.html", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Backup" ],
             [ "DB", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB" ],
-            [ "Hash", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash.html", null ]
+            [ "Hash", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash.html", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash" ]
           ] ],
           [ "exceptions", "namespacepoco_1_1company_1_1group01pocolib_1_1exceptions.html", [
             [ "BookDataNotValidException", "classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1BookDataNotValidException.html", "classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1BookDataNotValidException" ],

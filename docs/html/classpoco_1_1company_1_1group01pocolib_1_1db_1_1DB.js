@@ -18,6 +18,13 @@ var classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB =
     [ "toString", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#a9fb15fbff0bf6da263db1a0668983145", null ],
     [ "updateAndGetDBFileHash", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#a0b0a0c04245f02a169bcd7a1809b25a8", null ],
     [ "updateDBFileHash", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#aee2eecdca665a1a451442f62f4c217e1", null ],
+    [ "updateDBFromCache", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#a2a4f7e55425e5d8f3f7a74bdb0f7d75b", null ],
+    [ "writeNthLine", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#aa05dc1bca6d400fd56c7fc4b495bde49", null ],
     [ "writeNthLineReplace", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#af14947b64340cc8af9b40ac85b69445f", null ],
-    [ "writeNthLineWShift", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#aac9a5dd8bcb76edd6eccb951b6cd7331", null ]
+    [ "writeNthLineWShift", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#aac9a5dd8bcb76edd6eccb951b6cd7331", null ],
+    [ "cache", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#af539fe0225c2213ecd39afba3c70a8c4", null ],
+    [ "DBFileHash", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#a09632fb9af47e0b91bd82585198861a0", null ],
+    [ "DBPath", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#a924a49c582f8b5d466f9ad8f3ac7e984", null ],
+    [ "INITIAL_CACHE_CAPACITY", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#ae7036161d239fcc23433a08ee207a752", null ],
+    [ "serialVersionUID", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#a6412741b808ab7bff6979a5e4a736263", null ]
 ];
