@@ -44,6 +44,7 @@
 \title{\textbf{\Large Software Design Document (SDD)}\\
 \large Software per la gestione di una biblioteca}
 \author{Autori: Marino Francesco, Pepe Daniele, Orsini Giovanni, Palmieri Vito \\ Gruppo 1}
+\date{2025-12-08}
 
 \begin{document}
 
@@ -90,6 +91,7 @@
     \end{table}
 
 %===============================================
+    \newpage
     \section{Modello statico}
 %===============================================
 
@@ -139,14 +141,14 @@
         \item \texttt{BookTabView}, \texttt{UserTabView}, \texttt{LendingTabView}: Tab corrispondenti alla visualizzazione e interazione con le tabelle.
     \end{itemize}
 
-    \paragraph{Esempio delle interazioni di un Model-View-Controller specifico (UserSet)}
+    \subsubsection{Esempio delle interazioni di un Model-View-Controller specifico (UserSet)}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{../png/Classes-mvc-specific@4x}
         \caption{Esempio interazioni MVC specifico (UserSet)}\label{fig:figure-mvc-specific}
     \end{figure}
 
-    \paragraph{Esempio delle interazioni di un modello e della sua aggregazione (Book e BookSet)}
+    \subsubsection{Esempio delle interazioni di un modello e della sua aggregazione (Book e BookSet)}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{../png/Classes-bookv2@4x}
@@ -219,6 +221,7 @@
     \end{itemize}
 
 %===============================================
+    \newpage
     \section{Modello dinamico}\label{sec:modello-dinamico}
 %===============================================
 
@@ -261,6 +264,7 @@
     \end{figure}
 
 %===============================================
+    \newpage
     \section{Design dell’interfaccia utente}\label{sec:design-dellinterfaccia-utente}
 %===============================================
 
