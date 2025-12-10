@@ -1,7 +1,8 @@
 /**
  * @file User.java
- * @brief This file contains the definition of the User class, which represents Library User .
+ * @brief This file contains the definition of the User class, which represents Library User.
  * @author Giovanni Orsini
+ * @author Daniele Pepe
  */
 
 
@@ -40,12 +41,12 @@ public class User implements Serializable {
      * @pre     `id` and email fields should be valid
      * @post    A new user is created
      *
-     * @param   id      User's unique ID    TODO: define format
+     * @param   id      User's unique ID (Alphanumeric string between 5 and 16 characters)
      * @param   name    User's name
      * @param   surname User's surname
-     * @param   email   User's email.
+     * @param   email   User's email
      *
-     * @throws UserDataNotValidException if a User is being initialized with an invalid ID/Email
+     * @throws UserDataNotValidException if a User is being initialized with an invalid ID/Email, or if name or surname are null or empty
      */
     public User(String id, String name, String surname, String email) {
         if (!User.isValidID(id))
@@ -54,32 +55,40 @@ public class User implements Serializable {
         if (!User.isValidEmail(email))
             throw new UserDataNotValidException("Invalid email: " + email);
 
+        if (name == null || name.trim().isEmpty())
+            throw new UserDataNotValidException("Name cannot be null or empty");
+
+        if (surname == null || surname.trim().isEmpty())
+            throw new UserDataNotValidException("Surname cannot be null or empty");
+        
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.borrowedBooksCount = 0;
+        this.borrowedBooksEverCount = 0;
     }
 
     /**
      * @brief   `static` method to check whether a String is a correct User ID
-     *
+     * @details An ID is valid if it is an alphanumeric string of length between 5 and 16 characters, allowing the user to insert IDs from a short matrix code to longer Tax IDs.
      * @param   id The String to check
      * @return  `true` if the User ID is valid, `false` otherwise
      */
     public static boolean isValidID(String id) {
-        // TODO: implement
-        return false;
+        String idPattern = "^[a-zA-Z0-9]{5,16}$";
+        return (id != null && id.matches(idPattern));
     }
 
     /**
      * @brief   `static` method to check whether a String is a correct Email
-     *
+     * @details An Email is valid if it follows the standard email format
      * @param   email The String to check
      * @return  `true` if the Email is valid, `false` otherwise
      */
     public static boolean isValidEmail(String email) {
-        // TODO: implement
-        return false;
+        String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        return (email != null && email.matches(emailPattern));
     }
 
     /**
@@ -88,8 +97,7 @@ public class User implements Serializable {
      * @return  `true` if the User can borrow more books, `false` otherwise
      */
     public boolean canBorrow() {
-        // TODO: implement
-        return false;
+        return this.borrowedBooksCount < MAX_BORROWED_BOOKS;
     }
 
     /**
@@ -123,8 +131,11 @@ public class User implements Serializable {
     /**
      * @brief   Sets the name of the User
      * @param   name The name to set
+     * @throws  UserDataNotValidException if the provided name is null or empty
      */
     public void setName(String name) {
+        if (name == null || name.trim().isEmpty())
+            throw new UserDataNotValidException("Name cannot be null or empty");
         this.name = name;
     }
 
@@ -139,8 +150,11 @@ public class User implements Serializable {
     /**
      * @brief   Sets the surname of the User
      * @param   surname The surname to set
+     * @throws  UserDataNotValidException if the provided surname is null or empty
      */
     public void setSurname(String surname) {
+        if (surname == null || surname.trim().isEmpty())
+            throw new UserDataNotValidException("Surname cannot be null or empty");
         this.surname = surname;
     }
 
@@ -177,7 +191,35 @@ public class User implements Serializable {
      * @param   borrowedBooksCount The number of currently borrowed books to set
      */
     public void setBorrowedBooksCount(int borrowedBooksCount) {
+        if (borrowedBooksCount < 0 || borrowedBooksCount > MAX_BORROWED_BOOKS)
+            throw new UserDataNotValidException("Borrowed books count must be between 0 and " + MAX_BORROWED_BOOKS);
+        
         this.borrowedBooksCount = borrowedBooksCount;
+    }
+
+    /**
+     * @brief   Increments the number of currently borrowed books by the User
+     * @throws  UserDataNotValidException if the User is trying to borrow more than the allowed maximum
+     * @return  The new number of currently borrowed books by the User
+     */
+    public int incrementBorrowedBooksCount() {
+        if (this.borrowedBooksCount >= MAX_BORROWED_BOOKS)
+            throw new UserDataNotValidException("Cannot borrow more than " + MAX_BORROWED_BOOKS + " books.");
+        
+        this.borrowedBooksEverCount++;
+        return ++this.borrowedBooksCount;
+    }
+
+    /**
+     * @brief   Decrements the number of currently borrowed books by the User
+     * @throws  UserDataNotValidException if the User is trying to return a book when having 0 borrowed books
+     * @return  The new number of currently borrowed books by the User
+     */
+    public int decrementBorrowedBooksCount() {
+        if (this.borrowedBooksCount <= 0)
+            throw new UserDataNotValidException("Cannot have less than 0 borrowed books.");
+        
+        return --this.borrowedBooksCount;
     }
 
     /**
@@ -191,9 +233,27 @@ public class User implements Serializable {
     /**
      * @brief   Sets the total number of books ever borrowed by the User
      * @param   borrowedBooksEverCount The total number of books ever borrowed to set
+     * @throws  UserDataNotValidException if the count is negative or less than current borrowed books
      */
     public void setBorrowedBooksEverCount(int borrowedBooksEverCount) {
+        if (borrowedBooksEverCount < 0)
+            throw new UserDataNotValidException("Borrowed books ever count cannot be negative.");
+        if (borrowedBooksEverCount < this.borrowedBooksCount)
+            throw new UserDataNotValidException("Borrowed books ever count cannot be less than current borrowed books.");
         this.borrowedBooksEverCount = borrowedBooksEverCount;
+    }
+
+    /**
+     * @brief Overrides `equals` method to compare Users based on their unique ID.
+     * @param obj The object to compare with.
+     * @return `true` if the Users have the same ID, `false` otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        User other = (User) obj;
+        return id.equals(other.id);
     }
 
     /**
@@ -206,37 +266,60 @@ public class User implements Serializable {
     }
 
     /**
-     * @brief   Creates a User object from its string representation (typically used for DB reads).
-     * @details The string representation format is TODO: implement.
+     * @brief   Creates a User object from its string representation used for DB reads.
+     * @details The string representation format is "'ID'\u001C'Name'\u001C'Surname'\u001C'Email'\u001C'BorrowedBooksCount'\u001C'BorrowedBooksEverCount'".
      *
-     * @param   userStr The string representation of the User.
+     * @param   userStr The string representation of the User from the DB.
      * @return  The User object.
      */
-    public static User fromString(String userStr) {
-        // TODO: implement
-        return null;
+    public static User fromDBString(String userStr) {
+        String[] fields = userStr.split(FIELD_SEPARATOR);
+        User user = new User(fields[0], fields[1], fields[2], fields[3]);
+        user.setBorrowedBooksCount(Integer.parseInt(fields[4]));
+        user.setBorrowedBooksEverCount(Integer.parseInt(fields[5]));
+        return user;
     }
 
     /**
      * @brief   Get a string containing only the searchable info of the user
-     * @details This includes id, name, surname and email. The string representation format is TODO: implement.
+     * @details This includes id, name, surname and email. The string representation format is "'ID''Name''Surname''Email'".
      *
-     * @return  A string containing the searchable info of the book
+     * @return  A string containing the searchable info of the user.
      */
     public String toSearchableString() {
-        // TODO: Implement
-        return "";
+        return getId().strip().toLowerCase() +
+               getName().strip().toLowerCase() +
+               getSurname().strip().toLowerCase() +
+               getEmail().strip().toLowerCase();
+        }
+
+    /**
+     * @brief   Returns a string representation of the User used for DB writes.
+     * @details The string representation format is "'ID'\u001C'Name'\u001C'Surname'\u001C'Email'\u001C'BorrowedBooksCount'\u001C'BorrowedBooksEverCount'".
+     *
+     * @return  A string representation of the User for DB writes.
+     */
+    public String toDBString() {
+        return getId() + FIELD_SEPARATOR +
+               getName() + FIELD_SEPARATOR +
+               getSurname() + FIELD_SEPARATOR +
+               getEmail() + FIELD_SEPARATOR +
+               getBorrowedBooksCount() + FIELD_SEPARATOR +
+               getBorrowedBooksEverCount();
     }
 
     /**
-     * @brief   Returns a string representation of the User (typically used for DB writes).
-     * @details The string representation format is TODO: implement.
-     *
+     * @brief   Overrides `toString` method to provide a readable representation of the User.
      * @return  A string representation of the User.
      */
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return "User:\n" +
+                "\tid='" + getId() + "\'\n" +
+                "\tname='" + getName() + "\'\n" +
+                "\tsurname='" + getSurname() + "\'\n" +
+                "\temail='" + getEmail() + "\'\n" +
+                "\tborrowedBooksCount=" + getBorrowedBooksCount() + "\n" +
+                "\tborrowedBooksEverCount=" + getBorrowedBooksEverCount() + "\n";
     }
 }
