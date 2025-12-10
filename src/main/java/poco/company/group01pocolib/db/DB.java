@@ -100,8 +100,19 @@ public class DB implements Serializable {
      */
     public boolean buildCache() {
         this.cache.clear();
-        this.cache.add("2");
-        return false;
+
+        try (BufferedReader reader = Files.newBufferedReader(this.getDBPathAsPath(), StandardCharsets.UTF_8)) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                cache.add(line);
+            }
+
+            return true;
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
     }
 
     /**
@@ -111,7 +122,20 @@ public class DB implements Serializable {
      * @return  `true` if the DB file was successfully updated, `false` otherwise.
      */
     private boolean updateDBFromCache() {
-        return false;
+        StringBuilder updatedDB = new StringBuilder();
+
+        for(String line : this.cache) {
+            updatedDB.append(line).append(System.lineSeparator());
+        }
+
+        try {
+            Files.writeString(this.getDBPathAsPath(), updatedDB.toString(), StandardCharsets.UTF_8);
+            return true;
+
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
     }
 
     /**
@@ -123,7 +147,11 @@ public class DB implements Serializable {
      * @return  Content of N-th line, or `null` if line does not exist.
      */
     public String readNthLine(int N) {
-        return "";
+        if (this.cache.isEmpty() && !this.buildCache()) return null;
+
+        if (N < 0 || N >= this.cache.size()) return null;
+
+        return this.cache.get(N);
     }
 
     /**
@@ -139,7 +167,31 @@ public class DB implements Serializable {
      * @return  `true` if the line was successfully written, `false` otherwise.
      */
     private boolean writeNthLine(int N, String newLine, boolean shift) {
-        return false;
+        boolean wroteLine = true;
+
+        if (this.cache.isEmpty() && !this.buildCache()) return false;
+
+        if (N < 0 || N > this.cache.size()) return false;       // Appending a line is supported
+
+        String overWrittenLine = null;
+        if (shift || N == this.cache.size()) {
+            this.cache.add(N, newLine);
+        } else {
+            overWrittenLine = this.cache.set(N, newLine);
+        }
+
+        if (!this.updateDBFromCache()) {
+            wroteLine = false;
+
+            // Rollback cache change to avoid conflicts
+            if (shift) {
+                this.cache.remove(N);
+            } else {
+                this.cache.set(N, overWrittenLine);
+            }
+        }
+
+        return wroteLine;
     }
 
     /**
@@ -174,7 +226,18 @@ public class DB implements Serializable {
      * @return  String removed, or `null` if the line did not exist.
      */
     public String removeNthLine(int N) {
-        return "";
+        if (this.cache.isEmpty() && !this.buildCache()) return null;
+        if (N < 0 || N >= this.cache.size()) return null;
+
+        String removedLine = this.cache.remove(N);
+
+        if (!this.updateDBFromCache()) {
+            // Rollback cache change to avoid conflicts
+            this.cache.add(N, removedLine);
+            removedLine = null;
+        }
+
+        return removedLine;
     }
 
     /**
@@ -187,6 +250,14 @@ public class DB implements Serializable {
      * @return  Index of line where pattern is first found, `-1` if not found.
      */
     public int findFirstInstanceOfPattern(Pattern pattern) {
+        if (this.cache.isEmpty() && !this.buildCache()) return -1;
+
+        for (int i = 0; i < this.cache.size(); i++) {
+            if (pattern.matcher(this.cache.get(i)).find()) {
+                return i;
+            }
+        }
+
         return -1;
     }
 
@@ -200,6 +271,15 @@ public class DB implements Serializable {
      * @return  The first line containing the pattern, or `null` if not found.
      */
     public String readFirstLineContainingPattern(Pattern pattern) {
+        if (this.cache.isEmpty() && !this.buildCache()) return null;
+
+        int lineIndex = this.findFirstInstanceOfPattern(pattern);
+
+        // One useless read on cache, but it keeps the code way cleaner
+        if (lineIndex != -1) {
+            return this.cache.get(lineIndex);
+        }
+
         return null;
     }
 
@@ -213,7 +293,11 @@ public class DB implements Serializable {
      * @return  `true` if a substitution was made, `false` otherwise.
      */
     public boolean substituteFirstLineContainingPattern(Pattern pattern, String newLine) {
-        return false;
+        int lineIndex = findFirstInstanceOfPattern(pattern);
+
+        if (lineIndex == -1) return false;
+
+        return writeNthLineReplace(lineIndex, newLine);
     }
 
     /**
@@ -226,7 +310,11 @@ public class DB implements Serializable {
      * @return  The removed line, or `null` if no deletion was made.
      */
     public String deleteFirstLineContainingPattern(Pattern pattern) {
-        return "";
+        int lineIndex = findFirstInstanceOfPattern(pattern);
+
+        if (lineIndex == -1) return null;
+
+        return removeNthLine(lineIndex);
     }
 
     /**
@@ -241,6 +329,13 @@ public class DB implements Serializable {
 
     @Override
     public String toString() {
-        return "";
+        if (this.cache.isEmpty()) this.buildCache();
+
+        StringBuilder output = new StringBuilder();
+
+        for (String line : this.cache) {
+            output.append(line).append(System.lineSeparator());
+        }
+        return output.toString();
     }
 }
