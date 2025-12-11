@@ -179,7 +179,12 @@ public class LendingSet implements Serializable {
      * @param   lending The Lending object to add or edit.
      */
     public void addOrEditLending(Lending lending){
-        // TODO: implement
+        if (lendingSet.contains(lending)) {
+            lendingSet.remove(lending);
+            lendingSet.add(lending);
+        } else {
+            lendingSet.add(lending);
+        }
     }
 
     /**
