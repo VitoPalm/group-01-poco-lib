@@ -13,7 +13,6 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet =
     [ "getLendingIndex", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a90b685176696e92104d5b1a0207312c0", null ],
     [ "getLendingSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a8b4362e227d36c39f8a5c022d7ef1908", null ],
     [ "getSerializationPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a90e1b70630b607e54ad758166523ee81", null ],
-    [ "loadFromSerialized", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#add08bfc1dcfd63e2dbc259edef8d92d0", null ],
     [ "rawSearch", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a202b78c54e456fee3b2750599fb3b519", null ],
     [ "rebuildFromDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a29dccd7198472d9861fea2d73263e23f", null ],
     [ "removeLending", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#aba54e46debb1bf702cf416a73d14497f", null ],
@@ -26,12 +25,5 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet =
     [ "setSerializationPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a2ff0fa2dd88ed12e47eb75c44484bd82", null ],
     [ "syncOnWrite", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#aa53512d5477f1dee32107bc224305b43", null ],
     [ "toString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a426f4fe1a26faff61658cb5e935f739f", null ],
-    [ "updateLastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#aa89ab52e9b47e82bf31c469175a5dfd4", null ],
-    [ "DBPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a6264402f0240c9780fcbe02841760bef", null ],
-    [ "lastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a0370fa0483dc82f149c3a0b21837ee75", null ],
-    [ "lendingDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a469c720232f72140f2c49e2670626d37", null ],
-    [ "lendingIndex", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a18885d96cf8eb593bd6a9d7dab646cb1", null ],
-    [ "lendingSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a097e9398464053e55dad13d67196abd3", null ],
-    [ "serializationPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#aed68c60d3646ed54bf32e419620a968a", null ],
-    [ "serialVersionUID", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#ae90387b2355ed8a11590fd8b0c1869a1", null ]
+    [ "updateLastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#aa89ab52e9b47e82bf31c469175a5dfd4", null ]
 ];
