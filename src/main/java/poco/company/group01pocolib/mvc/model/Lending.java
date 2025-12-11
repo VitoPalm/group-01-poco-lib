@@ -145,14 +145,18 @@ public class Lending implements Serializable {
 
     /**
      * @brief   Creates a Lending object from its string representation, used for DB reads.
-     * @details The string representation format is "'ID'\u001C'Name'\u001C'Surname'\u001C'Email'\u001C'BorrowedBooksCount'\u001C'BorrowedBooksEverCount'".
-     *
+     * @details The string representation format is "'ID'\u001C'BookISBN'\u001C'UserID'\u001C'ReturnDate'\u001C'isReturned'".
+     * 
+     * @todo    Test if the new lending is created successfully
      * @param   lendingStr The string representation of the Lending.
      * @return  A Lending object created from the string representation.
      */
-    public static Lending fromDBString(String lendingStr) {
-        // TODO: Implement
-        return null;
+    public static Lending fromDBString(String lendingStr, BookSet bookSet, UserSet userSet) {
+        String[] fields = lendingStr.split(FIELD_SEPARATOR);
+        Lending lending = new Lending(bookSet.getBook(fields[1]), userSet.getUser(fields[2]), LocalDate.parse(fields[3]));
+        if (Boolean.parseBoolean(fields[4]))
+            lending.setReturned();
+        return lending;
     }
 
     /**
@@ -163,16 +167,37 @@ public class Lending implements Serializable {
      * @return  A string containing the searchable info of the lending
      */
     public String toSearchableString() {
-        // TODO: Implement
-        return "";
+        return Integer.toString(getLendingId()) +
+               getBook().toSearchableString() +
+               getUser().toSearchableString() +
+               getReturnDate().toString().strip().toLowerCase();
     }
 
     /**
      * @brief   Returns a string representation of the Lending.
+     * @details The string representation format is "'ID'\u001C'BookISBN'\u001C'UserID'\u001C'ReturnDate'\u001C'isReturned'".
+     * 
      * @return  A string representation of the Lending.
      */
     public String toDBString() {
-        // TODO: Implement
-        return "";
+        return getLendingId() + FIELD_SEPARATOR +
+               getBook().getIsbn() + FIELD_SEPARATOR + 
+               getUser().getId() + FIELD_SEPARATOR +
+               getReturnDate() + FIELD_SEPARATOR + 
+               isReturned();
+    }
+
+    /**
+     * @brief   Overrides toString method to provide a readable representation of the Lending.
+     * @return  A string representation of the Lending.
+     */
+    @Override
+    public String toString() {
+        return "Lending:\n" +
+                "\tid='" + getLendingId() + "'\n" +
+                "\tbook='" + getBook().getIsbn() + "' '" + getBook().getTitle() + "'\n" +
+                "\tuser='" + getUser().getId() + "' '" + getUser().getName() + " " + getUser().getSurname() + "'\n" +
+                "\treturn_date="  + getReturnDate() + "\n" +
+                "\treturned=" + isReturned();
     }
 }
