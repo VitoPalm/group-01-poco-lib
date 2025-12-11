@@ -25,9 +25,8 @@
 var NAVTREE =
 [
   [ "POCO Library", "index.html", [
-    [ "Packages", "namespaces.html", [
-      [ "Package List", "namespaces.html", "namespaces_dup" ]
-    ] ],
+    [ "Link veloci", "md_README.html", null ],
+    [ "Todo List", "todo.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -46,11 +45,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"Backup_8java.html",
-"classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#a7016a854528dbca211e42a9d96fc0273",
-"classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController.html#ac95bc758e3fa20d3307eb11868a91006",
-"classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#af385aea772d6c261c250e33399826d71",
-"functions_p.html"
+"BackupTest_8java.html",
+"classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#ac5f1e1cb050cf97802739e23010b9b55"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

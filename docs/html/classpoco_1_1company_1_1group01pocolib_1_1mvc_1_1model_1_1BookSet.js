@@ -11,7 +11,8 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet =
     [ "getLastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#aaff0928fd1621c4b1f54b63d54e15c47", null ],
     [ "getListOfBooks", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a2e8e007ca2034a9bd361b0a9acf3b27d", null ],
     [ "getSerializationPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a9f735270a6341a755430960ec913c930", null ],
-    [ "loadFromSerialized", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a4d27594fc1dbee121f0b6bdfd397d691", null ],
+    [ "isStored", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a7afa792729fd6a804b57aef2e153f86f", null ],
+    [ "isStored", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#af4e0369a2e2eef09ca8bc6c5bec00767", null ],
     [ "rawSearch", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#accbd04d1ee1fa1a3fae7b32e8fc299d3", null ],
     [ "rebuildFromDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#adab5eecb7ed65793b96b2756a6d11288", null ],
     [ "removeBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a5b2b1aa29b8d1bbcc01e7ac739c0b146", null ],
@@ -25,11 +26,5 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet =
     [ "syncOnWrite", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#ad824c8871e6816e99b5e9947f02ec48b", null ],
     [ "toString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a3f6d69121eff712c1b07699a4369d394", null ],
     [ "updateLastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#adfdb9e38427b5fbd505cc196bca18755", null ],
-    [ "bookDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#ad87a250e9f535305bc86e1a92605c622", null ],
-    [ "bookIndex", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a6fa0563d049f2bb6da1fa1e154ba7f41", null ],
-    [ "bookSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a425e665417e241f44fb2b5d82d4d894e", null ],
-    [ "DBPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#ae6f41a599bc880df45547d74bcf8c681", null ],
-    [ "lastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a9ee94c12bfbcf785aea05c6ea7117724", null ],
-    [ "serializationPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a3bc9d3c2dec29a9cd62d0b9690ee38ca", null ],
-    [ "serialVersionUID", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a0b78931c472393e28a18e7cebda4f0ee", null ]
+    [ "dummy", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a2cccd4cab9fd0d1caaf6c4ac8c9b0cba", null ]
 ];
