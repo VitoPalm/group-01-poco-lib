@@ -92,6 +92,16 @@ public class DB implements Serializable {
     }
 
     /**
+     * @brief   Clears the entire DB file and the internal cache.
+     * @details This method removes all entries from the database file and clears the internal cache of lines.
+     *          Use with caution as this operation is irreversible.
+     */
+    public void clear() {
+        this.cache.clear();
+        this.updateDBFromCache(); // Scrive una stringa vuota nel file, svuotandolo
+    }
+
+    /**
      * @brief   Builds the cache of lines from the DB file.
      * @details This method reads all lines from the database file and stores them in an internal cache for faster
      *          access. It clears any existing cached lines before rebuilding the cache.

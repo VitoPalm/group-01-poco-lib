@@ -7,10 +7,19 @@
 package poco.company.group01pocolib.mvc.model;
 
 import poco.company.group01pocolib.db.DB;
+import poco.company.group01pocolib.db.Hash;
 import poco.company.group01pocolib.db.omnisearch.Index;
+import poco.company.group01pocolib.db.omnisearch.Search;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serial;
 import java.io.Serializable;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -29,7 +38,7 @@ public class BookSet implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private HashSet<Book> bookSet;      ///< TODO : change into Set, initialize as HashSet in constructor
+    private Set<Book> bookSet;      
     private Index<Book> bookIndex;
     private DB bookDB;
 
@@ -159,8 +168,38 @@ public class BookSet implements Serializable {
      * @return  The loaded `BookSet` object
      */
     public static BookSet loadFromSerialized(String serializationPath, String DBPath) {
-        // TODO: Implement
-        return null;
+        Object obj;
+        BookSet bookSet = null;
+
+        // Attempt to read the serialized BookSet from disk
+        try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(serializationPath)))) {
+        
+            obj = in.readObject();
+            bookSet = (BookSet) obj;
+
+        // If any error occurs during deserialization, rebuild the BookSet from the DB
+        } catch (IOException | ClassNotFoundException e) {
+            bookSet = new BookSet();
+            bookSet.setDBPath(DBPath);
+            bookSet.rebuildFromDB(DBPath);
+            return bookSet;
+        }
+
+        // Create a new DB object using the provided DB path
+        DB currentDB = new DB(DBPath);
+        String currentDBHash = currentDB.getDBFileHash();
+
+        // Check if the DB file has changed since the last serialization by comparing hashes
+        if (currentDBHash.equals(bookSet.getLastKnownDBHash())) {
+            bookSet.setDBPath(DBPath);
+            bookSet.setBookDB(currentDB);
+            return bookSet;
+        } else {
+            bookSet.setDBPath(DBPath);
+            bookSet.rebuildFromDB(DBPath);
+        }
+
+        return bookSet;
     }
 
     /**
@@ -168,7 +207,33 @@ public class BookSet implements Serializable {
      * @param   DBPath The path to the DB file
      */
     public void rebuildFromDB(String DBPath) {
-        // TODO: Implement
+        //Initialize the DB object for rebuilding
+        this.bookDB = new DB(DBPath);
+    
+        // Clear in-memory data structures before reloading
+        this.bookSet.clear();
+        this.bookIndex = new Index<>(); 
+
+        int i = 0;
+        String line;
+        
+        // Iterate through each line in the DB file and parse it into a Book object
+        while ((line = this.bookDB.readNthLine(i)) != null) {
+            try {
+            
+                Book book = Book.fromDBString(line);
+                
+                this.bookSet.add(book);
+                this.bookIndex.add(book.toSearchableString(), book);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            i++;
+        }
+
+        // Update the hash to indicate that we are synchronized with the DB
+        updateLastKnownDBHash();
     }
 
     /**
@@ -176,7 +241,17 @@ public class BookSet implements Serializable {
      * @param   book The book object to add or edit.
      */
     public void addOrEditBook(Book book){
-        // TODO: Implement book add
+        
+        // Removes the book if it already exists
+        bookSet.remove(book);
+        bookIndex.remove(book);
+        
+        // Adds the book (new or updated)
+        bookSet.add(book);
+        bookIndex.add(book.toSearchableString(), book);
+        
+        // Syncs the changes to DB and serialized file
+        syncOnWrite();
     }
 
     /**
@@ -184,7 +259,15 @@ public class BookSet implements Serializable {
      * @param   isbn The ISBN of the book to remove
      */
     public void removeBook(String isbn){
-        // TODO: Implement book remove
+        Book dummyBook = new Book();
+        dummyBook.setIsbn(isbn);
+        
+        // Removes the book from the set and index
+        bookSet.remove(dummyBook);
+        bookIndex.remove(dummyBook);
+        
+        // Syncs the changes to DB and serialized file
+        syncOnWrite();
     } 
 
     /**
@@ -194,7 +277,11 @@ public class BookSet implements Serializable {
      * @return  The Book object if found, null otherwise
      */
     public Book getBook(String isbn){
-        // TODO: Implement book getter
+        for (Book book : bookSet) {
+            if (book.getIsbn().equals(isbn)) {
+                return book;
+            }
+        }
         return null;
     }
 
@@ -205,8 +292,32 @@ public class BookSet implements Serializable {
      * @return  A list of books matching the search query, ranked by relevance
      */
     public List<Book> search(String rawQuery) {
-        // TODO: Implement search
-        return null;
+
+        ArrayList<Search.SearchResult<Book>> searchResults = Search.search(rawQuery, bookIndex);
+
+        if (searchResults == null || searchResults.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        searchResults.sort((r1,r2)-> {
+            int hitComparison = Integer.compare(r2.hits, r1.hits);
+            if (hitComparison != 0) {
+                return hitComparison;
+            }
+
+            int score1 = calculateScore(r1.item, rawQuery);
+            int score2 = calculateScore(r2.item, rawQuery);
+            return Integer.compare(score2, score1);
+        });
+
+        List<Book> rankedBooks = new ArrayList<>();
+        for (Search.SearchResult<Book> result : searchResults) {
+            rankedBooks.add(result.item);
+        }   
+
+        return rankedBooks;
+
+        //TODO: Vito pls look at this
     }
 
     /**
@@ -216,7 +327,7 @@ public class BookSet implements Serializable {
      * @return  A list of books matching the search query
      */
     private List<Book> rawSearch(String rawQuery) {
-        // TODO: Implement search
+        //TODO: Vito pls look at this
         return null;
     }
 
@@ -228,7 +339,7 @@ public class BookSet implements Serializable {
      * @return  The relevance score of the book
      */
     private int calculateScore(Book book, String rawQuery) {
-        // TODO: Implement score calculation
+        //TODO: Vito pls look at this
         return 0;
     }
 
@@ -236,14 +347,33 @@ public class BookSet implements Serializable {
      * @brief   Synchronizes the current state of the BookSet to the DB and serialized file on write operations
      */
     private void syncOnWrite() {
-        // TODO: Implement
+        
+        // Clear the DB file
+        bookDB.clear();
+            
+        // Write all books to the DB file
+        for (Book book : bookSet) {
+            bookDB.appendLine(book.toDBString());
+        }
+        
+        // Update the hash after writing to DB
+        updateLastKnownDBHash();
+        
+        // Save the serialized version
+        saveToSerialized();
     }
 
     /**
      * @brief   Saves the current state of the BookSet to a serialized file on disk
      */
     private void saveToSerialized() {
-        // TODO: Implement
+
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(serializationPath)))) {
+            out.writeObject(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -252,7 +382,12 @@ public class BookSet implements Serializable {
      */
     @Override
     public String toString() {
-        // TODO: implement
-        return "";
+        StringBuffer buff = new StringBuffer();
+
+        for (Book book : bookSet) {
+            buff.append(book.toString()).append("\n");
+        }
+
+        return buff.toString();
     }
 }

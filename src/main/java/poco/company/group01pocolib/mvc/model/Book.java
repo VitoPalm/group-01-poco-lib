@@ -34,6 +34,7 @@ public class Book implements Serializable {
 
     private static final String FIELD_SEPARATOR = "\u001C";
 
+
     /**
      * @brief   Constructs a new Book object. (it won't be created if the ISBN is not valid)
      *
@@ -56,6 +57,13 @@ public class Book implements Serializable {
         this.copies = copies;
         this.copiesLent = 0;
         this.timesLent = 0;
+    }
+
+    /**
+     * @brief Default constructor for utility purposes only.
+     */
+    public Book() {
+        
     }
 
     /**
@@ -290,7 +298,7 @@ public class Book implements Serializable {
 
     /**
      * @brief   Get a string containing only the searchable info of the book
-     * @details This includes title, authors, isbn, year, and copies. The string representation format is "title+authors+isbn+year+copies".
+     * @details This includes title, authors, isbn, year, and copies. The string representation format is title␜authors␜isbn␜year␜copies.
      *
      * @return  A string containing the searchable info of the book
      */
