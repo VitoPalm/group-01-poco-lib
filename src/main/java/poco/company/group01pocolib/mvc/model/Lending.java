@@ -2,6 +2,7 @@
  * @file Lending.java
  * @brief This file contains the definition of the Lending class, which represents a Lending in the library.
  * @author Daniele Pepe
+ * @author Giovanni Orsini
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -150,6 +151,7 @@ public class Lending implements Serializable {
      * @todo    Test if the new lending is created successfully
      * @param   lendingStr The string representation of the Lending.
      * @return  A Lending object created from the string representation.
+     * @author  Giovanni Orsini
      */
     public static Lending fromDBString(String lendingStr, BookSet bookSet, UserSet userSet) {
         String[] fields = lendingStr.split(FIELD_SEPARATOR);
@@ -165,6 +167,7 @@ public class Lending implements Serializable {
      *          return date, and the id of the lending. The string representation format is TODO: implement.
      *
      * @return  A string containing the searchable info of the lending
+     * @author  Giovanni Orsini
      */
     public String toSearchableString() {
         return Integer.toString(getLendingId()) +
@@ -178,6 +181,7 @@ public class Lending implements Serializable {
      * @details The string representation format is "'ID'\u001C'BookISBN'\u001C'UserID'\u001C'ReturnDate'\u001C'isReturned'".
      * 
      * @return  A string representation of the Lending.
+     * @author  Giovanni Orsini
      */
     public String toDBString() {
         return getLendingId() + FIELD_SEPARATOR +
@@ -190,6 +194,7 @@ public class Lending implements Serializable {
     /**
      * @brief   Overrides toString method to provide a readable representation of the Lending.
      * @return  A string representation of the Lending.
+     * @author  Giovanni Orsini
      */
     @Override
     public String toString() {
