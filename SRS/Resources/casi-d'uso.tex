@@ -18,13 +18,13 @@
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario clicca il bottone per aggiungere un libro.
-            \item Il bibliotecario inserisce: titolo, autori, anno, ISBN e numero copie: il sistema valida l'ISBN (se implementato: \hyperref[NRR:03]{NRR-03}).
+            \item Il bibliotecario inserisce: titolo, autori, anno, \hyperref[subsubsec:terminology]{ISBN} e numero copie: il sistema valida l'\hyperref[subsubsec:terminology]{ISBN} (se implementato: \hyperref[NRR:03]{NRR-03}).
             \item Il bibliotecario clicca il bottone per salvare.
             \item Il sistema aggiunge il libro all'archivio.
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
-            \item[3a.] Il sistema mostra un messaggio di errore se l'ISBN non è valido (se implementato: \hyperref[NUR:02]{NUR-02}).
+            \item[3a.] Il sistema mostra un messaggio di errore se l'\hyperref[subsubsec:terminology]{ISBN} non è valido (se implementato: \hyperref[NUR:02]{NUR-02}).
         \end{itemize}
     \end{itemize}
 
@@ -45,7 +45,7 @@
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
         \begin{itemize}
-            \item[5a.] Il sistema mostra un messaggio di errore se l'ISBN non è valido (se implementato: \hyperref[NUR:02]{NUR-02}).
+            \item[5a.] Il sistema mostra un messaggio di errore se l'\hyperref[subsubsec:terminology]{ISBN} non è valido (se implementato: \hyperref[NUR:02]{NUR-02}).
         \end{itemize}
     \end{itemize}
 
@@ -84,7 +84,7 @@
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
         \begin{enumerate}
-            \item[2a.] Il bibliotecario può richiedere l'ordinamento per Autore, Anno, ISBN o Numero di Copie, premendo l'header della colonna corrispondente alla proprietà, e ri-premendo per invertire l'ordinamento rispetto alla stessa proprietà. (se implementato: \hyperref[FBR:04.1]{FBR-04.1})
+            \item[2a.] Il bibliotecario può richiedere l'ordinamento per Autore, Anno, \hyperref[subsubsec:terminology]{ISBN} o Numero di Copie, premendo l'header della colonna corrispondente alla proprietà, e ri-premendo per invertire l'ordinamento rispetto alla stessa proprietà. (se implementato: \hyperref[FBR:04.1]{FBR-04.1})
         \end{enumerate}
     \end{itemize}
 
@@ -97,7 +97,7 @@
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario clicca sulla barra di ricerca.
-            \item Il bibliotecario inserisce la stringa di ricerca (Titolo, Autore, Anno o ISBN).
+            \item Il bibliotecario inserisce la stringa di ricerca (Titolo, Autore, Anno o \hyperref[subsubsec:terminology]{ISBN}).
             \item Il sistema filtra l'archivio e mostra i libri che corrispondono ai criteri.
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:
@@ -309,8 +309,7 @@
         \item \textbf{Scenario Principale}:
         \begin{enumerate}
             \item Il bibliotecario clicca sulla barra di ricerca.
-            \item Il bibliotecario inserisce la stringa di ricerca (Data di restituzione, Titolo/Autori/ISBN
-del libro e/o Nome/Cognome/ID utente).
+            \item Il bibliotecario inserisce la stringa di ricerca (Data di restituzione, Titolo/Autori/\hyperref[subsubsec:terminology]{ISBN} del libro e/o Nome/Cognome/ID utente).
             \item Il sistema filtra l'archivio e mostra i prestiti che corrispondono ai criteri.
         \end{enumerate}
         \item \textbf{Scenari Alternativi}:

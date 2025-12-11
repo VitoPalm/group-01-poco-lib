@@ -11,7 +11,7 @@
         \hline
         \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
         \hline
-        FBR-01\label{FBR:01} & ALTA & BASSO & \textbf{Inserimento Libro:} Deve essere possibile inserire un nuovo libro nell'archivio indicando titolo, autori, anno di pubblicazione, codice ISBN e quante copie sono possedute dalla biblioteca \\
+        FBR-01\label{FBR:01} & ALTA & BASSO & \textbf{Inserimento Libro:} Deve essere possibile inserire un nuovo libro nell'archivio indicando titolo, autori, anno di pubblicazione, \hyperref[subsubsec:terminology]{codice ISBN (o equivalente, come OCLC)}  e quante copie sono possedute dalla biblioteca \\
         \hline
         FBR-02\label{FBR:02} & ALTA & BASSO & \textbf{Modifica Libro:} Deve essere possibile modificare i dati di un libro già presente nell'archivio \\
         \hline
@@ -21,7 +21,7 @@
         \hline
         FBR-04.1\label{FBR:04.1} & BASSA & BASSO & \textbf{Visita Ordinata (per Autore, Anno o Numero Copie):} La lista dei libri può essere visualizzata anche ordinata per autore, anno di pubblicazione o numero di copie disponibili \\
         \hline
-        FBR-05\label{FBR:05} & ALTA & ALTO & \textbf{Ricerca Libro (per Titolo, Autore, ISBN):} Deve essere possibile cercare un libro nell'archivio inserendo titolo, autore o codice ISBN \\
+        FBR-05\label{FBR:05} & ALTA & ALTO & \textbf{Ricerca Libro (per Titolo, Autore, \hyperref[subsubsec:terminology]{ISBN}):} Deve essere possibile cercare un libro nell'archivio inserendo titolo, autore o \hyperref[subsubsec:terminology]{codice ISBN} \\
         \hline
         FBR-05.1\label{FBR:05.1} & BASSA & ALTO & \textbf{Ricerca Libro (per Anno):} La ricerca può essere fatta anche per anno di pubblicazione \\
         \hline
@@ -76,7 +76,7 @@
             \hline
             FLR-05\label{FLR:05} & ALTA & ALTO & \textbf{Ricerca Prestito (per  Data di Restituzione):} Deve essere possibile cercare un prestito nell'archivio inserendo Data di restituzione \\
             \hline
-            FLR-05.1\label{FLR:05.1} & BASSA & ALTO & \textbf{Ricerca Prestito (per valori dei campi del Libro, Utente):} Deve essere possibile cercare un prestito nell'archivio inserendo Titolo/Autori/ISBN del libro e/o Nome/Cognome/ID utente \\
+            FLR-05.1\label{FLR:05.1} & BASSA & ALTO & \textbf{Ricerca Prestito (per valori dei campi del Libro, Utente):} Deve essere possibile cercare un prestito nell'archivio inserendo Titolo/Autori/\hyperref[subsubsec:terminology]{ISBN} del libro e/o Nome/Cognome/ID utente \\
             \hline
             FLR-06\label{FLR:06} & ALTA &  BASSO &\textbf{Registrazione Restituzione:} Deve essere possibile registrare la restituzione di un libro preso in prestito, aggiornando così lo stato del prestito e il numero di copie disponibili del libro \\
             \hline
@@ -93,7 +93,7 @@
             \hline
             \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
             \hline
-            FDR-01\label{FDR:01} & ALTA & BASSO & \textbf{Salvataggio Libri:} Bisogna salvare Titolo, Autori, Anno di pubblicazione, Codice ISBN e numero di copie disponibili di ogni libro\\
+            FDR-01\label{FDR:01} & ALTA & BASSO & \textbf{Salvataggio Libri:} Bisogna salvare Titolo, Autori, Anno di pubblicazione, \hyperref[subsubsec:terminology]{Codice ISBN} e numero di copie disponibili di ogni libro\\
             \hline
             FDR-02\label{FDR:02} & ALTA & BASSO & \textbf{Salvataggio Utenti:} Bisogna salvare Nome, Cognome, Matricola, Email istituzionale e Lista dei libri in prestito (con data di restituzione prevista) di ogni utente\\
             \hline
@@ -235,7 +235,7 @@
             \hline
             \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
             \hline
-            FIR-04\label{FIR:04} & ALTA & BASSO & \textbf{Visualizzazione Proprietà Libro:} Deve essere possibile visualizzare le proprietà di un libro in una finestra dedicata (titolo, autori, anno di pubblicazione, codice ISBN, numero di copie disponibili, numero di copie attualmente in prestito)\\
+            FIR-04\label{FIR:04} & ALTA & BASSO & \textbf{Visualizzazione Proprietà Libro:} Deve essere possibile visualizzare le proprietà di un libro in una finestra dedicata (titolo, autori, anno di pubblicazione, \hyperref[subsubsec:terminology]{codice ISBN}, numero di copie disponibili, numero di copie attualmente in prestito)\\
             \hline
         \end{tabularx}
         \label{tab:req-view-book}
@@ -254,7 +254,7 @@
             \hline
             \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
             \hline
-            FIR-05\label{FIR:05} & ALTA & BASSO & \textbf{Modifica Proprietà Libro:} Deve essere possibile modificare le proprietà di un libro in una finestra dedicata (titolo, autori, anno di pubblicazione, codice ISBN, numero di copie disponibili)\\
+            FIR-05\label{FIR:05} & ALTA & BASSO & \textbf{Modifica Proprietà Libro:} Deve essere possibile modificare le proprietà di un libro in una finestra dedicata (titolo, autori, anno di pubblicazione, \hyperref[subsubsec:terminology]{codice ISBN}, numero di copie disponibili)\\
             \hline
         \end{tabularx}
         \label{tab:req-edit-book}
@@ -326,11 +326,11 @@
             \hline
             \textbf{ID requisito} & \textbf{Priorità} & \textbf{Rischio} & \textbf{Descrizione} \\
             \hline
-            NRR-01\label{NRR:01} & MEDIA & BASSO & \textbf{Validità Email:} Quando si inserisce un nuovo utente, bisogna controllare che l'email istituzionale sia valida e univoca (non possono esserci più utenti con lo stesso valore)\\
+            NRR-01\label{NRR:01} & MEDIA & BASSO & \textbf{Validità Email:} Quando si inserisce un nuovo utente, bisogna controllare che l'email istituzionale sia valida\\
             \hline
-            NRR-02\label{NRR:02} & ALTA & BASSO & \textbf{Validità Matricola:} Quando si inserisce la matricola, bisogna controllare che sia univoca (non possono esserci più utenti con lo stesso valore) e che segua il formato prestabilito (ad esempio 10 cifre)\\
+            NRR-02\label{NRR:02} & ALTA & BASSO & \textbf{Univocità Matricola:} Quando si inserisce la matricola, bisogna controllare che sia univoca (non possono esserci più utenti con lo stesso valore)\\
             \hline
-            NRR-03\label{NRR:03} & MEDIA & BASSO & \textbf{Validità ISBN:} Quando si inserisce un nuovo libro, bisogna controllare che l'ISBN sia univoco e che segua il formato corretto (10 o 13 cifre con eventuali trattini) \\
+            NRR-03\label{NRR:03} & MEDIA & BASSO & \textbf{Univocità ISBN:} Quando si inserisce un nuovo libro, bisogna controllare che l'\hyperref[subsubsec:terminology]{codice ISBN} sia univoco\\
             \hline
             NRR-04\label{NRR:04} & BASSA & MEDIO & \textbf{Creazione Backup:} Prima di salvare ogni nuova modifica, il programma crea automaticamente una copia di backup (tenendo le ultime versioni)\\
             \hline

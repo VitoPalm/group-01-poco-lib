@@ -183,7 +183,7 @@ public class UserSet implements Serializable {
     /**
      * @brief   Adds a user to the collection. If the user already exists (based on ID), it is edited.
      * @param   user The user to add
-     * @warning *Overwriting an object cannot undone*: Be sure to call this method after checking if the object {@link poco.company.group01pocolib.mvc.model.User.isStored isStored()} when only wishing to add a new User to the UserSet
+     * @warning **Overwriting an object cannot undone**: Be sure to call this method after checking if the object {@link poco.company.group01pocolib.mvc.model.UserSet.isStored isStored()} when only wishing to add a new User to the UserSet
 
      */
     public void addOrEditUser(User user){
