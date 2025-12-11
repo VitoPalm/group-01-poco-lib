@@ -63,7 +63,7 @@ public class BookPropController {
      */
     @FXML
     private void initialize() {
-        // TODO: implement initialization logic
+        
     }
 
     /**

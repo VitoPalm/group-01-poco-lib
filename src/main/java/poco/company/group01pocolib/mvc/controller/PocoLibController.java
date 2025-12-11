@@ -10,10 +10,6 @@ import poco.company.group01pocolib.mvc.model.UserSet;
 import java.time.LocalDate;
 
 public class PocoLibController {
-    private BookSet bookSet;
-    private UserSet userSet;
-    private LocalDate currentDate;
-
     @FXML private TabPane mainTabPane;
     @FXML private Tab bookTab;
     @FXML private Tab userTab;
@@ -22,6 +18,11 @@ public class PocoLibController {
     @FXML private BookTabController bookTabController;
     @FXML private UserTabController userTabController;
     @FXML private LendingTabController lendingTabController;
+
+    private BookSet bookSet;
+    private UserSet userSet;
+    private LendingSet lendingSet;
+
 
     private Stage primaryStage;
     private Tab selectedTab;
@@ -32,7 +33,8 @@ public class PocoLibController {
      */
     @FXML
     private void initialize() {
-        // TODO: implement initialization logic
+        selectedTab = lendingTab;
+        switchToTab(selectedTab);
     }
 
     /**
@@ -49,23 +51,26 @@ public class PocoLibController {
      */
     public void switchToTab(Tab tab) {
         mainTabPane.getSelectionModel().select(tab);
+        selectedTab = tab;
     }
 
     /**
      * @brief   Loads data into the application.
      *
-     * @param   bookSet The set of books.
-     * @param   userSet The set of users.
-     * @param   lendingSet The set of lendings.
+     * @param   bookSet     The set of books.
+     * @param   userSet     The set of users.
+     * @param   lendingSet  The set of lendings.
      */
     public void loadData(BookSet bookSet, UserSet userSet, LendingSet lendingSet) {
-        // TODO: implement data loading logic
+        this.bookSet = bookSet;
+        this.userSet = userSet;
+        this.lendingSet = lendingSet;
     }
 
     /**
      * @brief   Refreshes data in all tabs.
      */
     public void refreshTabData() {
-        // TODO: implement data refreshing logic
+
     }
 }

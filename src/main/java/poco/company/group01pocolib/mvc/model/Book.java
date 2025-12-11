@@ -60,6 +60,10 @@ public class Book implements Serializable {
         this.timesLent = 0;
     }
 
+    public Book(String identifier) {
+        this.isbn = identifier;
+    }
+
     /**
      * @brief Default constructor for utility purposes only.
      */
