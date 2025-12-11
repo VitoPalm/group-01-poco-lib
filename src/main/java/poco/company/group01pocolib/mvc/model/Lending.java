@@ -39,7 +39,7 @@ public class Lending implements Serializable {
         this.book = book;
         this.user = user;
         this.returnDate = returnDate;
-        this.lendingId = lendingCounter++;
+        this.lendingId = ++lendingCounter;
         this.returned = false;
     }
 
@@ -131,13 +131,26 @@ public class Lending implements Serializable {
     }
 
     /**
-     * @brief   Creates a Lending object from its string representation.
-     * @details The string representation format is TODO: implement.
+     * @brief   Overrides `equals` method to compare Lending objects based on their lending ID.
+     * @param   obj The object to compare with.
+     * @return  true if the Lending objects are equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Lending other = (Lending) obj;
+        return lendingId == other.lendingId;
+    }
+
+    /**
+     * @brief   Creates a Lending object from its string representation, used for DB reads.
+     * @details The string representation format is "'ID'\u001C'Name'\u001C'Surname'\u001C'Email'\u001C'BorrowedBooksCount'\u001C'BorrowedBooksEverCount'".
      *
      * @param   lendingStr The string representation of the Lending.
      * @return  A Lending object created from the string representation.
      */
-    public static Lending fromString(String lendingStr) {
+    public static Lending fromDBString(String lendingStr) {
         // TODO: Implement
         return null;
     }
@@ -158,8 +171,7 @@ public class Lending implements Serializable {
      * @brief   Returns a string representation of the Lending.
      * @return  A string representation of the Lending.
      */
-    @Override
-    public String toString() {
+    public String toDBString() {
         // TODO: Implement
         return "";
     }
