@@ -1,0 +1,52 @@
+\doxysection{poco.\+company.\+group01pocolib.\+db.\+Hash Class Reference}
+\hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash}{}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash}\index{poco.company.group01pocolib.db.Hash@{poco.company.group01pocolib.db.Hash}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static String \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash_a3d91988bf6b95cbe70cfb9f22484e9dc}{get\+File\+Hash}} (Path path)
+\item 
+static boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash_aabc4ee2893e5c2b8aaaf3b275971ea22}{compare\+File\+Hashes}} (Path p1, Path p2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple class containing two static methods, one to hash a file, and another to compare two files by their hashes. 
+
+\label{doc-func-members}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash_aabc4ee2893e5c2b8aaaf3b275971ea22}\index{poco.company.group01pocolib.db.Hash@{poco.company.group01pocolib.db.Hash}!compareFileHashes@{compareFileHashes}}
+\index{compareFileHashes@{compareFileHashes}!poco.company.group01pocolib.db.Hash@{poco.company.group01pocolib.db.Hash}}
+\doxysubsubsection{\texorpdfstring{compareFileHashes()}{compareFileHashes()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash_aabc4ee2893e5c2b8aaaf3b275971ea22} 
+boolean poco.\+company.\+group01pocolib.\+db.\+Hash.\+compare\+File\+Hashes (\begin{DoxyParamCaption}\item[{Path}]{p1}{, }\item[{Path}]{p2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This method takes 2 files as input (through their paths) and calculates the hashes for both of them. Then, it returns the result of the comparison 
+\begin{DoxyParams}{Parameters}
+{\em p1} & Path to the first file \\
+\hline
+{\em p2} & Path to the second file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the hashes correspond, {\ttfamily false} if they don\textquotesingle{}t 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash_a3d91988bf6b95cbe70cfb9f22484e9dc}\index{poco.company.group01pocolib.db.Hash@{poco.company.group01pocolib.db.Hash}!getFileHash@{getFileHash}}
+\index{getFileHash@{getFileHash}!poco.company.group01pocolib.db.Hash@{poco.company.group01pocolib.db.Hash}}
+\doxysubsubsection{\texorpdfstring{getFileHash()}{getFileHash()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash_a3d91988bf6b95cbe70cfb9f22484e9dc} 
+String poco.\+company.\+group01pocolib.\+db.\+Hash.\+get\+File\+Hash (\begin{DoxyParamCaption}\item[{Path}]{path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This method takes a {\ttfamily path} as input, and calculates a hash for the corresponding file using SHA-\/256. 
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to the file we intend to hash \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String containing the hash of the input file, calculated using SHA-\/256 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/poco/company/group01pocolib/db/Hash.\+java\end{DoxyCompactItemize}

@@ -1,0 +1,232 @@
+\doxysection{poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Book\+Prop\+Controller Class Reference}
+\hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController}{}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController}\index{poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_abfda3e8b385c5f32e77d7bf0b67de7a2}{set\+Dialog\+Stage}} (Stage dialog\+Stage)
+\begin{DoxyCompactList}\small\item\em Sets the dialog stage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_aefb8b628f1fb19c62e2e10ac9d91faca}{set\+Dependencies}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} main\+Controller, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}} book\+Set)
+\begin{DoxyCompactList}\small\item\em Sets the dependencies for this controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a604cd947974811d832ec4fde07d330f0}{set\+Book}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book}} book)
+\begin{DoxyCompactList}\small\item\em Sets the book to be edited/viewed in the dialog. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ac58f4733a6882101a7b9c9a685d17868}{is\+Save\+Clicked}} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the save button was clicked. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ae1df4abef6e182d2ef135e570481cc9a}{update\+View}} ()
+\begin{DoxyCompactList}\small\item\em Updates the view with the current book details. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a86b52f6e5e63a48cdd393d1208e50413}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a86b52f6e5e63a48cdd393d1208e50413} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Initializes the controller class allowing real time ISBN verification. This method is automatically called after the fxml file has been loaded. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a113b601d8de22f3f2fa59060a8370b11}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a113b601d8de22f3f2fa59060a8370b11} 
+void {\bfseries handle\+Edit} ()
+\begin{DoxyCompactList}\small\item\em Handles the edit button click event. It opens the book edit dialog and refreshes afterward. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a02134cefdd64ea8e74cba2d14d0c69a0}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a02134cefdd64ea8e74cba2d14d0c69a0} 
+void {\bfseries handle\+Delete} ()
+\begin{DoxyCompactList}\small\item\em Handles the delete button click event. It deletes the book after confirmation. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a96b5b978944ead711c4ae77af566dbed}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a96b5b978944ead711c4ae77af566dbed} 
+void {\bfseries handle\+Lend} ()
+\begin{DoxyCompactList}\small\item\em Handles the lend button click event. It switches to the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User} tab if no user was selected, if user was selected, it opens the dialog for a new lending (allowing the user to set the return date). \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_af734cd23abc28babcb420bf234264e6c}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_af734cd23abc28babcb420bf234264e6c} 
+void {\bfseries handle\+View\+History} ()
+\begin{DoxyCompactList}\small\item\em Handles the lent to hyperlink click event. It switches to the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User} tab and selects the user who has currently borrowed the book. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a86de3f80bdbc3a9da27837caa7f12665}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a86de3f80bdbc3a9da27837caa7f12665} 
+void {\bfseries handle\+Decrement} ()
+\begin{DoxyCompactList}\small\item\em Handles the decrement button click event. It simply decreases the number in the \textquotesingle{}copies\+Field\textquotesingle{} by 1. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a26d942a78350a7214f9040233964bdca}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a26d942a78350a7214f9040233964bdca} 
+void {\bfseries handle\+Increment} ()
+\begin{DoxyCompactList}\small\item\em Handles the increment button click event. It simply increases the number in the \textquotesingle{}copies\+Field\textquotesingle{} by 1. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a381864eab74da19c715d29d1de3f6258}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a381864eab74da19c715d29d1de3f6258} 
+void {\bfseries handle\+Save} ()
+\begin{DoxyCompactList}\small\item\em Handles the save button click event. It validates the input fields and saves the book details if valid. Then, it closes the dialog. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ad7f6db1451d11b75a0dc482dd9069126}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ad7f6db1451d11b75a0dc482dd9069126} 
+void {\bfseries handle\+Cancel} ()
+\begin{DoxyCompactList}\small\item\em Handles the cancel button click event. It simply closes the dialog without saving any changes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ae44fb7522b31513f4f6a70084477bb66}{get\+Copies\+As\+Integer}} ()
+\begin{DoxyCompactList}\small\item\em Converts the copies to an Integer. If the conversion fails, it returns -\/1. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6c27575a6202574ccbc5aa3b13c3a090}{validate\+Input}} ()
+\begin{DoxyCompactList}\small\item\em Validates the input fields in the dialog. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_af0c4773bee99a98a581c148abb181b31}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_af0c4773bee99a98a581c148abb181b31} 
+VBox {\bfseries view\+Box}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a9f4a39863b47a96db02aa6ca9d043c5e}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a9f4a39863b47a96db02aa6ca9d043c5e} 
+Label {\bfseries isbn\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ad30a81518ce7179b6f4c848cc3f387da}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ad30a81518ce7179b6f4c848cc3f387da} 
+Label {\bfseries title\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a2d5a0f9b0e3c7e6492611e2200b5dbe7}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a2d5a0f9b0e3c7e6492611e2200b5dbe7} 
+Label {\bfseries authors\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6228a349472b828e09dc42677e39f6c8}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6228a349472b828e09dc42677e39f6c8} 
+Label {\bfseries year\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a8cc3a4eb460f0fee1843562a7d8c18d5}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a8cc3a4eb460f0fee1843562a7d8c18d5} 
+Label {\bfseries copies\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_afa18bf6a5e8d4e898d99d111ca5b0a91}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_afa18bf6a5e8d4e898d99d111ca5b0a91} 
+Hyperlink {\bfseries lent\+To\+Link}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a94cde7770af97ff746940d59068bc0de}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a94cde7770af97ff746940d59068bc0de} 
+Button {\bfseries delete\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6a7763428094882709f0d95985ae25f2}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6a7763428094882709f0d95985ae25f2} 
+Button {\bfseries lend\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a5b6d0de3cc047c8e296a8049768d0cf0}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a5b6d0de3cc047c8e296a8049768d0cf0} 
+VBox {\bfseries edit\+Box}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a48c3c12a47e04c66ba30dbb2c1e4629a}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a48c3c12a47e04c66ba30dbb2c1e4629a} 
+Text\+Field {\bfseries isbn\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6eec229afe6c917c6d2a6be29ea388e4}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6eec229afe6c917c6d2a6be29ea388e4} 
+Text\+Field {\bfseries title\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_abd993e903664c7bc32520172849c5dd7}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_abd993e903664c7bc32520172849c5dd7} 
+Text\+Field {\bfseries authors\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_abba3a727e65be9e6bd8056829f587bcb}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_abba3a727e65be9e6bd8056829f587bcb} 
+Text\+Field {\bfseries year\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a345761e96d571f7d04cde9f275a766da}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a345761e96d571f7d04cde9f275a766da} 
+Button {\bfseries minus\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_aee7666d4728108e70d628493630e02ca}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_aee7666d4728108e70d628493630e02ca} 
+Text\+Field {\bfseries copies\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a4b337ceb7ee7b2e6fe95c1f18f8fa274}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a4b337ceb7ee7b2e6fe95c1f18f8fa274} 
+Button {\bfseries plus\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6f413f9bf59d04e3f402628274694518}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6f413f9bf59d04e3f402628274694518} 
+Label {\bfseries error\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_accab863813caa614ae73b4ae81b5c539}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_accab863813caa614ae73b4ae81b5c539} 
+Button {\bfseries save\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a8c3fdb2033b45d27a82e82b2af8c3843}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a8c3fdb2033b45d27a82e82b2af8c3843} 
+Stage {\bfseries dialog\+Stage}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ab350bd6cdd649b6fa84cfaedd2d1b216}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ab350bd6cdd649b6fa84cfaedd2d1b216} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book}} {\bfseries book}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ae7680ef7e4d6ff8da6c83420b18a42d4}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ae7680ef7e4d6ff8da6c83420b18a42d4} 
+boolean {\bfseries save\+Clicked} = false
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_af085539506aff903971c62490b08d1a1}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_af085539506aff903971c62490b08d1a1} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}} {\bfseries book\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ab4cec5981ce260adb04a21316ede855e}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ab4cec5981ce260adb04a21316ede855e} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} {\bfseries main\+Controller}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ae44fb7522b31513f4f6a70084477bb66}\index{poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}!getCopiesAsInteger@{getCopiesAsInteger}}
+\index{getCopiesAsInteger@{getCopiesAsInteger}!poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}}
+\doxysubsubsection{\texorpdfstring{getCopiesAsInteger()}{getCopiesAsInteger()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ae44fb7522b31513f4f6a70084477bb66} 
+int poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Book\+Prop\+Controller.\+get\+Copies\+As\+Integer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Converts the copies to an Integer. If the conversion fails, it returns -\/1. 
+
+\begin{DoxyReturn}{Returns}
+The number of copies as an Integer, or -\/1 if conversion fails 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ac58f4733a6882101a7b9c9a685d17868}\index{poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}!isSaveClicked@{isSaveClicked}}
+\index{isSaveClicked@{isSaveClicked}!poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}}
+\doxysubsubsection{\texorpdfstring{isSaveClicked()}{isSaveClicked()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ac58f4733a6882101a7b9c9a685d17868} 
+boolean poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Book\+Prop\+Controller.\+is\+Save\+Clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns whether the save button was clicked. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the save button was clicked, {\ttfamily false} otherwise 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a604cd947974811d832ec4fde07d330f0}\index{poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}!setBook@{setBook}}
+\index{setBook@{setBook}!poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}}
+\doxysubsubsection{\texorpdfstring{setBook()}{setBook()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a604cd947974811d832ec4fde07d330f0} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Book\+Prop\+Controller.\+set\+Book (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book}}}]{book}{}\end{DoxyParamCaption})}
+
+
+
+Sets the book to be edited/viewed in the dialog. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em book} & The book to set \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_aefb8b628f1fb19c62e2e10ac9d91faca}\index{poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}!setDependencies@{setDependencies}}
+\index{setDependencies@{setDependencies}!poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}}
+\doxysubsubsection{\texorpdfstring{setDependencies()}{setDependencies()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_aefb8b628f1fb19c62e2e10ac9d91faca} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Book\+Prop\+Controller.\+set\+Dependencies (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}}}]{main\+Controller}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}}}]{book\+Set}{}\end{DoxyParamCaption})}
+
+
+
+Sets the dependencies for this controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em main\+Controller} & The main \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller} \\
+\hline
+{\em book\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set} containing the books \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_abfda3e8b385c5f32e77d7bf0b67de7a2}\index{poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}!setDialogStage@{setDialogStage}}
+\index{setDialogStage@{setDialogStage}!poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}}
+\doxysubsubsection{\texorpdfstring{setDialogStage()}{setDialogStage()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_abfda3e8b385c5f32e77d7bf0b67de7a2} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Book\+Prop\+Controller.\+set\+Dialog\+Stage (\begin{DoxyParamCaption}\item[{Stage}]{dialog\+Stage}{}\end{DoxyParamCaption})}
+
+
+
+Sets the dialog stage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dialog\+Stage} & The stage to set \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ae1df4abef6e182d2ef135e570481cc9a}\index{poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}!updateView@{updateView}}
+\index{updateView@{updateView}!poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_ae1df4abef6e182d2ef135e570481cc9a} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Book\+Prop\+Controller.\+update\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the view with the current book details. 
+
+This method is needed to refresh the dialog when the book details are changed by editing it. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6c27575a6202574ccbc5aa3b13c3a090}\index{poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}!validateInput@{validateInput}}
+\index{validateInput@{validateInput}!poco.company.group01pocolib.mvc.controller.BookPropController@{poco.company.group01pocolib.mvc.controller.BookPropController}}
+\doxysubsubsection{\texorpdfstring{validateInput()}{validateInput()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController_a6c27575a6202574ccbc5aa3b13c3a090} 
+boolean poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Book\+Prop\+Controller.\+validate\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Validates the input fields in the dialog. 
+
+This method validates all input fields and displays error messages if any field is empty or not valid.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if all fields are valid, {\ttfamily false} otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/poco/company/group01pocolib/mvc/controller/Book\+Prop\+Controller.\+java\end{DoxyCompactItemize}

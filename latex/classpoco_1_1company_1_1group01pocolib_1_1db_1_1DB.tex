@@ -1,0 +1,361 @@
+\doxysection{poco.\+company.\+group01pocolib.\+db.\+DB Class Reference}
+\hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+
+
+Allows creation and simple handling of a database (UTF-\/8 encoded file).  
+
+
+Inheritance diagram for poco.\+company.\+group01pocolib.\+db.\+DB\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a06069b669b6cdbd9039ff2a3bc1316bb}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a06069b669b6cdbd9039ff2a3bc1316bb} 
+{\bfseries DB} (Path DBPath)
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ae99639307281395c34e3793b4e0580b4}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ae99639307281395c34e3793b4e0580b4} 
+{\bfseries DB} (String DBPath)
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aa93c095e81711a7511be66cd4a160d95}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aa93c095e81711a7511be66cd4a160d95} 
+String {\bfseries get\+DBPath} ()
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a82bb67629c10f4f68b4ae85c35042d19}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a82bb67629c10f4f68b4ae85c35042d19} 
+void {\bfseries set\+DBPath} (String DBPath)
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a0863aa7ca9e95fefb93facd276e8956f}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a0863aa7ca9e95fefb93facd276e8956f} 
+Path {\bfseries get\+DBPath\+As\+Path} ()
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_af91dcd7e8c8fb86b1e254a140f1f6863}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_af91dcd7e8c8fb86b1e254a140f1f6863} 
+void {\bfseries set\+DBPath} (Path DBPath)
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_adea24927f4009323dab6221d27d8c814}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_adea24927f4009323dab6221d27d8c814} 
+String {\bfseries get\+DBFile\+Hash} ()
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aee2eecdca665a1a451442f62f4c217e1}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aee2eecdca665a1a451442f62f4c217e1} 
+void {\bfseries update\+DBFile\+Hash} ()
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a0b0a0c04245f02a169bcd7a1809b25a8}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a0b0a0c04245f02a169bcd7a1809b25a8} 
+String {\bfseries update\+And\+Get\+DBFile\+Hash} ()
+\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ab1f4016df321fe69059f8ce4a9c28659}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clears the entire \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file and the internal cache. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a8a7bad99ddb966cc380f5138bc39999b}{build\+Cache}} ()
+\begin{DoxyCompactList}\small\item\em Builds the cache of lines from the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aa97aca0ea71ea0fe4034b52ccc0f9f60}{read\+Nth\+Line}} (int N)
+\begin{DoxyCompactList}\small\item\em Reads the N-\/th line from the cached \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aac9a5dd8bcb76edd6eccb951b6cd7331}{write\+Nth\+Line\+WShift}} (int N, String new\+Line)
+\begin{DoxyCompactList}\small\item\em Writes a new line at the N-\/th position in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}, shifting existing lines down. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_af14947b64340cc8af9b40ac85b69445f}{write\+Nth\+Line\+Replace}} (int N, String new\+Line)
+\begin{DoxyCompactList}\small\item\em Writes a new line at the N-\/th position in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}, replacing the existing line. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a1f84d6a097b09312775eb613dae550de}{remove\+Nth\+Line}} (int N)
+\begin{DoxyCompactList}\small\item\em Removes the N-\/th line from \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ac43cd32758679668c187af4083045e08}{find\+First\+Instance\+Of\+Pattern}} (Pattern pattern)
+\begin{DoxyCompactList}\small\item\em Finds the first instance of a regex pattern in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_abc431ac44126ca9463ff694b64d6f08c}{read\+First\+Line\+Containing\+Pattern}} (Pattern pattern)
+\begin{DoxyCompactList}\small\item\em Reads the first line containing a regex pattern from \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a32726d17a3963aac50b40fe656e2e537}{substitute\+First\+Line\+Containing\+Pattern}} (Pattern pattern, String new\+Line)
+\begin{DoxyCompactList}\small\item\em Substitutes the first instance of a regex pattern in the database file with a new line. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a9c9ca600709a39cab5a8fe30c494b0f3}{delete\+First\+Line\+Containing\+Pattern}} (Pattern pattern)
+\begin{DoxyCompactList}\small\item\em Deletes the first line containing a regex pattern found in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a1b0afb8e8aa96d0cda9f5e954e74376c}{append\+Line}} (String new\+Line)
+\begin{DoxyCompactList}\small\item\em Appends a new line at the end of \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a9fb15fbff0bf6da263db1a0668983145}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a9fb15fbff0bf6da263db1a0668983145} 
+String {\bfseries to\+String} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a2a4f7e55425e5d8f3f7a74bdb0f7d75b}{update\+DBFrom\+Cache}} ()
+\begin{DoxyCompactList}\small\item\em Updates the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file from cache. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aa05dc1bca6d400fd56c7fc4b495bde49}{write\+Nth\+Line}} (int N, String new\+Line, boolean shift)
+\begin{DoxyCompactList}\small\item\em Helper method to write a line at the N-\/th position with configurable behavior. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a924a49c582f8b5d466f9ad8f3ac7e984}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a924a49c582f8b5d466f9ad8f3ac7e984} 
+String {\bfseries DBPath}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_af539fe0225c2213ecd39afba3c70a8c4}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_af539fe0225c2213ecd39afba3c70a8c4} 
+final Array\+List$<$ String $>$ {\bfseries cache}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a09632fb9af47e0b91bd82585198861a0}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a09632fb9af47e0b91bd82585198861a0} 
+String {\bfseries DBFile\+Hash}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a6412741b808ab7bff6979a5e4a736263}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a6412741b808ab7bff6979a5e4a736263} 
+static final long {\bfseries serial\+Version\+UID} = 1L
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ae7036161d239fcc23433a08ee207a752}\label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ae7036161d239fcc23433a08ee207a752} 
+static final int {\bfseries INITIAL\+\_\+\+CACHE\+\_\+\+CAPACITY} = 45000
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Allows creation and simple handling of a database (UTF-\/8 encoded file). 
+
+This class is based on the assumption that the entries on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} are separated on different lines, but makes no further assumptions on how fields for a given entry are defined or separated. It allows reading, writing, and removing specific lines from a database file, it also includes a few methods to edit, remove and return lines based on regex patterns. ~\newline
+~\newline
+ The class preloads the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} lines into an internal cache for faster access. The original file is always modified when writing or removing lines, and the cache is rebuilt accordingly. The class is built with the idea of never having an edit on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file without updating the cache, so the two are always in sync. ~\newline
+~\newline
+ The reason for an additional data support for the application (which already obtains data permanence between sessions through serialization of objects) is reliability and, most importantly, the ability to support future changes to the base data models. The serialized objects are not human-\/readable, and any change to the data models would make it not possible to retrieve previously saved data. ~\newline
+~\newline
+ The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} class, being reliant on a simple text file, allows easy "{}legacy support"{} by any future versions of the application, as well as easy manual editing of the data if needed. (and, if needed, importing and exporting data from and to other machines through these simple text files). 
+
+\label{doc-func-members}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a1b0afb8e8aa96d0cda9f5e954e74376c}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!appendLine@{appendLine}}
+\index{appendLine@{appendLine}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{appendLine()}{appendLine()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a1b0afb8e8aa96d0cda9f5e954e74376c} 
+boolean poco.\+company.\+group01pocolib.\+db.\+DB.\+append\+Line (\begin{DoxyParamCaption}\item[{String}]{new\+Line}{}\end{DoxyParamCaption})}
+
+
+
+Appends a new line at the end of \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Line} & The new line to be appended. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the line was successfully appended, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a8a7bad99ddb966cc380f5138bc39999b}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!buildCache@{buildCache}}
+\index{buildCache@{buildCache}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{buildCache()}{buildCache()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a8a7bad99ddb966cc380f5138bc39999b} 
+boolean poco.\+company.\+group01pocolib.\+db.\+DB.\+build\+Cache (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Builds the cache of lines from the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file. 
+
+This method reads all lines from the database file and stores them in an internal cache for faster access. It clears any existing cached lines before rebuilding the cache.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the cache was successfully built, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ab1f4016df321fe69059f8ce4a9c28659}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!clear@{clear}}
+\index{clear@{clear}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ab1f4016df321fe69059f8ce4a9c28659} 
+void poco.\+company.\+group01pocolib.\+db.\+DB.\+clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clears the entire \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file and the internal cache. 
+
+This method removes all entries from the database file and clears the internal cache of lines. Use with caution as this operation is irreversible. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a9c9ca600709a39cab5a8fe30c494b0f3}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!deleteFirstLineContainingPattern@{deleteFirstLineContainingPattern}}
+\index{deleteFirstLineContainingPattern@{deleteFirstLineContainingPattern}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{deleteFirstLineContainingPattern()}{deleteFirstLineContainingPattern()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a9c9ca600709a39cab5a8fe30c494b0f3} 
+String poco.\+company.\+group01pocolib.\+db.\+DB.\+delete\+First\+Line\+Containing\+Pattern (\begin{DoxyParamCaption}\item[{Pattern}]{pattern}{}\end{DoxyParamCaption})}
+
+
+
+Deletes the first line containing a regex pattern found in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. 
+
+This method searches for the first line in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} that matches the specified regex pattern and removes it. It updates both the database file and the internal cache accordingly. It returns the removed line if it was found and deleted, or {\ttfamily null} otherwise.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pattern} & The regex pattern to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The removed line, or {\ttfamily null} if no deletion was made. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ac43cd32758679668c187af4083045e08}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!findFirstInstanceOfPattern@{findFirstInstanceOfPattern}}
+\index{findFirstInstanceOfPattern@{findFirstInstanceOfPattern}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{findFirstInstanceOfPattern()}{findFirstInstanceOfPattern()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_ac43cd32758679668c187af4083045e08} 
+int poco.\+company.\+group01pocolib.\+db.\+DB.\+find\+First\+Instance\+Of\+Pattern (\begin{DoxyParamCaption}\item[{Pattern}]{pattern}{}\end{DoxyParamCaption})}
+
+
+
+Finds the first instance of a regex pattern in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. 
+
+This method searches through the cached lines of \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} to find the first occurrence of a specified regex pattern. It returns the index of the line where the pattern is first found. If the pattern is not found, it returns {\ttfamily -\/1}. If the cache is empty, it re-\/builds the cache before searching.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pattern} & Regex pattern to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Index of line where pattern is first found, {\ttfamily -\/1} if not found. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_abc431ac44126ca9463ff694b64d6f08c}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!readFirstLineContainingPattern@{readFirstLineContainingPattern}}
+\index{readFirstLineContainingPattern@{readFirstLineContainingPattern}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{readFirstLineContainingPattern()}{readFirstLineContainingPattern()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_abc431ac44126ca9463ff694b64d6f08c} 
+String poco.\+company.\+group01pocolib.\+db.\+DB.\+read\+First\+Line\+Containing\+Pattern (\begin{DoxyParamCaption}\item[{Pattern}]{pattern}{}\end{DoxyParamCaption})}
+
+
+
+Reads the first line containing a regex pattern from \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. 
+
+This method searches through the cached lines of \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} to find the first occurrence of a specified regex pattern. It returns the content of the line where the pattern is first found. If the pattern is not found, it returns {\ttfamily null}. If the cache is empty, it re-\/builds the cache before searching.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pattern} & Regex pattern to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first line containing the pattern, or {\ttfamily null} if not found. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aa97aca0ea71ea0fe4034b52ccc0f9f60}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!readNthLine@{readNthLine}}
+\index{readNthLine@{readNthLine}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{readNthLine()}{readNthLine()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aa97aca0ea71ea0fe4034b52ccc0f9f60} 
+String poco.\+company.\+group01pocolib.\+db.\+DB.\+read\+Nth\+Line (\begin{DoxyParamCaption}\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+
+
+Reads the N-\/th line from the cached \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. 
+
+This method retrieves the N-\/th line from the cached lines of \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. In case the cache is empty, it re-\/builds the cache and then gets the line.
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Index of line to read (0-\/based). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Content of N-\/th line, or {\ttfamily null} if line does not exist. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a1f84d6a097b09312775eb613dae550de}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!removeNthLine@{removeNthLine}}
+\index{removeNthLine@{removeNthLine}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{removeNthLine()}{removeNthLine()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a1f84d6a097b09312775eb613dae550de} 
+String poco.\+company.\+group01pocolib.\+db.\+DB.\+remove\+Nth\+Line (\begin{DoxyParamCaption}\item[{int}]{N}{}\end{DoxyParamCaption})}
+
+
+
+Removes the N-\/th line from \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}. 
+
+This method removes the N-\/th line from the database file and updates the internal cache accordingly. It returns the removed string, or {\ttfamily null} if the line did not exist. (The updated cache is used to rebuild the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file, overwriting its previous content completely).
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Index of line to remove (0-\/based). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String removed, or {\ttfamily null} if the line did not exist. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a32726d17a3963aac50b40fe656e2e537}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!substituteFirstLineContainingPattern@{substituteFirstLineContainingPattern}}
+\index{substituteFirstLineContainingPattern@{substituteFirstLineContainingPattern}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{substituteFirstLineContainingPattern()}{substituteFirstLineContainingPattern()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a32726d17a3963aac50b40fe656e2e537} 
+boolean poco.\+company.\+group01pocolib.\+db.\+DB.\+substitute\+First\+Line\+Containing\+Pattern (\begin{DoxyParamCaption}\item[{Pattern}]{pattern}{, }\item[{String}]{new\+Line}{}\end{DoxyParamCaption})}
+
+
+
+Substitutes the first instance of a regex pattern in the database file with a new line. 
+
+This method searches for the first line in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} that matches the specified regex pattern and replaces it with the provided new line. It updates both the database file and the internal cache accordingly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pattern} & The regex pattern to search for. \\
+\hline
+{\em new\+Line} & The new line to replace the found line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if a substitution was made, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a2a4f7e55425e5d8f3f7a74bdb0f7d75b}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!updateDBFromCache@{updateDBFromCache}}
+\index{updateDBFromCache@{updateDBFromCache}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{updateDBFromCache()}{updateDBFromCache()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_a2a4f7e55425e5d8f3f7a74bdb0f7d75b} 
+boolean poco.\+company.\+group01pocolib.\+db.\+DB.\+update\+DBFrom\+Cache (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file from cache. 
+
+This method completely overwrites the database file using the lines saved in cache. Use with caution.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file was successfully updated, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aa05dc1bca6d400fd56c7fc4b495bde49}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!writeNthLine@{writeNthLine}}
+\index{writeNthLine@{writeNthLine}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{writeNthLine()}{writeNthLine()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aa05dc1bca6d400fd56c7fc4b495bde49} 
+boolean poco.\+company.\+group01pocolib.\+db.\+DB.\+write\+Nth\+Line (\begin{DoxyParamCaption}\item[{int}]{N}{, }\item[{String}]{new\+Line}{, }\item[{boolean}]{shift}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Helper method to write a line at the N-\/th position with configurable behavior. 
+
+This method writes a new line at the N-\/th position in the database file. Depending on the {\ttfamily shift} parameter, it either shifts existing lines down or replaces the existing line at that position. It also updates the internal cache. (The updated cache is used to rebuild the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB} file, overwriting its previous content completely).
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Index of line to write (0-\/based). \\
+\hline
+{\em new\+Line} & The new line to be added at index N. \\
+\hline
+{\em shift} & If {\ttfamily true}, shifts existing lines down; if {\ttfamily false}, replaces the existing line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the line was successfully written, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_af14947b64340cc8af9b40ac85b69445f}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!writeNthLineReplace@{writeNthLineReplace}}
+\index{writeNthLineReplace@{writeNthLineReplace}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{writeNthLineReplace()}{writeNthLineReplace()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_af14947b64340cc8af9b40ac85b69445f} 
+boolean poco.\+company.\+group01pocolib.\+db.\+DB.\+write\+Nth\+Line\+Replace (\begin{DoxyParamCaption}\item[{int}]{N}{, }\item[{String}]{new\+Line}{}\end{DoxyParamCaption})}
+
+
+
+Writes a new line at the N-\/th position in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}, replacing the existing line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Index of line to write (0-\/based). \\
+\hline
+{\em new\+Line} & The new line to be added at index N. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the line was successfully written, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aac9a5dd8bcb76edd6eccb951b6cd7331}\index{poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}!writeNthLineWShift@{writeNthLineWShift}}
+\index{writeNthLineWShift@{writeNthLineWShift}!poco.company.group01pocolib.db.DB@{poco.company.group01pocolib.db.DB}}
+\doxysubsubsection{\texorpdfstring{writeNthLineWShift()}{writeNthLineWShift()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB_aac9a5dd8bcb76edd6eccb951b6cd7331} 
+boolean poco.\+company.\+group01pocolib.\+db.\+DB.\+write\+Nth\+Line\+WShift (\begin{DoxyParamCaption}\item[{int}]{N}{, }\item[{String}]{new\+Line}{}\end{DoxyParamCaption})}
+
+
+
+Writes a new line at the N-\/th position in \doxylink{classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB}{DB}, shifting existing lines down. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Index of line to write (0-\/based). \\
+\hline
+{\em new\+Line} & The new line to be added at index N. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the line was successfully written, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/poco/company/group01pocolib/db/DB.\+java\end{DoxyCompactItemize}

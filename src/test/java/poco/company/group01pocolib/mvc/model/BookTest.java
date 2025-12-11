@@ -5,6 +5,11 @@
  */
 package poco.company.group01pocolib.mvc.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -18,7 +23,18 @@ public class BookTest {
      */
     @Test
     public void testBookCreationValid() {
-        // TODO: implementation
+        List<String> authors = new ArrayList<>();
+        authors.add("City Council");
+        authors.add("Pennsylvania State University");
+        Book b = new Book("General Plan for Phoenix, 1985-2000", authors, "316830724", 1985, 1);
+
+        assertEquals(b.getTitle(), "General Plan for Phoenix, 1985-2000");
+        assertEquals(b.getAuthorsString(), "City Council, Pennsylvania State University");
+        assertEquals(b.getIsbn(), "316830724");
+        assertEquals(b.getYear(), 1985);
+        assertEquals(b.getCopies(), 1);
+        assertEquals(b.getCopiesLent(), 0);
+        assertEquals(b.getTimesLent(), 0);
     }
 
     /**

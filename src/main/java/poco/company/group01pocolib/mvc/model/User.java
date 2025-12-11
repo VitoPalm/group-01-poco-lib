@@ -38,7 +38,7 @@ public class User implements Serializable {
     /**
      * @brief   Constructs a new `User` object
      *
-     * @pre     `id` and email fields should be valid
+     * @pre     Email field should be valid
      * @post    A new user is created
      *
      * @param   id      User's unique ID (Alphanumeric string between 5 and 16 characters)

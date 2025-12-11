@@ -1,0 +1,199 @@
+\doxysection{poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Prop\+Controller Class Reference}
+\hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController}{}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController}\index{poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a01569e1fc119055164c0a7a18d1fc5af}{set\+Dialog\+Stage}} (Stage dialog\+Stage)
+\begin{DoxyCompactList}\small\item\em Sets the dialog stage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ac777d8b3407eae2187246cade7e03d45}{set\+Dependencies}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} main\+Controller, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}} user\+Set)
+\begin{DoxyCompactList}\small\item\em Sets the dependencies for this controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a15cc644d425b11ee71de51a6eb52b1db}{set\+User}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}} user)
+\begin{DoxyCompactList}\small\item\em Sets the user to be edited/viewed in the dialog. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a02bc7138cf15d9ada951a1d345dfc2e1}{is\+Save\+Clicked}} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the save button was clicked. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ac95bc758e3fa20d3307eb11868a91006}{update\+View}} ()
+\begin{DoxyCompactList}\small\item\em Updates the view with the current user details. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ae44c8663dad27e2d246658564469d449}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ae44c8663dad27e2d246658564469d449} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Initializes the controller class allowing real time id and email verification. This method is automatically called after the fxml file has been loaded. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_aaafeb1ac79897c1b7724ee9fce0df18c}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_aaafeb1ac79897c1b7724ee9fce0df18c} 
+void {\bfseries handle\+Edit} ()
+\begin{DoxyCompactList}\small\item\em Handles the edit button click event. It opens the user edit dialog and refreshes afterward. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ab8413b3a3e24ebab802f4b77015ab05b}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ab8413b3a3e24ebab802f4b77015ab05b} 
+void {\bfseries handle\+Delete} ()
+\begin{DoxyCompactList}\small\item\em Handles the delete button click event. It deletes the user after confirmation. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a9bc92bae2c7221ae11faedd4fee0b7a9}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a9bc92bae2c7221ae11faedd4fee0b7a9} 
+void {\bfseries handle\+Lend\+To} ()
+\begin{DoxyCompactList}\small\item\em Handles the lend button click event. It switches to the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book} tab if no book was selected, if book was selected, it opens the dialog for a new lending (allowing the user to set the return date). \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_adc261a6827b389bfa8589e3500372b63}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_adc261a6827b389bfa8589e3500372b63} 
+void {\bfseries handle\+View\+History} ()
+\begin{DoxyCompactList}\small\item\em Handles the lent hyperlink click event. It switches to the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book} tab and selects the books currently borrowed by the user. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a42958d742b2731a635e9aeddbf919ddf}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a42958d742b2731a635e9aeddbf919ddf} 
+void {\bfseries handle\+Save} ()
+\begin{DoxyCompactList}\small\item\em Handles the save button click event. It validates the input fields and saves the user details if valid. Then, it closes the dialog. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a54b970ed667ae4c9b96c9dfad180b1a5}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a54b970ed667ae4c9b96c9dfad180b1a5} 
+void {\bfseries handle\+Cancel} ()
+\begin{DoxyCompactList}\small\item\em Handles the cancel button click event. It simply closes the dialog without saving any changes. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_acd3831dbcdcc61968c5f6875278b32ce}{validate\+Input}} ()
+\begin{DoxyCompactList}\small\item\em Validates the input fields in the dialog. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a0a4baa4ed95ef33d4feaf5a41c470d7b}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a0a4baa4ed95ef33d4feaf5a41c470d7b} 
+VBox {\bfseries view\+Box}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a744af7cef33ed5d4852219f9b800226e}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a744af7cef33ed5d4852219f9b800226e} 
+Label {\bfseries id\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a80e4ca073700bf5a89f83cd2af33224f}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a80e4ca073700bf5a89f83cd2af33224f} 
+Label {\bfseries name\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_aaa1f037711949a2699d61e7323d66569}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_aaa1f037711949a2699d61e7323d66569} 
+Label {\bfseries surname\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_afa50cc3383bead091323735dae3784d1}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_afa50cc3383bead091323735dae3784d1} 
+Label {\bfseries email\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a0d7cccfb0767c1948af4be343a45bf69}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a0d7cccfb0767c1948af4be343a45bf69} 
+Hyperlink {\bfseries borrowed\+Link}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a80595697a8013013b1d87d0b695b1158}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a80595697a8013013b1d87d0b695b1158} 
+Button {\bfseries delete\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ae0649ffd734ba48c191d6606bfa84d27}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ae0649ffd734ba48c191d6606bfa84d27} 
+Button {\bfseries lend\+To\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a4101a1e719392825eb65090b5cf3de73}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a4101a1e719392825eb65090b5cf3de73} 
+VBox {\bfseries edit\+Box}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a59b99aabca08b9a5a467c40d34495111}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a59b99aabca08b9a5a467c40d34495111} 
+Text\+Field {\bfseries id\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ad5fbe8c365f6312ec2cb423785bb1f5f}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ad5fbe8c365f6312ec2cb423785bb1f5f} 
+Text\+Field {\bfseries name\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a98d81fdf7c24b6a46124e4b09395e637}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a98d81fdf7c24b6a46124e4b09395e637} 
+Text\+Field {\bfseries surname\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ae1db4bff8168752df7075d2aee7de3f1}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ae1db4bff8168752df7075d2aee7de3f1} 
+Text\+Field {\bfseries email\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_abb6681c9d0ed45eb8565cf5c3702826e}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_abb6681c9d0ed45eb8565cf5c3702826e} 
+Label {\bfseries error\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_aef92712f7b53ac8200fc0dfc7f8bb5c9}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_aef92712f7b53ac8200fc0dfc7f8bb5c9} 
+Button {\bfseries save\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_adc885ecb5e5c35c69783fc29d95ce897}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_adc885ecb5e5c35c69783fc29d95ce897} 
+Stage {\bfseries dialog\+Stage}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ad053a183e7c0bfcbaf7cddb1c42bd15b}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ad053a183e7c0bfcbaf7cddb1c42bd15b} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}} {\bfseries user}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_af4e515ff6dbbcd1b709a77cea02cda44}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_af4e515ff6dbbcd1b709a77cea02cda44} 
+boolean {\bfseries save\+Clicked} = false
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a1440de2310b7c2403c21144af6dc9cc0}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a1440de2310b7c2403c21144af6dc9cc0} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}} {\bfseries user\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a79313587720681190bed7c32820a4f8f}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a79313587720681190bed7c32820a4f8f} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} {\bfseries main\+Controller}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a02bc7138cf15d9ada951a1d345dfc2e1}\index{poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}!isSaveClicked@{isSaveClicked}}
+\index{isSaveClicked@{isSaveClicked}!poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}}
+\doxysubsubsection{\texorpdfstring{isSaveClicked()}{isSaveClicked()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a02bc7138cf15d9ada951a1d345dfc2e1} 
+boolean poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Prop\+Controller.\+is\+Save\+Clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns whether the save button was clicked. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the save button was clicked, {\ttfamily false} otherwise 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ac777d8b3407eae2187246cade7e03d45}\index{poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}!setDependencies@{setDependencies}}
+\index{setDependencies@{setDependencies}!poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}}
+\doxysubsubsection{\texorpdfstring{setDependencies()}{setDependencies()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ac777d8b3407eae2187246cade7e03d45} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Prop\+Controller.\+set\+Dependencies (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}}}]{main\+Controller}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}}}]{user\+Set}{}\end{DoxyParamCaption})}
+
+
+
+Sets the dependencies for this controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em main\+Controller} & The main \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller} \\
+\hline
+{\em user\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set} containing the users \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a01569e1fc119055164c0a7a18d1fc5af}\index{poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}!setDialogStage@{setDialogStage}}
+\index{setDialogStage@{setDialogStage}!poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}}
+\doxysubsubsection{\texorpdfstring{setDialogStage()}{setDialogStage()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a01569e1fc119055164c0a7a18d1fc5af} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Prop\+Controller.\+set\+Dialog\+Stage (\begin{DoxyParamCaption}\item[{Stage}]{dialog\+Stage}{}\end{DoxyParamCaption})}
+
+
+
+Sets the dialog stage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dialog\+Stage} & The stage to set \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a15cc644d425b11ee71de51a6eb52b1db}\index{poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}!setUser@{setUser}}
+\index{setUser@{setUser}!poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}}
+\doxysubsubsection{\texorpdfstring{setUser()}{setUser()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_a15cc644d425b11ee71de51a6eb52b1db} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Prop\+Controller.\+set\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}}}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Sets the user to be edited/viewed in the dialog. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & The user to set \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ac95bc758e3fa20d3307eb11868a91006}\index{poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}!updateView@{updateView}}
+\index{updateView@{updateView}!poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_ac95bc758e3fa20d3307eb11868a91006} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Prop\+Controller.\+update\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the view with the current user details. 
+
+This method is needed to refresh the dialog when the user details are changed by editing it. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_acd3831dbcdcc61968c5f6875278b32ce}\index{poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}!validateInput@{validateInput}}
+\index{validateInput@{validateInput}!poco.company.group01pocolib.mvc.controller.UserPropController@{poco.company.group01pocolib.mvc.controller.UserPropController}}
+\doxysubsubsection{\texorpdfstring{validateInput()}{validateInput()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserPropController_acd3831dbcdcc61968c5f6875278b32ce} 
+boolean poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Prop\+Controller.\+validate\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Validates the input fields in the dialog. 
+
+This method validates all input fields and displays error messages if any field is empty or not valid.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if all fields are valid, {\ttfamily false} otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/poco/company/group01pocolib/mvc/controller/User\+Prop\+Controller.\+java\end{DoxyCompactItemize}

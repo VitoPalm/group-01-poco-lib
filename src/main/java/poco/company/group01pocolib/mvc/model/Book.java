@@ -3,6 +3,7 @@
  * @brief This file contains the definition of the Book class, which represents a Book in the library.
  * @author Daniele Pepe
  * @author Francesco Marino
+ * @author Giovanni Orsini
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -36,20 +37,20 @@ public class Book implements Serializable {
 
 
     /**
-     * @brief   Constructs a new Book object. (it won't be created if the ISBN is not valid)
+     * @brief   Constructs a new Book object.
      *
      * @param   title   The title of the Book.
      * @param   authors The authors of the Book.
      * @param   isbn    The ISBN of the Book.
      * @param   year    The release year of the Book.
      * @param   copies  The number of copies available of the Book.
-     *
-     * @throws  BookDataNotValidException   if the provided ISBN is not valid.
+     * 
+     * @throws  BookDataNotValidException if the number of copies is negative.
      */
     public Book(String title, List<String> authors, String isbn, int year, int copies) {
-        if (!isValidIsbn(isbn)) {
-            throw new BookDataNotValidException("Invalid ISBN: " + isbn);
-        }
+        if (copies < 0)
+            throw new BookDataNotValidException("Cannot create book with fewer than 0 copies.");
+
         this.title = title;
         this.authors = new ArrayList<>(authors);
         this.isbn = isbn;
@@ -126,46 +127,9 @@ public class Book implements Serializable {
 
     /**
      * @brief   Sets the ISBN of the Book.
-     * @throws  BookDataNotValidException if the provided ISBN is not valid.
      */
     public void setIsbn(String isbn) {
-        if (!isValidIsbn(isbn)) {
-            throw new BookDataNotValidException("Invalid ISBN: " + isbn);
-        }
         this.isbn = isbn;
-    }
-
-    /**
-     * @brief   Validates the given ISBN.
-     *
-     * @param   isbn The ISBN to validate.
-     * @return  @c true if the ISBN is valid, @c false otherwise.
-     */
-    public static boolean isValidIsbn(String isbn) {
-        String cleanIsbn = isbn.replace("-", "");
-
-        //Check ISBN with 10-digit format 
-        if (cleanIsbn.length() == 10 && cleanIsbn.matches("[0-9]{10}")) {
-            int sum = 0;
-            //Logic to validate checksum of the ISBN
-            for (int i = 0; i < 10; i++) {
-                int digit = Character.getNumericValue(cleanIsbn.charAt(i));
-                sum += digit * (10 - i); 
-            }
-            return sum % 11 == 0;
-        }
-        
-        //Check ISBN with 13-digit format
-        if (cleanIsbn.length() == 13 && cleanIsbn.matches("[0-9]{13}")) {
-            int sum = 0;
-            for (int i = 0; i < 13; i++){
-                int digit = Character.getNumericValue(cleanIsbn.charAt(i));
-                sum += (i % 2 == 0) ? digit : digit * 3;
-            }
-            return sum % 10 == 0;
-        }
-        
-        return false;
     }
 
     /**
@@ -227,12 +191,12 @@ public class Book implements Serializable {
      * @brief   Sets the number of copies available of the Book.
      *
      * @param   copies The number of copies to set.
-     * @throws  IllegalArgumentException if the number of copies is negative.
+     * @throws  BookDataNotValidException if the number of copies is negative.
      */
     public void setCopies(int copies) {
-        if (copies < 0) {
-            throw new IllegalArgumentException("Number of copies cannot be negative.");
-        }
+        if (copies < 0)
+            throw new BookDataNotValidException("Cannot create book with fewer than 0 copies.");
+
         this.copies = copies;
     }
 

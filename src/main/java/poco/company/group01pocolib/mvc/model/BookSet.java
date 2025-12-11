@@ -2,6 +2,7 @@
  * @file BookSet.java
  * @brief This file contains the definition of BookSet class
  * @author Francesco Marino
+ * @author Giovanni Orsini
  */
 
 package poco.company.group01pocolib.mvc.model;
@@ -42,6 +43,8 @@ public class BookSet implements Serializable {
     private Index<Book> bookIndex;
     private DB bookDB;
 
+    private Book dummy;         ///< Used in {@link poco.company.group01pocolib.mvc.model.BookSet.isStored isStored()} as a dummy object for the `contains()` method of the Collection
+
     private String lastKnownDBHash;
     private String DBPath;
     private String serializationPath;
@@ -52,6 +55,10 @@ public class BookSet implements Serializable {
     public BookSet(){
         this.bookSet = new HashSet<>();
         this.bookIndex = new Index<>();
+
+        List<String> authors = new ArrayList<>();
+        authors.add("Doug Lowe");
+        this.dummy = new Book("Java All-in-one for Dummies", authors, "", 2023, 0);
     }
 
     /**
@@ -239,6 +246,7 @@ public class BookSet implements Serializable {
     /**
      * @brief   Adds a book to collection. If the book already exists (based on ISBN), it is edited.
      * @param   book The book object to add or edit.
+     * @warning *Overwriting an object cannot undone*: Be sure to call this method after checking if the object {@link poco.company.group01pocolib.mvc.model.Book.isStored isStored()} when only wishing to add a new Book to the BookSet
      */
     public void addOrEditBook(Book book){
         
@@ -255,7 +263,7 @@ public class BookSet implements Serializable {
     }
 
     /**
-     * @brief   Remove a book from the collection
+     * @brief   Removes a book from the collection
      * @param   isbn The ISBN of the book to remove
      */
     public void removeBook(String isbn){
@@ -283,6 +291,31 @@ public class BookSet implements Serializable {
             }
         }
         return null;
+    }
+
+    /**
+     * @brief   Checks whether a book is already registred in the Set
+     * @details The search is performed on the Collection used to store the BookSet. Two Books are {@link poco.company.group01pocolib.mvc.model.Book.equals equal} when they have the same unique identifier (`isbn`)
+     * 
+     * @param   book The book to search 
+     * @return  Returns `true` if a result is found for the book's unique identifier
+     * @author  Giovanni Orsini
+     */
+    public boolean isStored(Book book) {
+        return bookSet.contains(book);
+    }
+
+    /**
+     * @brief   Checks whether a book is already registred in the Set
+     * @details The search is performed on the Collection used to store the BookSet. Two Books are {@link poco.company.group01pocolib.mvc.model.Book.equals equal} when they have the same unique identifier (`isbn`)
+     * 
+     * @param   isbn The unique identifier of the book to search
+     * @return  Returns `true` if a result is found for the book's unique identifier
+     * @author  Giovanni Orsini
+     */
+    public boolean isStored(String isbn) {
+        dummy.setIsbn(isbn);
+        return bookSet.contains(dummy);
     }
 
     /**

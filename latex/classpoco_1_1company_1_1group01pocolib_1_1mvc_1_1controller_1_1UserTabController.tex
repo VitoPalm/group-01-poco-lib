@@ -1,0 +1,212 @@
+\doxysection{poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Tab\+Controller Class Reference}
+\hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController}{}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController}\index{poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a0e3654b54535357055c8470ade0e5c0a}{set\+Dependencies}} (Stage primary\+Stage, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} main\+Controller)
+\begin{DoxyCompactList}\small\item\em Sets the primary stage and main controller references. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a8c4b27c51480ccb160d27bb4710dcc8c}{set\+Data\+Sets}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}} book\+Set, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}} user\+Set, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set}} lending\+Set)
+\begin{DoxyCompactList}\small\item\em Sets the data sets for the controller. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a934dfc4356ee18bfe8214a8524f915f6}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a934dfc4356ee18bfe8214a8524f915f6} 
+void {\bfseries refresh\+Data} ()
+\begin{DoxyCompactList}\small\item\em Refreshes the data in the controller by fetching the lists from the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_adc6b21c983d65629e9a53f8ef25f7b1f}{set\+Selected\+Book}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book}} book)
+\begin{DoxyCompactList}\small\item\em Sets the selected book from another tab. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}} \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_affa6e68ad58484b88c3371f081bd022c}{get\+Selected\+User}} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently selected user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_ac3151a86d9c9d10d809d94a3c2cddc3b}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_ac3151a86d9c9d10d809d94a3c2cddc3b} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Initializes the controller class. This method is automatically called after fxml file has been loaded. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a0724a5324d63b47044d720dfd5e78f1a}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a0724a5324d63b47044d720dfd5e78f1a} 
+void {\bfseries load\+Data} ()
+\begin{DoxyCompactList}\small\item\em Loads data from the model into the controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_af07de9dd0761867f122ccff8898ee460}{initialize\+User\+Columns}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the user table columns. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_ae929d5158dbeaa8be41c091c69d839f5}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_ae929d5158dbeaa8be41c091c69d839f5} 
+void {\bfseries user\+Table\+Handler} ()
+\begin{DoxyCompactList}\small\item\em Allows handling of swaps of shown lists based on the search field and sorting. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a6aceaa448539b6d36f7a1a38ffe41af4}{handle\+User\+Add}} ()
+\begin{DoxyCompactList}\small\item\em Allows to add a new user when the "{}\+Add"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User} tab. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a67b95167572cd6301256bb5a73e253c5}{handle\+User\+View\+Edit}} ()
+\begin{DoxyCompactList}\small\item\em Allows to view or edit the selected user when the "{}\+View \& Edit"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User} tab. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_aff493419d6d3ae412a9bbbe2cf348f71}{handle\+User\+Lend}} ()
+\begin{DoxyCompactList}\small\item\em Allows to lend a book to the selected user when the "{}\+Lend To"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User} tab. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a1438e65bbde5157085d71bb4c942acf2}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a1438e65bbde5157085d71bb4c942acf2} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}} {\bfseries book\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_afc9b91948a5fec671c159fadcc9df821}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_afc9b91948a5fec671c159fadcc9df821} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}} {\bfseries user\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a817426619fa9001415fc22d0ed103a67}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a817426619fa9001415fc22d0ed103a67} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set}} {\bfseries lending\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_aab1d0e8bacbc9a92d78ec27e9c5b5104}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_aab1d0e8bacbc9a92d78ec27e9c5b5104} 
+Tab {\bfseries user\+Tab}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a27b1856465df991ad18a8314b1f6d07f}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a27b1856465df991ad18a8314b1f6d07f} 
+Text\+Field {\bfseries user\+Search\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a2000bc2163058f5c790731db227aad75}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a2000bc2163058f5c790731db227aad75} 
+Table\+View$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}} $>$ {\bfseries user\+Table}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_aee189494c1f5ea55a7f71745c7c4c176}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_aee189494c1f5ea55a7f71745c7c4c176} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}}, String $>$ {\bfseries user\+Id\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_aa37901f8a63905e76436808a96183aff}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_aa37901f8a63905e76436808a96183aff} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}}, String $>$ {\bfseries user\+Name\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a6efdf11e7cf13a7290a6af0ddc4c6253}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a6efdf11e7cf13a7290a6af0ddc4c6253} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}}, String $>$ {\bfseries user\+Surname\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a7b02a64c6e97c26f822eeebb7bf49e88}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a7b02a64c6e97c26f822eeebb7bf49e88} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}}, String $>$ {\bfseries user\+Email\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a7b14dab870b47d789ed822c298912f4d}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a7b14dab870b47d789ed822c298912f4d} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}}, Integer $>$ {\bfseries user\+Lent\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a3ee16fef7c568538686711dbf4821a80}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a3ee16fef7c568538686711dbf4821a80} 
+Button {\bfseries user\+Add\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_ae12d0cabdf57acae36f62aefb5960300}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_ae12d0cabdf57acae36f62aefb5960300} 
+Button {\bfseries user\+View\+Edit\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_adaeeeefb4b52a64eedd0496fd84e77f7}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_adaeeeefb4b52a64eedd0496fd84e77f7} 
+Button {\bfseries user\+Lend\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_ac71123acfa15585bac0b090a75b95968}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_ac71123acfa15585bac0b090a75b95968} 
+Observable\+List$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}} $>$ {\bfseries user\+Data} = FXCollections.\+observable\+Array\+List()
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a21b8285a2060e5f9f96c9966e9eded8a}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a21b8285a2060e5f9f96c9966e9eded8a} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}} {\bfseries selected\+User}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_acbff22330352246cb36609500f8326fb}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_acbff22330352246cb36609500f8326fb} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book}} {\bfseries selected\+Book}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a5994a43cb3a250d23f5e3918d10a47b2}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a5994a43cb3a250d23f5e3918d10a47b2} 
+Stage {\bfseries primary\+Stage}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_af71111e9e166b9449e9d0fedd2539c97}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_af71111e9e166b9449e9d0fedd2539c97} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} {\bfseries main\+Controller}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_affa6e68ad58484b88c3371f081bd022c}\index{poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}!getSelectedUser@{getSelectedUser}}
+\index{getSelectedUser@{getSelectedUser}!poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}}
+\doxysubsubsection{\texorpdfstring{getSelectedUser()}{getSelectedUser()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_affa6e68ad58484b88c3371f081bd022c} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}} poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Tab\+Controller.\+get\+Selected\+User (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Gets the currently selected user. 
+
+\begin{DoxyReturn}{Returns}
+The selected user, or null if none is selected. 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a6aceaa448539b6d36f7a1a38ffe41af4}\index{poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}!handleUserAdd@{handleUserAdd}}
+\index{handleUserAdd@{handleUserAdd}!poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}}
+\doxysubsubsection{\texorpdfstring{handleUserAdd()}{handleUserAdd()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a6aceaa448539b6d36f7a1a38ffe41af4} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Tab\+Controller.\+handle\+User\+Add (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Allows to add a new user when the "{}\+Add"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User} tab. 
+
+This method handles both the model and the orchestration of the popup dialog for adding a new user. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_aff493419d6d3ae412a9bbbe2cf348f71}\index{poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}!handleUserLend@{handleUserLend}}
+\index{handleUserLend@{handleUserLend}!poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}}
+\doxysubsubsection{\texorpdfstring{handleUserLend()}{handleUserLend()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_aff493419d6d3ae412a9bbbe2cf348f71} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Tab\+Controller.\+handle\+User\+Lend (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Allows to lend a book to the selected user when the "{}\+Lend To"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User} tab. 
+
+This method checks if a book was selected before selecting the user and pressing the button. If that is case, it moves to the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending} tab with the selected user and book pre-\/selected, only requiring the return date to be set. ~\newline
+~\newline
+ If no book was selected, it moves to the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book} tab to allow selection of a book to lend to the user. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a67b95167572cd6301256bb5a73e253c5}\index{poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}!handleUserViewEdit@{handleUserViewEdit}}
+\index{handleUserViewEdit@{handleUserViewEdit}!poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}}
+\doxysubsubsection{\texorpdfstring{handleUserViewEdit()}{handleUserViewEdit()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a67b95167572cd6301256bb5a73e253c5} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Tab\+Controller.\+handle\+User\+View\+Edit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Allows to view or edit the selected user when the "{}\+View \& Edit"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User} tab. 
+
+This method handles both the model and the orchestration of the popup dialog for viewing or editing a user. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_af07de9dd0761867f122ccff8898ee460}\index{poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}!initializeUserColumns@{initializeUserColumns}}
+\index{initializeUserColumns@{initializeUserColumns}!poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}}
+\doxysubsubsection{\texorpdfstring{initializeUserColumns()}{initializeUserColumns()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_af07de9dd0761867f122ccff8898ee460} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Tab\+Controller.\+initialize\+User\+Columns (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the user table columns. 
+
+This method sets up the cell value factories for each column in the user table, defining how data from the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User} objects will be displayed in each column. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a8c4b27c51480ccb160d27bb4710dcc8c}\index{poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}!setDataSets@{setDataSets}}
+\index{setDataSets@{setDataSets}!poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}}
+\doxysubsubsection{\texorpdfstring{setDataSets()}{setDataSets()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a8c4b27c51480ccb160d27bb4710dcc8c} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Tab\+Controller.\+set\+Data\+Sets (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}}}]{book\+Set}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}}}]{user\+Set}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set}}}]{lending\+Set}{}\end{DoxyParamCaption})}
+
+
+
+Sets the data sets for the controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em book\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set} to use. \\
+\hline
+{\em user\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set} to use. \\
+\hline
+{\em lending\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set} to use. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a0e3654b54535357055c8470ade0e5c0a}\index{poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}!setDependencies@{setDependencies}}
+\index{setDependencies@{setDependencies}!poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}}
+\doxysubsubsection{\texorpdfstring{setDependencies()}{setDependencies()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_a0e3654b54535357055c8470ade0e5c0a} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Tab\+Controller.\+set\+Dependencies (\begin{DoxyParamCaption}\item[{Stage}]{primary\+Stage}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}}}]{main\+Controller}{}\end{DoxyParamCaption})}
+
+
+
+Sets the primary stage and main controller references. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em primary\+Stage} & The primary stage to set. \\
+\hline
+{\em main\+Controller} & The main controller reference. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_adc6b21c983d65629e9a53f8ef25f7b1f}\index{poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}!setSelectedBook@{setSelectedBook}}
+\index{setSelectedBook@{setSelectedBook}!poco.company.group01pocolib.mvc.controller.UserTabController@{poco.company.group01pocolib.mvc.controller.UserTabController}}
+\doxysubsubsection{\texorpdfstring{setSelectedBook()}{setSelectedBook()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1UserTabController_adc6b21c983d65629e9a53f8ef25f7b1f} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+User\+Tab\+Controller.\+set\+Selected\+Book (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book}}}]{book}{}\end{DoxyParamCaption})}
+
+
+
+Sets the selected book from another tab. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em book} & The book to set as selected. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/poco/company/group01pocolib/mvc/controller/User\+Tab\+Controller.\+java\end{DoxyCompactItemize}

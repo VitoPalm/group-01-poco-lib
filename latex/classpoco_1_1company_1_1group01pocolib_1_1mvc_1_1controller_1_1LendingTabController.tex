@@ -1,0 +1,182 @@
+\doxysection{poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Tab\+Controller Class Reference}
+\hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController}{}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController}\index{poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_ac2ac920441e6896adfedbc3ebd97b3d8}{set\+Dependencies}} (Stage primary\+Stage, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} main\+Controller)
+\begin{DoxyCompactList}\small\item\em Sets the primary stage and main controller references. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a33d7f0ab4d9bec977e3db7542dbc7d9b}{set\+Data\+Sets}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}} book\+Set, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}} user\+Set, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set}} lending\+Set)
+\begin{DoxyCompactList}\small\item\em Sets the data sets for the controller. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a80ddd66b93a16eb48ea16a224c678fa4}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a80ddd66b93a16eb48ea16a224c678fa4} 
+void {\bfseries refresh\+Data} ()
+\begin{DoxyCompactList}\small\item\em Refreshes the data in the controller by fetching the lists from the model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a87926a955867cfd01cff8420725446a3}{initialize\+New\+Lending}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book}} book, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}} user)
+\begin{DoxyCompactList}\small\item\em Pre-\/selects a book and user for creating a new lending. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a15b8cd742bce77206c4540921b7ff29d}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a15b8cd742bce77206c4540921b7ff29d} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Initializes the controller class. This method is automatically called after fxml file has been loaded. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a76f677ddd8beed78253f116c6d4174bd}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a76f677ddd8beed78253f116c6d4174bd} 
+void {\bfseries load\+Data} ()
+\begin{DoxyCompactList}\small\item\em Loads data from the model into the controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_aa5d8f60be78d0755981351a4c41ea0d9}{initialize\+Lending\+Columns}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the lending table columns. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_acc82ef434fb941c385eeb108a7c70c65}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_acc82ef434fb941c385eeb108a7c70c65} 
+void {\bfseries lending\+Table\+Handler} ()
+\begin{DoxyCompactList}\small\item\em Allows handling of swaps of shown lists based on the search field and sorting. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a9bdb362e28ae358c141486465b77338a}{handle\+Lending\+Edit}} ()
+\begin{DoxyCompactList}\small\item\em Allows to view or edit the selected lending when the "{}\+View \& Edit"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending} tab. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a28807fe114487f0473350a4efd5d3f5b}{handle\+Mark\+As\+Returned}} ()
+\begin{DoxyCompactList}\small\item\em Marks the selected lending as returned when the "{}\+Mark as Returned"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending} tab. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a174875cb74492aa2afb5931d2c3efd96}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a174875cb74492aa2afb5931d2c3efd96} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}} {\bfseries book\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a16d50c8316c73098b93e22d13179220f}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a16d50c8316c73098b93e22d13179220f} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}} {\bfseries user\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a29deb17c45328aa94bf7fec8a002c0f9}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a29deb17c45328aa94bf7fec8a002c0f9} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set}} {\bfseries lending\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a3ee2e03ed1b0043660e646a6b2235184}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a3ee2e03ed1b0043660e646a6b2235184} 
+Tab {\bfseries lending\+Tab}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a79ecb7d12b27c247d4cd9bf2d08d24b4}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a79ecb7d12b27c247d4cd9bf2d08d24b4} 
+Text\+Field {\bfseries lending\+Search\+Field}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_afb872abdb3e208859fdee884d87ad286}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_afb872abdb3e208859fdee884d87ad286} 
+Table\+View$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}} $>$ {\bfseries lending\+Table}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a1aea870cb1d6286ca3387c739db181bb}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a1aea870cb1d6286ca3387c739db181bb} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}}, Integer $>$ {\bfseries lending\+Id\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a1643c1189e1256b728b8e3f467f2f5af}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a1643c1189e1256b728b8e3f467f2f5af} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}}, Local\+Date $>$ {\bfseries lending\+Return\+Date\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a530a210897a1e8b34f7ea7d0e5a609ec}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a530a210897a1e8b34f7ea7d0e5a609ec} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}}, String $>$ {\bfseries lending\+Isbn\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a73a2a0b0c91e4faaddd936ee6bc32467}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a73a2a0b0c91e4faaddd936ee6bc32467} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}}, String $>$ {\bfseries lending\+Title\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_ae0b510a3d24f0bdffb6bcc0487901695}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_ae0b510a3d24f0bdffb6bcc0487901695} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}}, String $>$ {\bfseries lending\+User\+Id\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a1f1df8c13d2b25fdefcf4df1d8e6aa10}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a1f1df8c13d2b25fdefcf4df1d8e6aa10} 
+Table\+Column$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}}, String $>$ {\bfseries lending\+User\+Column}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_ada773309e258bf6e00de77c55f585109}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_ada773309e258bf6e00de77c55f585109} 
+Button {\bfseries lending\+View\+Edit\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a333f42d5f97833d1f38c5585519ef036}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a333f42d5f97833d1f38c5585519ef036} 
+Button {\bfseries lending\+Returned\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a3ebdd682df7a7a38091873f1c9082bd5}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a3ebdd682df7a7a38091873f1c9082bd5} 
+Observable\+List$<$ \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}} $>$ {\bfseries lending\+Data} = FXCollections.\+observable\+Array\+List()
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_acb2fd69179dbf38a3e0dc636c92ee94e}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_acb2fd69179dbf38a3e0dc636c92ee94e} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}} {\bfseries selected\+Lending}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a6fecc8f770a2f5dcabfc63ea67de6c00}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a6fecc8f770a2f5dcabfc63ea67de6c00} 
+Stage {\bfseries primary\+Stage}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_ad152113ca120254b9db9e312da4d9da3}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_ad152113ca120254b9db9e312da4d9da3} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} {\bfseries main\+Controller}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a9bdb362e28ae358c141486465b77338a}\index{poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}!handleLendingEdit@{handleLendingEdit}}
+\index{handleLendingEdit@{handleLendingEdit}!poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}}
+\doxysubsubsection{\texorpdfstring{handleLendingEdit()}{handleLendingEdit()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a9bdb362e28ae358c141486465b77338a} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Tab\+Controller.\+handle\+Lending\+Edit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Allows to view or edit the selected lending when the "{}\+View \& Edit"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending} tab. 
+
+This method handles both the model and the orchestration of the popup dialog for viewing or editing a lending. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a28807fe114487f0473350a4efd5d3f5b}\index{poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}!handleMarkAsReturned@{handleMarkAsReturned}}
+\index{handleMarkAsReturned@{handleMarkAsReturned}!poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}}
+\doxysubsubsection{\texorpdfstring{handleMarkAsReturned()}{handleMarkAsReturned()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a28807fe114487f0473350a4efd5d3f5b} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Tab\+Controller.\+handle\+Mark\+As\+Returned (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Marks the selected lending as returned when the "{}\+Mark as Returned"{} button is clicked on the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending} tab. 
+
+This method updates the model to mark the selected lending as returned, and updates the book and user data accordingly. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_aa5d8f60be78d0755981351a4c41ea0d9}\index{poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}!initializeLendingColumns@{initializeLendingColumns}}
+\index{initializeLendingColumns@{initializeLendingColumns}!poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}}
+\doxysubsubsection{\texorpdfstring{initializeLendingColumns()}{initializeLendingColumns()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_aa5d8f60be78d0755981351a4c41ea0d9} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Tab\+Controller.\+initialize\+Lending\+Columns (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes the lending table columns. 
+
+This method sets up the cell value factories for each column in the lending table, defining how data from the \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending} objects will be displayed in each column. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a87926a955867cfd01cff8420725446a3}\index{poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}!initializeNewLending@{initializeNewLending}}
+\index{initializeNewLending@{initializeNewLending}!poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}}
+\doxysubsubsection{\texorpdfstring{initializeNewLending()}{initializeNewLending()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a87926a955867cfd01cff8420725446a3} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Tab\+Controller.\+initialize\+New\+Lending (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book}{Book}}}]{book}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User}{User}}}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Pre-\/selects a book and user for creating a new lending. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em book} & The book to lend. \\
+\hline
+{\em user} & The user borrowing the book. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a33d7f0ab4d9bec977e3db7542dbc7d9b}\index{poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}!setDataSets@{setDataSets}}
+\index{setDataSets@{setDataSets}!poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}}
+\doxysubsubsection{\texorpdfstring{setDataSets()}{setDataSets()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_a33d7f0ab4d9bec977e3db7542dbc7d9b} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Tab\+Controller.\+set\+Data\+Sets (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}}}]{book\+Set}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}}}]{user\+Set}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set}}}]{lending\+Set}{}\end{DoxyParamCaption})}
+
+
+
+Sets the data sets for the controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em book\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set} to use. \\
+\hline
+{\em user\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set} to use. \\
+\hline
+{\em lending\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set} to use. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_ac2ac920441e6896adfedbc3ebd97b3d8}\index{poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}!setDependencies@{setDependencies}}
+\index{setDependencies@{setDependencies}!poco.company.group01pocolib.mvc.controller.LendingTabController@{poco.company.group01pocolib.mvc.controller.LendingTabController}}
+\doxysubsubsection{\texorpdfstring{setDependencies()}{setDependencies()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController_ac2ac920441e6896adfedbc3ebd97b3d8} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Tab\+Controller.\+set\+Dependencies (\begin{DoxyParamCaption}\item[{Stage}]{primary\+Stage}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}}}]{main\+Controller}{}\end{DoxyParamCaption})}
+
+
+
+Sets the primary stage and main controller references. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em primary\+Stage} & The primary stage to set. \\
+\hline
+{\em main\+Controller} & The main controller reference. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/poco/company/group01pocolib/mvc/controller/Lending\+Tab\+Controller.\+java\end{DoxyCompactItemize}

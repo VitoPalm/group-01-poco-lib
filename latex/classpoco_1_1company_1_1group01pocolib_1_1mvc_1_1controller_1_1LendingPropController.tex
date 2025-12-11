@@ -1,0 +1,200 @@
+\doxysection{poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Prop\+Controller Class Reference}
+\hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController}{}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController}\index{poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_acdaafd0a32e4c05ee530047d77b0773a}{set\+Dialog\+Stage}} (Stage dialog\+Stage)
+\begin{DoxyCompactList}\small\item\em Sets the dialog stage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_af1001440cefd758a2588aacbb7b49ade}{set\+Dependencies}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set}} lending\+Set, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}} book\+Set, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}} user\+Set, \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} main\+Controller)
+\begin{DoxyCompactList}\small\item\em Sets the dependencies for this controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a6454c0ec38f6a192a3ea2a36c1c60699}{set\+Lending}} (\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}} lending)
+\begin{DoxyCompactList}\small\item\em Sets the lending to be edited/viewed in the dialog. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a6cce952f4ab03b5ef33950b565c420d7}{is\+Save\+Clicked}} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the save button was clicked. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_acb6e71c419bf4d0a53d7e97a990a6f77}{update\+View}} ()
+\begin{DoxyCompactList}\small\item\em Updates the view with the current lending details. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a32f298c995bf29f9a627ab628d066469}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a32f298c995bf29f9a627ab628d066469} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Initializes the controller class allowing real time id and email verification. This method is automatically called after the fxml file has been loaded. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_accfd3b756580f48af74b624448b9d289}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_accfd3b756580f48af74b624448b9d289} 
+void {\bfseries handle\+Edit} ()
+\begin{DoxyCompactList}\small\item\em Handles the edit button click event. It opens the lending edit dialog and refreshes afterward. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_aa3b535a3a8977e4aae018447b4857029}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_aa3b535a3a8977e4aae018447b4857029} 
+void {\bfseries handle\+Mark\+As\+Returned} ()
+\begin{DoxyCompactList}\small\item\em Handles the mark as returned button click event. It marks the lending as returned. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_af0085a3c2c65601c0c283f6b92a9dd1e}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_af0085a3c2c65601c0c283f6b92a9dd1e} 
+void {\bfseries handle\+Delete} ()
+\begin{DoxyCompactList}\small\item\em Handles the delete button click event. It deletes the lending after confirmation. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a653811ddc9cdef419278bc08baee9a81}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a653811ddc9cdef419278bc08baee9a81} 
+void {\bfseries handle\+Save} ()
+\begin{DoxyCompactList}\small\item\em Handles the save button click event. It validates the input fields and saves the lending details if valid, then, it closes the dialog. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_ab88d59511d15e5062fe41b88a404d893}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_ab88d59511d15e5062fe41b88a404d893} 
+void {\bfseries handle\+Cancel} ()
+\begin{DoxyCompactList}\small\item\em Handles the cancel button click event. It simply closes the dialog without saving any changes. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a710c43d0498d58cec95d203dcae2a3e3}{validate\+Input}} ()
+\begin{DoxyCompactList}\small\item\em Validates the input fields in the dialog. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a5ab9a444493793e485099101a6dade26}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a5ab9a444493793e485099101a6dade26} 
+void {\bfseries handle\+View\+Book} ()
+\begin{DoxyCompactList}\small\item\em Handles the view book link click event. It opens the book view dialog. \end{DoxyCompactList}\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a93608b7ca4faad4dd94396bce7d4773a}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a93608b7ca4faad4dd94396bce7d4773a} 
+void {\bfseries handle\+View\+User} ()
+\begin{DoxyCompactList}\small\item\em Handles the view user link click event. It opens the user view dialog. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_afa0b026c98a5b149f881558d9b5ad7a7}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_afa0b026c98a5b149f881558d9b5ad7a7} 
+VBox {\bfseries view\+Box}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a8865ff8a9222202f0490d94677c7942c}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a8865ff8a9222202f0490d94677c7942c} 
+Label {\bfseries lending\+Id\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a987ab21895ec61bffebcaf2c2b8b6e61}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a987ab21895ec61bffebcaf2c2b8b6e61} 
+Label {\bfseries return\+Date\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a23a87da5a5851b3b9ea9a236c4e173eb}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a23a87da5a5851b3b9ea9a236c4e173eb} 
+Hyperlink {\bfseries book\+Link}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_ad53339c96454475740d7c0d7dcd21d80}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_ad53339c96454475740d7c0d7dcd21d80} 
+Hyperlink {\bfseries user\+Link}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_aa90a2619ced2306571e330475f38dc31}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_aa90a2619ced2306571e330475f38dc31} 
+Button {\bfseries delete\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a39b61e735ddc388113800130f3ed20d5}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a39b61e735ddc388113800130f3ed20d5} 
+Button {\bfseries return\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a8d06a57555778cd0e356d8b8b1c45e48}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a8d06a57555778cd0e356d8b8b1c45e48} 
+VBox {\bfseries edit\+Box}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_abfd83eb1af4abb058be4c3a51937aac0}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_abfd83eb1af4abb058be4c3a51937aac0} 
+Date\+Picker {\bfseries return\+Date\+Picker}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a785735a55ed01943d7a41b0644e7be9a}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a785735a55ed01943d7a41b0644e7be9a} 
+Label {\bfseries error\+Label}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a43b341e6628b548435ffde8596da524b}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a43b341e6628b548435ffde8596da524b} 
+Button {\bfseries save\+Button}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a9e399c3b1c84a8aa0dc86667ead876f4}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a9e399c3b1c84a8aa0dc86667ead876f4} 
+Stage {\bfseries dialog\+Stage}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a10c133f9f2ff9e77002614b75b24acfe}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a10c133f9f2ff9e77002614b75b24acfe} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}} {\bfseries lending}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_af06bffeb59bd3685cf5b85d46f1e3ac5}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_af06bffeb59bd3685cf5b85d46f1e3ac5} 
+boolean {\bfseries save\+Clicked} = false
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a2bca79aaa7da3aa019a8167df8e37fc1}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a2bca79aaa7da3aa019a8167df8e37fc1} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set}} {\bfseries lending\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a36ea4bda05c401d5bcabdaed79711fcf}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a36ea4bda05c401d5bcabdaed79711fcf} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}} {\bfseries book\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a507c5b82bb8e455db97b2428cec96acd}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a507c5b82bb8e455db97b2428cec96acd} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}} {\bfseries user\+Set}
+\item 
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_add4966500a3a324bda4f8729d1d96078}\label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_add4966500a3a324bda4f8729d1d96078} 
+\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}} {\bfseries main\+Controller}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a6cce952f4ab03b5ef33950b565c420d7}\index{poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}!isSaveClicked@{isSaveClicked}}
+\index{isSaveClicked@{isSaveClicked}!poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}}
+\doxysubsubsection{\texorpdfstring{isSaveClicked()}{isSaveClicked()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a6cce952f4ab03b5ef33950b565c420d7} 
+boolean poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Prop\+Controller.\+is\+Save\+Clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns whether the save button was clicked. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the save button was clicked, {\ttfamily false} otherwise 
+\end{DoxyReturn}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_af1001440cefd758a2588aacbb7b49ade}\index{poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}!setDependencies@{setDependencies}}
+\index{setDependencies@{setDependencies}!poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}}
+\doxysubsubsection{\texorpdfstring{setDependencies()}{setDependencies()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_af1001440cefd758a2588aacbb7b49ade} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Prop\+Controller.\+set\+Dependencies (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set}}}]{lending\+Set}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set}}}]{book\+Set}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set}}}]{user\+Set}{, }\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller}}}]{main\+Controller}{}\end{DoxyParamCaption})}
+
+
+
+Sets the dependencies for this controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lending\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet}{Lending\+Set} containing the lendings \\
+\hline
+{\em book\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet}{Book\+Set} containing the books \\
+\hline
+{\em user\+Set} & The \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet}{User\+Set} containing the users \\
+\hline
+{\em main\+Controller} & The main \doxylink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController}{Poco\+Lib\+Controller} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_acdaafd0a32e4c05ee530047d77b0773a}\index{poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}!setDialogStage@{setDialogStage}}
+\index{setDialogStage@{setDialogStage}!poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}}
+\doxysubsubsection{\texorpdfstring{setDialogStage()}{setDialogStage()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_acdaafd0a32e4c05ee530047d77b0773a} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Prop\+Controller.\+set\+Dialog\+Stage (\begin{DoxyParamCaption}\item[{Stage}]{dialog\+Stage}{}\end{DoxyParamCaption})}
+
+
+
+Sets the dialog stage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dialog\+Stage} & The stage to set \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a6454c0ec38f6a192a3ea2a36c1c60699}\index{poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}!setLending@{setLending}}
+\index{setLending@{setLending}!poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}}
+\doxysubsubsection{\texorpdfstring{setLending()}{setLending()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a6454c0ec38f6a192a3ea2a36c1c60699} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Prop\+Controller.\+set\+Lending (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending}{Lending}}}]{lending}{}\end{DoxyParamCaption})}
+
+
+
+Sets the lending to be edited/viewed in the dialog. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lending} & The lending to set \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_acb6e71c419bf4d0a53d7e97a990a6f77}\index{poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}!updateView@{updateView}}
+\index{updateView@{updateView}!poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_acb6e71c419bf4d0a53d7e97a990a6f77} 
+void poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Prop\+Controller.\+update\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the view with the current lending details. 
+
+This method is needed to refresh the dialog when the lending details are changed by editing it. \Hypertarget{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a710c43d0498d58cec95d203dcae2a3e3}\index{poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}!validateInput@{validateInput}}
+\index{validateInput@{validateInput}!poco.company.group01pocolib.mvc.controller.LendingPropController@{poco.company.group01pocolib.mvc.controller.LendingPropController}}
+\doxysubsubsection{\texorpdfstring{validateInput()}{validateInput()}}
+{\footnotesize\ttfamily \label{classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController_a710c43d0498d58cec95d203dcae2a3e3} 
+boolean poco.\+company.\+group01pocolib.\+mvc.\+controller.\+Lending\+Prop\+Controller.\+validate\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Validates the input fields in the dialog. 
+
+This method validates all input fields and displays error messages if any field is empty or not valid.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if all fields are valid, {\ttfamily false} otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/poco/company/group01pocolib/mvc/controller/Lending\+Prop\+Controller.\+java\end{DoxyCompactItemize}

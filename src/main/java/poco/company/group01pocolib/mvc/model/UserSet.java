@@ -3,6 +3,7 @@
  * @brief This file contains the definition of the UserSet class, which represents a collection of userSet
  * @author Francesco Marino
  * @author Daniele Pepe
+ * @author Giovanni Orsini
  */
 
 package poco.company.group01pocolib.mvc.model;
@@ -37,6 +38,8 @@ public class UserSet implements Serializable {
     private Index<User> userIndex;
     private DB userDB;
 
+    private User dummy;         ///< This attribute is used in {@link poco.company.group01pocolib.mvc.model.UserSet.isStored isStored()} as a dummy object for the `contains()` method of the Collection 
+
     private String lastKnownDBHash;
     private String DBPath;
     private String serializationPath;
@@ -47,6 +50,8 @@ public class UserSet implements Serializable {
     public UserSet(){
         this.userSet = new HashSet<>();
         this.userIndex = new Index<>();
+
+        this.dummy = new User("", "Max", "Verstappen",  "v@l.id");
     }
 
     /**
@@ -178,6 +183,8 @@ public class UserSet implements Serializable {
     /**
      * @brief   Adds a user to the collection. If the user already exists (based on ID), it is edited.
      * @param   user The user to add
+     * @warning *Overwriting an object cannot undone*: Be sure to call this method after checking if the object {@link poco.company.group01pocolib.mvc.model.User.isStored isStored()} when only wishing to add a new User to the UserSet
+
      */
     public void addOrEditUser(User user){
         //TODO: Implement add user method
@@ -200,6 +207,32 @@ public class UserSet implements Serializable {
         //TODO: Implement get by id
         return null;
     }
+
+    /**
+     * @brief   Checks whether a user is already registred in the Set
+     * @details The search is performed on the Collection used to store the UserSet. Two users are {@link poco.company.group01pocolib.mvc.model.User.equals equal} when they have the same unique identifier (`id`)
+     * 
+     * @param   user The user to search 
+     * @return  Returns `true` if a result is found for the user's unique identifier
+     * @author  Giovanni Orsini
+     */
+    public boolean isStored(User user) {
+        return userSet.contains(user);
+    }
+
+    /**
+     * @brief   Checks whether a user is already registred in the Set
+     * @details The search is performed on the Collection used to store the UserSet. Two users are {@link poco.company.group01pocolib.mvc.model.Book.equals equal} when they have the same unique identifier (`id`)
+     * 
+     * @param   id The unique identifier of the user to search
+     * @return  Returns `true` if a result is found for the user's unique identifier
+     * @author  Giovanni Orsini
+     */
+    public boolean isStored(String id) {
+        dummy.setId(id);
+        return userSet.contains(dummy);
+    }
+
 
     /**
      * @brief   Perform search on the indexed users with ranking
