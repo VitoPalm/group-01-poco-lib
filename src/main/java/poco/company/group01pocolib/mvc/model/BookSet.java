@@ -246,7 +246,7 @@ public class BookSet implements Serializable {
     /**
      * @brief   Adds a book to collection. If the book already exists (based on ISBN), it is edited.
      * @param   book The book object to add or edit.
-     * @warning *Overwriting an object cannot undone*: Be sure to call this method after checking if the object {@link poco.company.group01pocolib.mvc.model.Book.isStored isStored()} when only wishing to add a new Book to the BookSet
+     * @warning **Overwriting an object cannot undone**: Be sure to call this method after checking if the object {@link poco.company.group01pocolib.mvc.model.BookSet.isStored isStored()} when only wishing to add a new Book to the BookSet
      */
     public void addOrEditBook(Book book){
         
