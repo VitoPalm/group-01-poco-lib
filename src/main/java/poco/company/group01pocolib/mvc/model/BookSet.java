@@ -43,7 +43,7 @@ public class BookSet implements Serializable {
     private Index<Book> bookIndex;
     private DB bookDB;
 
-    private Book dummy;         ///< Used in {@link poco.company.group01pocolib.mvc.model.BookSet.isStored isStored()} as a dummy object for the `contains()` method of the Collection
+    private Book dummy;         ///< Used in methods (such as {@link poco.company.group01pocolib.mvc.model.BookSet.isStored isStored()}) as a dummy object for the `contains()` method of the Collection
 
     private String lastKnownDBHash;
     private String DBPath;
@@ -267,12 +267,11 @@ public class BookSet implements Serializable {
      * @param   isbn The ISBN of the book to remove
      */
     public void removeBook(String isbn){
-        Book dummyBook = new Book();
-        dummyBook.setIsbn(isbn);
+        dummy.setIsbn(isbn);
         
         // Removes the book from the set and index
-        bookSet.remove(dummyBook);
-        bookIndex.remove(dummyBook);
+        bookSet.remove(dummy);
+        bookIndex.remove(dummy);
         
         // Syncs the changes to DB and serialized file
         syncOnWrite();
