@@ -264,7 +264,7 @@ public class Book implements Serializable {
 
     /**
      * @brief   Creates a Book object from its string representation (typically used for DB reads).
-     * @details The string representation format is Title␜Authors␜ISBN␜Year␜Copies.
+     * @details The string representation format is Title␜Authors␜ISBN␜Year␜Copies␜CopiesLent␜TimesLent.
      * 
      *
      * @param   bookStr The string representation of the Book.
@@ -280,6 +280,9 @@ public class Book implements Serializable {
             Integer.parseInt(fields[3]), 
             Integer.parseInt(fields[4])
         );
+
+        book.setCopiesLent(Integer.parseInt(fields[5]));
+        book.setTimesLent(Integer.parseInt(fields[6]));
     
         return book;
     }
@@ -299,7 +302,7 @@ public class Book implements Serializable {
 
     /**
      * @brief   Returns a string representation of the Book (typically used for DB writes).
-     * @details The string representation format is Title␜Authors␜ISBN␜Year␜Copies.
+     * @details The string representation format is Title␜Authors␜ISBN␜Year␜Copies␜CopiesLent␜TimesLent.
      *
      * @return  A string representation of the Book;
      */
@@ -309,7 +312,9 @@ public class Book implements Serializable {
                getAuthorsString() + FIELD_SEPARATOR +
                getIsbn() + FIELD_SEPARATOR +
                getYear() + FIELD_SEPARATOR +
-               getCopies();
+               getCopies() + FIELD_SEPARATOR +
+               getCopiesLent() + FIELD_SEPARATOR +
+               getTimesLent();
     }
 
     /**

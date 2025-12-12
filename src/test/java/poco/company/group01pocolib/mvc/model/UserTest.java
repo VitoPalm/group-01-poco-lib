@@ -77,7 +77,7 @@ public class UserTest {
     }
 
     @Test
-    public void testCanBorrw(){
+    public void testCanBorrow(){
         User user = new User("GHI11223", "Sebastian", "Vettel", "sebastian.vettel@fia.com");
         user.setBorrowedBooksCount(3);
         assertFalse(user.canBorrow());

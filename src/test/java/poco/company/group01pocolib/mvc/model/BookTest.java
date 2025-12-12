@@ -125,4 +125,62 @@ public class BookTest {
                 
         assertThrows(IllegalStateException.class, () -> b.removeCopy());
     }
+
+
+    /**
+     * @brief Tests the hashCode method to ensure proper hashCode functionality (includes equals)
+     */
+    @Test
+    public void testEqualsHashCode() {
+        Book b = new Book("General Plan for Phoenix, 1985-2000", "City Council", "316830724", 1985, 0);
+        Book b2 = new Book("Same book", "City Council", "316830724", 1985, 0);
+
+        assertEquals(b.hashCode(), b.hashCode());
+        assertEquals(b.hashCode(), b2.hashCode());
+        assertEquals(true, b.equals(b2));
+    }
+
+    /**
+     * @brief Tests the fromDBString method to ensure proper restoring from DB String capabilities.
+     */
+    @Test
+    public void testFromDBString() {
+        Book b = Book.fromDBString("General Plan for Phoenix, 1985-2000\u001CCity Council; Pennsylvania State University\u001C316830724\u001C1985\u001C1\u001C2\u001C3");
+
+        assertEquals("General Plan for Phoenix, 1985-2000", b.getTitle());
+        assertEquals("City Council; Pennsylvania State University", b.getAuthorsString());
+        assertEquals("316830724", b.getIsbn());
+        assertEquals(1985, b.getYear());
+        assertEquals(1, b.getCopies());
+        assertEquals(2, b.getCopiesLent());
+        assertEquals(3, b.getTimesLent());  
+    }
+
+    /**
+     * @brief Tests the toSearchableString method to ensure the creation of a coherent searchable string
+     */
+    @Test
+    public void testToSearchableString() {
+        Book b = new Book("General Plan for Phoenix, 1985-2000", "City Council", "316830724", 1985, 1);
+        
+        assertEquals("general plan for phoenix, 1985-2000city council31683072419851", b.toSearchableString());   
+    }
+
+    /**
+     * @brief Tests the fromDBString method to ensure proper restoring from DB String capabilities.
+     */
+    @Test
+    public void testToDBString() {
+        Book b = new Book("General Plan for Phoenix, 1985-2000", "City Council; Pennsylvania State University", "316830724", 1985, 1);
+        
+        b.setCopies(3);
+        b.setCopiesLent(4);
+        b.setTimesLent(12);
+
+        assertEquals("General Plan for Phoenix, 1985-2000\u001CCity Council; Pennsylvania State University\u001C316830724\u001C1985\u001C3\u001C4\u001C12", b.toDBString());
+    }
+
+
+
+    
 }
