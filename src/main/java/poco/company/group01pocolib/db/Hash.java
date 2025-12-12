@@ -3,12 +3,11 @@ package poco.company.group01pocolib.db;
 import java.io.*;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Base64;
 
 /**
  * @class   Hash
@@ -22,19 +21,25 @@ public class Hash {
      * @return  String containing the hash of the input file, calculated using SHA-256.
      */
     public static String getFileHash(Path path) {
-        Path filePath = Path.of("c:/temp/testOut.txt");
-        String checksum;
-
         try {
-            byte[] data = Files.readAllBytes(filePath);
-            byte[] hash = MessageDigest.getInstance("SHA-256").digest(data);
-            checksum = new BigInteger(1, hash).toString(16);
-        } catch (IOException | NoSuchAlgorithmException e) {
-            System.err.println(e.getMessage());
-            checksum = null;
-        }
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            FileInputStream fis = new FileInputStream(path.toFile());
+            byte[] byteArray = new byte[1024];
+            int bytesCount;
 
-        return checksum;
+            while ((bytesCount = fis.read(byteArray)) != -1) {
+                digest.update(byteArray, 0, bytesCount);
+            }
+
+            fis.close();
+
+            byte[] bytes = digest.digest();
+            return Base64.getEncoder().encodeToString(bytes);
+
+        } catch (NoSuchAlgorithmException | IOException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
     }
 
     /**
