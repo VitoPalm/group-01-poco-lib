@@ -36,6 +36,13 @@ public class User implements Serializable {
     private static final int MAX_BORROWED_BOOKS = 3;
 
     /**
+     * @brief   Default constructor for utility purposes
+     */
+    public User(){
+
+    }
+
+    /**
      * @brief   Constructs a new `User` object
      *
      * @pre     Email field should be valid

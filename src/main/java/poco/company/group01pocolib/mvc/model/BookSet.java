@@ -284,11 +284,7 @@ public class BookSet implements Serializable {
      * @return  The Book object if found, null otherwise
      */
     public Book getBook(String isbn){
-        for (Book book : bookSet) {
-            if (book.getIsbn().equals(isbn)) {
-                return book;
-            }
-        }
+        // TODO: Implement using a more efficient method than linear search
         return null;
     }
 
