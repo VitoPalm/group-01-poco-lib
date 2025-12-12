@@ -168,7 +168,7 @@ public class PocoLibController {
             switchToTab(bookTab);
         } else if (masterSelectedBook.get() != null && masterSelectedUser.get() != null) {
             switchToTab(lendingTab);
-            lendingTabController.handleNewLending();
+            //lendingTabController.handleNewLending();
         }
     }
 }

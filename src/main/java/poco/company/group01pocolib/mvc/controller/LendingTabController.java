@@ -85,7 +85,7 @@ public class LendingTabController {
     /**
      * @brief   Loads data from the model into the controller.
      */
-    private void loadData() {
+    void loadData() {
         // TODO: implement data loading logic
     }
 
