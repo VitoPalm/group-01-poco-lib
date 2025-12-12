@@ -85,11 +85,15 @@ public class BookTabController {
 
     /**
      * @brief   Loads data from the model into the controller.
+     * @todo    Understand why the not null check is necessary
      * @author  Giovanni Orsini
      */
-    private void loadData() {
-        bookData.setAll(bookSet.getBookSet());      ///< creates the observable list from the BookSet
-        bookTable.setItems(bookData);
+    void loadData() {
+        if (bookSet != null) {
+            bookData.setAll(bookSet.getBookSet());      ///< creates the observable list from the BookSet
+            bookTable.setItems(bookData);
+
+        }
     }
 
     /**

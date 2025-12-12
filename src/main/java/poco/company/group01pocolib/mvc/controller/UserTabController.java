@@ -86,11 +86,15 @@ public class UserTabController {
 
     /**
      * @brief   Loads data from the model into the controller.
+     * @todo    Understand why the not null check is necessary
      */
-    private void loadData() {
+    void loadData() {
         // loads all data from the model into the observable lists
-        userData.setAll(userSet.getUserSet());
-        userTable.setItems(userData);   //add all users to the table view
+        if (userSet != null) {
+            userData.setAll(userSet.getUserSet());
+            userTable.setItems(userData);   //add all users to the table view
+        }
+
     }
 
     /**
@@ -335,7 +339,7 @@ public class UserTabController {
             // No book selected, go to Book tab to select one
             // TODO: mainController needs getter methods for tabs and controllers
             mainController.switchToTab(mainController.getBookTab());
-            mainController.setSelectedUserForLending(selectedUser);
+            //mainController.setSelectedUserForLending(selectedUser);
         }
     }
     // TODO: no idea how to handle this
