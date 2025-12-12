@@ -282,10 +282,13 @@ public class LendingSet implements Serializable {
      * @return  The Lending with the specified ID, null otherwise.
      */
     public Lending getLending(int id){
-        Lending result = lendingSet.remove(dummy.setID(id));
-        lendingSet.add(result);
-
-        return result;
+        // TODO: Implement using a more efficient method than linear search (pls let me use HashMap)
+        for (Lending lending : lendingSet) {
+            if (lending.getLendingId() == id) {
+                return lending;
+            }
+        }
+        return null;
     }
 
     /**
