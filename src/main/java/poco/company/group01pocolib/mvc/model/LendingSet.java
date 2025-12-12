@@ -168,10 +168,12 @@ public class LendingSet implements Serializable {
      *
      * @param   serializationPath The path to the serialized `LendingSet`
      * @param   DBPath The path to the DB file
+     * @param   bookset The BookSet to link
+     * @param   userset The UserSet to link
      * @return  The loaded `LendingSet` object
      * @author  Giovanni Orsini
      */
-    public static LendingSet loadFromSerialized(String serializationPath, String DBPath) {
+    public static LendingSet loadFromSerialized(String serializationPath, String DBPath, BookSet bookset, UserSet userset) {
         Object obj;
         LendingSet lendingSet = null;
 
@@ -185,7 +187,7 @@ public class LendingSet implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             lendingSet = new LendingSet();
             lendingSet.setDBPath(DBPath);
-            lendingSet.rebuildFromDB(DBPath);
+            lendingSet.rebuildFromDB(DBPath, bookset, userset);
             return lendingSet;
         }
 
@@ -200,7 +202,7 @@ public class LendingSet implements Serializable {
             return lendingSet;
         } else {
             lendingSet.setDBPath(DBPath);
-            lendingSet.rebuildFromDB(DBPath);
+            lendingSet.rebuildFromDB(DBPath, bookset, userset);
         }
 
         return lendingSet;
