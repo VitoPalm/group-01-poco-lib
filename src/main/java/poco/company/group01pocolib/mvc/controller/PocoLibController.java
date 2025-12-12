@@ -3,9 +3,7 @@ package poco.company.group01pocolib.mvc.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import poco.company.group01pocolib.mvc.model.BookSet;
-import poco.company.group01pocolib.mvc.model.LendingSet;
-import poco.company.group01pocolib.mvc.model.UserSet;
+import poco.company.group01pocolib.mvc.model.*;
 
 import java.time.LocalDate;
 
@@ -23,9 +21,67 @@ public class PocoLibController {
     private UserSet userSet;
     private LendingSet lendingSet;
 
+    private Book masterSelectedBook;
+    private User masterSelectedUser;
 
     private Stage primaryStage;
     private Tab selectedTab;
+
+    /**
+     * @brief   Gets the lending tab.
+     * @return  The lending tab.
+     */
+    public Tab getLendingTab() {
+        return lendingTab;
+    }
+
+    /**
+     * @brief   Gets the book tab.
+     * @return  The book tab.
+     */
+    public Tab getBookTab() {
+        return bookTab;
+    }
+
+    /**
+     * @brief   Gets the user tab.
+     * @return  The user tab.
+     */
+    public Tab getUserTab() {
+        return userTab;
+    }
+
+    /**
+     * @brief   Gets the app-wide selected book.
+     * @return  The selected book.
+     */
+    public Book getMasterSelectedBook() {
+        return masterSelectedBook;
+    }
+
+    /**
+     * @brief   Sets the app-wide selected book.
+     * @param   book The book to set as selected.
+     */
+    public void setMasterSelectedBook(Book book) {
+        this.masterSelectedBook = book;
+    }
+
+    /**
+     * @brief   Gets the app-wide selected user.
+     * @return  The selected user.
+     */
+    public User getMasterSelectedUser() {
+        return masterSelectedUser;
+    }
+
+    /**
+     * @brief   Sets the app-wide selected user.
+     * @param   user The user to set as selected.
+     */
+    public void setMasterSelectedUser(User user) {
+        this.masterSelectedUser = user;
+    }
 
     /**
      * @brief   Initializes the controller class. This method is automatically called after fxml file has been loaded.
@@ -65,12 +121,17 @@ public class PocoLibController {
         this.bookSet = bookSet;
         this.userSet = userSet;
         this.lendingSet = lendingSet;
+        this.bookTabController.setDataSets(bookSet, userSet, lendingSet);
+        this.userTabController.setDataSets(bookSet, userSet, lendingSet);
+        this.lendingTabController.setDataSets(bookSet, userSet, lendingSet);
     }
 
     /**
      * @brief   Refreshes data in all tabs.
      */
     public void refreshTabData() {
-
+        this.lendingTabController.loadData();
+        this.bookTabController.loadData();
+        this.userTabController.loadData();
     }
 }
