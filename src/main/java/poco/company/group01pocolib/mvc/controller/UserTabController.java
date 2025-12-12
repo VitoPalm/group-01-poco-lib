@@ -298,19 +298,20 @@ public class UserTabController {
             return;
         }
 
-       // Check if a book was already selected
-    if (selectedBook != null) {
-        // Book already selected, go to Lending tab
-        mainController.switchToTab(mainController.getLendingTab());
-        
-        // Set both user and book in the lending controller
-        mainController.getLendingTabController().setSelectedUser(selectedUser);
-        mainController.getLendingTabController().setSelectedBook(selectedBook);
-    } else {
-        // No book selected, go to Book tab to select one
-        mainController.switchToTab(mainController.getBookTab());
-        
-        // Set the user in the book controller
-        mainController.getBookTabController().setSelectedUser(selectedUser);
+        // Check if a book was already selected
+        if (selectedBook != null) {
+            // Book already selected, go to Lending tab
+            mainController.switchToTab(mainController.getLendingTab());
+            
+            // Set both user and book in the lending controller
+            mainController.getLendingTabController().setSelectedUser(selectedUser);
+            mainController.getLendingTabController().setSelectedBook(selectedBook);
+        } else {
+            // No book selected, go to Book tab to select one
+            mainController.switchToTab(mainController.getBookTab());
+            
+            // Set the user in the book controller
+            mainController.getBookTabController().setSelectedUser(selectedUser);
+        }
     }
 }
