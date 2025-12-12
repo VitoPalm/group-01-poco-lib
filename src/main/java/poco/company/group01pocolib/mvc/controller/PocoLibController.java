@@ -1,12 +1,17 @@
 package poco.company.group01pocolib.mvc.controller;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.*;
 
-import java.time.LocalDate;
-
+/**
+ * @class   PocoLibController
+ * @brief   Main controller for the PocoLib application.
+ * @details This controller manages the main tab pane and coordinates between the book, user, and lending tabs.
+ */
 public class PocoLibController {
     @FXML private TabPane mainTabPane;
     @FXML private Tab bookTab;
@@ -21,8 +26,8 @@ public class PocoLibController {
     private UserSet userSet;
     private LendingSet lendingSet;
 
-    private Book masterSelectedBook;
-    private User masterSelectedUser;
+    private ObjectProperty<Book> masterSelectedBook;
+    private ObjectProperty<User> masterSelectedUser;
 
     private Stage primaryStage;
     private Tab selectedTab;
@@ -56,7 +61,7 @@ public class PocoLibController {
      * @return  The selected book.
      */
     public Book getMasterSelectedBook() {
-        return masterSelectedBook;
+        return masterSelectedBook.get();
     }
 
     /**
@@ -64,7 +69,7 @@ public class PocoLibController {
      * @param   book The book to set as selected.
      */
     public void setMasterSelectedBook(Book book) {
-        this.masterSelectedBook = book;
+        this.masterSelectedBook.set(book);
     }
 
     /**
@@ -72,7 +77,7 @@ public class PocoLibController {
      * @return  The selected user.
      */
     public User getMasterSelectedUser() {
-        return masterSelectedUser;
+        return masterSelectedUser.get();
     }
 
     /**
@@ -80,7 +85,7 @@ public class PocoLibController {
      * @param   user The user to set as selected.
      */
     public void setMasterSelectedUser(User user) {
-        this.masterSelectedUser = user;
+        this.masterSelectedUser.set(user);
     }
 
     /**
@@ -91,6 +96,22 @@ public class PocoLibController {
     private void initialize() {
         selectedTab = lendingTab;
         switchToTab(selectedTab);
+
+        // Initialize master selected user/book properties
+        masterSelectedBook = new SimpleObjectProperty<>();
+        masterSelectedUser = new SimpleObjectProperty<>();
+
+        masterSelectedBook.addListener((observable, oldvalue, newValue) -> {
+            if (lendingTabController != null) {
+                handleMasterPropertiesChange();
+            }
+        });
+
+        masterSelectedUser.addListener((observable, oldvalue, newValue) -> {
+            if (lendingTabController != null) {
+                handleMasterPropertiesChange();
+            }
+        });
     }
 
     /**
@@ -121,9 +142,14 @@ public class PocoLibController {
         this.bookSet = bookSet;
         this.userSet = userSet;
         this.lendingSet = lendingSet;
+
         this.bookTabController.setDataSets(bookSet, userSet, lendingSet);
         this.userTabController.setDataSets(bookSet, userSet, lendingSet);
         this.lendingTabController.setDataSets(bookSet, userSet, lendingSet);
+
+        this.bookTabController.setDependencies(primaryStage, this);
+        this.userTabController.setDependencies(primaryStage, this);
+        this.lendingTabController.setDependencies(primaryStage, this);
     }
 
     /**
@@ -133,5 +159,16 @@ public class PocoLibController {
         this.lendingTabController.loadData();
         this.bookTabController.loadData();
         this.userTabController.loadData();
+    }
+
+    private void handleMasterPropertiesChange() {
+        if (masterSelectedBook.get() != null && masterSelectedUser.get() == null) {
+            switchToTab(userTab);
+        } else if (masterSelectedBook.get() == null && masterSelectedUser.get() != null) {
+            switchToTab(bookTab);
+        } else if (masterSelectedBook.get() != null && masterSelectedUser.get() != null) {
+            switchToTab(lendingTab);
+            lendingTabController.handleNewLending();
+        }
     }
 }
