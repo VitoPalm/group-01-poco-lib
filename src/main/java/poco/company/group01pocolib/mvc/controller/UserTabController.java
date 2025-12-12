@@ -300,18 +300,45 @@ public class UserTabController {
 
         // Check if a book was already selected
         if (selectedBook != null) {
-            // Book already selected, go to Lending tab
-            mainController.switchToTab(mainController.getLendingTab());
-            
-            // Set both user and book in the lending controller
-            mainController.getLendingTabController().setSelectedUser(selectedUser);
-            mainController.getLendingTabController().setSelectedBook(selectedBook);
+            try {
+                // Open the lending dialog with user and book pre-selected
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/poco/company/group01pocolib/mvc/view/prop-lending.fxml"));
+                VBox page = loader.load();
+                
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("New Lending");
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(primaryStage);
+                dialogStage.setScene(new Scene(page));
+                
+                LendingPropController controller = loader.getController();
+                controller.setDialogStage(dialogStage);
+                controller.setDependencies(lendingSet, bookSet, userSet, mainController);
+                
+                // The LendingPropController will handle creating the lending internally
+                // TODO: LendingPropController needs methods to pre-select user and book
+                
+                dialogStage.showAndWait();
+                
+                if (controller.isSaveClicked()) {
+                    // Refresh data after lending is created
+                    refreshData();
+                    mainController.refreshTabData();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Could not open the New Lending dialog.");
+                alert.setContentText("An unexpected error occurred: " + e.getMessage());
+                alert.showAndWait();
+            }
         } else {
             // No book selected, go to Book tab to select one
+            // TODO: mainController needs getter methods for tabs and controllers
             mainController.switchToTab(mainController.getBookTab());
-            
-            // Set the user in the book controller
-            mainController.getBookTabController().setSelectedUser(selectedUser);
+            mainController.setSelectedUserForLending(selectedUser);
         }
     }
+    // TODO: no idea how to handle this
 }
