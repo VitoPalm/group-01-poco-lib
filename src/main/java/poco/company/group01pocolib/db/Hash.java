@@ -17,7 +17,25 @@ public class Hash {
      * @return String containing the hash of the input file, calculated using SHA-256
      */
     static public String getFileHash(Path path) {
-        return "";
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            FileInputStream fis = new FileInputStream(path.toFile());
+            byte[] byteArray = new byte[1024];
+            int bytesCount;
+            
+            while ((bytesCount = fis.read(byteArray)) != -1) {
+                digest.update(byteArray, 0, bytesCount);
+            }
+            
+            fis.close();
+            
+            byte[] bytes = digest.digest();
+            return Base64.getEncoder().encodeToString(bytes);
+            
+        } catch (NoSuchAlgorithmException | IOException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
 
