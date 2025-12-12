@@ -1,6 +1,7 @@
 var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book =
 [
     [ "Book", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a82e4d759ef5de21620643eeed8cd31af", null ],
+    [ "Book", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#adc4cabc3de8af043e39678e8e39064c7", null ],
     [ "Book", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a87f5108867b10b117a883015b06c5fb8", null ],
     [ "addCopy", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#af7e61863fa579c32e9fa75e61cc043e7", null ],
     [ "equals", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a5624b46466907605ab3f362767b059a6", null ],

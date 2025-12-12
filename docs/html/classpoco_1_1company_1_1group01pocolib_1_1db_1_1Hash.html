@@ -91,14 +91,21 @@ $(function(){initNavTree('classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash.h
   <div class="headertitle"><div class="title">poco.company.group01pocolib.db.Hash Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Simple class containing static methods, for calculating hashes.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3d91988bf6b95cbe70cfb9f22484e9dc" id="r_a3d91988bf6b95cbe70cfb9f22484e9dc"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d91988bf6b95cbe70cfb9f22484e9dc">getFileHash</a> (Path path)</td></tr>
+<tr class="memdesc:a3d91988bf6b95cbe70cfb9f22484e9dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes a <span class="tt">path</span> as input, and calculates a hash for the corresponding file using SHA-256.  <br /></td></tr>
+<tr class="memitem:ada0897802d55acba15799b5661ecc653" id="r_ada0897802d55acba15799b5661ecc653"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada0897802d55acba15799b5661ecc653">getFileHashFromLines</a> (List&lt; String &gt; linesList, String lineSeparator)</td></tr>
+<tr class="memdesc:ada0897802d55acba15799b5661ecc653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to get the SHA-256 hash of a file by checking a List containing all the lines in the file.  <br /></td></tr>
 <tr class="memitem:aabc4ee2893e5c2b8aaaf3b275971ea22" id="r_aabc4ee2893e5c2b8aaaf3b275971ea22"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabc4ee2893e5c2b8aaaf3b275971ea22">compareFileHashes</a> (Path p1, Path p2)</td></tr>
+<tr class="memdesc:aabc4ee2893e5c2b8aaaf3b275971ea22"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes 2 files as input (through their <span class="tt">Path</span>) and calculates the SHA- 256 hashes for both of them. Then, it returns the result of the comparison.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Simple class containing two static methods, one to hash a file, and another to compare two files by their hashes. </p>
+<div class="textblock"><p>Simple class containing static methods, for calculating hashes. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="aabc4ee2893e5c2b8aaaf3b275971ea22" name="aabc4ee2893e5c2b8aaaf3b275971ea22"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aabc4ee2893e5c2b8aaaf3b275971ea22">&#9670;&#160;</a></span>compareFileHashes()</h2>
@@ -126,7 +133,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This method takes 2 files as input (through their paths) and calculates the hashes for both of them. Then, it returns the result of the comparison </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>This method takes 2 files as input (through their <span class="tt">Path</span>) and calculates the SHA- 256 hashes for both of them. Then, it returns the result of the comparison. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p1</td><td>Path to the first file </td></tr>
     <tr><td class="paramname">p2</td><td>Path to the second file </td></tr>
@@ -159,13 +168,57 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This method takes a <span class="tt">path</span> as input, and calculates a hash for the corresponding file using SHA-256. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>This method takes a <span class="tt">path</span> as input, and calculates a hash for the corresponding file using SHA-256. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path</td><td>Path to the file we intend to hash </td></tr>
+    <tr><td class="paramname">path</td><td>Path to the file we intend to hash. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>String containing the hash of the input file, calculated using SHA-256 </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>String containing the hash of the input file, calculated using SHA-256. </dd></dl>
+
+</div>
+</div>
+<a id="ada0897802d55acba15799b5661ecc653" name="ada0897802d55acba15799b5661ecc653"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada0897802d55acba15799b5661ecc653">&#9670;&#160;</a></span>getFileHashFromLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String poco.company.group01pocolib.db.Hash.getFileHashFromLines </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; String &gt;</td>          <td class="paramname"><span class="paramname"><em>linesList</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>lineSeparator</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allows to get the SHA-256 hash of a file by checking a List containing all the lines in the file. </p>
+<p>Rather than using the file itself, this method calculates the hash of a <span class="tt">File</span> from a <span class="tt">List</span> of <span class="tt">Strings</span> corresponding to the lines of the file itself. <br  />
+<br  />
+ This process is done in a way that makes sure the hash resulting from this operation is the same that would result from calculating the hash of the file itself, allowing many operations to be executed way more efficiently by only needing to operate in memory.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">linesList</td><td>The <span class="tt">List</span> of lines to calculate the hash on. </td></tr>
+    <tr><td class="paramname">lineSeparator</td><td>The character that was used to separate the lines in the file itself. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String containing the hash of the input <span class="tt">List</span>, computed as if it was a <span class="tt">File</span>. </dd></dl>
 
 </div>
 </div>

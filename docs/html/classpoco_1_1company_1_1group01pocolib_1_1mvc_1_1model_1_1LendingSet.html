@@ -133,18 +133,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateLastKnownDBHash
 <tr class="memdesc:a2ff0fa2dd88ed12e47eb75c44484bd82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to the path of the serialized version of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a>.  <br /></td></tr>
 <tr class="memitem:ada1e24d85ab10ca9b22a27fae0cafe7d" id="r_ada1e24d85ab10ca9b22a27fae0cafe7d"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada1e24d85ab10ca9b22a27fae0cafe7d">getAllLendingsAsList</a> ()</td></tr>
 <tr class="memdesc:ada1e24d85ab10ca9b22a27fae0cafe7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the lendings in the collection as a list.  <br /></td></tr>
-<tr class="memitem:a29dccd7198472d9861fea2d73263e23f" id="r_a29dccd7198472d9861fea2d73263e23f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29dccd7198472d9861fea2d73263e23f">rebuildFromDB</a> (String DBPath)</td></tr>
-<tr class="memdesc:a29dccd7198472d9861fea2d73263e23f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebuilds the <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file.  <br /></td></tr>
+<tr class="memitem:adc4cec5a2caa0a1f1afcb335fd9ce0de" id="r_adc4cec5a2caa0a1f1afcb335fd9ce0de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc4cec5a2caa0a1f1afcb335fd9ce0de">rebuildFromDB</a> (String DBPath, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a> bookSet, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a> userSet)</td></tr>
+<tr class="memdesc:adc4cec5a2caa0a1f1afcb335fd9ce0de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebuilds the <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file.  <br /></td></tr>
 <tr class="memitem:a3f927587938eb87095ae29b87fa62d5f" id="r_a3f927587938eb87095ae29b87fa62d5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f927587938eb87095ae29b87fa62d5f">addOrEditLending</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> lending)</td></tr>
 <tr class="memdesc:a3f927587938eb87095ae29b87fa62d5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> to the collection. If the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> already exists (based on lending ID), it is edited.  <br /></td></tr>
-<tr class="memitem:aba54e46debb1bf702cf416a73d14497f" id="r_aba54e46debb1bf702cf416a73d14497f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba54e46debb1bf702cf416a73d14497f">removeLending</a> (int lendingID)</td></tr>
-<tr class="memdesc:aba54e46debb1bf702cf416a73d14497f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a>.  <br /></td></tr>
+<tr class="memitem:a41581ca538c6d01c3ff31b25eb31747b" id="r_a41581ca538c6d01c3ff31b25eb31747b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41581ca538c6d01c3ff31b25eb31747b">removeLending</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> lending)</td></tr>
+<tr class="memdesc:a41581ca538c6d01c3ff31b25eb31747b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a>.  <br /></td></tr>
 <tr class="memitem:a8390b799fbba34e1baba17aad66c8621" id="r_a8390b799fbba34e1baba17aad66c8621"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8390b799fbba34e1baba17aad66c8621">getLending</a> (int id)</td></tr>
 <tr class="memdesc:a8390b799fbba34e1baba17aad66c8621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> by its ID.  <br /></td></tr>
-<tr class="memitem:ac5f1e1cb050cf97802739e23010b9b55" id="r_ac5f1e1cb050cf97802739e23010b9b55"><td class="memItemLeft" align="right" valign="top">Set&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5f1e1cb050cf97802739e23010b9b55">getByUser</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> user)</td></tr>
-<tr class="memdesc:ac5f1e1cb050cf97802739e23010b9b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all Lendings of a specific <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>.  <br /></td></tr>
-<tr class="memitem:ae040b33ae4ff67cc7a7f79b776fbc72e" id="r_ae040b33ae4ff67cc7a7f79b776fbc72e"><td class="memItemLeft" align="right" valign="top">Set&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae040b33ae4ff67cc7a7f79b776fbc72e">getByBook</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> book)</td></tr>
-<tr class="memdesc:ae040b33ae4ff67cc7a7f79b776fbc72e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all Lendings of a specific <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a>.  <br /></td></tr>
 <tr class="memitem:a2280b492fecf1fb3923b5ffed06a48a6" id="r_a2280b492fecf1fb3923b5ffed06a48a6"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2280b492fecf1fb3923b5ffed06a48a6">search</a> (String rawQuery)</td></tr>
 <tr class="memdesc:a2280b492fecf1fb3923b5ffed06a48a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform search on the indexed lendings with ranking.  <br /></td></tr>
 <tr class="memitem:a426f4fe1a26faff61658cb5e935f739f" id="r_a426f4fe1a26faff61658cb5e935f739f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a426f4fe1a26faff61658cb5e935f739f">toString</a> ()</td></tr>
@@ -152,8 +148,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateLastKnownDBHash
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:add08bfc1dcfd63e2dbc259edef8d92d0" id="r_add08bfc1dcfd63e2dbc259edef8d92d0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html">LendingSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add08bfc1dcfd63e2dbc259edef8d92d0">loadFromSerialized</a> (String serializationPath, String DBPath)</td></tr>
-<tr class="memdesc:add08bfc1dcfd63e2dbc259edef8d92d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> from a serialized version on disk.  <br /></td></tr>
+<tr class="memitem:ae4c9fda28b261a0241e296236996b003" id="r_ae4c9fda28b261a0241e296236996b003"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html">LendingSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4c9fda28b261a0241e296236996b003">loadFromSerialized</a> (String serializationPath, String DBPath, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a> bookset, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a> userset)</td></tr>
+<tr class="memdesc:ae4c9fda28b261a0241e296236996b003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> from a serialized version on disk.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -161,12 +157,10 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a202b78c54e456fee3b2750599fb3b519"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform search on the indexed lendings without ranking.  <br /></td></tr>
 <tr class="memitem:a40bef270619b1e196af178e65774af37" id="r_a40bef270619b1e196af178e65774af37"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40bef270619b1e196af178e65774af37">calculateScore</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> lending, String rawQuery)</td></tr>
 <tr class="memdesc:a40bef270619b1e196af178e65774af37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the relevance score of a lending for a given search query.  <br /></td></tr>
-<tr class="memitem:aa53512d5477f1dee32107bc224305b43" id="r_aa53512d5477f1dee32107bc224305b43"><td class="memItemLeft" align="right" valign="top"><a id="aa53512d5477f1dee32107bc224305b43" name="aa53512d5477f1dee32107bc224305b43"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>syncOnWrite</b> ()</td></tr>
-<tr class="memdesc:aa53512d5477f1dee32107bc224305b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronizes the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> and serialized file on write operations. <br /></td></tr>
-<tr class="memitem:a09f86a8eff534e2fd12536a4ebe913a8" id="r_a09f86a8eff534e2fd12536a4ebe913a8"><td class="memItemLeft" align="right" valign="top"><a id="a09f86a8eff534e2fd12536a4ebe913a8" name="a09f86a8eff534e2fd12536a4ebe913a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>saveToSerialized</b> ()</td></tr>
-<tr class="memdesc:a09f86a8eff534e2fd12536a4ebe913a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to a serialized file on disk. <br /></td></tr>
+<tr class="memitem:aa53512d5477f1dee32107bc224305b43" id="r_aa53512d5477f1dee32107bc224305b43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa53512d5477f1dee32107bc224305b43">syncOnWrite</a> ()</td></tr>
+<tr class="memdesc:aa53512d5477f1dee32107bc224305b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronizes the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> and serialized file on write operations.  <br /></td></tr>
+<tr class="memitem:a09f86a8eff534e2fd12536a4ebe913a8" id="r_a09f86a8eff534e2fd12536a4ebe913a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09f86a8eff534e2fd12536a4ebe913a8">saveToSerialized</a> ()</td></tr>
+<tr class="memdesc:a09f86a8eff534e2fd12536a4ebe913a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to a serialized file on disk.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -176,6 +170,9 @@ Set&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1mod
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html">Index</a>&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lendingIndex</b></td></tr>
 <tr class="memitem:a469c720232f72140f2c49e2670626d37" id="r_a469c720232f72140f2c49e2670626d37"><td class="memItemLeft" align="right" valign="top"><a id="a469c720232f72140f2c49e2670626d37" name="a469c720232f72140f2c49e2670626d37"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html">DB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lendingDB</b></td></tr>
+<tr class="memitem:ab25b4ae7daf7421b764c3b44e3a30d72" id="r_ab25b4ae7daf7421b764c3b44e3a30d72"><td class="memItemLeft" align="right" valign="top"><a id="ab25b4ae7daf7421b764c3b44e3a30d72" name="ab25b4ae7daf7421b764c3b44e3a30d72"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dummy</b></td></tr>
+<tr class="memdesc:ab25b4ae7daf7421b764c3b44e3a30d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used in methods as a dummy object for the <span class="tt">contains()</span> method of the Collection. <br /></td></tr>
 <tr class="memitem:a0370fa0483dc82f149c3a0b21837ee75" id="r_a0370fa0483dc82f149c3a0b21837ee75"><td class="memItemLeft" align="right" valign="top"><a id="a0370fa0483dc82f149c3a0b21837ee75" name="a0370fa0483dc82f149c3a0b21837ee75"></a>
 String&#160;</td><td class="memItemRight" valign="bottom"><b>lastKnownDBHash</b></td></tr>
 <tr class="memitem:a6264402f0240c9780fcbe02841760bef" id="r_a6264402f0240c9780fcbe02841760bef"><td class="memItemLeft" align="right" valign="top"><a id="a6264402f0240c9780fcbe02841760bef" name="a6264402f0240c9780fcbe02841760bef"></a>
@@ -275,58 +272,6 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 <p>Get all the lendings in the collection as a list. </p>
 <dl class="section return"><dt>Returns</dt><dd>A list of all the lendings in the collection </dd></dl>
-
-</div>
-</div>
-<a id="ae040b33ae4ff67cc7a7f79b776fbc72e" name="ae040b33ae4ff67cc7a7f79b776fbc72e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae040b33ae4ff67cc7a7f79b776fbc72e">&#9670;&#160;</a></span>getByBook()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Set&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt; poco.company.group01pocolib.mvc.model.LendingSet.getByBook </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a></td>          <td class="paramname"><span class="paramname"><em>book</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets all Lendings of a specific <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">book</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> whose Lendings to retrieve. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A collection of Lendings associated with the specified <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a>. </dd></dl>
-
-</div>
-</div>
-<a id="ac5f1e1cb050cf97802739e23010b9b55" name="ac5f1e1cb050cf97802739e23010b9b55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5f1e1cb050cf97802739e23010b9b55">&#9670;&#160;</a></span>getByUser()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Set&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt; poco.company.group01pocolib.mvc.model.LendingSet.getByUser </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a></td>          <td class="paramname"><span class="paramname"><em>user</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets all Lendings of a specific <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">user</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> whose Lendings to retrieve. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A collection of Lendings associated with the specified <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>. </dd></dl>
 
 </div>
 </div>
@@ -476,8 +421,8 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 </div>
 </div>
-<a id="add08bfc1dcfd63e2dbc259edef8d92d0" name="add08bfc1dcfd63e2dbc259edef8d92d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add08bfc1dcfd63e2dbc259edef8d92d0">&#9670;&#160;</a></span>loadFromSerialized()</h2>
+<a id="ae4c9fda28b261a0241e296236996b003" name="ae4c9fda28b261a0241e296236996b003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c9fda28b261a0241e296236996b003">&#9670;&#160;</a></span>loadFromSerialized()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -493,7 +438,17 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>DBPath</em></span>&#160;)</td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>DBPath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a></td>          <td class="paramname"><span class="paramname"><em>bookset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a></td>          <td class="paramname"><span class="paramname"><em>userset</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -509,10 +464,13 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
   <table class="params">
     <tr><td class="paramname">serializationPath</td><td>The path to the serialized <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> </td></tr>
     <tr><td class="paramname">DBPath</td><td>The path to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file </td></tr>
+    <tr><td class="paramname">bookset</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a> to link </td></tr>
+    <tr><td class="paramname">userset</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html" title="A collection of userSet that acts as the real data interface for the main controller to interact with...">UserSet</a> to link </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The loaded <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> object </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
 
 </div>
 </div>
@@ -550,8 +508,8 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 </div>
 </div>
-<a id="a29dccd7198472d9861fea2d73263e23f" name="a29dccd7198472d9861fea2d73263e23f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29dccd7198472d9861fea2d73263e23f">&#9670;&#160;</a></span>rebuildFromDB()</h2>
+<a id="adc4cec5a2caa0a1f1afcb335fd9ce0de" name="adc4cec5a2caa0a1f1afcb335fd9ce0de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc4cec5a2caa0a1f1afcb335fd9ce0de">&#9670;&#160;</a></span>rebuildFromDB()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -559,8 +517,17 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
         <tr>
           <td class="memname">void poco.company.group01pocolib.mvc.model.LendingSet.rebuildFromDB </td>
           <td>(</td>
-          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>DBPath</em></span></td><td>)</td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>DBPath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a></td>          <td class="paramname"><span class="paramname"><em>bookSet</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a></td>          <td class="paramname"><span class="paramname"><em>userSet</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -569,14 +536,17 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">DBPath</td><td>The path to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file </td></tr>
+    <tr><td class="paramname">bookSet</td><td>The bookset to link </td></tr>
+    <tr><td class="paramname">userSet</td><td>The userset to link </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
 
 </div>
 </div>
-<a id="aba54e46debb1bf702cf416a73d14497f" name="aba54e46debb1bf702cf416a73d14497f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba54e46debb1bf702cf416a73d14497f">&#9670;&#160;</a></span>removeLending()</h2>
+<a id="a41581ca538c6d01c3ff31b25eb31747b" name="a41581ca538c6d01c3ff31b25eb31747b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41581ca538c6d01c3ff31b25eb31747b">&#9670;&#160;</a></span>removeLending()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -584,7 +554,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
         <tr>
           <td class="memname">void poco.company.group01pocolib.mvc.model.LendingSet.removeLending </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lendingID</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a></td>          <td class="paramname"><span class="paramname"><em>lending</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -593,10 +563,38 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 <p>Removes a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lendingID</td><td>The ID of the lending to remove. </td></tr>
+    <tr><td class="paramname">lending</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> to remove. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a09f86a8eff534e2fd12536a4ebe913a8" name="a09f86a8eff534e2fd12536a4ebe913a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09f86a8eff534e2fd12536a4ebe913a8">&#9670;&#160;</a></span>saveToSerialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void poco.company.group01pocolib.mvc.model.LendingSet.saveToSerialized </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Saves the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to a serialized file on disk. </p>
+<dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
 
 </div>
 </div>
@@ -751,6 +749,34 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 </div>
 </div>
+<a id="aa53512d5477f1dee32107bc224305b43" name="aa53512d5477f1dee32107bc224305b43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa53512d5477f1dee32107bc224305b43">&#9670;&#160;</a></span>syncOnWrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void poco.company.group01pocolib.mvc.model.LendingSet.syncOnWrite </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Synchronizes the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> and serialized file on write operations. </p>
+<dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
+
+</div>
+</div>
 <a id="a426f4fe1a26faff61658cb5e935f739f" name="a426f4fe1a26faff61658cb5e935f739f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a426f4fe1a26faff61658cb5e935f739f">&#9670;&#160;</a></span>toString()</h2>
 
@@ -768,6 +794,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 <p>Returns a string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a>. </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
 
 </div>
 </div>

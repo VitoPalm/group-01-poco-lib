@@ -1,5 +1,6 @@
 var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User =
 [
+    [ "User", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#aed9890f5c97eee2fe7640947be36d03a", null ],
     [ "User", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a5b68d36f684e18d34db7919cd551054e", null ],
     [ "canBorrow", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ad92eb0a7ba1b6e805b206ace78f39264", null ],
     [ "decrementBorrowedBooksCount", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a55baf0834d4e8dc755aeef0ea0a596fc", null ],

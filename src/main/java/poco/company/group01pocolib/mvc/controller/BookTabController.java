@@ -1,9 +1,14 @@
 package poco.company.group01pocolib.mvc.controller;
 
+import java.util.List;
+
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.*;
 
@@ -51,6 +56,7 @@ public class BookTabController {
     @FXML
     private void initialize() {
         initializeBookColumns();
+        listenersSetup();
         bookTableHandler();
     }
 
@@ -79,16 +85,11 @@ public class BookTabController {
 
     /**
      * @brief   Loads data from the model into the controller.
+     * @author  Giovanni Orsini
      */
     private void loadData() {
-        // TODO: implement data loading logic
-    }
-
-    /**
-     * @brief   Refreshes the data in the controller by fetching the lists from the model.
-     */
-    public void refreshData() {
-        // TODO: implement data refreshing logic
+        bookData.setAll(bookSet.getBookSet());      ///< creates the observable list from the BookSet
+        bookTable.setItems(bookData);
     }
 
     /**
@@ -111,9 +112,52 @@ public class BookTabController {
      * @brief   Initializes the book table columns.
      * @details This method sets up the cell value factories for each column in the book table, defining how data from
      *          the Book objects will be displayed in each column.
+     * @author  Giovanni Orsini
      */
     private void initializeBookColumns() {
-        // TODO: implement book columns initialization logic
+        bookIsbnColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getIsbn()));
+        bookTitleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getTitle()));
+        bookAuthorsColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAuthorsString()));
+        bookYearColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getYear()));
+        bookAvailableColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopies()));
+        bookLentColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopiesLent()));
+    }
+
+    /**
+     * @brief   Setup of all the listeners of the BookTab: selected table entry, Omnisearch textfield
+     * @details 
+     * - When an entry is selected, the "Lend" and "View/Edit" buttons will become clickable
+     * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box 
+     *   enables the view of the search results
+     * 
+     * @author  Giovanni Orsini
+     */
+    private void listenersSetup() {
+        bookViewEditButton.setDisable(true);                                ///< Buttons are initialized as disabled
+        bookLendButton.setDisable(true);
+
+        bookTable.getSelectionModel().selectedItemProperty().addListener(   ///< On selection:
+            (observable, oldValue, newValue) -> {
+                this.selectedBook = newValue;                               ///< Updates the attribute
+
+                this.bookViewEditButton.setDisable(newValue == null);       ///< Disables buttons
+                this.bookLendButton.setDisable(newValue == null);
+            }
+        );
+
+        bookSearchField.textProperty().addListener(
+            (observable, oldValue, newValue) -> {
+                if (newValue == null || newValue.isBlank()) {
+                    loadData();
+                } else {
+                    List<Book> searchResults = bookSet.search(newValue.toLowerCase().trim());
+
+                    bookData.clear();
+                    bookData.addAll(searchResults);
+                }
+
+            }
+        );
     }
 
     /**
