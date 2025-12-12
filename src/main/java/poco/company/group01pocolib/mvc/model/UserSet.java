@@ -282,7 +282,13 @@ public class UserSet implements Serializable {
      * @return  The found user or null if the user is not found
      */
     public User getUser(String id){
-        //TODO: Implement using a more efficient method than linear search
+        // TODO: Implement using a more efficient method than linear search (pls let me use HashMap)
+        dummy.setId(id);
+        for (User user : userSet) {
+            if (user.equals(dummy)) {
+                return user;
+            }
+        }
         return null;
     }
 

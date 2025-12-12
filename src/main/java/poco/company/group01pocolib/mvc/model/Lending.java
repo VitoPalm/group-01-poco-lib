@@ -152,9 +152,16 @@ public class Lending implements Serializable {
      * @param   lendingStr The string representation of the Lending.
      * @return  A Lending object created from the string representation.
      * @author  Giovanni Orsini
+     * @author  Daniele Pepe
      */
     public static Lending fromDBString(String lendingStr, BookSet bookSet, UserSet userSet) {
+        if(lendingStr == null || lendingStr.isEmpty()) {
+            return null;
+        }
         String[] fields = lendingStr.split(FIELD_SEPARATOR);
+        if(fields.length != 5) {
+            throw new IllegalArgumentException("Wrong format for Lending DB string");
+        }
         Lending lending = new Lending(bookSet.getBook(fields[1]), userSet.getUser(fields[2]), LocalDate.parse(fields[3]));
         if (Boolean.parseBoolean(fields[4]))
             lending.setReturned();
