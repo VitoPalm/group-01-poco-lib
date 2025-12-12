@@ -11,6 +11,13 @@ package poco.company.group01pocolib.mvc.model;
 import poco.company.group01pocolib.db.DB;
 import poco.company.group01pocolib.db.omnisearch.Index;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -168,8 +175,37 @@ public class UserSet implements Serializable {
      * @return  The loaded `UserSet` object
      */
     public static UserSet loadFromSerialized(String serializationPath, String DBPath) {
-        // TODO: Implement
-        return null;
+        Object obj;
+        UserSet userSet = null;
+
+        // Attempt to read the serialized UserSet from disk
+        try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(serializationPath)))) {
+        
+            obj = in.readObject();
+            userSet = (UserSet) obj;
+        // If any error occurs during deserialization, rebuild the UserSet from the DB
+        } catch (IOException | ClassNotFoundException e) {
+            userSet = new UserSet();
+            userSet.setDBPath(DBPath);
+            userSet.rebuildFromDB(DBPath);
+            return userSet;
+        }
+
+        // Create a new DB object using the provided DB path
+        DB currentDB = new DB(DBPath);
+        String currentDBHash = currentDB.getDBFileHash();
+
+        // Check if the DB file has changed since the last serialization by comparing hashes
+        if (currentDBHash.equals(userSet.getLastKnownDBHash())) {
+            userSet.setDBPath(DBPath);
+            userSet.setUserDB(currentDB);
+            return userSet;
+        } else {
+            userSet.setDBPath(DBPath);
+            userSet.rebuildFromDB(DBPath);
+        }
+
+        return userSet;
     }
 
     /**
@@ -177,17 +213,51 @@ public class UserSet implements Serializable {
      * @param   DBPath The path to the DB file
      */
     public void rebuildFromDB(String DBPath) {
-        // TODO: Implement
+        //Initialize the DB object for rebuilding
+        this.userDB = new DB(DBPath);
+    
+        // Clear in-memory data structures before reloading
+        this.userSet.clear();
+        this.userIndex = new Index<>(); 
+        int i = 0;
+        String line;
+        
+        // Iterate through each line in the DB file and parse it into a User object
+        while ((line = this.userDB.readNthLine(i)) != null) {
+            try {
+            
+                User user = User.fromDBString(line);
+                
+                this.userSet.add(user);
+                this.userIndex.add(user.toSearchableString(), user);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            i++;
+        }
+
+        // Update the hash to indicate that we are synchronized with the DB
+        updateLastKnownDBHash();
     }
 
     /**
      * @brief   Adds a user to the collection. If the user already exists (based on ID), it is edited.
      * @param   user The user to add
      * @warning **Overwriting an object cannot undone**: Be sure to call this method after checking if the object {@link poco.company.group01pocolib.mvc.model.UserSet.isStored isStored()} when only wishing to add a new User to the UserSet
-
      */
     public void addOrEditUser(User user){
-        //TODO: Implement add user method
+        
+        // Removes the user if it already exists
+        userSet.remove(user);
+        userIndex.remove(user);
+        
+        // Adds the user (new or updated)
+        userSet.add(user);
+        userIndex.add(user.toSearchableString(), user);
+        
+        // Syncs the changes to DB and serialized file
+        syncOnWrite();
     }
 
     /**
@@ -195,7 +265,15 @@ public class UserSet implements Serializable {
      * @param   id The ID of the user to remove from the set
      */
     public void removeUser(String id){
-        //TODO: Implement remove user method
+        User dummyUser = new User();
+        dummyUser.setId(id);
+        
+        // Removes the user from the set and index
+        userSet.remove(dummyUser);
+        userIndex.remove(dummyUser);
+        
+        // Syncs the changes to DB and serialized file
+        syncOnWrite();
     }
 
     /**
@@ -204,7 +282,7 @@ public class UserSet implements Serializable {
      * @return  The found user or null if the user is not found
      */
     public User getUser(String id){
-        //TODO: Implement get by id
+        //TODO: Implement using a more efficient method than linear search
         return null;
     }
 
@@ -269,11 +347,28 @@ public class UserSet implements Serializable {
     }
 
     private void syncOnWrite() {
-        // TODO: Implement
+        // Clear the DB file
+        userDB.clear();
+            
+        // Write all users to the DB file
+        for (User user : userSet) {
+            userDB.appendLine(user.toDBString());
+        }
+        
+        // Update the hash after writing to DB
+        updateLastKnownDBHash();
+        
+        // Save the serialized version
+        saveToSerialized();
     }
 
     private void saveToSerialized() {
-        // TODO: Implement
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(serializationPath)))) {
+            out.writeObject(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -282,7 +377,12 @@ public class UserSet implements Serializable {
      */
     @Override
     public String toString() {
-        // TODO: implement
-        return "";
+        StringBuffer buff = new StringBuffer();
+
+        for (User user : userSet) {
+            buff.append(user.toString()).append("\n");
+        }
+        
+        return buff.toString();        
     }
 }
