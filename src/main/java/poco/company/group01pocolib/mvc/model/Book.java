@@ -16,7 +16,7 @@ import poco.company.group01pocolib.exceptions.BookDataNotValidException;
 
 /**
  * @class   Book
- * @brief   Represents a Book in the library.
+ * @brief     Represents a Book in the library.
  * @details Each Book has a title, a list of authors, an ISBN, a release year, a number of copies owned, a number of
  *          copies currently lent out, a number for the amount of times the Book has been lent, and the line index for
  *          the DB file. The ISBN must be valid for the Book to be created. The book can be serialized for persistence.
@@ -61,6 +61,30 @@ public class Book implements Serializable {
     }
 
     /**
+     * @brief   Constructs a new Book object.
+     *
+     * @param   title   The title of the Book.
+     * @param   authors The String of semicolon separated authors of the Book.
+     * @param   isbn    The  ISBN of the Book.
+     * @param   year    The release year of the Book.
+     * @param   copies  The number of copies available of the Book.
+     * 
+     * @throws  BookDataNotValidException if the number of copies is negative.
+     */
+    public Book(String title, String authors, String isbn, int year, int copies) {
+        if (copies < 0)
+            throw new BookDataNotValidException("Cannot create book with fewer than 0 copies.");
+
+        this.title = title;
+        this.setAuthors(authors);
+        this.isbn = isbn;
+        this.year = year;
+        this.copies = copies;
+        this.copiesLent = 0;
+        this.timesLent = 0;
+    }
+
+    /**
      * @brief Default constructor for utility purposes only.
      */
     public Book() {
@@ -95,7 +119,7 @@ public class Book implements Serializable {
      * @return A `String` containing the authors of the Book.
      */
     public String getAuthorsString(){
-        return String.join(";", authors);
+        return String.join("; ", authors);
     }
 
     /**
@@ -110,7 +134,7 @@ public class Book implements Serializable {
      */
     public void setAuthors(String authorsStr) {
         this.authors = new ArrayList<>();
-        String[] authorArray = authorsStr.split(";");
+        String[] authorArray = authorsStr.split("; ");
 
         for (String author : authorArray) {
             authors.add(author.trim());
@@ -251,7 +275,7 @@ public class Book implements Serializable {
     
         Book book = new Book(
             fields[0], 
-            List.of(fields[1].split(";")), 
+            List.of(fields[1].split("; ")), 
             fields[2], 
             Integer.parseInt(fields[3]), 
             Integer.parseInt(fields[4])
