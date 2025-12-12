@@ -88,11 +88,9 @@ public class UserTabController {
      * @brief   Loads data from the model into the controller.
      */
     private void loadData() {
-        // if userset is loaded, load users into userData list
-        if (userSet != null) {
-            userData.setAll(userSet.getUserSet());
-            userTable.setItems(userData);   //add all users to the table view
-        }
+        // loads all date from the model into the observable lists
+        userData.setAll(userSet.getUserSet());
+        userTable.setItems(userData);   //add all users to the table view
     }
 
     /**
