@@ -1,7 +1,7 @@
 /**
- * @file LendingSet.java
- * @brief This file contains the definition of the LendingSet class, which represents a collection of Lendings.
- * @author Daniele Pepe
+ * @file    LendingSet.java
+ * @brief   This file contains the definition of the LendingSet class, which represents a collection of Lendings.
+ * @author  Daniele Pepe
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -179,7 +179,7 @@ public class LendingSet implements Serializable {
 
         // Attempt to read the serialized LendingSet from disk
         try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(serializationPath)))) {
-        
+
             obj = in.readObject();
             lendingSet = (LendingSet) obj;
 
@@ -210,33 +210,34 @@ public class LendingSet implements Serializable {
 
     /**
      * @brief   Rebuilds the `LendingSet` from the DB file
-     * @param   DBPath The path to the DB file
-     * @param   bookset The bookset to link 
-     * @param   userset The userset to link
+     *
+     * @param   DBPath  The path to the DB file
+     * @param   bookSet The bookset to link
+     * @param   userSet The userset to link
      * @author  Giovanni Orsini
      */
-    public void rebuildFromDB(String DBPath, BookSet bookSet, UserSet userset) {
+    public void rebuildFromDB(String DBPath, BookSet bookSet, UserSet userSet) {
         //Initialize the DB object for rebuilding
         this.lendingDB = new DB(DBPath);
-    
+
         // Clear in-memory data structures before reloading
         this.lendingSet.clear();
-        this.lendingIndex = new Index<>(); 
+        this.lendingIndex = new Index<>();
 
         int i = 0;
         String line;
-        
+
         // Iterate through each line in the DB file and parse it into a Lending object
         while ((line = this.lendingDB.readNthLine(i)) != null) {
             try {
-            
-                Lending lending = Lending.fromDBString(line, bookSet, userset);
-                
+
+                Lending lending = Lending.fromDBString(line, bookSet, userSet);
+
                 this.lendingSet.add(lending);
                 this.lendingIndex.add(lending.toSearchableString(), lending);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
             i++;
         }
@@ -253,11 +254,11 @@ public class LendingSet implements Serializable {
         // Removes the lending if it already exists
         lendingSet.remove(lending);
         lendingIndex.remove(lending);
-        
+
         // Adds the lending (new or updated)
         lendingSet.add(lending);
         lendingIndex.add(lending.toSearchableString(), lending);
-        
+
         // Syncs the changes to DB and serialized file
         syncOnWrite();
     }
@@ -269,7 +270,7 @@ public class LendingSet implements Serializable {
     public void removeLending(Lending lending){
         lendingSet.remove(lending);
         lendingIndex.remove(lending);
-        
+
         // Syncs the changes to DB and serialized file
         syncOnWrite();
     }
@@ -281,8 +282,10 @@ public class LendingSet implements Serializable {
      * @return  The Lending with the specified ID, null otherwise.
      */
     public Lending getLending(int id){
-        // TODO: implement ...how, non farò una O(n) -- Implement as search
-        return null;
+        Lending result = lendingSet.remove(dummy.setID(id));
+        lendingSet.add(result);
+
+        return result;
     }
 
     /**
@@ -326,15 +329,15 @@ public class LendingSet implements Serializable {
     private void syncOnWrite() {
         // Clear the DB file
         lendingDB.clear();
-            
+
         // Write all lendings to the DB file
         for (Lending lending : lendingSet) {
             lendingDB.appendLine(lending.toDBString());
         }
-        
+
         // Update the hash after writing to DB
         updateLastKnownDBHash();
-        
+
         // Save the serialized version
         saveToSerialized();
     }
@@ -348,7 +351,7 @@ public class LendingSet implements Serializable {
             out.writeObject(this);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 

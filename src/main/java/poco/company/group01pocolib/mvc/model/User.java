@@ -78,7 +78,9 @@ public class User implements Serializable {
 
     /**
      * @brief   `static` method to check whether a String is a correct User ID
-     * @details An ID is valid if it is an alphanumeric string of length between 5 and 16 characters, allowing the user to insert IDs from a short matrix code to longer Tax IDs.
+     * @details An ID is valid if it is an alphanumeric string of length between 5 and 16 characters, allowing the user
+     *          to insert IDs from a short matrix code to longer Tax IDs.
+     *
      * @param   id The String to check
      * @return  `true` if the User ID is valid, `false` otherwise
      */
