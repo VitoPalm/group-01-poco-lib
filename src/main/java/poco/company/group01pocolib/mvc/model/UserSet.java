@@ -265,12 +265,12 @@ public class UserSet implements Serializable {
      * @param   id The ID of the user to remove from the set
      */
     public void removeUser(String id){
-        User dummyUser = new User();
-        dummyUser.setId(id);
+        
+        dummy.setId(id);
         
         // Removes the user from the set and index
-        userSet.remove(dummyUser);
-        userIndex.remove(dummyUser);
+        userSet.remove(dummy);
+        userIndex.remove(dummy);
         
         // Syncs the changes to DB and serialized file
         syncOnWrite();
