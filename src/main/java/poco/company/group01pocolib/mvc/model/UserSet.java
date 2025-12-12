@@ -58,7 +58,7 @@ public class UserSet implements Serializable {
         this.userSet = new HashSet<>();
         this.userIndex = new Index<>();
 
-        this.dummy = new User("", "Max", "Verstappen",  "v@l.id");
+        this.dummy = new User("12345", "Max", "Verstappen",  "v@l.id");
     }
 
     /**

@@ -5,7 +5,17 @@
  */
 package poco.company.group01pocolib.mvc.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.File;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+
+import poco.company.group01pocolib.db.DB;
 
 /**
  * @class UserSetTest
@@ -13,12 +23,45 @@ import org.junit.jupiter.api.Test;
  */
 public class UserSetTest {
 
+
+    private UserSet userSet;
+    private User user;
+    private DB userDB;
+
+    @BeforeEach
+    public void setUp() {
+        // Setup code if needed before each test
+        userSet = new UserSet();
+
+        userDB = new DB("testUsersDB");
+        userSet.setUserDB(userDB);
+        userSet.setSerializationPath("testUserSet.ser");
+        user = new User("12345","Max", "Verstappen", "v@l.id");
+        userSet.addOrEditUser(user);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        // Cleanup: delete test serialization files and DB files
+        deleteFileIfExists("testUserSet.ser");
+        deleteFileIfExists("testUsersDB");
+
+    }
+
+    private void deleteFileIfExists(String filePath) {
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+
+
     /**
      * @brief Tests that a UserSet object is created correctly.
      */
     @Test
     public void testUserSetCreation() {
-        // TODO: implementation
+        assertNotNull(userSet);
     }
 
     /**
@@ -26,7 +69,9 @@ public class UserSetTest {
      */
     @Test
     public void testAddUser() {
-        // TODO: implementation
+        User newUser = new User("67890", "Lewis", "Hamilton", "l@w.is");
+        userSet.addOrEditUser(newUser);
+        assertTrue(userSet.getUserSet().contains(newUser));
     }
 
     /**
@@ -34,22 +79,10 @@ public class UserSetTest {
      */
     @Test
     public void testRemoveUser() {
-        // TODO: implementation
+        userSet.removeUser(user.getId());
+        assertFalse(userSet.getUserSet().contains(user));
     }
 
-    /**
-     * @brief Tests the getUserById method to ensure it returns the correct user.
-     */
-    @Test
-    public void testGetUserById() {
-        // TODO: implementation
-    }
 
-    /**
-     * @brief Tests that getUserById returns null when the user is not found.
-     */
-    @Test
-    public void testGetUserByIdNotFound() {
-        // TODO: implementation
-    }
+    //TODO: add more tests for other methods
 }
