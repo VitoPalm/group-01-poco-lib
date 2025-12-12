@@ -2,6 +2,7 @@
  * @file BookTest.java
  * @brief Unit tests for the Book class.
  * @author Daniele Pepe
+ * @author Giovanni Orsini
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -23,6 +24,7 @@ public class BookTest {
 
     /**
      * @brief Tests that a Book object is created correctly when valid arguments are provided.
+     * @author Giovanni Orsini
      */
     @Test
     public void testBookCreationValid() {
@@ -42,6 +44,7 @@ public class BookTest {
 
     /**
      * @brief Tests that the constructor throws {@link poco.company.group01pocolib.exceptions.BookDataNotValidException BookDataNotValidException} when an invalid number of copies is provided.
+     * @author Giovanni Orsini
      */
     @Test
     public void testBookCreationInvalid() {
@@ -54,6 +57,7 @@ public class BookTest {
     
     /**
      * @brief Tests the edit method to ensure book details are updated correctly. 
+     * @author Giovanni Orsini
      */
     @Test
     public void testBookEditValid(){
@@ -82,6 +86,7 @@ public class BookTest {
 
     /** 
      * @brief Tests that the edit method throws {@link poco.company.group01pocolib.exceptions.BookDataNotValidException BookDataNotValidException} when an invalid number of copies is provided.
+     * @author Giovanni Orsini
      */
     @Test
     public void testBookEditInvalid(){
@@ -96,6 +101,7 @@ public class BookTest {
 
     /**
      * @brief Tests the addCopy method to ensure copy count increases.
+     * @author Giovanni Orsini
      */
     @Test
     public void testAddCopy() {
@@ -107,6 +113,7 @@ public class BookTest {
 
     /**
      * @brief Tests the removeCopy method to ensure copy count decreases when copies are available.
+     * @author Giovanni Orsini
      */
     @Test
     public void testRemoveCopyValid() {
@@ -118,6 +125,7 @@ public class BookTest {
 
     /**
      * @brief Tests that removeCopy throws an exception (IllegalStateException) when no copies are available.
+     * @author Giovanni Orsini
      */
     @Test
     public void testRemoveCopyInvalid() {
@@ -129,6 +137,7 @@ public class BookTest {
 
     /**
      * @brief Tests the hashCode method to ensure proper hashCode functionality (includes equals)
+     * @author Giovanni Orsini
      */
     @Test
     public void testEqualsHashCode() {
@@ -142,6 +151,7 @@ public class BookTest {
 
     /**
      * @brief Tests the fromDBString method to ensure proper restoring from DB String capabilities.
+     * @author Giovanni Orsini
      */
     @Test
     public void testFromDBString() {
@@ -158,6 +168,7 @@ public class BookTest {
 
     /**
      * @brief Tests the toSearchableString method to ensure the creation of a coherent searchable string
+     * @author Giovanni Orsini
      */
     @Test
     public void testToSearchableString() {
@@ -168,6 +179,7 @@ public class BookTest {
 
     /**
      * @brief Tests the fromDBString method to ensure proper restoring from DB String capabilities.
+     * @author Giovanni Orsini
      */
     @Test
     public void testToDBString() {

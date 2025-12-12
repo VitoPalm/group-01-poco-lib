@@ -8,6 +8,13 @@ package poco.company.group01pocolib.mvc.model;
 import poco.company.group01pocolib.db.DB;
 import poco.company.group01pocolib.db.omnisearch.Index;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -35,6 +42,8 @@ public class LendingSet implements Serializable {
     private Set<Lending> lendingSet;
     private Index<Lending> lendingIndex;
     private DB lendingDB;
+
+    private Lending dummy;         ///< Used in methods as a dummy object for the `contains()` method of the Collection
 
     private String lastKnownDBHash;
     private String DBPath;
@@ -160,18 +169,78 @@ public class LendingSet implements Serializable {
      * @param   serializationPath The path to the serialized `LendingSet`
      * @param   DBPath The path to the DB file
      * @return  The loaded `LendingSet` object
+     * @author  Giovanni Orsini
      */
     public static LendingSet loadFromSerialized(String serializationPath, String DBPath) {
-        // TODO: Implement
-        return null;
+        Object obj;
+        LendingSet lendingSet = null;
+
+        // Attempt to read the serialized LendingSet from disk
+        try (ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(serializationPath)))) {
+        
+            obj = in.readObject();
+            lendingSet = (LendingSet) obj;
+
+        // If any error occurs during deserialization, rebuild the LendingSet from the DB
+        } catch (IOException | ClassNotFoundException e) {
+            lendingSet = new LendingSet();
+            lendingSet.setDBPath(DBPath);
+            lendingSet.rebuildFromDB(DBPath);
+            return lendingSet;
+        }
+
+        // Create a new DB object using the provided DB path
+        DB currentDB = new DB(DBPath);
+        String currentDBHash = currentDB.getDBFileHash();
+
+        // Check if the DB file has changed since the last serialization by comparing hashes
+        if (currentDBHash.equals(lendingSet.getLastKnownDBHash())) {
+            lendingSet.setDBPath(DBPath);
+            lendingSet.setLendingDB(currentDB);
+            return lendingSet;
+        } else {
+            lendingSet.setDBPath(DBPath);
+            lendingSet.rebuildFromDB(DBPath);
+        }
+
+        return lendingSet;
     }
 
     /**
      * @brief   Rebuilds the `LendingSet` from the DB file
      * @param   DBPath The path to the DB file
+     * @param   bookset The bookset to link 
+     * @param   userset The userset to link
+     * @author  Giovanni Orsini
      */
-    public void rebuildFromDB(String DBPath) {
-        // TODO: Implement
+    public void rebuildFromDB(String DBPath, BookSet bookSet, UserSet userset) {
+        //Initialize the DB object for rebuilding
+        this.lendingDB = new DB(DBPath);
+    
+        // Clear in-memory data structures before reloading
+        this.lendingSet.clear();
+        this.lendingIndex = new Index<>(); 
+
+        int i = 0;
+        String line;
+        
+        // Iterate through each line in the DB file and parse it into a Lending object
+        while ((line = this.lendingDB.readNthLine(i)) != null) {
+            try {
+            
+                Lending lending = Lending.fromDBString(line, bookSet, userset);
+                
+                this.lendingSet.add(lending);
+                this.lendingIndex.add(lending.toSearchableString(), lending);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            i++;
+        }
+
+        // Update the hash to indicate that we are synchronized with the DB
+        updateLastKnownDBHash();
     }
 
     /**
@@ -179,15 +248,28 @@ public class LendingSet implements Serializable {
      * @param   lending The Lending object to add or edit.
      */
     public void addOrEditLending(Lending lending){
-        // TODO: implement
+        // Removes the lending if it already exists
+        lendingSet.remove(lending);
+        lendingIndex.remove(lending);
+        
+        // Adds the lending (new or updated)
+        lendingSet.add(lending);
+        lendingIndex.add(lending.toSearchableString(), lending);
+        
+        // Syncs the changes to DB and serialized file
+        syncOnWrite();
     }
 
     /**
      * @brief   Removes a Lending from the LendingSet.
-     * @param   lendingID The ID of the lending to remove.
+     * @param   lending The Lending to remove.
      */
-    public void removeLending(int lendingID){
-        // TODO: implement
+    public void removeLending(Lending lending){
+        lendingSet.remove(lending);
+        lendingIndex.remove(lending);
+        
+        // Syncs the changes to DB and serialized file
+        syncOnWrite();
     }
 
     /**
@@ -197,29 +279,7 @@ public class LendingSet implements Serializable {
      * @return  The Lending with the specified ID, null otherwise.
      */
     public Lending getLending(int id){
-        // TODO: implement
-        return null;
-    }
-
-    /**
-     * @brief   Gets all Lendings of a specific User.
-     *
-     * @param   user The User whose Lendings to retrieve.
-     * @return  A collection of Lendings associated with the specified User.
-     */
-    public Set<Lending> getByUser(User user){
-        // TODO: implement
-        return null;
-    }
-
-    /**
-     * @brief   Gets all Lendings of a specific Book.
-     *
-     * @param   book The Book whose Lendings to retrieve.
-     * @return  A collection of Lendings associated with the specified Book.
-     */
-    public Set<Lending> getByBook(Book book){
-        // TODO: implement
+        // TODO: implement ...how, non farò una O(n) -- Implement as search
         return null;
     }
 
@@ -259,25 +319,50 @@ public class LendingSet implements Serializable {
 
     /**
      * @brief   Synchronizes the current state of the LendingSet to the DB and serialized file on write operations
+     * @author  Giovanni Orsini
      */
     private void syncOnWrite() {
-        // TODO: Implement
+        // Clear the DB file
+        lendingDB.clear();
+            
+        // Write all lendings to the DB file
+        for (Lending lending : lendingSet) {
+            lendingDB.appendLine(lending.toDBString());
+        }
+        
+        // Update the hash after writing to DB
+        updateLastKnownDBHash();
+        
+        // Save the serialized version
+        saveToSerialized();
     }
 
     /**
      * @brief   Saves the current state of the LendingSet to a serialized file on disk
+     * @author  Giovanni Orsini
      */
     private void saveToSerialized() {
-        // TODO: Implement
+        try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(serializationPath)))) {
+            out.writeObject(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * @brief   Returns a string representation of the LendingSet.
      * @return  A string representation of the LendingSet.
+     * @author  Giovanni Orsini
      */
     @Override
     public String toString() {
-        // TODO: implement
-        return "";
+        StringBuffer buff = new StringBuffer();
+
+        for (Lending lending : lendingSet) {
+            buff.append(lending.toString()).append("\n");
+        }
+
+        return buff.toString();
     }
 }
