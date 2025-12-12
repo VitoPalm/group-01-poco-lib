@@ -1,9 +1,17 @@
 package poco.company.group01pocolib.mvc.controller;
 
+import java.util.List;
+
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.*;
 
@@ -80,14 +88,19 @@ public class UserTabController {
      * @brief   Loads data from the model into the controller.
      */
     private void loadData() {
-        // TODO: implement data loading logic
+        // if userset is loaded, load users into userData list
+        if (userSet != null) {
+            userData.setAll(userSet.getUserSet());
+            userTable.setItems(userData);   //add all users to the table view
+        }
     }
 
     /**
      * @brief   Refreshes the data in the controller by fetching the lists from the model.
      */
     public void refreshData() {
-        // TODO: implement data refreshing logic
+        loadData(); //reload data from model
+        userTable.refresh();  //refresh table view
     }
 
     /**
@@ -112,14 +125,55 @@ public class UserTabController {
      *          the User objects will be displayed in each column.
      */
     private void initializeUserColumns() {
-        // TODO: implement user columns initialization logic
+    
+        userIdColumn.setCellValueFactory(cellData -> 
+            new SimpleStringProperty(cellData.getValue().getId()));
+            
+        userNameColumn.setCellValueFactory(cellData -> 
+            new SimpleStringProperty(cellData.getValue().getName()));
+
+        userSurnameColumn.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().getSurname()));
+        
+        userEmailColumn.setCellValueFactory(cellData -> 
+            new SimpleStringProperty(cellData.getValue().getEmail()));
+        
+        userLentColumn.setCellValueFactory(cellData -> 
+            new SimpleIntegerProperty(cellData.getValue().getBorrowedBooksCount()).asObject());
     }
 
     /**
      * @brief   Allows handling of swaps of shown lists based on the search field and sorting
      */
     private void userTableHandler() {
-        // TODO: implement user table handling logic
+        // Listen to selection changes in the table
+        userTable.getSelectionModel().selectedItemProperty().addListener(
+            (observable, oldValue, newValue) -> {
+                selectedUser = newValue;
+                // Enable/disable buttons based on selection
+                userViewEditButton.setDisable(newValue == null);
+                userLendButton.setDisable(newValue == null);
+            }
+        );
+        
+        // Initially disable buttons until a user is selected
+        userViewEditButton.setDisable(true);
+        userLendButton.setDisable(true);
+        
+        // Add listener to search field for real-time filtering
+        userSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                // If search field is empty, show all users
+                loadData();
+            } else {
+                // Filter users based on search query
+                List<User> searchResults = userSet.search(newValue.toLowerCase().trim());
+
+                // Clear old data and update the observable list with search results
+                userData.clear();
+                userData.addAll(searchResults);
+            }
+        });
     }
 
     // --------------- //
@@ -132,7 +186,44 @@ public class UserTabController {
      */
     @FXML
     private void handleUserAdd() {
-        // TODO: implement user add logic
+        try{
+            // Create a new empty user to be added
+            User newUser = new User();
+
+            // Load the fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/poco/company/group01pocolib/mvc/view/prop-user.fxml"));
+            VBox page = loader.load();
+
+            // Create the dialog Stage
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add New User");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the controller
+            UserPropController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setDependencies(mainController, userSet);
+            controller.setUser(newUser);        //TODO: implement setUser to automatically set edit mode if the user is new
+
+            dialogStage.showAndWait();
+
+            // If the user clicked Save, add the new user to the UserSet and refresh data
+            if (controller.isSaveClicked()) {
+                userSet.addOrEditUser(newUser);
+                refreshData();
+                mainController.refreshTabData();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not open the Add User dialog.");
+            alert.setContentText("An unexpected error occurred: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     /**
@@ -142,7 +233,46 @@ public class UserTabController {
      */
     @FXML
     private void handleUserViewEdit() {
-        // TODO: implement user view/edit logic
+        
+        if (selectedUser == null) {
+            return; // No user selected(button disabled via Listner in TableHandler), do nothing
+        }
+
+        try{
+            // Load the fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/poco/company/group01pocolib/mvc/view/prop-user.fxml"));
+            VBox page = loader.load();
+
+            // Create the dialog Stage
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("View / Edit User");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the controller
+            UserPropController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setDependencies(mainController, userSet);
+            controller.setUser(selectedUser);  //set the selected user for viewing/editing
+
+            dialogStage.showAndWait();
+
+            // If the user clicked Save, update the user in the UserSet and refresh data
+            if (controller.isSaveClicked()) {
+                userSet.addOrEditUser(selectedUser); //update existing user
+                refreshData();
+                mainController.refreshTabData();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not open the View / Edit User dialog.");
+            alert.setContentText("An unexpected error occurred: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     /**
@@ -155,6 +285,32 @@ public class UserTabController {
      */
     @FXML
     private void handleUserLend() {
-        // TODO: implement user lend logic
+        if (selectedUser == null) {
+            return; // No user selected(button disabled via Listner in TableHandler), do nothing
+        }
+
+        if (!selectedUser.canBorrow()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Lending Not Allowed");
+            alert.setHeaderText("User Cannot Borrow More Books");
+            alert.setContentText("The selected user has reached the maximum number of borrowed books and cannot borrow more at this time.");
+            alert.showAndWait();
+            return;
+        }
+
+       // Check if a book was already selected
+    if (selectedBook != null) {
+        // Book already selected, go to Lending tab
+        mainController.switchToTab(mainController.getLendingTab());
+        
+        // Set both user and book in the lending controller
+        mainController.getLendingTabController().setSelectedUser(selectedUser);
+        mainController.getLendingTabController().setSelectedBook(selectedBook);
+    } else {
+        // No book selected, go to Book tab to select one
+        mainController.switchToTab(mainController.getBookTab());
+        
+        // Set the user in the book controller
+        mainController.getBookTabController().setSelectedUser(selectedUser);
     }
 }
