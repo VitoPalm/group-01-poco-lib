@@ -50,7 +50,7 @@
                 <padding>
                     <Insets top="10.0"/>
                 </padding>
-                <Button fx:id="lendingViewEditButton" mnemonicParsing="false" onAction="#handleLendingEdit"
+                <Button fx:id="lendingViewEditButton" mnemonicParsing="false" onAction="#handleLendingViewEdit"
                         text="View &amp; Edit"/>
             </HBox>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
