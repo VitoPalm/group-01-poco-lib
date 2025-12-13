@@ -261,7 +261,7 @@ public class LendingSet implements Serializable {
         lendingIndex.add(lending.toSearchableString(), lending);
 
         // Syncs the changes to DB and serialized file
-        //syncOnWrite();
+        syncOnWrite();
     }
 
     /**
