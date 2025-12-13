@@ -216,7 +216,11 @@ public class LendingSet implements Serializable {
         if (!dbFile.exists()) {
             // If the file does not exist, create it, initialize an empty DB, and LendingSet
             try {
-                Files.createDirectories(dbFile.getParentFile().toPath());
+                // Only create parent directories if they exist
+                File parentFile = dbFile.getParentFile();
+                if (parentFile != null) {
+                    Files.createDirectories(parentFile.toPath());
+                }
                 dbFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -309,7 +313,8 @@ public class LendingSet implements Serializable {
      */
     public List<SearchResult<Lending>> search(String rawQuery) {
         // TODO: Implement search
-        return null;
+        // Temporary implementation: return empty list instead of null to avoid NullPointerException
+        return new ArrayList<>();
     }
 
     /**
