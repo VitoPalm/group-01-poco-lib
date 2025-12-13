@@ -54,7 +54,7 @@ class PocoLibGuiTest {
     }
 
     /**
-     * @brief Test per verificare la funzionalità di ricerca omnisearch nella tab dei libri.
+     * @brief Test to verify the search functionality in the Book Tab.
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
