@@ -300,7 +300,8 @@ public class LendingPropController {
     private void handleViewBook() {
         if (lending != null && lending.getBook() != null) {
             Book selectedBook = lending.getBook();
-            mainController.getBookTabController().launchViewEditBookDialog(selectedBook,false, PropMode.VIEW_ONLY);
+            mainController.getBookTabController().launchViewEditBookDialog(selectedBook,false,
+                                                                           PropMode.VIEW_ONLY, dialogStage);
         }
     }
 
@@ -311,7 +312,8 @@ public class LendingPropController {
     private void handleViewUser() {
         if (lending != null && lending.getUser() != null) {
             User selectedUser = lending.getUser();
-            mainController.getUserTabController().launchViewEditUserDialog(selectedUser,false, PropMode.VIEW_ONLY);
+            mainController.getUserTabController().launchViewEditUserDialog(selectedUser,false,
+                                                                           PropMode.VIEW_ONLY, dialogStage);
         }
     }
 }

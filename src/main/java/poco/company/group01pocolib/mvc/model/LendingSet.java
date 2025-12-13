@@ -9,15 +9,8 @@ import poco.company.group01pocolib.db.DB;
 import poco.company.group01pocolib.db.omnisearch.Index;
 import poco.company.group01pocolib.db.omnisearch.Search.*;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -218,6 +211,22 @@ public class LendingSet implements Serializable {
      * @author  Giovanni Orsini
      */
     public void rebuildFromDB(String DBPath, BookSet bookSet, UserSet userSet) {
+        // Check if file exists at specified path
+        File dbFile = new File(DBPath);
+        if (!dbFile.exists()) {
+            // If the file does not exist, create it, initialize an empty DB, and LendingSet
+            try {
+                Files.createDirectories(dbFile.getParentFile().toPath());
+                dbFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            this.lendingDB = new DB(DBPath);
+            this.lendingSet = new HashSet<>();
+            this.lendingIndex = new Index<>();
+            return;
+        }
+
         //Initialize the DB object for rebuilding
         this.lendingDB = new DB(DBPath);
 

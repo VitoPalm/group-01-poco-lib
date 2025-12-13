@@ -131,7 +131,7 @@ public class LendingTabController {
             return;
         }
 
-        launchViewEditLendingDialog(null, true, PropMode.EDIT);
+        launchViewEditLendingDialog(null, true, PropMode.EDIT, primaryStage);
     }
 
     /**
@@ -290,7 +290,8 @@ public class LendingTabController {
      * @param   isNewLending         `true` if creating a new lending, `false` if viewing/editing an existing lending.
      * @param   mode                 The mode of the dialog, either VIEW, VIEW_ONLY, or EDIT.
      */
-    public void launchViewEditLendingDialog(Lending lendingToViewOrEdit, boolean isNewLending, PropMode mode) {
+    public void launchViewEditLendingDialog(Lending lendingToViewOrEdit, boolean isNewLending,
+                                            PropMode mode, Stage ownerStage) {
         // Handling logical inconsistencies
         if (lendingToViewOrEdit == null && !isNewLending ||
                 lendingToViewOrEdit != null && isNewLending ||
@@ -316,8 +317,12 @@ public class LendingTabController {
             }
 
             controller.setMode(mode);
-            stage.initOwner(primaryStage);
+            stage.initOwner(ownerStage);
             stage.initModality(Modality.WINDOW_MODAL);
+            stage.setResizable(false);
+
+            controller.setDialogStage(stage);
+
             stage.show();
 
         } catch (Exception e) {
@@ -334,9 +339,9 @@ public class LendingTabController {
      *          a lending.
      */
     @FXML
-    private void handleLendingEdit() {
+    private void handleLendingViewEdit() {
         if (selectedLending != null) {
-            launchViewEditLendingDialog(selectedLending, false, PropMode.EDIT);
+            launchViewEditLendingDialog(selectedLending, false, PropMode.VIEW, primaryStage);
         }
     }
 
