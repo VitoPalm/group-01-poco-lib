@@ -12,15 +12,8 @@ import poco.company.group01pocolib.db.Hash;
 import poco.company.group01pocolib.db.omnisearch.Index;
 import poco.company.group01pocolib.db.omnisearch.Search;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serial;
-import java.io.Serializable;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 
 /**
@@ -43,7 +36,8 @@ public class BookSet implements Serializable {
     private Index<Book> bookIndex;
     private DB bookDB;
 
-    private Book dummy;         ///< Used in methods (such as {@link poco.company.group01pocolib.mvc.model.BookSet.isStored isStored()}) as a dummy object for the `contains()` method of the Collection
+    private Book dummy;     ///< Used in methods (such as {@link poco.company.group01pocolib.mvc.model.BookSet#isStored
+                            /// isStored()}) as a dummy object for the `contains()` method of the Collection
 
     private String lastKnownDBHash;
     private String DBPath;
@@ -214,6 +208,22 @@ public class BookSet implements Serializable {
      * @param   DBPath The path to the DB file
      */
     public void rebuildFromDB(String DBPath) {
+        // Check if file exists at specified path
+        File dbFile = new File(DBPath);
+        if (!dbFile.exists()) {
+            // If the file does not exist, create it, initialize an empty DB, and BookSet
+            try {
+                Files.createDirectories(dbFile.getParentFile().toPath());
+                dbFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            this.bookDB = new DB(DBPath);
+            this.bookSet = new HashSet<>();
+            this.bookIndex = new Index<>();
+            return;
+        }
+
         //Initialize the DB object for rebuilding
         this.bookDB = new DB(DBPath);
     
@@ -245,8 +255,11 @@ public class BookSet implements Serializable {
 
     /**
      * @brief   Adds a book to collection. If the book already exists (based on ISBN), it is edited.
+     *
      * @param   book The book object to add or edit.
-     * @warning **Overwriting an object cannot undone**: Be sure to call this method after checking if the object {@link poco.company.group01pocolib.mvc.model.BookSet.isStored isStored()} when only wishing to add a new Book to the BookSet
+     * @warning **Overwriting an object cannot be undone**: Be sure to call this method after checking if the object
+     *          {@link poco.company.group01pocolib.mvc.model.BookSet#isStored isStored()} when only wishing to add a new
+     *          Book to the BookSet.
      */
     public void addOrEditBook(Book book){
         
@@ -296,7 +309,9 @@ public class BookSet implements Serializable {
 
     /**
      * @brief   Checks whether a book is already registred in the Set
-     * @details The search is performed on the Collection used to store the BookSet. Two Books are {@link poco.company.group01pocolib.mvc.model.Book.equals equal} when they have the same unique identifier (`isbn`)
+     * @details The search is performed on the Collection used to store the BookSet. Two Books are {@link
+     *          poco.company.group01pocolib.mvc.model.Book#equals equal} when they have the same unique
+     *          identifier (`isbn`)
      * 
      * @param   book The book to search 
      * @return  Returns `true` if a result is found for the book's unique identifier
@@ -308,7 +323,9 @@ public class BookSet implements Serializable {
 
     /**
      * @brief   Checks whether a book is already registred in the Set
-     * @details The search is performed on the Collection used to store the BookSet. Two Books are {@link poco.company.group01pocolib.mvc.model.Book.equals equal} when they have the same unique identifier (`isbn`)
+     * @details The search is performed on the Collection used to store the BookSet. Two Books are {@link
+     *          poco.company.group01pocolib.mvc.model.Book#equals equal} when they have the same unique
+     *          identifier (`isbn`)
      * 
      * @param   isbn The unique identifier of the book to search
      * @return  Returns `true` if a result is found for the book's unique identifier

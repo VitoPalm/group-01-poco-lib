@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.Book;
 import poco.company.group01pocolib.mvc.model.BookSet;
 
+import java.util.ArrayList;
+
 public class BookPropController {
 
     // ----------------- //
@@ -24,6 +26,7 @@ public class BookPropController {
     @FXML private Label copiesLabel;
     @FXML private Hyperlink lentToLink;
 
+    @FXML private Button editButton;
     @FXML private Button deleteButton;
     @FXML private Button lendButton;
 
@@ -50,13 +53,9 @@ public class BookPropController {
     // ------------- //
     private Stage dialogStage;
     private Book book;
-    private boolean saveClicked = false;
     private BookSet bookSet;
     private PocoLibController mainController;
 
-    // ------------ //
-    // Edit methods //
-    // ------------ //
     /**
      * @brief   Initializes the controller class allowing real time ISBN verification. This method is automatically
      *          called after the fxml file has been loaded.
@@ -64,6 +63,28 @@ public class BookPropController {
     @FXML
     private void initialize() {
         
+    }
+
+    /**
+     * @brief   Sets the mode of the dialog (view, edit, view-only)
+     * @param   mode The mode to set. Can be any value of the PropMode enum.
+     */
+    public void setMode(PropMode mode) {
+        if (mode == PropMode.VIEW) {
+            viewBox.setVisible(true);
+            editBox.setVisible(false);
+        } else if (mode == PropMode.EDIT) {
+            viewBox.setVisible(false);
+            editBox.setVisible(true);
+        } else if (mode == PropMode.VIEW_ONLY) {
+            // If not editable, stay in view mode and disable all buttons
+            viewBox.setVisible(true);
+            editBox.setVisible(false);
+
+            editButton.setDisable(true);
+            deleteButton.setDisable(true);
+            lendButton.setDisable(true);
+        }
     }
 
     /**
@@ -85,20 +106,34 @@ public class BookPropController {
     }
 
     /**
-     * @brief   Sets the book to be edited/viewed in the dialog
+     * @brief   Sets the book to be edited/viewed in the dialog.
+     * @details If the book is `null`, a new empty book is created to allow the creation of a new book. When setting the
+     *          book, both the view labels and edit fields are updated with the book details.
+     *
      * @param   book The book to set
      */
     public void setBook(Book book) {
         this.book = book;
-        // TODO: implement method to set book details in the dialog
-    }
 
-    /**
-     * @brief   Returns whether the save button was clicked
-     * @return  `true` if the save button was clicked, `false` otherwise
-     */
-    public boolean isSaveClicked() {
-        return saveClicked;
+        // If book is null, create a new empty book (for new book creation)
+        if (book == null) {
+            book = new Book("", new ArrayList<String>(), "", 0, 1);
+            book.setAuthors("");
+        }
+
+        // Set view labels
+        isbnLabel.setText(book.getIsbn());
+        titleLabel.setText(book.getTitle());
+        authorsLabel.setText(book.getAuthorsString());
+        yearLabel.setText(String.valueOf(book.getYear()));
+        copiesLabel.setText(String.valueOf(book.getCopies()));
+
+        // Set edit fields
+        isbnField.setText(book.getIsbn());
+        titleField.setText(book.getTitle());
+        authorsField.setText(book.getAuthorsString());
+        yearField.setText(String.valueOf(book.getYear()));
+        copiesField.setText(String.valueOf(book.getCopies()));
     }
 
     /**
@@ -106,7 +141,7 @@ public class BookPropController {
      * @details This method is needed to refresh the dialog when the book details are changed by editing it.
      */
     public void updateView() {
-        // TODO: implement method to update book details for the dialog
+        setBook(this.book);
     }
 
     // -------------------- //

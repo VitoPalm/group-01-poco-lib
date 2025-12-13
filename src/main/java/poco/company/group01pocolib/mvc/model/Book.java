@@ -16,7 +16,7 @@ import poco.company.group01pocolib.exceptions.BookDataNotValidException;
 
 /**
  * @class   Book
- * @brief     Represents a Book in the library.
+ * @brief   Represents a Book in the library.
  * @details Each Book has a title, a list of authors, an ISBN, a release year, a number of copies owned, a number of
  *          copies currently lent out, a number for the amount of times the Book has been lent, and the line index for
  *          the DB file. The ISBN must be valid for the Book to be created. The book can be serialized for persistence.
@@ -177,14 +177,40 @@ public class Book implements Serializable {
 
     /**
      * @brief   Sets the number of copies currently lent out of the Book.
-     * @param copiesLent The number of copies currently lent out.
+     * @param   copiesLent The number of copies currently lent out.
+     * @throws  BookDataNotValidException If the number of copies lent is greater than the total number of copies.
      */
     public void setCopiesLent(int copiesLent) {
-        this.copiesLent = copiesLent;
+        if (copiesLent < this.copies) this.copiesLent = copiesLent;
+        else throw new BookDataNotValidException("Cannot set copies lent greater than total copies.");
     }
 
     /**
-     * @brief   Gets the number of copies currently lent out of the Book.
+     * @brief   Increments the number of copies currently lent out for the Book by one. Also increments the times lent.
+     * @throws  BookDataNotValidException If all copies are already lent out.
+     * @return  The new number of copies currently lent out.
+     */
+    public int incrementCopiesLent() {
+        if (this.copiesLent < this.copies) {
+            this.timesLent++;
+
+            return ++this.copiesLent;
+        }
+        else throw new BookDataNotValidException("All copies are already lent out.");
+    }
+
+    /**
+     * @brief   Decrements the number of copies currently lent out for the Book by one.
+     * @throws  BookDataNotValidException If no copies are currently lent out.
+     * @return  The new number of copies currently lent out.
+     */
+    public int decrementCopiesLent() {
+        if (this.copiesLent > 0) return --this.copiesLent;
+        else throw new BookDataNotValidException("No copies are currently lent out.");
+    }
+
+    /**
+     * @brief   Gets the number of copies currently lent for the Book.
      * @return  The number of copies currently lent out.
      */
     public int getCopiesLent() {
@@ -193,10 +219,12 @@ public class Book implements Serializable {
 
     /**
      * @brief   Sets the number of times the Book has been lent.
-     * @param timesLent The number of times the Book has been lent.
+     * @param   timesLent The number of times the Book has been lent.
+     * @throws  BookDataNotValidException if the number of times lent is negative or less than copies currently lent.
      */
     public void setTimesLent(int timesLent) {
-        this.timesLent = timesLent;
+        if (timesLent >= 0 && timesLent >= this.copiesLent) this.timesLent = timesLent;
+        else throw new BookDataNotValidException("Times lent cannot be negative or less than copies currently lent.");
     }
 
     /**
@@ -205,20 +233,6 @@ public class Book implements Serializable {
      */
     public int getTimesLent() {
         return timesLent;
-    }
-
-    /**
-     * @brief   Increases the number of copies lent out by one.
-     */
-    public void incrementCopiesLent() {
-        this.copiesLent += 1;
-    }
-
-    /**
-     * @brief   Decreases the number of copies lent out by one if greater than zero.
-     */
-    public void decrementCopiesLent() {
-        if(this.copiesLent > 0) this.copiesLent -= 1;
     }
 
     /**
