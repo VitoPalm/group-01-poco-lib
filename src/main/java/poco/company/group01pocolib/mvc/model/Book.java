@@ -208,6 +208,20 @@ public class Book implements Serializable {
     }
 
     /**
+     * @brief   Increases the number of copies lent out by one.
+     */
+    public void incrementCopiesLent() {
+        this.copiesLent += 1;
+    }
+
+    /**
+     * @brief   Decreases the number of copies lent out by one if greater than zero.
+     */
+    public void decrementCopiesLent() {
+        if(this.copiesLent > 0) this.copiesLent -= 1;
+    }
+
+    /**
      * @brief   Gets the number of copies available of the Book.
      * @return  The number of copies available of the Book.
      */
