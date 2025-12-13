@@ -12,13 +12,41 @@ public class Search {
     /**
      * @brief   Inner class representing a search result with the associated number of hits on the index.
      */
-    public static class SearchResult<T> {
+    public static class SearchResult<T> implements Comparable<SearchResult<T>> {
         public T item;
         public int hits;
 
         public SearchResult(T item, int hits) {
             this.item = item;
             this.hits = hits;
+        }
+
+        /**
+         * @brief   Overrides the equals method to compare SearchResult objects based on their items.
+         * @param   obj   the reference object with which to compare.
+         * @return  `true` if this object is the same as the obj argument; `false` otherwise.
+         */
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+
+            SearchResult<?> other = (SearchResult<?>) obj;
+            return item.equals(other.item);
+        }
+
+        /**
+         * @brief   Custom comparator for SearchResult objects based on hits.
+         *
+         * @param   other The other SearchResult object to compare with.
+         * @return  A negative integer, zero, or a positive integer as this object has less than, equal to, or greater
+         *          hits than the specified object.
+         */
+        @Override
+        public int compareTo(SearchResult<T> other) {
+            if (this.hits == other.hits) {
+                return this.item.toString().compareTo(other.item.toString());
+            }
+            return Integer.compare(other.hits, this.hits); // Descending order
         }
     }
 
