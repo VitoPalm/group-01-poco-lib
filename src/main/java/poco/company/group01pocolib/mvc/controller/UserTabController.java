@@ -371,7 +371,7 @@ public class UserTabController {
     @FXML
     private void handleUserViewEdit() {
         if (selectedUser != null) {
-            launchViewEditUserDialog(selectedUser, false, PropMode.EDIT, primaryStage);
+            launchViewEditUserDialog(selectedUser, false, PropMode.VIEW, primaryStage);
         }
     }
 

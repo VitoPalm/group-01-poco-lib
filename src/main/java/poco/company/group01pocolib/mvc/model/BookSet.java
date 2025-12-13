@@ -11,6 +11,7 @@ import poco.company.group01pocolib.db.DB;
 import poco.company.group01pocolib.db.Hash;
 import poco.company.group01pocolib.db.omnisearch.Index;
 import poco.company.group01pocolib.db.omnisearch.Search;
+import poco.company.group01pocolib.db.omnisearch.Search.SearchResult;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -346,31 +347,32 @@ public class BookSet implements Serializable {
      * @param   rawQuery The raw search query
      * @return  A list of books matching the search query, ranked by relevance
      */
-    public List<Book> search(String rawQuery) {
+    public List<SearchResult<Book>> search(String rawQuery) {
+        return null;
 
-        ArrayList<Search.SearchResult<Book>> searchResults = Search.search(rawQuery, bookIndex);
+        // ArrayList<Search.SearchResult<Book>> searchResults = Search.search(rawQuery, bookIndex);
 
-        if (searchResults == null || searchResults.isEmpty()) {
-            return new ArrayList<>();
-        }
+        // if (searchResults == null || searchResults.isEmpty()) {
+        //     return new ArrayList<>();
+        // }
 
-        searchResults.sort((r1,r2)-> {
-            int hitComparison = Integer.compare(r2.hits, r1.hits);
-            if (hitComparison != 0) {
-                return hitComparison;
-            }
+        // searchResults.sort((r1,r2)-> {
+        //     int hitComparison = Integer.compare(r2.hits, r1.hits);
+        //     if (hitComparison != 0) {
+        //         return hitComparison;
+        //     }
 
-            int score1 = calculateScore(r1.item, rawQuery);
-            int score2 = calculateScore(r2.item, rawQuery);
-            return Integer.compare(score2, score1);
-        });
+        //     int score1 = calculateScore(r1.item, rawQuery);
+        //     int score2 = calculateScore(r2.item, rawQuery);
+        //     return Integer.compare(score2, score1);
+        // });
 
-        List<Book> rankedBooks = new ArrayList<>();
-        for (Search.SearchResult<Book> result : searchResults) {
-            rankedBooks.add(result.item);
-        }   
+        // List<Book> rankedBooks = new ArrayList<>();
+        // for (Search.SearchResult<Book> result : searchResults) {
+        //     rankedBooks.add(result.item);
+        // }   
 
-        return rankedBooks;
+        // return rankedBooks;
 
         //TODO: Vito pls look at this
     }

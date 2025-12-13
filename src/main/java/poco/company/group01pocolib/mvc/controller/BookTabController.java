@@ -8,17 +8,20 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import poco.company.group01pocolib.db.omnisearch.Search.SearchResult;
 import poco.company.group01pocolib.mvc.model.*;
 
 public class BookTabController {
@@ -56,9 +59,9 @@ public class BookTabController {
     @FXML private Button bookLendButton;
 
     // Data management
-    private ObservableList<Book> bookData = FXCollections.observableArrayList();
+    private ObservableList<Book> bookData;
     private Book selectedBook;
-    private User selectedUser;
+    private List<SearchResult<Book>> currentSearchResults;
 
     private Stage primaryStage;
     private PocoLibController mainController;
@@ -151,36 +154,15 @@ public class BookTabController {
         this.bookSet = bookSet;
         this.userSet = userSet;
         this.lendingSet = lendingSet;
-        loadData();
     }
 
     /**
      * @brief   Loads data from the model into the controller.
-     * @todo    Understand why the not null check is necessary
      * @author  Giovanni Orsini
      */
     void loadData() {
-        if (bookSet != null) {
-            bookData.setAll(bookSet.getBookSet());      ///< creates the observable list from the BookSet
-            bookTable.setItems(bookData);
-
-        }
-    }
-
-    /**
-     * @brief   Sets the selected user from another tab.
-     * @param   user The user to set as selected.
-     */
-    public void setSelectedUser(User user) {
-        this.selectedUser = user;
-    }
-
-    /**
-     * @brief   Gets the currently selected book.
-     * @return  The selected book, or null if none is selected.
-     */
-    public Book getSelectedBook() {
-        return selectedBook;
+        this.bookData = FXCollections.observableArrayList(bookSet.getListOfBooks());    ///< creates the observable list from the BookSet
+        bookTable.setItems(bookData);                                           
     }
 
     /**
@@ -204,16 +186,116 @@ public class BookTabController {
                                            new ReadOnlyObjectWrapper<>(cellData.getValue().getCopiesLent()));
     }
 
-    public void initializeTable() {
-        bookTableHandler();
-        initializeBookColumns();
+    /**
+     * @brief   Applies the default sorting method to the book table.
+     * @details This method clears any existing sort order and applies the default order based on the book's surname.
+     */
+    private void applyDefaultSortMethod() {
+        // Temporarily remove listener to avoid recursion
+        bookTable.getSortOrder().removeListener(defaultSortOrderListener);
+
+        try {
+            bookTable.getSortOrder().clear();
+            bookTitleColumn.setSortType(TableColumn.SortType.ASCENDING);
+            bookTable.getSortOrder().add(bookTitleColumn);
+            bookTable.sort();
+        } finally {
+            bookTable.getSortOrder().addListener(defaultSortOrderListener);
+        }
     }
+
+    /**
+     * @brief   Applies the default search sort method to the book table.
+     * @details This method sorts the table when containing search results, based on the hit count
+     *          of the SearchResult objects returned by the search.
+     */
+    private void applyDefaultSearchSortMethod() {
+        // Temporarily remove listener to avoid recursion
+        bookTable.getSortOrder().removeListener(searchSortOrderListener);
+
+        try {
+            bookTable.getSortOrder().clear();
+
+            // Re-order based on hits from search results
+            if (currentSearchResults != null && !currentSearchResults.isEmpty()) {
+                // Stream the search results
+                List<Book> sortedByHits = currentSearchResults.stream()
+                        // Sort the stream by hit count
+                        .sorted()
+                        // Map to underlying `Book` objects
+                        .map(sr -> sr.item)
+                        // Collect to list
+                        .toList();
+                // Update the observable list with hit-sorted books
+                bookData.setAll(sortedByHits);
+            }
+
+        } finally {
+            bookTable.getSortOrder().addListener(searchSortOrderListener);
+        }
+    }
+
+    /**
+     * @brief   Listener to re-apply default sorting when sort order becomes empty.
+     */
+    ListChangeListener<TableColumn<Book, ?>> defaultSortOrderListener = change -> {
+        if (bookTable.getSortOrder().isEmpty()) {
+            applyDefaultSortMethod();
+        }
+    };
+
+    /**
+     * @brief   Listener to re-apply default search sorting when sort order becomes empty.
+     */
+    ListChangeListener<TableColumn<Book, ?>> searchSortOrderListener = change -> {
+        if (bookTable.getSortOrder().isEmpty()) {
+            applyDefaultSearchSortMethod();
+        }
+    };
+
 
     /**
      * @brief   Allows handling of swaps of shown lists based on the search field and sorting
      */
     private void bookTableHandler() {
-        // TODO: implement book table handling logic
+        if (bookSearchField.textProperty().getValue().isBlank()) {
+            loadData();
+            applyDefaultSortMethod();
+
+            // Remove eventual listener for search sort order
+            bookTable.getSortOrder().removeListener(searchSortOrderListener);
+
+            // Default sort order listener is added
+            bookTable.getSortOrder().addListener(defaultSortOrderListener);
+        } else {
+            // Clear any existing sort order to show results by hits
+            bookTable.getSortOrder().clear();
+
+            String query = bookSearchField.textProperty().getValue();
+
+            // Perform search and store results
+            currentSearchResults = bookSet.search(query);
+
+            // Initial sort of search results by hits
+            applyDefaultSearchSortMethod();
+
+            // Update table items to show only search results
+            bookTable.setItems(bookData);
+
+            // Remove default sort listener
+            bookTable.getSortOrder().removeListener(defaultSortOrderListener);
+
+            // Add search sort listener
+            bookTable.getSortOrder().addListener(searchSortOrderListener);
+        }
+    }
+    
+    /**
+     * @brief   Initializes the book table by setting up the handler and columns.
+     */
+    public void initializeTable() {
+        bookTableHandler();
+        initializeBookColumns();
     }
 
     /**
@@ -275,7 +357,7 @@ public class BookTabController {
      */
     @FXML
     private void handleBookAdd() {
-        // TODO: implement book add logic
+        launchViewEditBookDialog(null, true, PropMode.EDIT, primaryStage);
     }
 
     /**
@@ -285,7 +367,9 @@ public class BookTabController {
      */
     @FXML
     private void handleBookViewEdit() {
-        // TODO: implement book view/edit logic
+        if (selectedBook != null) {
+            launchViewEditBookDialog(selectedBook, false, PropMode.VIEW, primaryStage);
+        }
     }
 
     /**
@@ -298,6 +382,20 @@ public class BookTabController {
      */
     @FXML
     private void handleBookLend() {
-        // TODO: implement book lend logic
-    }
+        if (selectedBook == null) {
+            return; // No user selected(button disabled via Listener in TableHandler), do nothing
+        }
+
+        if (selectedBook.getCopies() <= 0) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Lending Not Allowed");
+            alert.setHeaderText("Book Cannot Borrow More Books");
+            alert.setContentText("The selected user has reached the maximum number of borrowed books and cannot" +
+                                 " borrow more at this time.");
+            alert.showAndWait();
+            return;
+        }
+
+        // This is an observed property, so setting it will trigger a check by the PocoLibController to switch tabs
+        mainController.setMasterSelectedBook(selectedBook);    }
 }
