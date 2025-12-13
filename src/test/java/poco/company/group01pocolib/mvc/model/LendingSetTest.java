@@ -7,6 +7,7 @@ package poco.company.group01pocolib.mvc.model;
 
 import poco.company.group01pocolib.db.DB;
 import poco.company.group01pocolib.db.omnisearch.Index;
+import poco.company.group01pocolib.db.omnisearch.Search.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -448,9 +449,9 @@ public class LendingSetTest {
    public void testSearch() {
         lendingSet.addOrEditLending(lending);
        
-        List<Lending> results = lendingSet.search("Tolkien");
+        List<SearchResult<Lending>> results = lendingSet.search("Tolkien");
         
-        assertTrue(results.contains(lending));
+        assertTrue(results.contains(new SearchResult<Lending>(lending, 0)));
     }
  
     /**
@@ -459,8 +460,8 @@ public class LendingSetTest {
     @Test
     public void testSearchNoResults() {
         lendingSet.addOrEditLending(lending);
-        
-        List<Lending> results = lendingSet.search("nonexistentquery12345");
+
+        List<SearchResult<Lending>> results = lendingSet.search("nonexistentquery12345");
         
         assertTrue(results.isEmpty());
     }
@@ -471,9 +472,9 @@ public class LendingSetTest {
     @Test
     public void testSearchNullQuery() {
         lendingSet.addOrEditLending(lending);
-        
-        List<Lending> resultsNull = lendingSet.search(null);
-        List<Lending> resultsEmpty = lendingSet.search("");
+
+        List<SearchResult<Lending>> resultsNull = lendingSet.search(null);
+        List<SearchResult<Lending>> resultsEmpty = lendingSet.search("");
         //TODO: Decide on expected behavior for null and empty query
         assertTrue(false);
     }
@@ -491,8 +492,8 @@ public class LendingSetTest {
         
         lendingSet.addOrEditLending(lending1);
         lendingSet.addOrEditLending(lending2);
-        
-        List<Lending> results = lendingSet.search("Tolkien");
+
+        List<SearchResult<Lending>> results = lendingSet.search("Tolkien");
         //TODO: Decide on expected ranking behavior
         assertTrue(false);
     }

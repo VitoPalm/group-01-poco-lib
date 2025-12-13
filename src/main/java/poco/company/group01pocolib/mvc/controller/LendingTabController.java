@@ -1,13 +1,23 @@
 package poco.company.group01pocolib.mvc.controller;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import poco.company.group01pocolib.db.omnisearch.Search.SearchResult;
 import poco.company.group01pocolib.mvc.model.*;
 
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 
 public class LendingTabController {
     // Data Sets
@@ -44,8 +54,9 @@ public class LendingTabController {
     @FXML private Button lendingReturnedButton;
 
     // Data management
-    private ObservableList<Lending> lendingData = FXCollections.observableArrayList();
+    private ObservableList<Lending> lendingData;
     private Lending selectedLending;
+    private List<SearchResult<Lending>> currentSearchResults;
 
     private Stage primaryStage;
     private PocoLibController mainController;
@@ -55,8 +66,23 @@ public class LendingTabController {
      */
     @FXML
     private void initialize() {
-        initializeLendingColumns();
-        lendingTableHandler();
+        // Initialize buttons bindings for disabling when no selection
+        lendingViewEditButton.disableProperty().bind(
+            lendingTable.getSelectionModel().selectedItemProperty().isNull()
+        );
+        lendingReturnedButton.disableProperty().bind(
+            lendingTable.getSelectionModel().selectedItemProperty().isNull()
+        );
+
+        // Binding for selected lending
+        lendingTable.getSelectionModel().selectedItemProperty().addListener(observable -> {
+            selectedLending = lendingTable.getSelectionModel().getSelectedItem();
+        });
+
+        // Initialize search field listener
+        lendingSearchField.textProperty().addListener(observable -> {
+            lendingTableHandler();
+        });
     }
 
     /**
@@ -71,54 +97,233 @@ public class LendingTabController {
 
     /**
      * @brief   Sets the data sets for the controller.
-     * @param   bookSet The BookSet to use.
-     * @param   userSet The UserSet to use.
-     * @param   lendingSet The LendingSet to use.
+     * @param   bookSet     The BookSet to use.
+     * @param   userSet     The UserSet to use.
+     * @param   lendingSet  The LendingSet to use.
      */
     public void setDataSets(BookSet bookSet, UserSet userSet, LendingSet lendingSet) {
         this.bookSet = bookSet;
         this.userSet = userSet;
         this.lendingSet = lendingSet;
-        loadData();
     }
 
     /**
      * @brief   Loads data from the model into the controller.
      */
-    private void loadData() {
-        // TODO: implement data loading logic
+    public void loadData() {
+        this.lendingData = FXCollections.observableArrayList(lendingSet.getAllLendingsAsList());
+        lendingTable.setItems(lendingData);
     }
 
     /**
-     * @brief   Refreshes the data in the controller by fetching the lists from the model.
+     * @pre     User has selected a `Book` and `User` in the other tabs
+     * @brief   Creates a lending based on selected `Book` and `User` objects.
      */
-    public void refreshData() {
-        // TODO: implement data refreshing logic
-    }
+    public void initializeNewLending() {
+        if (mainController.getMasterSelectedBook() == null ||
+                mainController.getMasterSelectedUser() == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(primaryStage);
+            alert.setTitle("Cannot Create Lending");
+            alert.setHeaderText("Book or User Not Selected");
+            alert.setContentText("Please select both a book and a user before creating a new lending.");
+            alert.showAndWait();
+            return;
+        }
 
-    /**
-     * @brief   Pre-selects a book and user for creating a new lending.
-     * @param   book The book to lend.
-     * @param   user The user borrowing the book.
-     */
-    public void initializeNewLending(Book book, User user) {
-        // TODO: implement new lending initialization logic
+        launchViewEditLendingDialog(null, true, PropMode.EDIT);
     }
 
     /**
      * @brief   Initializes the lending table columns.
-     * @details This method sets up the cell value factories for each column in the lending table, defining how data from
-     *          the Lending objects will be displayed in each column.
+     * @details This method sets up the cell value factories for each column in the lending table, defining how data
+     *          from the Lending objects will be displayed in each column.
      */
     private void initializeLendingColumns() {
-        // TODO: implement lending columns initialization logic
+        // Lending specific columns
+        lendingIdColumn.setCellValueFactory(cellData ->
+            new ReadOnlyObjectWrapper<>(cellData.getValue().getLendingId()));
+
+        lendingReturnDateColumn.setCellValueFactory(cellData ->
+            new ReadOnlyObjectWrapper<>(cellData.getValue().getReturnDate()));
+
+        // Book specific columns - accessing nested Book object
+        lendingIsbnColumn.setCellValueFactory(cellData -> {
+            Book book = cellData.getValue().getBook();
+            return new ReadOnlyStringWrapper(book != null ? book.getIsbn() : "");
+        });
+
+        lendingTitleColumn.setCellValueFactory(cellData -> {
+            Book book = cellData.getValue().getBook();
+            return new ReadOnlyStringWrapper(book != null ? book.getTitle() : "");
+        });
+
+        // User specific columns - accessing nested User object
+        lendingUserIdColumn.setCellValueFactory(cellData -> {
+            User user = cellData.getValue().getUser();
+            return new ReadOnlyStringWrapper(user != null ? user.getId() : "");
+        });
+
+        lendingUserColumn.setCellValueFactory(cellData -> {
+            User user = cellData.getValue().getUser();
+            return new ReadOnlyStringWrapper(user != null ? user.getName() : "");
+        });
     }
+
+    /**
+     * @brief   Applies the default sorting method to the lending table.
+     * @details This method clears any existing sort order and applies the default sorting by return date in ascending
+     *          order.
+     */
+    private void applyDefaultSortMethod() {
+        // Temporarily remove listener to avoid recursion
+        lendingTable.getSortOrder().removeListener(defaultSortOrderListener);
+
+        try {
+            lendingTable.getSortOrder().clear();
+            lendingReturnDateColumn.setSortType(TableColumn.SortType.ASCENDING);
+            lendingTable.getSortOrder().add(lendingReturnDateColumn);
+            lendingTable.sort();
+        } finally {
+            lendingTable.getSortOrder().addListener(defaultSortOrderListener);
+        }
+    }
+
+    /**
+     * @brief   Applies the default search sort method to the lending table.
+     * @details This method sorts the table when containing search results, based on the hit count
+     *          of the SearchResult objects returned by the search.
+     */
+    private void applyDefaultSearchSortMethod() {
+        // Temporarily remove listener to avoid recursion
+        lendingTable.getSortOrder().removeListener(searchSortOrderListener);
+
+        try {
+            lendingTable.getSortOrder().clear();
+
+            // Re-order based on hits from search results
+            if (currentSearchResults != null && !currentSearchResults.isEmpty()) {
+                // Stream the search results
+                List<Lending> sortedByHits = currentSearchResults.stream()
+                        // Sort the stream by hit count
+                        .sorted()
+                        // Map to underlying Lending objects
+                        .map(sr -> sr.item)
+                        // Collect to list
+                        .toList();
+                // Update the observable list with hit-sorted lendings
+                lendingData.setAll(sortedByHits);
+            }
+        } finally {
+            lendingTable.getSortOrder().addListener(searchSortOrderListener);
+        }
+    }
+
+    /**
+     * @brief   Listener to re-apply default sorting when sort order becomes empty.
+     */
+    ListChangeListener<TableColumn<Lending, ?>> defaultSortOrderListener = change -> {
+        if (lendingTable.getSortOrder().isEmpty()) {
+            applyDefaultSortMethod();
+        }
+    };
+
+    /**
+     * @brief   Listener to re-apply default search sorting when sort order becomes empty.
+     */
+    ListChangeListener<TableColumn<Lending, ?>> searchSortOrderListener = change -> {
+        if (lendingTable.getSortOrder().isEmpty()) {
+            applyDefaultSearchSortMethod();
+        }
+    };
 
     /**
      * @brief   Allows handling of swaps of shown lists based on the search field and sorting
      */
     private void lendingTableHandler() {
-        // TODO: implement lending table handling logic
+        if (lendingSearchField.textProperty().getValue().isBlank()) {
+            loadData();
+            applyDefaultSortMethod();
+
+            // Remove eventual listener for search sort order
+            lendingTable.getSortOrder().removeListener(searchSortOrderListener);
+
+            // Default sort order listener is added
+            lendingTable.getSortOrder().addListener(defaultSortOrderListener);
+        } else {
+            // Clear any existing sort order to show results by hits
+            lendingTable.getSortOrder().clear();
+
+            String query = lendingSearchField.textProperty().getValue();
+
+            // Perform search and store results
+            currentSearchResults = lendingSet.search(query);
+
+            // Initial sort of search results by hits
+            applyDefaultSearchSortMethod();
+
+            // Update table items to show only search results
+            lendingTable.setItems(lendingData);
+
+            // Remove default sort listener
+            lendingTable.getSortOrder().removeListener(defaultSortOrderListener);
+
+            // Add search sort listener
+            lendingTable.getSortOrder().addListener(searchSortOrderListener);
+        }
+    }
+
+    /**
+     * @brief   Initializes the lending table by setting up the handler and columns.
+     */
+    public void initializeTable() {
+        lendingTableHandler();
+        initializeLendingColumns();
+    }
+
+    /**
+     * @brief   Launches the View/Edit Lending dialog.
+     * @details This method opens a new dialog window for viewing or editing a lending's details. It takes into account
+     *          whether the lending is new or existing, and whether editing is allowed.
+     *
+     * @param   lendingToViewOrEdit  The lending to view or edit. If `null` and `isNewLending` is `true`, a new lending
+     *                               will be created.
+     * @param   isNewLending         `true` if creating a new lending, `false` if viewing/editing an existing lending.
+     * @param   mode                 The mode of the dialog, either VIEW, VIEW_ONLY, or EDIT.
+     */
+    public void launchViewEditLendingDialog(Lending lendingToViewOrEdit, boolean isNewLending, PropMode mode) {
+        // Handling logical inconsistencies
+        if (lendingToViewOrEdit == null && !isNewLending ||
+                lendingToViewOrEdit != null && isNewLending ||
+                mode == PropMode.VIEW_ONLY && isNewLending)
+            return;
+
+        try {
+            URL url = getClass().getResource("/poco/company/group01pocolib/mvc/view/prop-lending.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+            LendingPropController controller = loader.getController();
+            controller.setDependencies(lendingSet, bookSet, userSet, mainController);
+
+            Stage stage = new Stage();
+            controller.setDialogStage(stage);
+            controller.setLending(lendingToViewOrEdit);
+            stage.setScene(new Scene(root));
+
+            if (isNewLending) {
+                stage.setTitle("Add New Lending");
+            } else {
+                stage.setTitle("View Lending Details");
+            }
+
+            controller.setMode(mode);
+            stage.initOwner(primaryStage);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     // --------------- //
@@ -131,7 +336,9 @@ public class LendingTabController {
      */
     @FXML
     private void handleLendingEdit() {
-        // TODO: implement lending view/edit logic
+        if (selectedLending != null) {
+            launchViewEditLendingDialog(selectedLending, false, PropMode.EDIT);
+        }
     }
 
     /**
@@ -141,6 +348,8 @@ public class LendingTabController {
      */
     @FXML
     private void handleMarkAsReturned() {
-        // TODO: implement lending returned logic
+        if (selectedLending != null) {
+            selectedLending.setReturned();
+        }
     }
 }

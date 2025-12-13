@@ -9,6 +9,8 @@ package poco.company.group01pocolib.mvc.model;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import poco.company.group01pocolib.exceptions.*;
+
 /**
  * @class   Lending
  * @brief   Represents a Lending in the library.
@@ -31,14 +33,23 @@ public class Lending implements Serializable {
 
     /**
      * @brief   Constructs a new Lending object.
+     * @details Increments the lending counter to assign a unique ID to the new Lending, and updates the book and user
+     *          statistics accordingly. This second update can throw exceptions if the user or book limits are exceeded.
      *
      * @param   book        The Book being lent.
      * @param   user        The User who is borrowing the Book.
      * @param   returnDate  The date by which the Book should be returned.
+     *
+     * @throws  BookDataNotValidException If trying to lend a book that has no available copies.
+     * @throws  UserDataNotValidException If the user has reached the maximum number of borrowed books.
      */
     public Lending (Book book, User user, LocalDate returnDate) {
         this.book = book;
+        this.book.incrementCopiesLent();
+
         this.user = user;
+        this.user.incrementBorrowedBooksCount();
+
         this.returnDate = returnDate;
         this.lendingId = ++lendingCounter;
         this.returned = false;
@@ -101,6 +112,14 @@ public class Lending implements Serializable {
     }
 
     /**
+     * @brief   Sets the ID of the Lending. Should only be used in very rare circumstances.
+     * @param   lendingId New ID of the Lending.
+     */
+    public void setLendingId(int lendingId) {
+        this.lendingId = lendingId;
+    }
+
+    /**
      * @brief   Checks if the Book has been returned.
      * @return  true if the Book has been returned, false otherwise.
      */
@@ -113,6 +132,8 @@ public class Lending implements Serializable {
      */
     public void setReturned() {
         this.returned = true;
+        this.user.decrementBorrowedBooksCount();
+        this.book.decrementCopiesLent();
     }
 
     /**
@@ -120,6 +141,7 @@ public class Lending implements Serializable {
      */
     public void setNotReturned() {
         this.returned = false;
+        this.user.incrementBorrowedBooksCount();
     }
 
     /**

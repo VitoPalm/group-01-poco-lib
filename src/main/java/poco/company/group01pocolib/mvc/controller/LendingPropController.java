@@ -1,26 +1,28 @@
 package poco.company.group01pocolib.mvc.controller;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.*;
+import java.time.LocalDate;
+import javafx.scene.control.Alert.AlertType;
 
 public class LendingPropController {
-
     // ----------------- //
     // View declarations //
     // ----------------- //
     @FXML private VBox viewBox;
+
     @FXML private Label lendingIdLabel;
     @FXML private Label returnDateLabel;
 
-    @FXML private Hyperlink bookLink;
-    @FXML private Hyperlink userLink;
+    @FXML private Hyperlink bookLinkView;
+    @FXML private Hyperlink userLinkView;
 
+    @FXML private Button editButton;
     @FXML private Button deleteButton;
     @FXML private Button returnButton;
 
@@ -28,8 +30,13 @@ public class LendingPropController {
     // Edit declarations //
     // ----------------- //
     @FXML private VBox editBox;
+
+    @FXML private Hyperlink bookLinkEdit;
+    @FXML private Hyperlink userLinkEdit;
+
     @FXML private DatePicker returnDatePicker;
 
+    @FXML private Label infoLabel;
     @FXML private Label errorLabel;
     @FXML private Button saveButton;
 
@@ -38,11 +45,13 @@ public class LendingPropController {
     // ------------- //
     private Stage dialogStage;
     private Lending lending;
-    private boolean saveClicked = false;
     private LendingSet lendingSet;
     private BookSet bookSet;
     private UserSet userSet;
     private PocoLibController mainController;
+
+    private final BooleanProperty validInput = new SimpleBooleanProperty(true);
+    private boolean isNewLending = false;
 
     // ------------ //
     // Edit methods //
@@ -53,7 +62,38 @@ public class LendingPropController {
      */
     @FXML
     private void initialize() {
-        // TODO: implement initialization logic
+        viewBox.managedProperty().bind(viewBox.visibleProperty());
+        editBox.managedProperty().bind(editBox.visibleProperty());
+        infoLabel.managedProperty().bind(infoLabel.visibleProperty());
+        errorLabel.managedProperty().bind(errorLabel.visibleProperty());
+
+        returnDatePicker.valueProperty().addListener(observable -> {
+            validInput.set(validateInput());
+        });
+
+        saveButton.disableProperty().bind(validInput.not());
+    }
+
+    /**
+     * @brief   Sets the mode of the dialog (view, edit, view-only)
+     * @param   mode The mode to set. Can be any value of the PropMode enum.
+     */
+    public void setMode(PropMode mode) {
+        if (mode == PropMode.VIEW) {
+            viewBox.setVisible(true);
+            editBox.setVisible(false);
+        } else if (mode == PropMode.EDIT) {
+            viewBox.setVisible(false);
+            editBox.setVisible(true);
+        } else if (mode == PropMode.VIEW_ONLY) {
+            // If not editable, stay in view mode and disable all buttons
+            viewBox.setVisible(true);
+            editBox.setVisible(false);
+
+            editButton.setDisable(true);
+            deleteButton.setDisable(true);
+            returnButton.setDisable(true);
+        }
     }
 
     /**
@@ -81,20 +121,40 @@ public class LendingPropController {
     }
 
     /**
-     * @brief   Sets the lending to be edited/viewed in the dialog
-     * @param   lending The lending to set
+     * @brief   Sets the lending to be edited/viewed in the dialog.
+     * @details If the lending is `null`, a new empty lending is created to allow the creation of a new lending. When
+     *          setting the lending, both the view labels and edit fields are updated with the lending details.
+     *
+     * @param   lending The lending to set.
+     * @throws  IllegalArgumentException If `lending` is `null` **and** no book or user is selected in the main
+     *                                   controller.
      */
     public void setLending(Lending lending) {
         this.lending = lending;
-        // TODO: implement method to set lending details in the dialog
-    }
 
-    /**
-     * @brief   Returns whether the save button was clicked
-     * @return  `true` if the save button was clicked, `false` otherwise
-     */
-    public boolean isSaveClicked() {
-        return saveClicked;
+        // If lending is null, create a new empty lending (for new lending creation)
+        if (lending == null) {
+            if (mainController.getMasterSelectedBook() == null ||
+                mainController.getMasterSelectedUser() == null) {
+                throw new IllegalArgumentException("Cannot create new lending without selected book and user.");
+            }
+
+            isNewLending = true;
+            lending = new Lending(mainController.getMasterSelectedBook(),
+                                  mainController.getMasterSelectedUser(),
+                                  LocalDate.now());
+        }
+
+        // Set view labels/links
+        lendingIdLabel.setText(String.valueOf(lending.getLendingId()));
+        bookLinkView.setText(lending.getBook().getTitle());
+        userLinkView.setText(lending.getUser().getFullName());
+        returnDateLabel.setText(lending.getReturnDate().toString());
+
+        // Set edit links/fields
+        bookLinkEdit.setText(lending.getBook().getTitle());
+        userLinkEdit.setText(lending.getUser().getFullName());
+        returnDatePicker.setValue(lending.getReturnDate());
     }
 
     /**
@@ -102,7 +162,7 @@ public class LendingPropController {
      * @details This method is needed to refresh the dialog when the lending details are changed by editing it.
      */
     public void updateView() {
-        // TODO: implement method to update lending details for the dialog
+        setLending(this.lending);
     }
 
 
@@ -114,7 +174,8 @@ public class LendingPropController {
      */
     @FXML
     private void handleEdit() {
-        // TODO: implement edit logic
+        setMode(PropMode.EDIT);
+        updateView();
     }
 
     /**
@@ -122,7 +183,8 @@ public class LendingPropController {
      */
     @FXML
     private void handleMarkAsReturned() {
-        // TODO: implement mark as returned logic
+        lending.setReturned();
+        lendingSet.addOrEditLending(lending);
     }
 
     /**
@@ -130,7 +192,19 @@ public class LendingPropController {
      */
     @FXML
     private void handleDelete() {
-        // TODO: implement delete logic
+        // Create confirmation alert before deleting
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the lending?");
+        alert.initOwner(dialogStage);
+        alert.setTitle("Confirm Deletion");
+        alert.setHeaderText("Delete Lending");
+
+        // Wait for confirmation
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                lendingSet.removeLending(lending);
+                dialogStage.close();
+            }
+        });
     }
 
     // -------------------- //
@@ -142,7 +216,43 @@ public class LendingPropController {
      */
     @FXML
     private void handleSave() {
-        // TODO: implement save logic
+        if (!validateInput()) {
+            Alert alert = new Alert(AlertType.ERROR, "Invalid input fields.");
+            alert.initOwner(dialogStage);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorLabel.getText());
+            alert.showAndWait();
+        } else {
+            // Save lending details from edit fields
+            lending.setReturnDate(returnDatePicker.getValue());
+
+            // Add or edit lending in the lending set
+            lendingSet.addOrEditLending(lending);
+
+            // Show success info
+            infoLabel.setVisible(true);
+            errorLabel.setVisible(false);
+
+            // Wait a moment to show the info label
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.err.println(e.getMessage());
+            }
+
+            // Clear selected book and user in main controller if it was a new lending
+            if (isNewLending) {
+                mainController.setMasterSelectedBook(null);
+                mainController.setMasterSelectedUser(null);
+            }
+
+            // Refresh the data in all tabs
+            mainController.refreshTabData();
+
+            // Close the dialog
+            dialogStage.close();
+        }
     }
 
     /**
@@ -160,26 +270,48 @@ public class LendingPropController {
      * @return  `true` if all fields are valid, `false` otherwise
      */
     private boolean validateInput() {
-        // TODO: implement validation logic
-        return false;
+        boolean output = true;
+        errorLabel.setVisible(false);
+
+        if (lending.getBook() == null) {
+            errorLabel.setText("Book cannot be null.");
+            errorLabel.setVisible(true);
+            output = false;
+        } else if (lending.getUser() == null) {
+            errorLabel.setText("User cannot be null.");
+            errorLabel.setVisible(true);
+            output = false;
+        } else if (returnDatePicker.getValue() == null) {
+            errorLabel.setText("Return date cannot be empty.");
+            errorLabel.setVisible(true);
+            output = false;
+        }
+
+        return output;
     }
 
     // ------------- //
     // Link Handlers //
     // ------------- //
     /**
-     * @brief   Handles the view book link click event. It opens the book view dialog.
+     * @brief   Handles the view book link click event. It opens the book dialog in view-only mode.
      */
     @FXML
     private void handleViewBook() {
-        // TODO: implement view book logic
+        if (lending != null && lending.getBook() != null) {
+            Book selectedBook = lending.getBook();
+            mainController.getBookTabController().launchViewEditBookDialog(selectedBook,false, PropMode.VIEW_ONLY);
+        }
     }
 
     /**
-     * @brief   Handles the view user link click event. It opens the user view dialog.
+     * @brief   Handles the view user link click event. It opens the user dialog in view-only mode.
      */
     @FXML
     private void handleViewUser() {
-        // TODO: implement view user logic
+        if (lending != null && lending.getUser() != null) {
+            User selectedUser = lending.getUser();
+            mainController.getUserTabController().launchViewEditUserDialog(selectedUser,false, PropMode.VIEW_ONLY);
+        }
     }
 }

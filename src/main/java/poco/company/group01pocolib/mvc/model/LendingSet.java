@@ -7,6 +7,7 @@ package poco.company.group01pocolib.mvc.model;
 
 import poco.company.group01pocolib.db.DB;
 import poco.company.group01pocolib.db.omnisearch.Index;
+import poco.company.group01pocolib.db.omnisearch.Search.*;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -26,7 +27,7 @@ import java.util.Set;
 /**
  * @class   LendingSet
  * @brief   A collection of lendings that acts as the real data interface for the main controller to interact with.
- * @details This class is the real data model for lendings for the MVC structure of this project. It allows object
+ * @details This class is the actual data model for lendings for the MVC structure of this project. It allows object
  *          permanence between sessions through serialization, and allows searching through an indexed DB of lendings.
  *          <br><br>
  *          The fact that the collection of lendings is essentially memorized in three different data structures (the
@@ -167,13 +168,13 @@ public class LendingSet implements Serializable {
      *          (This is done to avoid rebuilding the DB's internal Cache from scratch)
      *
      * @param   serializationPath The path to the serialized `LendingSet`
-     * @param   DBPath The path to the DB file
-     * @param   bookset The BookSet to link
-     * @param   userset The UserSet to link
+     * @param   DBPath  The path to the DB file
+     * @param   bookSet The BookSet to link
+     * @param   userSet The UserSet to link
      * @return  The loaded `LendingSet` object
      * @author  Giovanni Orsini
      */
-    public static LendingSet loadFromSerialized(String serializationPath, String DBPath, BookSet bookset, UserSet userset) {
+    public static LendingSet loadFromSerialized(String serializationPath, String DBPath, BookSet bookSet, UserSet userSet) {
         Object obj;
         LendingSet lendingSet = null;
 
@@ -187,7 +188,7 @@ public class LendingSet implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             lendingSet = new LendingSet();
             lendingSet.setDBPath(DBPath);
-            lendingSet.rebuildFromDB(DBPath, bookset, userset);
+            lendingSet.rebuildFromDB(DBPath, bookSet, userSet);
             return lendingSet;
         }
 
@@ -202,7 +203,7 @@ public class LendingSet implements Serializable {
             return lendingSet;
         } else {
             lendingSet.setDBPath(DBPath);
-            lendingSet.rebuildFromDB(DBPath, bookset, userset);
+            lendingSet.rebuildFromDB(DBPath, bookSet, userSet);
         }
 
         return lendingSet;
@@ -260,7 +261,7 @@ public class LendingSet implements Serializable {
         lendingIndex.add(lending.toSearchableString(), lending);
 
         // Syncs the changes to DB and serialized file
-        syncOnWrite();
+        //syncOnWrite();
     }
 
     /**
@@ -297,7 +298,7 @@ public class LendingSet implements Serializable {
      * @param   rawQuery The raw search query
      * @return  A list of lendings matching the search query, ranked by relevance
      */
-    public List<Lending> search(String rawQuery) {
+    public List<SearchResult<Lending>> search(String rawQuery) {
         // TODO: Implement search
         return null;
     }
@@ -308,7 +309,7 @@ public class LendingSet implements Serializable {
      * @param   rawQuery The raw search query
      * @return  A list of lendings matching the search query
      */
-    private List<Lending> rawSearch(String rawQuery) {
+    private List<SearchResult<Lending>> rawSearch(String rawQuery) {
         // TODO: Implement search
         return null;
     }
