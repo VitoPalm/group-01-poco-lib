@@ -84,6 +84,13 @@ public class BookTabController {
     }
 
     /**
+     * @brief   Initializes the book table by setting up the columns.
+     */
+    public void initializeTable() {
+        initializeBookColumns();
+    }
+
+    /**
      * @brief   Loads data from the model into the controller.
      * @todo    Understand why the not null check is necessary
      * @author  Giovanni Orsini

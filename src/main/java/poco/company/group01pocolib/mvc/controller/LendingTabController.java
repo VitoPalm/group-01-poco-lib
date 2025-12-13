@@ -274,10 +274,9 @@ public class LendingTabController {
     }
 
     /**
-     * @brief   Initializes the lending table by setting up the handler and columns.
+     * @brief   Initializes the lending table by setting up the columns.
      */
     public void initializeTable() {
-        lendingTableHandler();
         initializeLendingColumns();
     }
 

@@ -85,6 +85,13 @@ public class UserTabController {
     }
 
     /**
+     * @brief   Initializes the user table by setting up the columns.
+     */
+    public void initializeTable() {
+        initializeUserColumns();
+    }
+
+    /**
      * @brief   Loads data from the model into the controller.
      * @todo    Understand why the not null check is necessary
      */
