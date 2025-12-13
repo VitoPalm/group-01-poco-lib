@@ -9,8 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import poco.company.group01pocolib.db.omnisearch.Search.SearchResult;
 import poco.company.group01pocolib.mvc.model.*;
@@ -29,6 +32,10 @@ public class LendingTabController {
     // Lending Tab //
     // ----------- //
     @FXML private Tab lendingTab;
+
+    @FXML private VBox containerVBox;
+
+    @FXML private ImageView pocologoImageView;
 
     @FXML private TextField lendingSearchField;
 
@@ -83,6 +90,24 @@ public class LendingTabController {
         lendingSearchField.textProperty().addListener(observable -> {
             lendingTableHandler();
         });
+
+        Platform.runLater(() -> {
+            // listener to control the pocologo visibility
+            if (containerVBox.getScene() == null)
+                return;
+
+            containerVBox.getScene().heightProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.doubleValue() < 600) {
+                    pocologoImageView.setVisible(false);
+                    pocologoImageView.setManaged(false);
+                } else {
+                    pocologoImageView.setVisible(true);
+                    pocologoImageView.setManaged(true);
+                }
+            });
+        });
+        
+
     }
 
     /**

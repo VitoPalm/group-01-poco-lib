@@ -85,7 +85,7 @@ public class Launcher extends Application {
         stage.setScene(new Scene(root));
         stage.setTitle("PocoLib");
         stage.setMinWidth(350);
-        stage.setMinHeight(400);
+        stage.setMinHeight(250);
 
         stage.show();
     }

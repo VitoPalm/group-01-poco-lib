@@ -3,6 +3,7 @@ package poco.company.group01pocolib.mvc.controller;
 import java.net.URL;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.*;
@@ -27,6 +30,10 @@ public class BookTabController {
     // Book Tab //
     // -------- //
     @FXML private Tab bookTab;
+
+    @FXML private VBox containerVBox;
+
+    @FXML private ImageView pocologoImageView;
 
     @FXML private TextField bookSearchField;
 
@@ -56,13 +63,52 @@ public class BookTabController {
     private PocoLibController mainController;
 
     /**
-     * @brief   Initializes the controller class. This method is automatically called after fxml file has been loaded.
+     * @brief   Initializes the controller class, setting up all the listeners. This method is automatically called after fxml file has been loaded.
+     * 
+     * @details
+     * Setup of all the listeners of the BookTab: selected table entry, Omnisearch textfield
+     * - When an entry is selected, the "Lend" and "View/Edit" buttons will become clickable
+     * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
+     *   enables the view of the search results
+     * - When the window is resized to a tighter height, the pocologo is hidden
+     *
+     * @author  Giovanni Orsini
      */
     @FXML
     private void initialize() {
-        initializeBookColumns();
-        listenersSetup();
-        bookTableHandler();
+        // Initialize buttons bindings for disabling when no selection
+        bookViewEditButton.disableProperty().bind(
+                bookTable.getSelectionModel().selectedItemProperty().isNull()
+        );
+        bookLendButton.disableProperty().bind(
+                bookTable.getSelectionModel().selectedItemProperty().isNull()
+        );
+
+        // Binding for selected book
+        bookTable.getSelectionModel().selectedItemProperty().addListener(observable -> {
+            selectedBook = bookTable.getSelectionModel().getSelectedItem();
+        });
+
+        // Initialize search field listener
+        bookSearchField.textProperty().addListener(observable -> {
+            bookTableHandler();
+        });
+
+        Platform.runLater(() -> {
+            // listener to control the pocologo visibility
+            if (containerVBox.getScene() == null)
+                return;
+
+            containerVBox.getScene().heightProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.doubleValue() < 600) {
+                    pocologoImageView.setVisible(false);
+                    pocologoImageView.setManaged(false);
+                } else {
+                    pocologoImageView.setVisible(true);
+                    pocologoImageView.setManaged(true);
+                }
+            });
+        });
     }
 
     /**
@@ -139,44 +185,8 @@ public class BookTabController {
     }
 
     public void initializeTable() {
-
-    }
-
-    /**
-     * @brief   Setup of all the listeners of the BookTab: selected table entry, Omnisearch textfield
-     * @details
-     * - When an entry is selected, the "Lend" and "View/Edit" buttons will become clickable
-     * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
-     *   enables the view of the search results
-     *
-     * @author  Giovanni Orsini
-     */
-    private void listenersSetup() {
-        bookViewEditButton.setDisable(true);                                ///< Buttons are initialized as disabled
-        bookLendButton.setDisable(true);
-
-        bookTable.getSelectionModel().selectedItemProperty().addListener(   ///< On selection:
-            (observable, oldValue, newValue) -> {
-                this.selectedBook = newValue;                               ///< Updates the attribute
-
-                this.bookViewEditButton.setDisable(newValue == null);       ///< Disables buttons
-                this.bookLendButton.setDisable(newValue == null);
-            }
-        );
-
-        bookSearchField.textProperty().addListener(
-            (observable, oldValue, newValue) -> {
-                if (newValue == null || newValue.isBlank()) {
-                    loadData();
-                } else {
-                    List<Book> searchResults = bookSet.search(newValue.toLowerCase().trim());
-
-                    bookData.clear();
-                    bookData.addAll(searchResults);
-                }
-
-            }
-        );
+        bookTableHandler();
+        initializeBookColumns();
     }
 
     /**
