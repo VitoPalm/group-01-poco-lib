@@ -79,7 +79,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>poco.company.group01pocolib/poco.company.group01pocolib.mvc.PocoLibApplication</mainClass>
+                            <mainClass>poco.company.group01pocolib/poco.company.group01pocolib.Launcher</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
