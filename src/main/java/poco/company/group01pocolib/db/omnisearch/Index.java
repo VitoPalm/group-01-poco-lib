@@ -109,7 +109,7 @@ public class Index<T> implements Serializable {
      *
      * @warning If the `searchableContent` used to remove `item` isn't the same as the original one used to add `item`,
      *          `item` may not be completely be removed from the index. To make sure `item` is removed, use {@link
-     *          poco.company.group01pocolib.db.omnisearch.Index.remove remove(T item)} instead.
+     *          poco.company.group01pocolib.db.omnisearch.Index#remove remove(T item)} instead.
      */
     public void fastRemove(String searchableContent, T item) {
         List<String> keys = generateTrigrams(searchableContent);
