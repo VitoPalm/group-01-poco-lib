@@ -21,7 +21,7 @@ import java.io.Serializable;
  *          number of books borrowed ever. The ID and email must be of valid format for the object to be created. The
  *          class can be serialized for persistence.
  */
-public class User implements Serializable {
+public class User implements Comparable<User>, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -53,7 +53,8 @@ public class User implements Serializable {
      * @param   surname User's surname
      * @param   email   User's email
      *
-     * @throws UserDataNotValidException if a User is being initialized with an invalid ID/Email, or if name or surname are null or empty
+     * @throws UserDataNotValidException If a `User` is being initialized with an invalid ID/Email, or if `name` or
+     *                                   `surname` are null or empty
      */
     public User(String id, String name, String surname, String email) {
         if (!User.isValidID(id))
@@ -85,18 +86,27 @@ public class User implements Serializable {
      * @return  `true` if the User ID is valid, `false` otherwise
      */
     public static boolean isValidID(String id) {
-        String idPattern = "^[a-zA-Z0-9]{5,16}$";
+        String idPattern = "^[\\p{L}\\d]{5,16}$";
         return (id != null && id.matches(idPattern));
     }
 
     /**
      * @brief   `static` method to check whether a String is a correct Email
-     * @details An Email is valid if it follows the standard email format
+     * @details An Email is valid if it follows the standard email format. The regex used is based on an implementation
+     *          by Jan Goyvaerts that can be found at <a href="https://www.regular-expressions.info/email.html">this</a>
+     *          website. It mostly follows RFC 5322 (excluding some really uncommon edge cases) which specifies syntax
+     *          for email addresses. Is follows RFC 1035 to specify the length limits (RFC 1035 specifies details for
+     *          the implementation of domain names).
+     *
      * @param   email The String to check
      * @return  `true` if the Email is valid, `false` otherwise
      */
     public static boolean isValidEmail(String email) {
-        String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        String emailPattern = "\\A(?=[a-z0-9@.!#$%&'*+/=?^_`{|}~-]{6,254}\\z)" +
+                              "(?=[a-z0-9.!#$%&'*+/=?^_`{|}~-]{1,64}@)" +
+                              "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" +
+                              "(?:(?=[a-z0-9-]{1,63}\\.)[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+" +
+                              "(?=[a-z0-9-]{1,63}\\z)[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\z";
         return (email != null && email.matches(emailPattern));
     }
 
@@ -167,6 +177,10 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
+    public String getFullName() {
+        return surname + " " + name;
+    }
+
     /**
      * @brief   Gets the email of the User
      * @return  The email of the User
@@ -202,7 +216,7 @@ public class User implements Serializable {
     public void setBorrowedBooksCount(int borrowedBooksCount) {
         if (borrowedBooksCount < 0 || borrowedBooksCount > MAX_BORROWED_BOOKS)
             throw new UserDataNotValidException("Borrowed books count must be between 0 and " + MAX_BORROWED_BOOKS);
-        
+
         this.borrowedBooksCount = borrowedBooksCount;
     }
 
@@ -214,7 +228,7 @@ public class User implements Serializable {
     public int incrementBorrowedBooksCount() {
         if (this.borrowedBooksCount >= MAX_BORROWED_BOOKS)
             throw new UserDataNotValidException("Cannot borrow more than " + MAX_BORROWED_BOOKS + " books.");
-        
+
         this.borrowedBooksEverCount++;
         return ++this.borrowedBooksCount;
     }
@@ -227,7 +241,7 @@ public class User implements Serializable {
     public int decrementBorrowedBooksCount() {
         if (this.borrowedBooksCount <= 0)
             throw new UserDataNotValidException("Cannot have less than 0 borrowed books.");
-        
+
         return --this.borrowedBooksCount;
     }
 
@@ -263,6 +277,26 @@ public class User implements Serializable {
         if (obj == null || getClass() != obj.getClass()) return false;
         User other = (User) obj;
         return id.equals(other.id);
+    }
+
+    /**
+     * @brief   Compares this User with another User based on their surnames, and names if surnames are equal. They are
+     *          considered equal if they have the same ID.
+     * @param   other The other User to compare with.
+     * @return  A negative integer, zero, or a positive integer as this User is less than, equal to, or greater than the
+     *          specified User.
+     */
+    @Override
+    public int compareTo(User other) {
+        if (this.equals(other)) {
+            return 0;
+        }
+
+        if (this.surname.equalsIgnoreCase(other.surname)) {
+            return this.name.compareToIgnoreCase(other.name);
+        }
+
+        return this.surname.compareToIgnoreCase(other.surname);
     }
 
     /**
@@ -324,10 +358,10 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User:\n" +
-                "\tid='" + getId() + "\'\n" +
-                "\tname='" + getName() + "\'\n" +
-                "\tsurname='" + getSurname() + "\'\n" +
-                "\temail='" + getEmail() + "\'\n" +
+                "\tid='" + getId() + "'\n" +
+                "\tname='" + getName() + "'\n" +
+                "\tsurname='" + getSurname() + "'\n" +
+                "\temail='" + getEmail() + "'\n" +
                 "\tborrowedBooksCount=" + getBorrowedBooksCount() + "\n" +
                 "\tborrowedBooksEverCount=" + getBorrowedBooksEverCount() + "\n";
     }

@@ -21,6 +21,7 @@ public class UserPropController {
     @FXML private Label emailLabel;
     @FXML private Hyperlink borrowedLink;
 
+    @FXML private Button editButton;
     @FXML private Button deleteButton;
     @FXML private Button lendToButton;
 
@@ -41,7 +42,6 @@ public class UserPropController {
     // ------------- //
     private Stage dialogStage;
     private User user;
-    private boolean saveClicked = false;
     private UserSet userSet;
     private PocoLibController mainController;
 
@@ -55,6 +55,28 @@ public class UserPropController {
     @FXML
     private void initialize() {
         // TODO: implement initialization logic
+    }
+
+    /**
+     * @brief   Sets the mode of the dialog (view, edit, view-only)
+     * @param   mode The mode to set. Can be any value of the PropMode enum.
+     */
+    public void setMode(PropMode mode) {
+        if (mode == PropMode.VIEW) {
+            viewBox.setVisible(true);
+            editBox.setVisible(false);
+        } else if (mode == PropMode.EDIT) {
+            viewBox.setVisible(false);
+            editBox.setVisible(true);
+        } else if (mode == PropMode.VIEW_ONLY) {
+            // If not editable, stay in view mode and disable all buttons
+            viewBox.setVisible(true);
+            editBox.setVisible(false);
+
+            editButton.setDisable(true);
+            deleteButton.setDisable(true);
+            lendToButton.setDisable(true);
+        }
     }
 
     /**
@@ -81,15 +103,33 @@ public class UserPropController {
      */
     public void setUser(User user) {
         this.user = user;
-        // TODO: implement method to set user details in the dialog
-    }
 
-    /**
-     * @brief   Returns whether the save button was clicked
-     * @return  `true` if the save button was clicked, `false` otherwise
-     */
-    public boolean isSaveClicked() {
-        return saveClicked;
+        String filler = null;
+
+        if (user == null) {
+            filler = "ᚁᚁᚁᚁᚁᚁ"; // Random ancient Irish glyphs to pass checks
+            String mailFiller = "s.m.t.h@pocolib.com";
+            this.user = new User(filler, filler, filler, mailFiller);
+        }
+
+        // Set view fields (filler isn't handled cause a null user is only used to create new users)
+        idLabel.setText(this.user.getId());
+        nameLabel.setText(this.user.getName());
+        surnameLabel.setText(this.user.getSurname());
+        emailLabel.setText(this.user.getEmail());
+
+        // Set edit fields
+        if (filler != null) {
+            idField.setText("");
+            nameField.setText("");
+            surnameField.setText("");
+            emailField.setText("");
+        } else {
+            idField.setText(this.user.getId());
+            nameField.setText(this.user.getName());
+            surnameField.setText(this.user.getSurname());
+            emailField.setText(this.user.getEmail());
+        }
     }
 
     /**

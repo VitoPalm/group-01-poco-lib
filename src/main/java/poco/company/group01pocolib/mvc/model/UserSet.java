@@ -10,16 +10,10 @@ package poco.company.group01pocolib.mvc.model;
 
 import poco.company.group01pocolib.db.DB;
 import poco.company.group01pocolib.db.omnisearch.Index;
+import poco.company.group01pocolib.db.omnisearch.Search.*;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -45,7 +39,8 @@ public class UserSet implements Serializable {
     private Index<User> userIndex;
     private DB userDB;
 
-    private User dummy;         ///< This attribute is used in {@link poco.company.group01pocolib.mvc.model.UserSet.isStored isStored()} as a dummy object for the `contains()` method of the Collection 
+    private User dummy;     ///< This attribute is used in {@link poco.company.group01pocolib.mvc.model.UserSet#isStored
+                            ///  isStored()} as a dummy object for the `contains()` method of the Collection
 
     private String lastKnownDBHash;
     private String DBPath;
@@ -213,19 +208,34 @@ public class UserSet implements Serializable {
      * @param   DBPath The path to the DB file
      */
     public void rebuildFromDB(String DBPath) {
-        //Initialize the DB object for rebuilding
+        // Check if file exists at specified path
+        File dbFile = new File(DBPath);
+        if (!dbFile.exists()) {
+            // If the file does not exist, create it, initialize an empty DB, and UserSet
+            try {
+                Files.createDirectories(dbFile.getParentFile().toPath());
+                dbFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            this.userDB = new DB(DBPath);
+            this.userSet = new HashSet<>();
+            this.userIndex = new Index<>();
+            return;
+        }
+
+        // Initialize the DB object for rebuilding
         this.userDB = new DB(DBPath);
-    
+
         // Clear in-memory data structures before reloading
         this.userSet.clear();
         this.userIndex = new Index<>(); 
         int i = 0;
         String line;
-        
+
         // Iterate through each line in the DB file and parse it into a User object
         while ((line = this.userDB.readNthLine(i)) != null) {
             try {
-            
                 User user = User.fromDBString(line);
                 
                 this.userSet.add(user);
@@ -244,10 +254,11 @@ public class UserSet implements Serializable {
     /**
      * @brief   Adds a user to the collection. If the user already exists (based on ID), it is edited.
      * @param   user The user to add
-     * @warning **Overwriting an object cannot undone**: Be sure to call this method after checking if the object {@link poco.company.group01pocolib.mvc.model.UserSet.isStored isStored()} when only wishing to add a new User to the UserSet
+     * @warning **Overwriting an object cannot be undone**: Be sure to call this method after checking if the object
+     *          {@link poco.company.group01pocolib.mvc.model.UserSet#isStored isStored()} when only wishing to add a new
+     *          User to the UserSet.
      */
     public void addOrEditUser(User user){
-        
         // Removes the user if it already exists
         userSet.remove(user);
         userIndex.remove(user);
@@ -293,8 +304,10 @@ public class UserSet implements Serializable {
     }
 
     /**
-     * @brief   Checks whether a user is already registred in the Set
-     * @details The search is performed on the Collection used to store the UserSet. Two users are {@link poco.company.group01pocolib.mvc.model.User.equals equal} when they have the same unique identifier (`id`)
+     * @brief   Checks whether a user is already registered in the Set
+     * @details The search is performed on the Collection used to store the UserSet. Two users are
+     *          {@link poco.company.group01pocolib.mvc.model.User#equals equal} when they have the same unique
+     *          identifier (`id`).
      * 
      * @param   user The user to search 
      * @return  Returns `true` if a result is found for the user's unique identifier
@@ -305,8 +318,10 @@ public class UserSet implements Serializable {
     }
 
     /**
-     * @brief   Checks whether a user is already registred in the Set
-     * @details The search is performed on the Collection used to store the UserSet. Two users are {@link poco.company.group01pocolib.mvc.model.Book.equals equal} when they have the same unique identifier (`id`)
+     * @brief   Checks whether a user is already registered in the Set
+     * @details The search is performed on the Collection used to store the UserSet. Two users are
+     *          {@link poco.company.group01pocolib.mvc.model.Book#equals equal} when they have the same unique
+     *          identifier (`id`).
      * 
      * @param   id The unique identifier of the user to search
      * @return  Returns `true` if a result is found for the user's unique identifier
@@ -324,7 +339,7 @@ public class UserSet implements Serializable {
      * @param   rawQuery The raw search query
      * @return  A list of users matching the search query, ranked by relevance
      */
-    public List<User> search(String rawQuery) {
+    public List<SearchResult<User>> search(String rawQuery) {
         // TODO: Implement search
         return null;
     }
@@ -335,7 +350,7 @@ public class UserSet implements Serializable {
      * @param   rawQuery The raw search query
      * @return  A list of users matching the search query
      */
-    private List<User> rawSearch(String rawQuery) {
+    private List<SearchResult<User>> rawSearch(String rawQuery) {
         // TODO: Implement search
         return null;
     }
