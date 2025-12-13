@@ -114,7 +114,8 @@ public class PocoLibController {
 
     /**
      * @brief   Initializes the controller class. This method is automatically called after fxml file has been loaded.
-     * @details Initializes data sets and passes references to tab controllers.
+     * @details Configures the initial tab selection and sets up listeners for the master properties 
+     * to handle automatic navigation between tabs (e.g., switching to Lending tab when a book and user are selected).
      */
     @FXML
     private void initialize() {
@@ -158,6 +159,10 @@ public class PocoLibController {
     /**
      * @brief   Loads data into the application.
      *
+     * @details This method assigns the provided data sets to the controller's fields and propagates them 
+     * to the specific tab controllers (BookTab, UserTab, LendingTab). It also initializes 
+     * the TableViews within those tabs with the loaded data.
+     * 
      * @param   bookSet     The set of books.
      * @param   userSet     The set of users.
      * @param   lendingSet  The set of lendings.

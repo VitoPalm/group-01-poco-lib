@@ -13,6 +13,8 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,7 +52,9 @@ class HashTest {
      */
     @Test
     void testGetFileHash() {
-        //TODO: Implement
+        
+        String hash = Hash.getFileHash(file1);
+        assertNotNull(hash);
     }
 
     /**
@@ -59,7 +63,10 @@ class HashTest {
      */
     @Test
     void testCompareFileHashesSameContent() {
-        //TODO: Implement
+        
+        String hash1 = Hash.getFileHash(file1);
+        String hash2 = Hash.getFileHash(file2);
+        assertEquals(hash1, hash2);
     }
 
     /**
@@ -68,7 +75,10 @@ class HashTest {
      */
     @Test
     void testCompareFileHashesDifferentContent() {
-        //TODO: Implement
+                            
+        String hash1 = Hash.getFileHash(file1);
+        String hash3 = Hash.getFileHash(file3);
+        assertNotEquals(hash1, hash3);
     }
     
     /**
@@ -77,6 +87,124 @@ class HashTest {
      */
     @Test
     void testHashConsistency() {
-        //TODO: implement
+        // Calculate reference hash
+        String referenceHash = Hash.getFileHash(file1);
+        
+        // Reference hash should not be null
+        assertNotNull(referenceHash);
+        
+        // Test hash consistency over multiple invocations, hash should remain the same after each iteration
+        for (int i = 0; i < 100; i++) {
+            String currentHash = Hash.getFileHash(file1);
+            assertEquals(referenceHash, currentHash);
+        }
+    }
+
+    /**
+     * @brief Tests hash generation from a list of lines.
+     * @details Verifies that getFileHashFromLines generates a hash from a list of strings.
+     */
+    @Test
+    void testGetFileHashFromLines() {
+        // Create a list of lines for testing
+        List<String> lines = Arrays.asList("Line 1", "Line 2", "Line 3");
+        
+        // Generate hash from lines with newline separator
+        String hash = Hash.getFileHashFromLines(lines, "\n");
+        
+        // Hash should not be null or empty
+        assertNotNull(hash);
+        assertFalse(hash.isEmpty());
+    }
+
+    /**
+     * @brief Tests consistency of hash generation from lines.
+     * @details Same list of lines should always produce the same hash.
+     */
+    @Test
+    void testGetFileHashFromLinesConsistency() {
+        // Create a list of lines for testing
+        List<String> lines = Arrays.asList("Content A", "Content B", "Content C");
+        
+        // Generate hash from lines with newline separator
+        String hash1 = Hash.getFileHashFromLines(lines, "\n");
+        String hash2 = Hash.getFileHashFromLines(lines, "\n");
+        
+        // Same lines should produce same hash
+        assertEquals(hash1, hash2);
+    }
+
+    /**
+     * @brief Tests that different line separators produce different hashes.
+     * @details The line separator is part of the content, so different separators should yield different hashes.
+     */
+    @Test
+    void testGetFileHashFromLinesDifferentSeparators() {
+        // Create a list of lines for testing
+        List<String> lines = Arrays.asList("Line 1", "Line 2");
+        
+        // Generate hashes with different line separators
+        String hashNewline = Hash.getFileHashFromLines(lines, "\n");
+        String hashCarriageReturn = Hash.getFileHashFromLines(lines, "\r\n");
+        
+        // Different line separators should produce different hashes
+        assertNotEquals(hashNewline, hashCarriageReturn);
+    }
+
+    /**
+     * @brief Tests that different content produces different hashes.
+     * @details Lists with different content should have different hashes.
+     */
+    @Test
+    void testGetFileHashFromLinesDifferentContent() {
+        // Create two different lists of lines for testing
+        List<String> lines1 = Arrays.asList("Content A", "Content B");
+        List<String> lines2 = Arrays.asList("Content A", "Content C");
+        
+        // Generate hashes from both lists with newline separator
+        String hash1 = Hash.getFileHashFromLines(lines1, "\n");
+        String hash2 = Hash.getFileHashFromLines(lines2, "\n");
+        
+        // Different content should produce different hashes
+        assertNotEquals(hash1, hash2);
+    }
+
+    /**
+     * @brief Tests hash comparison for identical files.
+     * @details compareFileHashes should return true for files with identical content.
+     */
+    @Test
+    void testCompareFileHashesIdentical() {
+        // Compare file1 and file2 hashes (same content)
+        boolean result = Hash.compareFileHashes(file1, file2);
+        
+        // Files with identical content should have matching hashes
+        assertTrue(result);
+    }
+
+    /**
+     * @brief Tests hash comparison for different files.
+     * @details compareFileHashes should return false for files with different content.
+     */
+    @Test
+    void testCompareFileHashesDifferent() {
+        // Compare file1 and file3 hashes (different content)
+        boolean result = Hash.compareFileHashes(file1, file3);
+        
+        // Files with different content should not have matching hashes
+        assertFalse(result);
+    }
+
+    /**
+     * @brief Tests hash comparison for same file.
+     * @details A file compared to itself should always return true.
+     */
+    @Test
+    void testCompareFileHashesSameFile() {
+        // Compare file1 to itself
+        boolean result = Hash.compareFileHashes(file1, file1);
+        
+        // A file compared to itself should always have matching hash
+        assertTrue(result);
     }
 }
