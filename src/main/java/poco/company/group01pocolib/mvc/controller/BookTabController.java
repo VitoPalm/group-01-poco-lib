@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -70,6 +71,7 @@ public class BookTabController {
      * - When an entry is selected, the "Lend" and "View/Edit" buttons will become clickable
      * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
      *   enables the view of the search results
+     * - When the Omnisearch textfield is empty, the prompt text shows the number of entries in the Set
      * - When the window is resized to a tighter height, the pocologo is hidden
      * - When the window is resized to a tighter width, the table resize policy becomes unconstrained to correctly visualize min. column sizes
      *
@@ -93,6 +95,14 @@ public class BookTabController {
         // Initialize search field listener
         bookSearchField.textProperty().addListener(observable -> {
             bookTableHandler();
+        });
+
+        Platform.runLater(() -> {
+            if (bookSet == null)
+                return;
+
+            // Binding for number of entries in the set
+            bookSearchField.promptTextProperty().bind(Bindings.format("OmniSearch %d books", bookSet.size()));
         });
 
         Platform.runLater(() -> {

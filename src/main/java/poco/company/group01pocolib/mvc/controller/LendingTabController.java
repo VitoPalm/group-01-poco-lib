@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import poco.company.group01pocolib.db.omnisearch.Search.SearchResult;
 import poco.company.group01pocolib.mvc.model.*;
@@ -71,9 +72,10 @@ public class LendingTabController {
      * 
      * @details
      * Setup of all the listeners of the LendingTab: selected table entry, Omnisearch textfield
-     * - When an entry is selected, the "Mark as returned" and "View/Edit" buttons will become clickable
+     * - When an entry is selected, the "Mark as returned" and "View/Edit" buttons will become clickable 
      * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
      *   enables the view of the search results
+     * - When the Omnisearch textfield is empty, the prompt text shows the number of entries in the Set
      * - When the window is resized to a tighter height, the pocologo is hidden
      * - When the window is resized to a tighter width, the table resize policy becomes unconstrained to correctly visualize min. column sizes
      *
@@ -99,7 +101,15 @@ public class LendingTabController {
         lendingSearchField.textProperty().addListener(observable -> {
             lendingTableHandler();
         });
+        
+        Platform.runLater(() -> {
+            if (lendingSet == null)
+                return;
 
+            // Binding for number of entries in the set
+            lendingSearchField.promptTextProperty().bind(Bindings.format("OmniSearch %d lendings", lendingSet.size()));
+        });
+        
         Platform.runLater(() -> {
             if (containerVBox.getScene() == null)
                 return;

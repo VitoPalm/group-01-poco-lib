@@ -147,6 +147,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateLastKnownDBHash
 <tr class="memdesc:af4e0369a2e2eef09ca8bc6c5bec00767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a book is already registred in the Set.  <br /></td></tr>
 <tr class="memitem:a22da634ed441420c9178da917bc56eb2" id="r_a22da634ed441420c9178da917bc56eb2"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22da634ed441420c9178da917bc56eb2">search</a> (String rawQuery)</td></tr>
 <tr class="memdesc:a22da634ed441420c9178da917bc56eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform search on the indexed books with ranking.  <br /></td></tr>
+<tr class="memitem:ac141b5c08fb5642fc996c627d01e0d61" id="r_ac141b5c08fb5642fc996c627d01e0d61"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac141b5c08fb5642fc996c627d01e0d61">size</a> ()</td></tr>
+<tr class="memdesc:ac141b5c08fb5642fc996c627d01e0d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get number of entries in the current Set.  <br /></td></tr>
 <tr class="memitem:a3f6d69121eff712c1b07699a4369d394" id="r_a3f6d69121eff712c1b07699a4369d394"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f6d69121eff712c1b07699a4369d394">toString</a> ()</td></tr>
 <tr class="memdesc:a3f6d69121eff712c1b07699a4369d394"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a>.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -176,9 +178,7 @@ Set&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1mod
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html">Index</a>&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>bookIndex</b></td></tr>
 <tr class="memitem:ad87a250e9f535305bc86e1a92605c622" id="r_ad87a250e9f535305bc86e1a92605c622"><td class="memItemLeft" align="right" valign="top"><a id="ad87a250e9f535305bc86e1a92605c622" name="ad87a250e9f535305bc86e1a92605c622"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html">DB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bookDB</b></td></tr>
-<tr class="memitem:a2cccd4cab9fd0d1caaf6c4ac8c9b0cba" id="r_a2cccd4cab9fd0d1caaf6c4ac8c9b0cba"><td class="memItemLeft" align="right" valign="top"><a id="a2cccd4cab9fd0d1caaf6c4ac8c9b0cba" name="a2cccd4cab9fd0d1caaf6c4ac8c9b0cba"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dummy</b></td></tr>
-<tr class="memdesc:a2cccd4cab9fd0d1caaf6c4ac8c9b0cba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used in methods (such as <code><a class="el" href="#a7afa792729fd6a804b57aef2e153f86f">isStored()</a></code>) as a dummy object for the <span class="tt">contains()</span> method of the Collection. <br /></td></tr>
+<tr class="memitem:a2cccd4cab9fd0d1caaf6c4ac8c9b0cba" id="r_a2cccd4cab9fd0d1caaf6c4ac8c9b0cba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cccd4cab9fd0d1caaf6c4ac8c9b0cba">dummy</a></td></tr>
 <tr class="memitem:a9ee94c12bfbcf785aea05c6ea7117724" id="r_a9ee94c12bfbcf785aea05c6ea7117724"><td class="memItemLeft" align="right" valign="top"><a id="a9ee94c12bfbcf785aea05c6ea7117724" name="a9ee94c12bfbcf785aea05c6ea7117724"></a>
 String&#160;</td><td class="memItemRight" valign="bottom"><b>lastKnownDBHash</b></td></tr>
 <tr class="memitem:ae6f41a599bc880df45547d74bcf8c681" id="r_ae6f41a599bc880df45547d74bcf8c681"><td class="memItemLeft" align="right" valign="top"><a id="ae6f41a599bc880df45547d74bcf8c681" name="ae6f41a599bc880df45547d74bcf8c681"></a>
@@ -219,7 +219,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd><b>Overwriting an object cannot undone</b>: Be sure to call this method after checking if the object <code><a class="el" href="#a7afa792729fd6a804b57aef2e153f86f">isStored()</a></code> when only wishing to add a new <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a> </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><b>Overwriting an object cannot be undone</b>: Be sure to call this method after checking if the object <code><a class="el" href="#a7afa792729fd6a804b57aef2e153f86f">isStored()</a></code> when only wishing to add a new <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a>. </dd></dl>
 
 </div>
 </div>
@@ -759,6 +759,27 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 </div>
 </div>
+<a id="ac141b5c08fb5642fc996c627d01e0d61" name="ac141b5c08fb5642fc996c627d01e0d61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac141b5c08fb5642fc996c627d01e0d61">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int poco.company.group01pocolib.mvc.model.BookSet.size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to get number of entries in the current Set. </p>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">bookSet.size()</span> </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
+
+</div>
+</div>
 <a id="a3f6d69121eff712c1b07699a4369d394" name="a3f6d69121eff712c1b07699a4369d394"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f6d69121eff712c1b07699a4369d394">&#9670;&#160;</a></span>toString()</h2>
 
@@ -776,6 +797,30 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 <p>Returns a string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a>. </dd></dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a2cccd4cab9fd0d1caaf6c4ac8c9b0cba" name="a2cccd4cab9fd0d1caaf6c4ac8c9b0cba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cccd4cab9fd0d1caaf6c4ac8c9b0cba">&#9670;&#160;</a></span>dummy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> poco.company.group01pocolib.mvc.model.BookSet.dummy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Used in methods (such as <code><a class="el" href="#a7afa792729fd6a804b57aef2e153f86f">isStored()</a></code>) as a dummy object for the <span class="tt">contains()</span> method of the Collection </p>
 
 </div>
 </div>

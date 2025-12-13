@@ -393,6 +393,15 @@ public class UserSet implements Serializable {
     }
 
     /**
+     * @brief   Used to get number of entries in the current Set
+     * @return  `userSet.size()`
+     * @author  Giovanni Orsini
+     */
+    public int size() {
+        return userSet.size();
+    }
+
+    /**
      * @brief   Returns a string representation of the UserSet.
      * @return  A string representation of the UserSet.
      */

@@ -432,6 +432,15 @@ public class BookSet implements Serializable {
     }
 
     /**
+     * @brief   Used to get number of entries in the current Set
+     * @return  `bookSet.size()`
+     * @author  Giovanni Orsini
+     */
+    public int size() {
+        return bookSet.size();
+    }
+
+    /**
      * @brief   Returns a string representation of the BookSet.
      * @return  A string representation of the BookSet.
      */

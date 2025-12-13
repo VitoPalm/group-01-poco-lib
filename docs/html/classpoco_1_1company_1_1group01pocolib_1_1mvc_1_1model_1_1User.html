@@ -122,6 +122,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a44448fedf1e4069fa6510d203b593327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the surname of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>.  <br /></td></tr>
 <tr class="memitem:ae3e3da51c4ac05f8cd90ec4acc70b367" id="r_ae3e3da51c4ac05f8cd90ec4acc70b367"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3e3da51c4ac05f8cd90ec4acc70b367">setSurname</a> (String surname)</td></tr>
 <tr class="memdesc:ae3e3da51c4ac05f8cd90ec4acc70b367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the surname of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>.  <br /></td></tr>
+<tr class="memitem:ab67eafd21b7f55e48121725aef3479b6" id="r_ab67eafd21b7f55e48121725aef3479b6"><td class="memItemLeft" align="right" valign="top"><a id="ab67eafd21b7f55e48121725aef3479b6" name="ab67eafd21b7f55e48121725aef3479b6"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><b>getFullName</b> ()</td></tr>
 <tr class="memitem:a6b87fd54f56be3b897719d8fbebff613" id="r_a6b87fd54f56be3b897719d8fbebff613"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b87fd54f56be3b897719d8fbebff613">getEmail</a> ()</td></tr>
 <tr class="memdesc:a6b87fd54f56be3b897719d8fbebff613"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the email of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>.  <br /></td></tr>
 <tr class="memitem:adc90354ec00795f37b1d4fa025bd0aef" id="r_adc90354ec00795f37b1d4fa025bd0aef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc90354ec00795f37b1d4fa025bd0aef">setEmail</a> (String email)</td></tr>
@@ -140,6 +142,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afdb271781a8c349a940433da2d958949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the total number of books ever borrowed by the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>.  <br /></td></tr>
 <tr class="memitem:afb31267460d0c2bf14bbc49d0ffc90b8" id="r_afb31267460d0c2bf14bbc49d0ffc90b8"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb31267460d0c2bf14bbc49d0ffc90b8">equals</a> (Object obj)</td></tr>
 <tr class="memdesc:afb31267460d0c2bf14bbc49d0ffc90b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides <span class="tt">equals</span> method to compare Users based on their unique ID.  <br /></td></tr>
+<tr class="memitem:ac2b5072afafb1e75db15627703ea2b06" id="r_ac2b5072afafb1e75db15627703ea2b06"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2b5072afafb1e75db15627703ea2b06">compareTo</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> other)</td></tr>
+<tr class="memdesc:ac2b5072afafb1e75db15627703ea2b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares this <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> with another <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> based on their surnames, and names if surnames are equal. They are considered equal if they have the same ID.  <br /></td></tr>
 <tr class="memitem:ac24d60d9df4800a93e232a66e7d881a4" id="r_ac24d60d9df4800a93e232a66e7d881a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac24d60d9df4800a93e232a66e7d881a4">hashCode</a> ()</td></tr>
 <tr class="memdesc:ac24d60d9df4800a93e232a66e7d881a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides <span class="tt">hashCode</span> method to use the user ID as unique identifier.  <br /></td></tr>
 <tr class="memitem:a9166c46659bff516770fbd017fc56193" id="r_a9166c46659bff516770fbd017fc56193"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9166c46659bff516770fbd017fc56193">toSearchableString</a> ()</td></tr>
@@ -229,7 +233,7 @@ static final int&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_BORRO
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1UserDataNotValidException.html" title="This exception is thrown when an attempt to set an incorrect ID or Email for a User is detected.">UserDataNotValidException</a></td><td>if a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> is being initialized with an invalid ID/Email, or if name or surname are null or empty </td></tr>
+    <tr><td class="paramname"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1UserDataNotValidException.html" title="This exception is thrown when an attempt to set an incorrect ID or Email for a User is detected.">UserDataNotValidException</a></td><td>If a <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a></span> is being initialized with an invalid ID/Email, or if <span class="tt">name</span> or <span class="tt">surname</span> are null or empty </td></tr>
   </table>
   </dd>
 </dl>
@@ -254,6 +258,32 @@ static final int&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_BORRO
 
 <p>Method to check whether the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> can borrow more books. </p>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> can borrow more books, <span class="tt">false</span> otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ac2b5072afafb1e75db15627703ea2b06" name="ac2b5072afafb1e75db15627703ea2b06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2b5072afafb1e75db15627703ea2b06">&#9670;&#160;</a></span>compareTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int poco.company.group01pocolib.mvc.model.User.compareTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a></td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares this <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> with another <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> based on their surnames, and names if surnames are equal. They are considered equal if they have the same ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The other <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A negative integer, zero, or a positive integer as this <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> is less than, equal to, or greater than the specified <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>. </dd></dl>
 
 </div>
 </div>
@@ -534,7 +564,8 @@ static final int&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_BORRO
 </div><div class="memdoc">
 
 <p><span class="tt">static</span> method to check whether a String is a correct Email </p>
-<p>An Email is valid if it follows the standard email format </p><dl class="params"><dt>Parameters</dt><dd>
+<p>An Email is valid if it follows the standard email format. The regex used is based on an implementation by Jan Goyvaerts that can be found at <a href="https://www.regular-expressions.info/email.html">this</a> website. It mostly follows RFC 5322 (excluding some really uncommon edge cases) which specifies syntax for email addresses. Is follows RFC 1035 to specify the length limits (RFC 1035 specifies details for the implementation of domain names).</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">email</td><td>The String to check </td></tr>
   </table>

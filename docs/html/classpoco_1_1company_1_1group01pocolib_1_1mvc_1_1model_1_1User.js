@@ -3,6 +3,7 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User =
     [ "User", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#aed9890f5c97eee2fe7640947be36d03a", null ],
     [ "User", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a5b68d36f684e18d34db7919cd551054e", null ],
     [ "canBorrow", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ad92eb0a7ba1b6e805b206ace78f39264", null ],
+    [ "compareTo", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ac2b5072afafb1e75db15627703ea2b06", null ],
     [ "decrementBorrowedBooksCount", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#a55baf0834d4e8dc755aeef0ea0a596fc", null ],
     [ "equals", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#afb31267460d0c2bf14bbc49d0ffc90b8", null ],
     [ "getBorrowedBooksCount", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ad327a25ceaf0f84a8378345192ce903e", null ],

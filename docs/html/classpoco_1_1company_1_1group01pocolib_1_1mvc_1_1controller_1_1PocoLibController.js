@@ -1,10 +1,13 @@
 var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController =
 [
     [ "getBookTab", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#a0edfcdf057fb927eb084fd1d0977b0c1", null ],
+    [ "getBookTabController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#a1bbca769211a4f37b9e31d826804d80c", null ],
     [ "getLendingTab", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#a4ec9c25cb85effe3f5c3d1e2d90dd086", null ],
+    [ "getLendingTabController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#a8f5c52f96662720ae31e5c0f68787ea0", null ],
     [ "getMasterSelectedBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#ab92c29ccd9f43dd70bb46b201f90df85", null ],
     [ "getMasterSelectedUser", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#a5180727c698dc886113343510e034fb7", null ],
     [ "getUserTab", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#aa3a44d458c15671b8d131593fa1ef669", null ],
+    [ "getUserTabController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#a1cc981e0751f8dd32fbda9bef134ce59", null ],
     [ "initialize", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#af7f66eac349c43a6bf600164ae012453", null ],
     [ "loadData", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#a606e612a178720a6b262ed361d62407d", null ],
     [ "refreshTabData", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#ab228e548b1268bcf52c8612559ed7b15", null ],

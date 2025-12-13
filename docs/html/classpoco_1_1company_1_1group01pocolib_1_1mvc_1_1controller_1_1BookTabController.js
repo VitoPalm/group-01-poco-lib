@@ -7,8 +7,7 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabContro
     [ "handleBookViewEdit", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#a12742a94c4bb7d87e4eb06b634eae158", null ],
     [ "initialize", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#ad942d7d701493ba57c0934d3092ca729", null ],
     [ "initializeBookColumns", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#a7867072f382c743abca940a8dadbc2cd", null ],
-    [ "listenersSetup", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#a72e5953e4e29eef6efe5e42b92aa456b", null ],
-    [ "loadData", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#af279ba26c1fc74011a8b6358db5d4107", null ],
+    [ "launchViewEditBookDialog", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#ac11990d02fd0372c51a24dd84cc06ac9", null ],
     [ "setDataSets", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#a84f01da925ae3884d35876f466129346", null ],
     [ "setDependencies", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#a94af57a36eb66dad1caa168d3aedc50f", null ],
     [ "setSelectedUser", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html#a7016a854528dbca211e42a9d96fc0273", null ]

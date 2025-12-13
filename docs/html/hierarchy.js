@@ -8,12 +8,16 @@ var hierarchy =
     [ "poco.company.group01pocolib.mvc.model.BookSetTest", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.BookTabController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html", null ],
     [ "poco.company.group01pocolib.mvc.model.BookTest", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookTest.html", null ],
+    [ "Comparable", null, [
+      [ "poco.company.group01pocolib.mvc.model.User", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html", null ]
+    ] ],
     [ "poco.company.group01pocolib.db.Hash", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.LendingPropController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController.html", null ],
     [ "poco.company.group01pocolib.mvc.model.LendingSetTest", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSetTest.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.LendingTabController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html", null ],
     [ "poco.company.group01pocolib.mvc.model.LendingTest", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingTest.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.PocoLibController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html", null ],
+    [ "poco.company.group01pocolib.mvc.controller.PropMode", "enumpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PropMode.html", null ],
     [ "RuntimeException", null, [
       [ "poco.company.group01pocolib.exceptions.BookDataNotValidException", "classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1BookDataNotValidException.html", null ],
       [ "poco.company.group01pocolib.exceptions.UserDataNotValidException", "classpoco_1_1company_1_1group01pocolib_1_1exceptions_1_1UserDataNotValidException.html", null ]

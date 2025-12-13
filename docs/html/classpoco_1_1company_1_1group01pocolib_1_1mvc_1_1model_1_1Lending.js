@@ -9,6 +9,7 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending =
     [ "hashCode", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a830c807d21de368e5a8a9d26f65d2c72", null ],
     [ "isReturned", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#afab472ac4acb87801a1746cce214ae98", null ],
     [ "setBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a3c5c560d8ef841705fa750832a70f3d2", null ],
+    [ "setLendingId", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a503eb277a1174844f92a820b0abbd091", null ],
     [ "setNotReturned", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a699aae1116e39cf430607dc52112a1f7", null ],
     [ "setReturnDate", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#abfae0baf7035355e5f2d32b6f7b1c70b", null ],
     [ "setReturned", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a4a803ebae1fb5523f496e7f07997becf", null ],

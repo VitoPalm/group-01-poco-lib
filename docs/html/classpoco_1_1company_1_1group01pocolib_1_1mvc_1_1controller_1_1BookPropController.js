@@ -10,10 +10,10 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropContr
     [ "handleSave", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#a381864eab74da19c715d29d1de3f6258", null ],
     [ "handleViewHistory", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#af734cd23abc28babcb420bf234264e6c", null ],
     [ "initialize", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#a86b52f6e5e63a48cdd393d1208e50413", null ],
-    [ "isSaveClicked", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#ac58f4733a6882101a7b9c9a685d17868", null ],
     [ "setBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#a604cd947974811d832ec4fde07d330f0", null ],
     [ "setDependencies", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#aefb8b628f1fb19c62e2e10ac9d91faca", null ],
     [ "setDialogStage", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#abfda3e8b385c5f32e77d7bf0b67de7a2", null ],
+    [ "setMode", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#a31fc94c3e9da31c22cc94ade894e2a93", null ],
     [ "updateView", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#ae1df4abef6e182d2ef135e570481cc9a", null ],
     [ "validateInput", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#a6c27575a6202574ccbc5aa3b13c3a090", null ]
 ];

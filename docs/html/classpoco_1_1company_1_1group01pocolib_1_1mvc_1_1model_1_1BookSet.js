@@ -23,6 +23,7 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet =
     [ "setBookSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#aefe1ed554c8f32cd5eff960b36e4fd82", null ],
     [ "setDBPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#af35ba3d62680312ed2be520dcf8d0f39", null ],
     [ "setSerializationPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#aedfadafc8d1720d7a56d9ccf6a4bac0d", null ],
+    [ "size", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#ac141b5c08fb5642fc996c627d01e0d61", null ],
     [ "syncOnWrite", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#ad824c8871e6816e99b5e9947f02ec48b", null ],
     [ "toString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a3f6d69121eff712c1b07699a4369d394", null ],
     [ "updateLastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#adfdb9e38427b5fbd505cc196bca18755", null ],

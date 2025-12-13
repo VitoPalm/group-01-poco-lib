@@ -374,6 +374,15 @@ public class LendingSet implements Serializable {
     }
 
     /**
+     * @brief   Used to get number of entries in the current Set
+     * @return  `lendingSet.size()`
+     * @author  Giovanni Orsini
+     */
+    public int size() {
+        return lendingSet.size();
+    }
+
+    /**
      * @brief   Returns a string representation of the LendingSet.
      * @return  A string representation of the LendingSet.
      * @author  Giovanni Orsini
