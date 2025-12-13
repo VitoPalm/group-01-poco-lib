@@ -1,8 +1,6 @@
 package poco.company.group01pocolib.mvc.controller;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,7 +67,18 @@ public class LendingTabController {
     private PocoLibController mainController;
 
     /**
-     * @brief   Initializes the controller class. This method is automatically called after fxml file has been loaded.
+     * @brief   Initializes the controller class, setting up all the listeners. This method is automatically called after fxml file has been loaded.
+     * 
+     * @details
+     * Setup of all the listeners of the LendingTab: selected table entry, Omnisearch textfield
+     * - When an entry is selected, the "Mark as returned" and "View/Edit" buttons will become clickable
+     * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
+     *   enables the view of the search results
+     * - When the window is resized to a tighter height, the pocologo is hidden
+     * - When the window is resized to a tighter width, the table resize policy becomes unconstrained to correctly visualize min. column sizes
+     *
+     * @author  Vito Palmieri
+     * @author  Giovanni Orsini
      */
     @FXML
     private void initialize() {
@@ -92,10 +101,10 @@ public class LendingTabController {
         });
 
         Platform.runLater(() -> {
-            // listener to control the pocologo visibility
             if (containerVBox.getScene() == null)
                 return;
 
+            // height listener to control the pocologo visibility
             containerVBox.getScene().heightProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue.doubleValue() < 600) {
                     pocologoImageView.setVisible(false);
@@ -103,6 +112,15 @@ public class LendingTabController {
                 } else {
                     pocologoImageView.setVisible(true);
                     pocologoImageView.setManaged(true);
+                }
+            });
+
+            // width listener to control the table resize policy
+            containerVBox.getScene().widthProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.doubleValue() < 800) {
+                    lendingTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+                } else {
+                    lendingTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_SUBSEQUENT_COLUMNS);
                 }
             });
         });
@@ -191,7 +209,7 @@ public class LendingTabController {
 
         lendingUserColumn.setCellValueFactory(cellData -> {
             User user = cellData.getValue().getUser();
-            return new ReadOnlyStringWrapper(user != null ? user.getName() : "");
+            return new ReadOnlyStringWrapper(user != null ? user.getFullName() : "");
         });
     }
 

@@ -71,6 +71,7 @@ public class BookTabController {
      * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
      *   enables the view of the search results
      * - When the window is resized to a tighter height, the pocologo is hidden
+     * - When the window is resized to a tighter width, the table resize policy becomes unconstrained to correctly visualize min. column sizes
      *
      * @author  Giovanni Orsini
      */
@@ -95,10 +96,10 @@ public class BookTabController {
         });
 
         Platform.runLater(() -> {
-            // listener to control the pocologo visibility
             if (containerVBox.getScene() == null)
                 return;
 
+            // height listener to control the pocologo visibility
             containerVBox.getScene().heightProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue.doubleValue() < 600) {
                     pocologoImageView.setVisible(false);
@@ -106,6 +107,15 @@ public class BookTabController {
                 } else {
                     pocologoImageView.setVisible(true);
                     pocologoImageView.setManaged(true);
+                }
+            });
+
+            // width listener to control the table resize policy
+            containerVBox.getScene().widthProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.doubleValue() < 800) {
+                    bookTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+                } else {
+                    bookTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_SUBSEQUENT_COLUMNS);
                 }
             });
         });

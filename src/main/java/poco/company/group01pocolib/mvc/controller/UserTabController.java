@@ -62,7 +62,18 @@ public class UserTabController {
     private PocoLibController mainController;
 
     /**
-     * @brief   Initializes the controller class. This method is automatically called after fxml file has been loaded.
+     * @brief   Initializes the controller class, setting up all the listeners. This method is automatically called after fxml file has been loaded.
+     * 
+     * @details
+     * Setup of all the listeners of the UserTab: selected table entry, Omnisearch textfield
+     * - When an entry is selected, the "Lend to" and "View/Edit" buttons will become clickable
+     * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
+     *   enables the view of the search results
+     * - When the window is resized to a tighter height, the pocologo is hidden
+     * - When the window is resized to a tighter width, the table resize policy becomes unconstrained to correctly visualize min. column sizes
+     *
+     * @author  Vito Palmieri
+     * @author  Giovanni Orsini
      */
     @FXML
     private void initialize() {
@@ -85,10 +96,10 @@ public class UserTabController {
         });
 
         Platform.runLater(() -> {
-            // listener to control the pocologo visibility
             if (containerVBox.getScene() == null)
                 return;
 
+            // height listener to control the pocologo visibility
             containerVBox.getScene().heightProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue.doubleValue() < 600) {
                     pocologoImageView.setVisible(false);
@@ -96,6 +107,15 @@ public class UserTabController {
                 } else {
                     pocologoImageView.setVisible(true);
                     pocologoImageView.setManaged(true);
+                }
+            });
+
+            // width listener to control the table resize policy
+            containerVBox.getScene().widthProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.doubleValue() < 800) {
+                    userTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+                } else {
+                    userTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_SUBSEQUENT_COLUMNS);
                 }
             });
         });

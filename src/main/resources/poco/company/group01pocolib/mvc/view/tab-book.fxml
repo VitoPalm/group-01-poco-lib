@@ -27,12 +27,12 @@
         </HBox>
         <TableView fx:id="bookTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="bookIsbnColumn" prefWidth="170.0" text="ISBN" />
-                <TableColumn fx:id="bookTitleColumn" minWidth="0.0" prefWidth="400.0" text="Title" />
-                <TableColumn fx:id="bookAuthorsColumn" prefWidth="350.0" text="Authors" />
-                <TableColumn fx:id="bookYearColumn" prefWidth="100.0" text="Year" />
-                <TableColumn fx:id="bookAvailableColumn" prefWidth="100.0" text="Available" />
-                <TableColumn fx:id="bookLentColumn" prefWidth="100.0" text="Lent" />
+                <TableColumn fx:id="bookIsbnColumn" maxWidth="200.0" minWidth="105.0" prefWidth="125.0" text="ISBN" />
+                <TableColumn fx:id="bookTitleColumn" maxWidth="1500.0" minWidth="200.0" prefWidth="700.0" text="Title" />
+                <TableColumn fx:id="bookAuthorsColumn" maxWidth="2000.0" minWidth="200.0" prefWidth="1000.0" text="Authors" />
+                <TableColumn fx:id="bookYearColumn" maxWidth="150.0" minWidth="45.0" prefWidth="70.0" text="Year" />
+                <TableColumn fx:id="bookAvailableColumn" maxWidth="150.0" minWidth="85.0" prefWidth="90.0" text="Available" />
+                <TableColumn fx:id="bookLentColumn" maxWidth="150.0" minWidth="50.0" prefWidth="70.0" text="Lent" />
             </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

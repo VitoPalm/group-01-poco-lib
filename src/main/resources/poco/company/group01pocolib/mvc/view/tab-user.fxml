@@ -27,11 +27,11 @@
         </HBox>
         <TableView fx:id="userTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="userIdColumn" prefWidth="170.0" text="ID" />
-                <TableColumn fx:id="userNameColumn" minWidth="0.0" prefWidth="291.0" text="Name" />
-                <TableColumn fx:id="userSurnameColumn" prefWidth="341.0" text="Surname" />
-                <TableColumn fx:id="userEmailColumn" prefWidth="213.0" text="Email" />
-                <TableColumn fx:id="userLentColumn" prefWidth="204.0" text="Lent" />
+                <TableColumn fx:id="userIdColumn" maxWidth="200.0" minWidth="105.0" prefWidth="180.0" text="ID" />
+                <TableColumn fx:id="userNameColumn" maxWidth="1500.0" minWidth="100.0" prefWidth="700.0" text="Name" />
+                <TableColumn fx:id="userSurnameColumn" maxWidth="1500.0" minWidth="100.0" prefWidth="700.0" text="Surname" />
+                <TableColumn fx:id="userEmailColumn" maxWidth="1500.0" minWidth="220.0" prefWidth="700.0" text="Email" />
+                <TableColumn fx:id="userLentColumn" maxWidth="150.0" minWidth="50.0" prefWidth="70.0" text="Lent" />
             </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
