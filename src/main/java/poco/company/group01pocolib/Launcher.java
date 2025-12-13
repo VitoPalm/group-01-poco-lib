@@ -15,40 +15,50 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.controller.PocoLibController;
-import poco.company.group01pocolib.mvc.model.BookSet;
-import poco.company.group01pocolib.mvc.model.LendingSet;
-import poco.company.group01pocolib.mvc.model.UserSet;
+import poco.company.group01pocolib.mvc.model.*;
 
 /**
  * @class   Launcher
  * @brief   The Launcher class is responsible for starting the PocoLib application.
  */
 public class Launcher extends Application {
+    // DataBase Paths
+    public static final String BOOK_SET_DB_PATH = "data/dbs/bookset.db";
+    public static final String USER_SET_DB_PATH = "data/dbs/userset.db";
+    public static final String LENDING_SET_DB_PATH = "data/dbs/lendingset.db";
+
+    // Serialized Data Paths
+    public static final String BOOK_SET_SERIALIZED_PATH = "data/ser/bookset.ser";
+    public static final String USER_SET_SERIALIZED_PATH = "data/ser/userset.ser";
+    public static final String LENDING_SET_SERIALIZED_PATH = "data/ser/lendingset.ser";
+
+    // Sets
+    private static BookSet bookSet;
+    private static UserSet userSet;
+    private static LendingSet lendingSet;
+
     /**
      * @brief   Restores the book set of the application.
      * @details Uses the `loadFromSerialized` method to restore the data.
      */
-    public static BookSet restoreBookSet() {
-        // TODO: Implement restoration of the BookSet
-        return null;
+    private static BookSet restoreBookSet() {
+        return BookSet.loadFromSerialized(BOOK_SET_SERIALIZED_PATH, BOOK_SET_DB_PATH);
     }
 
     /**
      * @brief   Restores the user set of the application.
      * @details Uses the `loadFromSerialized` method to restore the data.
      */
-    public static UserSet restoreUserSet() {
-        // TODO: Implement restoration of the UserSet
-        return null;
+    private static UserSet restoreUserSet() {
+        return UserSet.loadFromSerialized(USER_SET_SERIALIZED_PATH, USER_SET_DB_PATH);
     }
 
     /**
      * @brief   Restores the lending set of the application.
      * @details Uses the `loadFromSerialized` method to restore the data.
      */
-    public static LendingSet restoreLendingSet() {
-        // TODO: Implement restoration of the LendingSet
-        return null;
+    private static LendingSet restoreLendingSet() {
+        return LendingSet.loadFromSerialized(LENDING_SET_SERIALIZED_PATH, LENDING_SET_DB_PATH, bookSet, userSet);
     }
 
     /**
@@ -62,10 +72,19 @@ public class Launcher extends Application {
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         PocoLibController controller = loader.getController();
-        controller.loadData(restoreBookSet(), restoreUserSet(), restoreLendingSet());
+        controller.setPrimaryStage(stage);
+
+        // Load data sets
+        bookSet = restoreBookSet();
+        userSet = restoreUserSet();
+        lendingSet = restoreLendingSet();
+
+        controller.loadData(bookSet, userSet, lendingSet);
+        controller.refreshTabData();
 
         stage.setScene(new Scene(root));
         stage.setTitle("PocoLib");
+
         stage.show();
     }
 
