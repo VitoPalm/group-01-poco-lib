@@ -71,7 +71,7 @@ public class BookTest {
         b.setIsbn("Unknown");
         b.setYear(0);
         b.setCopies(3);
-        b.setCopiesLent(4);
+        b.setCopiesLent(2);
         b.setTimesLent(12);
         
         assertEquals("Unknown 1", b.getTitle());
@@ -79,7 +79,7 @@ public class BookTest {
         assertEquals("Unknown", b.getIsbn());
         assertEquals(0, b.getYear());
         assertEquals(3, b.getCopies());
-        assertEquals(4, b.getCopiesLent());
+        assertEquals(2, b.getCopiesLent());
         assertEquals(12, b.getTimesLent());        
     }
 
@@ -155,15 +155,15 @@ public class BookTest {
      */
     @Test
     public void testFromDBString() {
-        Book b = Book.fromDBString("General Plan for Phoenix, 1985-2000\u001CCity Council; Pennsylvania State University\u001C316830724\u001C1985\u001C1\u001C2\u001C3");
+        Book b = Book.fromDBString("General Plan for Phoenix, 1985-2000\u001CCity Council; Pennsylvania State University\u001C316830724\u001C1985\u001C3\u001C2\u001C5");
 
         assertEquals("General Plan for Phoenix, 1985-2000", b.getTitle());
         assertEquals("City Council; Pennsylvania State University", b.getAuthorsString());
         assertEquals("316830724", b.getIsbn());
         assertEquals(1985, b.getYear());
-        assertEquals(1, b.getCopies());
+        assertEquals(3, b.getCopies());
         assertEquals(2, b.getCopiesLent());
-        assertEquals(3, b.getTimesLent());  
+        assertEquals(5, b.getTimesLent());  
     }
 
     /**
@@ -185,11 +185,11 @@ public class BookTest {
     public void testToDBString() {
         Book b = new Book("General Plan for Phoenix, 1985-2000", "City Council; Pennsylvania State University", "316830724", 1985, 1);
         
-        b.setCopies(3);
-        b.setCopiesLent(4);
+        b.setCopies(5);
+        b.setCopiesLent(3);
         b.setTimesLent(12);
 
-        assertEquals("General Plan for Phoenix, 1985-2000\u001CCity Council; Pennsylvania State University\u001C316830724\u001C1985\u001C3\u001C4\u001C12", b.toDBString());
+        assertEquals("General Plan for Phoenix, 1985-2000\u001CCity Council; Pennsylvania State University\u001C316830724\u001C1985\u001C5\u001C3\u001C12", b.toDBString());
     }
 
 
