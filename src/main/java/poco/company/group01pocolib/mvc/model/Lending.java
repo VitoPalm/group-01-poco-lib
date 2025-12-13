@@ -131,17 +131,21 @@ public class Lending implements Serializable {
      * @brief   Marks the Book as returned.
      */
     public void setReturned() {
-        this.returned = true;
-        this.user.decrementBorrowedBooksCount();
-        this.book.decrementCopiesLent();
+        if (!this.returned) {
+            this.returned = true;
+            this.user.decrementBorrowedBooksCount();
+            this.book.decrementCopiesLent();
+        }
     }
 
     /**
      * @brief   Marks the Book as not returned.
      */
     public void setNotReturned() {
-        this.returned = false;
-        this.user.incrementBorrowedBooksCount();
+        if (this.returned) {
+            this.returned = false;
+            this.user.incrementBorrowedBooksCount();
+        }
     }
 
     /**
