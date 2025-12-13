@@ -41,6 +41,14 @@ public class PocoLibController {
     }
 
     /**
+     * @brief   Gets the lending tab controller.
+     * @return  The lending tab controller.
+     */
+    public LendingTabController getLendingTabController() {
+        return lendingTabController;
+    }
+
+    /**
      * @brief   Gets the book tab.
      * @return  The book tab.
      */
@@ -49,11 +57,27 @@ public class PocoLibController {
     }
 
     /**
+     * @brief   Gets the book tab controller.
+     * @return  The book tab controller.
+     */
+    public BookTabController getBookTabController() {
+        return bookTabController;
+    }
+
+    /**
      * @brief   Gets the user tab.
      * @return  The user tab.
      */
     public Tab getUserTab() {
         return userTab;
+    }
+
+    /**
+     * @brief   Gets the user tab controller.
+     * @return  The user tab controller.
+     */
+    public UserTabController getUserTabController() {
+        return userTabController;
     }
 
     /**
@@ -101,13 +125,13 @@ public class PocoLibController {
         masterSelectedBook = new SimpleObjectProperty<>();
         masterSelectedUser = new SimpleObjectProperty<>();
 
-        masterSelectedBook.addListener((observable, oldvalue, newValue) -> {
+        masterSelectedBook.addListener(observable -> {
             if (lendingTabController != null) {
                 handleMasterPropertiesChange();
             }
         });
 
-        masterSelectedUser.addListener((observable, oldvalue, newValue) -> {
+        masterSelectedUser.addListener(observable -> {
             if (lendingTabController != null) {
                 handleMasterPropertiesChange();
             }
@@ -150,6 +174,10 @@ public class PocoLibController {
         this.bookTabController.setDependencies(primaryStage, this);
         this.userTabController.setDependencies(primaryStage, this);
         this.lendingTabController.setDependencies(primaryStage, this);
+
+        this.bookTabController.initializeTable();
+        this.userTabController.initializeTable();
+        this.lendingTabController.initializeTable();
     }
 
     /**
@@ -159,6 +187,7 @@ public class PocoLibController {
         this.lendingTabController.loadData();
         this.bookTabController.loadData();
         this.userTabController.loadData();
+
     }
 
     private void handleMasterPropertiesChange() {
@@ -168,7 +197,7 @@ public class PocoLibController {
             switchToTab(bookTab);
         } else if (masterSelectedBook.get() != null && masterSelectedUser.get() != null) {
             switchToTab(lendingTab);
-            lendingTabController.handleNewLending();
+            lendingTabController.initializeNewLending();
         }
     }
 }
