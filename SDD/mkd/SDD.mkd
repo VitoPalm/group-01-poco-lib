@@ -1,5 +1,11 @@
 # Software Design Document (SDD)
 
+## Introduzione
+
+### Convenzioni grafiche adottate nei diagrammi
+
+![alt text](../png/Norm@4x.png)
+
 ## Architettura del sistema
 
 L'architettura del sistema è organizzata secondo il pattern Model-View-Controller (MVC). I moduli principali sono divisi in package che riflettono questa struttura adattata alla complessità del progetto e alle esigenze specifiche dell'applicazione:
@@ -38,7 +44,7 @@ Contiene inoltre i metodi `restoreBookSet`, `restoreUserSet` e `restoreLendingSe
 #### Classi di `mvc.model`
 
 Il model contiene le classi che implementano la logica di business. Le principali classi sono:
-- `Book`: È responsabile della rappresentazione di un oggetto libro con attributi come ISBN, titolo, autori, anno di pubblicazione e numero di copie disponibili. Fornisce metodi per accedere e modificare questi attributi.
+- `Book`: È responsabile della rappresentazione di un oggetto libro con attributi come ISBN (che può contenere qualsiasi tipo di identificatore univoco, come discusso in SRS sez. 1.2.4), titolo, autori, anno di pubblicazione e numero di copie disponibili. Fornisce metodi per accedere e modificare questi attributi.
 - `User`: È responsabile della rappresentazione di un utente con attributi come ID, nome, cognome, email e numero di telefono. Fornisce metodi per accedere e modificare questi attributi.
 - `Lending`: È responsabile della rappresentazione di un prestito, collegando un `Book` a un `User` con attributi come data di prestito e data di restituzione prevista. Fornisce metodi per accedere e modificare questi attributi.
 - `BookSet`, `UserSet`, `LendingSet`: Collezioni responsabili della gestione rispettivamente di libri, utenti e prestiti. Forniscono metodi per aggiungere, rimuovere e cercare elementi all'interno delle collezioni.
