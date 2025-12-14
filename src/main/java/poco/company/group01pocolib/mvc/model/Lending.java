@@ -45,11 +45,7 @@ public class Lending implements Serializable {
      */
     public Lending (Book book, User user, LocalDate returnDate) {
         this.book = book;
-        this.book.incrementCopiesLent();
-
         this.user = user;
-        this.user.incrementBorrowedBooksCount();
-
         this.returnDate = returnDate;
         this.lendingId = ++lendingCounter;
         this.returned = false;

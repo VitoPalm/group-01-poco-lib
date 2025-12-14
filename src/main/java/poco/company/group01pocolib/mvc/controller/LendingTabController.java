@@ -103,7 +103,13 @@ public class LendingTabController {
 
         // Initialize buttons bindings for disabling when no selection
         lendingViewEditButton.disableProperty().bind(selectedLendingProperty.isNull());
-        lendingReturnedButton.disableProperty().bind(selectedLendingProperty.isNull());
+        lendingReturnedButton.disableProperty().bind(
+            selectedLendingProperty.isNull()
+            .or(Bindings.createBooleanBinding(
+                () -> selectedLendingProperty.get() != null && selectedLendingProperty.get().isReturned(),
+                selectedLendingProperty
+            ))
+        );
 
         // Tooltips binding
         lendingViewEditButtonTooltip.textProperty().bind(
@@ -112,13 +118,41 @@ public class LendingTabController {
                 .otherwise(""));
 
         lendingReturnedButtonTooltip.textProperty().bind(
-                Bindings.when(selectedLendingProperty.isNull())
-                    .then("No lending selected")
-                    .otherwise(""));
+            Bindings.when(selectedLendingProperty.isNull())
+                .then("No lending selected")
+                .otherwise(
+                    Bindings.when(Bindings.createBooleanBinding(
+                        () -> selectedLendingProperty.get() != null && selectedLendingProperty.get().isReturned(),
+                        selectedLendingProperty
+                    ))
+                    .then("Already returned")
+                    .otherwise("")
+                )
+        );
 
         // Initialize search field listener
         lendingSearchField.textProperty().addListener(observable -> {
             lendingTableHandler();
+        });
+
+        // Set row factory for color coding
+        lendingTable.setRowFactory(tv -> new TableRow<Lending>() {
+            @Override
+            protected void updateItem(Lending lending, boolean empty) {
+                super.updateItem(lending, empty);
+                
+                if (empty || lending == null) {
+                    setStyle("");
+                } else if (lending.isReturned()) {
+                    // Green background for returned lendings
+                    setStyle("-fx-background-color: #90EE90;");
+                } else if (lending.getReturnDate().isBefore(LocalDate.now())) {
+                    // Red background for overdue lendings
+                    setStyle("-fx-background-color: #FFB6C1;");
+                } else {
+                    setStyle("");
+                }
+            }
         });
         
         Platform.runLater(() -> {
@@ -185,6 +219,7 @@ public class LendingTabController {
     public void loadData() {
         this.lendingData = FXCollections.observableArrayList(lendingSet.getAllLendingsAsList());
         lendingTable.setItems(lendingData);
+        lendingTable.refresh(); // Force refresh to update cell values
     }
 
     /**
@@ -393,12 +428,10 @@ public class LendingTabController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setResizable(false);
 
-            controller.setDialogStage(stage);
-
             stage.show();
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -426,6 +459,11 @@ public class LendingTabController {
     private void handleMarkAsReturned() {
         if (selectedLending != null) {
             selectedLending.setReturned();
+            lendingSet.addOrEditLending(selectedLending);
+            // Save updated book and user with decremented counters
+            bookSet.addOrEditBook(selectedLending.getBook());
+            userSet.addOrEditUser(selectedLending.getUser());
+            mainController.refreshTabData();
         }
     }
 }

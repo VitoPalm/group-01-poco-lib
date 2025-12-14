@@ -55,24 +55,35 @@ public class Hash {
      * @param   lineSeparator   The character that was used to separate the lines in the file itself.
      * @return  String containing the hash of the input `List`, computed as if it was a `File`.
      */
-    public static String getFileHashFromLines(List<String> linesList, String lineSeparator) {
-        String checksum;
+public static String getFileHashFromLines(List<String> linesList, String lineSeparator) {
+    String checksum;
 
-        try {
-            String toHash = String.join(lineSeparator, linesList);
-            byte[] data = toHash.getBytes(StandardCharsets.UTF_8);
-            byte[] hash = MessageDigest.getInstance("SHA-256").digest(data);
-            checksum = new BigInteger(1, hash).toString(16);
-        } catch (NoSuchAlgorithmException e) {
-            System.err.println(e.getMessage());
-            checksum = null;
+    try {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+        for (int i = 0; i < linesList.size(); i++) {
+            byte[] lineBytes = linesList.get(i).getBytes(StandardCharsets.UTF_8);
+            digest.update(lineBytes);
+
+            // Add line separator after each line except the last
+            if (i < linesList.size() - 1) {
+                digest.update(lineSeparator.getBytes(StandardCharsets.UTF_8));
+            }
         }
 
-        return checksum;
+        byte[] hash = digest.digest();
+        checksum = Base64.getEncoder().encodeToString(hash);
+    } catch (NoSuchAlgorithmException e) {
+        System.err.println(e.getMessage());
+        checksum = null;
     }
 
+    return checksum;
+}
+
     /**
-     * @brief   This method takes 2 files as input (through their `Path`) and calculates the SHA- 256 hashes for both of
+     * @brief   Compares the SHA-256 hashes of two files.
+     * @details This method takes 2 files as input (through their `Path`) and calculates the SHA- 256 hashes for both of
      *          them. Then, it returns the result of the comparison.
      *
      * @param   p1  Path to the first file
@@ -81,5 +92,31 @@ public class Hash {
      */
     public static boolean compareFileHashes(Path p1, Path p2) {
         return getFileHash(p1).equals(getFileHash(p2));
+    }
+
+    /**
+     * @brief   Compares the SHA-256 hash of a file with that of a list of strings.
+     * @details This method takes as input a file (through its `Path`) and a `List<String>` containing the lines of
+     *          another file. It calculates the SHA-256 hashes for both of them, and then returns the result of the
+     *          comparison.
+     */
+    public static boolean compareFileHashWithLines(Path p, List<String> linesList, String lineSeparator) {
+        return getFileHash(p).equals(getFileHashFromLines(linesList, lineSeparator));
+    }
+
+    /**
+     * @brief   Compares the SHA-256 hashes of two lists of strings. (comparison is independent of line endings)
+     * @details This method takes as input two `List<String>`, each containing the lines of a file. It calculates the
+     *          SHA-256 hashes for both of them, and then returns the result of the comparison.
+     *
+     * @param   linesList1     The first `List<String>` to compare
+     * @param   linesList2     The second `List<String>` to compare
+     * @param   lineSeparator1 The character that was used to separate the lines in the first file.
+     * @param   lineSeparator2 The character that was used to separate the lines in the second file.
+     * @return  `true` if the hashes correspond, `false` if they don't
+     */
+    public static boolean compareFileHashesFromLines(List<String> linesList1, List<String> linesList2,
+                                                     String lineSeparator1, String lineSeparator2) {
+        return getFileHashFromLines(linesList1, lineSeparator1).equals(getFileHashFromLines(linesList2, lineSeparator2));
     }
 }

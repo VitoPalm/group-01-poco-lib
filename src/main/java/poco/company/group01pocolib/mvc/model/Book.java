@@ -65,7 +65,7 @@ public class Book implements Serializable {
     }
 
     /**
-     * @brief   Constructs a new Book object.
+     * @brief   Constructs a new Book object. That takes authors as a single `String` separated by "; ".
      *
      * @param   title   The title of the Book.
      * @param   authors The String of semicolon separated authors of the Book.
@@ -192,7 +192,7 @@ public class Book implements Serializable {
         if (this.copiesLent < this.copies) {
             this.timesLent++;
 
-            return ++this.copiesLent;
+            return ++(this.copiesLent);
         }
         else throw new BookDataNotValidException("All copies are already lent out.");
     }

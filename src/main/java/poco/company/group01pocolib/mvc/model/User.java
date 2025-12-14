@@ -33,7 +33,7 @@ public class User implements Comparable<User>, Serializable {
     private int borrowedBooksEverCount;
 
     private static final String FIELD_SEPARATOR = "\u001C";
-    private static final int MAX_BORROWED_BOOKS = 3;
+    public static final int MAX_BORROWED_BOOKS = 3;
 
     /**
      * @brief   Default constructor for utility purposes

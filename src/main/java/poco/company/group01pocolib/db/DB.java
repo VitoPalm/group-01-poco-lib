@@ -1,9 +1,6 @@
 package poco.company.group01pocolib.db;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -38,58 +35,177 @@ public class DB implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String DBPath;
+    private String lineSeparator;
     private final ArrayList<String> cache;
     private String DBFileHash;
 
     private static final int INITIAL_CACHE_CAPACITY = 45000;
 
+    /**
+     * @brief   Constructs a new DB object with the specified file path.
+     * @details This constructor initializes the DB object with the provided file path. It also preloads the lines
+     *          from the DB file into an internal cache for faster access and calculates the initial hash of the DB file.
+     *
+     * @param   DBPath The path to the database file.
+     */
     public DB(Path DBPath) {
         this.DBPath = DBPath.toString();
-        this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
+        this.lineSeparator = detectLineSeparator();
 
         // Preload lines into cache
         this.cache = new ArrayList<>(INITIAL_CACHE_CAPACITY);
         this.buildCache();
+
+        // Calculate initial file hash
+        updateDBFileHash();
     }
 
+    /**
+     * @brief   Constructs a new DB object with the specified file path.
+     * @details This constructor initializes the DB object with the provided file path. It also preloads the lines
+     *          from the DB file into an internal cache for faster access and calculates the initial hash of the DB file.
+     *
+     * @param   DBPath The path to the database file.
+     */
     public DB(String DBPath) {
         this.DBPath = DBPath;
-        this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
+        this.lineSeparator = detectLineSeparator();
 
         // Preload lines into cache
         this.cache = new ArrayList<>(INITIAL_CACHE_CAPACITY);
         this.buildCache();
+
+        // Calculate initial file hash
+        updateDBFileHash();
     }
 
+    /**
+     * @brief   Gets the path to the DB file as a `String`.
+     * @return  The path to the DB file.
+     */
     public String getDBPath() {
         return DBPath;
     }
 
-    public void setDBPath(String DBPath) {
-        this.DBPath = DBPath;
-    }
-
+    /**
+     * @brief   Gets the path to the DB file as a `Path` object.
+     * @return  The path to the DB file.
+     */
     public Path getDBPathAsPath() {
         return FileSystems.getDefault().getPath(this.DBPath);
     }
 
+    /**
+     * @brief   Sets the path to the DB file from a `String`.
+     * @param   DBPath The new path to the DB file.
+     */
+    public void setDBPath(String DBPath) {
+        this.DBPath = DBPath;
+    }
+
+    /**
+     * @brief   Sets the path to the DB file from a `Path` object.
+     * @param   DBPath The new path to the DB file.
+     */
     public void setDBPath(Path DBPath) {
         this.DBPath = DBPath.toString();
     }
 
+    /**
+     * @brief   Gets the stored hash of the DB file.
+     * @return  The stored hash of the DB file.
+     */
     public String getDBFileHash() {
         return DBFileHash;
     }
 
+    /**
+     * @brief   Updates the stored hash of the DB file.
+     * @details This method recalculates the hash of the DB file based on its current content. It uses the internal
+     *          cache of lines to compute the hash efficiently. If the cache is empty and cannot be built, it sets the
+     *          hash to `null`, indicating an issue with the file.
+     */
     public void updateDBFileHash() {
-        this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
+        if (this.cache.isEmpty() && !this.buildCache()) {
+            // If cache build fails, there's something wrong with the file, so we set the hash to null
+            DBFileHash = null;
+            return;
+        }
+
+        this.DBFileHash = Hash.getFileHashFromLines(this.cache, this.lineSeparator);
     }
 
+    /**
+     * @brief   Updates the stored hash of the DB file and returns it.
+     * @details This method recalculates the hash of the DB file based on its current content and returns the updated
+     *          hash. It uses the internal cache of lines to compute the hash efficiently. If the cache is empty and
+     *          cannot be built, it sets the hash to `null`, indicating an issue with the file.
+     *
+     * @return  The updated hash of the DB file.
+     */
     public String updateAndGetDBFileHash() {
-        this.DBFileHash = Hash.getFileHash(this.getDBPathAsPath());
+        updateDBFileHash();
 
         return this.DBFileHash;
     }
+
+    /**
+     * @brief   Forces recalculation of the DB file hash directly from the file.
+     * @details This method recalculates the hash of the DB file by reading its content directly from the file,
+     *          bypassing the internal cache. This can be useful in scenarios where the file may have been modified
+     *          externally, and we want to ensure that the stored hash reflects the actual content of the file.
+     *          <br><br>
+     *          If the newly calculated hash differs from the stored hash, it rebuilds the internal cache to keep it in
+     *          sync with the file.
+     *
+     * @return  The newly calculated hash of the DB file.
+     */
+    public String forceHashOnFile() {
+        String forcedHash = Hash.getFileHash(this.getDBPathAsPath());
+
+        if (!forcedHash.equals(DBFileHash)) {
+            // If the hash has changed, we need to rebuild the cache to keep it in sync with the file
+            this.buildCache();
+        }
+
+        this.DBFileHash = forcedHash;
+
+        return forcedHash;
+    }
+
+    /**
+     * @brief   Detects the line separator used in a file.
+     * @details This method reads the file at the specified path and detects the line separator used. This can be useful
+     *          to ensure cross-platform compatibility when transferring DB files between different operating systems.
+     *          <br><br>
+     *          Normally this wouldn't be necessary, but to improve efficiency when calculating file hashes, in order to
+     *          use the `Hash.getFileHashFromLines` method, while getting the same result as `Hash.getFileHash`, we need
+     *          to know the exact line separator used in the file.
+     *
+     * @return  The detected line separator as a `String` ("\n", "\r\n", or "\r"). If no line breaks are found, returns
+     *          the system's default line separator.
+     */
+    public String detectLineSeparator() {
+        try (InputStream stream = Files.newInputStream(this.getDBPathAsPath())) {
+            int b;
+            while ((b = stream.read()) != -1) {
+                // Unix/Linux/MacOS line ending
+                if (b == '\n') return "\n";
+                if (b == '\r') {
+                    int next = stream.read();
+                    // Windows line ending
+                    if (next == '\n') return "\r\n";
+                    // Legacy Mac line ending
+                    return "\r";
+                }
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return System.lineSeparator(); // Default if no line breaks found
+    }
+
 
     /**
      * @brief   Clears the entire DB file and the internal cache.

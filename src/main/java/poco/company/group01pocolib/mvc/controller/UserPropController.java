@@ -141,6 +141,7 @@ public class UserPropController {
         nameLabel.setText(this.user.getName());
         surnameLabel.setText(this.user.getSurname());
         emailLabel.setText(this.user.getEmail());
+        borrowedLink.setText(this.user.getBorrowedBooksCount() + " books (" + this.user.getBorrowedBooksEverCount() + " total)");
 
         // Set edit fields
         if (filler != null) {
