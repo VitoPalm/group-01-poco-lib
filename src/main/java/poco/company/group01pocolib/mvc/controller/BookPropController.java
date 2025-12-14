@@ -150,8 +150,8 @@ public class BookPropController {
         titleLabel.setText(this.book.getTitle());
         authorsLabel.setText(this.book.getAuthorsString());
         yearLabel.setText(String.valueOf(this.book.getYear()));
-        copiesLabel.setText(String.format("%d now (%d total)", this.book.getCopies(), this.book.getCopies()+this.book.getCopiesLent()));
-        lentToLink.setText(String.format("%d users now (%d users total)", this.book.getCopiesLent(), this.book.getTimesLent()));
+        copiesLabel.setText(String.format("%d available (%d total)", this.book.getCopies() - this.book.getCopiesLent(), this.book.getCopies()));
+        lentToLink.setText(String.format("%d copies (%d times)", this.book.getCopiesLent(), this.book.getTimesLent()));
 
         // Buttons and Tooltips
         deleteButton.setDisable(this.book.getCopiesLent() > 0);

@@ -205,6 +205,7 @@ public class BookTabController {
             // Update existing observable list to refresh the table
             bookData.setAll(bookSet.getListOfBooks());
         }
+        bookTable.refresh(); // Force refresh to update cell values
     }
 
     /**
@@ -218,7 +219,7 @@ public class BookTabController {
         bookTitleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getTitle()));
         bookAuthorsColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAuthorsString()));
         bookYearColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getYear()));
-        bookAvailableColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopies()));
+        bookAvailableColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopies() - cellData.getValue().getCopiesLent()));
         bookLentColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopiesLent()));
     }
 

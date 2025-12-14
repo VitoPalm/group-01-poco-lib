@@ -248,31 +248,39 @@ public class LendingTabController {
      */
     private void initializeLendingColumns() {
         // Lending specific columns
-        lendingIdColumn.setCellValueFactory(cellData ->
-            new ReadOnlyObjectWrapper<>(cellData.getValue().getLendingId()));
+        lendingIdColumn.setCellValueFactory(cellData -> {
+            Lending lending = cellData.getValue();
+            return new ReadOnlyObjectWrapper<>(lending != null ? lending.getLendingId() : null);
+        });
 
-        lendingReturnDateColumn.setCellValueFactory(cellData ->
-            new ReadOnlyObjectWrapper<>(cellData.getValue().getReturnDate()));
+        lendingReturnDateColumn.setCellValueFactory(cellData -> {
+            Lending lending = cellData.getValue();
+            return new ReadOnlyObjectWrapper<>(lending != null ? lending.getReturnDate() : null);
+        });
 
         // Book specific columns - accessing nested Book object
         lendingIsbnColumn.setCellValueFactory(cellData -> {
-            Book book = cellData.getValue().getBook();
+            Lending lending = cellData.getValue();
+            Book book = lending != null ? lending.getBook() : null;
             return new ReadOnlyStringWrapper(book != null ? book.getIsbn() : "");
         });
 
         lendingTitleColumn.setCellValueFactory(cellData -> {
-            Book book = cellData.getValue().getBook();
+            Lending lending = cellData.getValue();
+            Book book = lending != null ? lending.getBook() : null;
             return new ReadOnlyStringWrapper(book != null ? book.getTitle() : "");
         });
 
         // User specific columns - accessing nested User object
         lendingUserIdColumn.setCellValueFactory(cellData -> {
-            User user = cellData.getValue().getUser();
+            Lending lending = cellData.getValue();
+            User user = lending != null ? lending.getUser() : null;
             return new ReadOnlyStringWrapper(user != null ? user.getId() : "");
         });
 
         lendingUserColumn.setCellValueFactory(cellData -> {
-            User user = cellData.getValue().getUser();
+            Lending lending = cellData.getValue();
+            User user = lending != null ? lending.getUser() : null;
             return new ReadOnlyStringWrapper(user != null ? user.getFullName() : "");
         });
     }
