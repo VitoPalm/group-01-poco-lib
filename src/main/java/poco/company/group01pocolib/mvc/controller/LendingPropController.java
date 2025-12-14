@@ -82,6 +82,15 @@ public class LendingPropController {
         if (mode == PropMode.VIEW) {
             viewBox.setVisible(true);
             editBox.setVisible(false);
+            
+            // Update return button based on lending status
+            if (lending != null && lending.isReturned()) {
+                returnButton.setDisable(true);
+                returnButton.setText("Already returned");
+            } else {
+                returnButton.setDisable(false);
+                returnButton.setText("Mark as returned");
+            }
         } else if (mode == PropMode.EDIT) {
             viewBox.setVisible(false);
             editBox.setVisible(true);
@@ -185,7 +194,11 @@ public class LendingPropController {
     private void handleMarkAsReturned() {
         lending.setReturned();
         lendingSet.addOrEditLending(lending);
+        // Save updated book and user with decremented counters
+        bookSet.addOrEditBook(lending.getBook());
+        userSet.addOrEditUser(lending.getUser());
         mainController.refreshTabData();
+        updateView();
     }
 
     /**
@@ -202,6 +215,13 @@ public class LendingPropController {
         // Wait for confirmation
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
+                // If lending is not returned, mark it as returned to update counters
+                if (!lending.isReturned()) {
+                    lending.setReturned();
+                    // Save updated book and user with decremented counters
+                    bookSet.addOrEditBook(lending.getBook());
+                    userSet.addOrEditUser(lending.getUser());
+                }
                 lendingSet.removeLending(lending);
                 mainController.refreshTabData();
                 dialogStage.close();
@@ -245,8 +265,12 @@ public class LendingPropController {
 
             // Clear selected book and user in main controller if it was a new lending
             if (isNewLending) {
-                mainController.getMasterSelectedBook().incrementCopiesLent();
-                mainController.getMasterSelectedUser().incrementBorrowedBooksCount();
+                // Increment counters for new lending
+                lending.getBook().incrementCopiesLent();
+                lending.getUser().incrementBorrowedBooksCount();
+                // Save updated book and user
+                bookSet.addOrEditBook(lending.getBook());
+                userSet.addOrEditUser(lending.getUser());
                 mainController.setMasterSelectedBook(null);
                 mainController.setMasterSelectedUser(null);
             }

@@ -223,7 +223,7 @@ public class BookTabController {
         bookYearColumn.setCellValueFactory(cellData ->
                                            new ReadOnlyObjectWrapper<>(cellData.getValue().getYear()));
         bookAvailableColumn.setCellValueFactory(cellData ->
-                                                new ReadOnlyObjectWrapper<>(cellData.getValue().getCopies()));
+                                                new ReadOnlyObjectWrapper<>(cellData.getValue().getCopies() - cellData.getValue().getCopiesLent()));
         bookLentColumn.setCellValueFactory(cellData ->
                                            new ReadOnlyObjectWrapper<>(cellData.getValue().getCopiesLent()));
     }
@@ -379,8 +379,6 @@ public class BookTabController {
             stage.initOwner(ownerStage);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setResizable(false);
-
-            controller.setDialogStage(stage);
 
             stage.show();
 

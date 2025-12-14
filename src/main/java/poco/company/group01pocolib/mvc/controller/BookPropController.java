@@ -131,7 +131,8 @@ public class BookPropController {
         titleLabel.setText(this.book.getTitle());
         authorsLabel.setText(this.book.getAuthorsString());
         yearLabel.setText(String.valueOf(this.book.getYear()));
-        copiesLabel.setText(String.valueOf(this.book.getCopies()));
+        copiesLabel.setText(String.valueOf(this.book.getCopies() - this.book.getCopiesLent()));
+        lentToLink.setText(this.book.getCopiesLent() + " copies (" + this.book.getTimesLent() + " times)");
 
         // Set edit fields
         isbnField.setText(this.book.getIsbn());

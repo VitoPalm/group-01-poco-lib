@@ -380,8 +380,6 @@ public class UserTabController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setResizable(false);
 
-            controller.setDialogStage(stage);
-
             stage.show();
 
         } catch (Exception e) {
