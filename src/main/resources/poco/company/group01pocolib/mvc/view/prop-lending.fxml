@@ -72,8 +72,8 @@
             <Hyperlink fx:id="userLinkEdit" onAction="#handleViewUser" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         </GridPane>
 
-        <Label fx:id="infoLabel" text="Saved!" textFill="#474747" visible="false" managed="false"/>
-        <Label fx:id="errorLabel" text="Return Date mustn't be blank or invalid" textFill="#e00000" visible="false"/>
+        <Label fx:id="errorLabel" text="Return Date mustn't be blank or invalid" textFill="#e00000"
+               visible="false" managed="false"/>
 
         <HBox alignment="CENTER" spacing="10.0">
             <Button cancelButton="true" onAction="#handleCancel" text="Cancel"/>
