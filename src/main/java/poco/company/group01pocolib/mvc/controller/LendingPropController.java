@@ -140,21 +140,21 @@ public class LendingPropController {
             }
 
             isNewLending = true;
-            lending = new Lending(mainController.getMasterSelectedBook(),
-                                  mainController.getMasterSelectedUser(),
-                                  LocalDate.now());
+            this.lending = new Lending(mainController.getMasterSelectedBook(),
+                                       mainController.getMasterSelectedUser(),
+                                       LocalDate.now());
         }
 
         // Set view labels/links
-        lendingIdLabel.setText(String.valueOf(lending.getLendingId()));
-        bookLinkView.setText(lending.getBook().getTitle());
-        userLinkView.setText(lending.getUser().getFullName());
-        returnDateLabel.setText(lending.getReturnDate().toString());
+        lendingIdLabel.setText(String.valueOf(this.lending.getLendingId()));
+        bookLinkView.setText(this.lending.getBook().getTitle());
+        userLinkView.setText(this.lending.getUser().getFullName());
+        returnDateLabel.setText(this.lending.getReturnDate().toString());
 
         // Set edit links/fields
-        bookLinkEdit.setText(lending.getBook().getTitle());
-        userLinkEdit.setText(lending.getUser().getFullName());
-        returnDatePicker.setValue(lending.getReturnDate());
+        bookLinkEdit.setText(this.lending.getBook().getTitle());
+        userLinkEdit.setText(this.lending.getUser().getFullName());
+        returnDatePicker.setValue(this.lending.getReturnDate());
     }
 
     /**
@@ -185,6 +185,7 @@ public class LendingPropController {
     private void handleMarkAsReturned() {
         lending.setReturned();
         lendingSet.addOrEditLending(lending);
+        mainController.refreshTabData();
     }
 
     /**
@@ -202,6 +203,7 @@ public class LendingPropController {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 lendingSet.removeLending(lending);
+                mainController.refreshTabData();
                 dialogStage.close();
             }
         });
@@ -243,6 +245,8 @@ public class LendingPropController {
 
             // Clear selected book and user in main controller if it was a new lending
             if (isNewLending) {
+                mainController.getMasterSelectedBook().incrementCopiesLent();
+                mainController.getMasterSelectedUser().incrementBorrowedBooksCount();
                 mainController.setMasterSelectedBook(null);
                 mainController.setMasterSelectedUser(null);
             }
