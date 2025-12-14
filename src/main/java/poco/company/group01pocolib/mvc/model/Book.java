@@ -65,7 +65,7 @@ public class Book implements Serializable {
     }
 
     /**
-     * @brief   Constructs a new Book object.
+     * @brief   Constructs a new Book object. That takes authors as a single `String` separated by "; ".
      *
      * @param   title   The title of the Book.
      * @param   authors The String of semicolon separated authors of the Book.
@@ -181,7 +181,7 @@ public class Book implements Serializable {
      * @throws  BookDataNotValidException If the number of copies lent is greater than the total number of copies.
      */
     public void setCopiesLent(int copiesLent) {
-        if (copiesLent < this.copies) this.copiesLent = copiesLent;
+        if (copiesLent >= 0 && copiesLent <= this.copies) this.copiesLent = copiesLent;
         else throw new BookDataNotValidException("Cannot set copies lent greater than total copies.");
     }
 
@@ -194,7 +194,7 @@ public class Book implements Serializable {
         if (this.copiesLent < this.copies) {
             this.timesLent++;
 
-            return ++this.copiesLent;
+            return ++(this.copiesLent);
         }
         else throw new BookDataNotValidException("All copies are already lent out.");
     }

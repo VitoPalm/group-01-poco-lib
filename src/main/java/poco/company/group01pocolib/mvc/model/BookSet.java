@@ -190,7 +190,8 @@ public class BookSet implements Serializable {
 
         // Create a new DB object using the provided DB path
         DB currentDB = new DB(DBPath);
-        String currentDBHash = currentDB.getDBFileHash();
+        // Force hash calculation on the actual file
+        String currentDBHash = currentDB.forceHashOnFile();
 
         // Check if the DB file has changed since the last serialization by comparing hashes
         if (currentDBHash.equals(bookSet.getLastKnownDBHash())) {
@@ -427,8 +428,23 @@ public class BookSet implements Serializable {
      * @brief   Saves the current state of the BookSet to a serialized file on disk
      */
     private void saveToSerialized() {
-        if (serializationPath == null) {
-            return; // No serialization path configured, skip saving
+        if (serializationPath == null || serializationPath.isEmpty()) {
+            return;
+        }
+        // Check if file exists at specified path
+        File serializedFile = new File(serializationPath);
+        if (!serializedFile.exists()) {
+            // If the file or the folder structure does not exist, create it
+            try {
+                // Only create parent directories if they don't exist
+                File parentFile = serializedFile.getParentFile();
+                if (parentFile != null) {
+                    Files.createDirectories(parentFile.toPath());
+                }
+                serializedFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(serializationPath)))) {
