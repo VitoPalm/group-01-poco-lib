@@ -326,8 +326,8 @@ public class BookPropController {
         // Validate Year
         try {
             int year = Integer.parseInt(yearField.getText().trim());
-            if (year < 1000 || year > 9999) {
-                errorMessage.append("Year must be a valid 4-digit number.\n");
+            if (year <= 0) {
+                errorMessage.append("We only accept books published after the birth of Our Lord And Savior Jesus Christ\n");
             }
         } catch (NumberFormatException e) {
             errorMessage.append("Year must be a valid number.\n");

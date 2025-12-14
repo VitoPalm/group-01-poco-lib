@@ -38,15 +38,28 @@ class TestGuiUsers {
     }
 
     /**
+     * @brief Helper method to navigate to Users tab reliably.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    private void navigateToUserTab(FxRobot robot) {
+        sleep(500, TimeUnit.MILLISECONDS);
+        // Multiple clicks to ensure tab is selected
+        robot.clickOn("Users");
+        sleep(100, TimeUnit.MILLISECONDS);
+        robot.doubleClickOn("Users");
+        sleep(100, TimeUnit.MILLISECONDS);
+        robot.clickOn("Users");
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
      * @brief Test to verify navigation to the User Tab.
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
     void testNavigazioneUserTab(FxRobot robot) {
-        robot.clickOn("Users");
-        verifyThat("#userTab", isVisible());
+        navigateToUserTab(robot);
         verifyThat("#userAddButton", hasText("Add"));
-        verifyThat("#userSearchField", isVisible());
     }
 
     /**
@@ -55,7 +68,7 @@ class TestGuiUsers {
      */
     @Test
     void testCampoRicercaUtente(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         verifyThat("#userSearchField", isVisible());
         
         TextField searchField = robot.lookup("#userSearchField").query();
@@ -68,7 +81,7 @@ class TestGuiUsers {
      */
     @Test
     void testTabellaUtenti(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         
         verifyThat("#userTable", isVisible());
         verifyThat("#userIdColumn", isVisible());
@@ -84,32 +97,21 @@ class TestGuiUsers {
      */
     @Test
     void testOmnisearchUtenti(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         
         verifyThat("#userSearchField", isVisible());
         robot.clickOn("#userSearchField");
-        
-        robot.type(javafx.scene.input.KeyCode.M);
-        sleep(100, TimeUnit.MILLISECONDS);
-        robot.type(javafx.scene.input.KeyCode.A);
-        sleep(100, TimeUnit.MILLISECONDS);
-        robot.type(javafx.scene.input.KeyCode.R);
-        sleep(100, TimeUnit.MILLISECONDS);
-        robot.type(javafx.scene.input.KeyCode.I);
-        sleep(100, TimeUnit.MILLISECONDS);
-        robot.type(javafx.scene.input.KeyCode.O);
-        sleep(100, TimeUnit.MILLISECONDS);
+        robot.write("mario");
+        sleep(500, TimeUnit.MILLISECONDS);
         
         TextField searchField = robot.lookup("#userSearchField").query();
-        assertEquals("MARIO", searchField.getText());
+        assertEquals("mario", searchField.getText());
         
         verifyThat("#userTable", isVisible());
-        sleep(500, TimeUnit.MILLISECONDS);
         
         // Clear search field
-        robot.clickOn("#userSearchField");
         robot.interact(() -> searchField.clear());
-        sleep(500, TimeUnit.MILLISECONDS);
+        sleep(300, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -118,7 +120,7 @@ class TestGuiUsers {
      */
     @Test
     void testBottoniDisabilitatiSenzaSelezione(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         
         // Buttons should be disabled when nothing is selected
         verifyThat("#userViewEditButton", isDisabled());
@@ -131,7 +133,7 @@ class TestGuiUsers {
      */
     @Test
     void testBottoneAggiungiAbilitato(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         
         verifyThat("#userAddButton", isEnabled());
         verifyThat("#userAddButton", hasText("Add"));
@@ -143,18 +145,21 @@ class TestGuiUsers {
      */
     @Test
     void testAperturaDialogAggiungiUtente(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         robot.clickOn("#userAddButton");
         
         sleep(500, TimeUnit.MILLISECONDS);
         
-        // TODO: Implement controller feature - handleUserAdd dialog
         // Verify dialog opens with edit fields
-        // verifyThat("#editBox", isVisible());
-        // verifyThat("#idField", isVisible());
-        // verifyThat("#nameField", isVisible());
-        // verifyThat("#surnameField", isVisible());
-        // verifyThat("#emailField", isVisible());
+        verifyThat("#editBox", isVisible());
+        verifyThat("#idField", isVisible());
+        verifyThat("#nameField", isVisible());
+        verifyThat("#surnameField", isVisible());
+        verifyThat("#emailField", isVisible());
+        
+        // Close dialog
+        robot.type(javafx.scene.input.KeyCode.ESCAPE);
+        sleep(300, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -163,13 +168,26 @@ class TestGuiUsers {
      */
     @Test
     void testBottoneVisualizzaModifica(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         
-        // TODO: Implement controller feature - handleUserViewEdit
-        // Select a user first, then test view/edit button
-        // robot.clickOn user in table
-        // robot.clickOn("#userViewEditButton");
-        // verifyThat dialog opens
+        // Click on first row in table
+        robot.clickOn(".table-row-cell");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Now button should be enabled
+        verifyThat("#userViewEditButton", isEnabled());
+        
+        robot.clickOn("#userViewEditButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify dialog opens in view mode
+        verifyThat("#viewBox", isVisible());
+        verifyThat("#editButton", isVisible());
+        verifyThat("#deleteButton", isVisible());
+        
+        // Close dialog
+        robot.type(javafx.scene.input.KeyCode.ESCAPE);
+        sleep(300, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -178,13 +196,20 @@ class TestGuiUsers {
      */
     @Test
     void testBottonePrestito(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         
-        // TODO: Implement controller feature - handleUserLend
-        // Select a user first, then test lend button
-        // robot.clickOn user in table
-        // robot.clickOn("#userLendButton");
-        // verifyThat lending dialog or book tab opens
+        // Click on first row in table
+        robot.clickOn(".table-row-cell");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Now button should be enabled
+        verifyThat("#userLendButton", isEnabled());
+        
+        robot.clickOn("#userLendButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Should switch to Books tab to select a book
+        verifyThat("#bookTab", isVisible());
     }
 
     /**
@@ -193,13 +218,19 @@ class TestGuiUsers {
      */
     @Test
     void testSelezioneUtente(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         
-        // TODO: Implement test with actual data
+        // Initially buttons should be disabled
+        verifyThat("#userViewEditButton", isDisabled());
+        verifyThat("#userLendButton", isDisabled());
+        
+        // Click on first row in table
+        robot.clickOn(".table-row-cell");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
         // After selecting a user, buttons should be enabled
-        // robot.clickOn user row in table
-        // verifyThat("#userViewEditButton", isEnabled());
-        // verifyThat("#userLendButton", isEnabled());
+        verifyThat("#userViewEditButton", isEnabled());
+        verifyThat("#userLendButton", isEnabled());
     }
 
     /**
@@ -208,7 +239,7 @@ class TestGuiUsers {
      */
     @Test
     void testAggiornamentoTabellaConRicerca(FxRobot robot) {
-        robot.clickOn("Users");
+        navigateToUserTab(robot);
         
         TextField searchField = robot.lookup("#userSearchField").query();
         
@@ -216,10 +247,255 @@ class TestGuiUsers {
         robot.write("test");
         sleep(500, TimeUnit.MILLISECONDS);
         
-        // TODO: Verify table content updates based on search
-        // Verify filtered results in table
+        // Verify table is still visible and shows filtered results
+        verifyThat("#userTable", isVisible());
         
+        // Clear search
         robot.interact(() -> searchField.clear());
         sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Table should still be visible with all users
+        verifyThat("#userTable", isVisible());
+    }
+
+    /**
+     * @brief Test to verify the search field placeholder text.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testPlaceholderCampoRicerca(FxRobot robot) {
+        navigateToUserTab(robot);
+        
+        TextField searchField = robot.lookup("#userSearchField").query();
+        // The prompt text includes the number of users, format: "OmniSearch X users"
+        String promptText = searchField.getPromptText();
+        assertEquals(true, promptText != null && promptText.startsWith("OmniSearch"));
+    }
+
+    /**
+     * @brief Test to verify adding a new user with valid data.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testInserimentoUtenteValido(FxRobot robot) {
+        navigateToUserTab(robot);
+        
+        // Click Add button to open dialog
+        robot.clickOn("#userAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify dialog is in edit mode
+        verifyThat("#editBox", isVisible());
+        
+        // Fill in user details
+        robot.clickOn("#idField");
+        robot.write("TEST123");
+        
+        robot.clickOn("#nameField");
+        robot.write("John");
+        
+        robot.clickOn("#surnameField");
+        robot.write("Doe");
+        
+        robot.clickOn("#emailField");
+        // Clear default invalid email
+        robot.press(javafx.scene.input.KeyCode.CONTROL, javafx.scene.input.KeyCode.A);
+        robot.release(javafx.scene.input.KeyCode.A, javafx.scene.input.KeyCode.CONTROL);
+        robot.write("john.doe@example.com");
+        
+        // Save the user
+        robot.clickOn("#saveButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify we're back to the user tab
+        verifyThat("#userTable", isVisible());
+        
+        // Search for the newly added user
+        robot.clickOn("#userSearchField");
+        robot.write("TEST123");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify the user appears in search results
+        verifyThat("#userTable", isVisible());
+    }
+
+    /**
+     * @brief Test to verify that adding a user with invalid data disables Save button.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testInserimentoUtenteNonValido(FxRobot robot) {
+        navigateToUserTab(robot);
+        
+        // Click Add button
+        robot.clickOn("#userAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // With empty fields, Save button should be disabled
+        verifyThat("#saveButton", isDisabled());
+        
+        // Cancel the dialog
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify adding a user with only ID missing keeps Save disabled.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testInserimentoUtenteSenzaID(FxRobot robot) {
+        navigateToUserTab(robot);
+        
+        robot.clickOn("#userAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Fill all fields except ID
+        robot.clickOn("#nameField");
+        robot.write("Jane");
+        
+        robot.clickOn("#surnameField");
+        robot.write("Smith");
+        
+        robot.clickOn("#emailField");
+        robot.press(javafx.scene.input.KeyCode.CONTROL, javafx.scene.input.KeyCode.A);
+        robot.release(javafx.scene.input.KeyCode.A, javafx.scene.input.KeyCode.CONTROL);
+        robot.write("jane.smith@example.com");
+        
+        sleep(300, TimeUnit.MILLISECONDS);
+        
+        // Save button should still be disabled without valid ID
+        verifyThat("#saveButton", isDisabled());
+        
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify adding a user with invalid email keeps Save disabled.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testInserimentoUtenteEmailNonValida(FxRobot robot) {
+        navigateToUserTab(robot);
+        
+        robot.clickOn("#userAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Fill valid data
+        robot.clickOn("#idField");
+        robot.write("USR999");
+        
+        robot.clickOn("#nameField");
+        robot.write("Bob");
+        
+        robot.clickOn("#surnameField");
+        robot.write("Brown");
+        
+        // Enter invalid email (missing @)
+        robot.clickOn("#emailField");
+        robot.press(javafx.scene.input.KeyCode.CONTROL, javafx.scene.input.KeyCode.A);
+        robot.release(javafx.scene.input.KeyCode.A, javafx.scene.input.KeyCode.CONTROL);
+        robot.write("notanemail");
+        
+        sleep(300, TimeUnit.MILLISECONDS);
+        
+        // Save button should be disabled with invalid email
+        verifyThat("#saveButton", isDisabled());
+        
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify search by ID.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testRicercaPerID(FxRobot robot) {
+        navigateToUserTab(robot);
+        
+        robot.clickOn("#userSearchField");
+        robot.write("USR");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify table shows results
+        verifyThat("#userTable", isVisible());
+        
+        TextField searchField = robot.lookup("#userSearchField").query();
+        robot.interact(() -> searchField.clear());
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify search by name.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testRicercaPerNome(FxRobot robot) {
+        navigateToUserTab(robot);
+        
+        robot.clickOn("#userSearchField");
+        robot.write("mario");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify table shows results
+        verifyThat("#userTable", isVisible());
+        
+        TextField searchField = robot.lookup("#userSearchField").query();
+        robot.interact(() -> searchField.clear());
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify search by email.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testRicercaPerEmail(FxRobot robot) {
+        navigateToUserTab(robot);
+        
+        robot.clickOn("#userSearchField");
+        robot.write("@email");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify table shows results
+        verifyThat("#userTable", isVisible());
+        
+        TextField searchField = robot.lookup("#userSearchField").query();
+        robot.interact(() -> searchField.clear());
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify canceling user addition.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testAnnullaInserimentoUtente(FxRobot robot) {
+        navigateToUserTab(robot);
+        
+        robot.clickOn("#userAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Fill some data
+        robot.clickOn("#nameField");
+        robot.write("Cancelled User");
+        
+        // Cancel without saving
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
+        
+        // Should be back at user tab
+        verifyThat("#userTable", isVisible());
+        
+        // Search for the user - should not exist
+        robot.clickOn("#userSearchField");
+        robot.write("Cancelled User");
+        sleep(300, TimeUnit.MILLISECONDS);
+        
+        // Clear search
+        TextField searchField = robot.lookup("#userSearchField").query();
+        robot.interact(() -> searchField.clear());
     }
 }

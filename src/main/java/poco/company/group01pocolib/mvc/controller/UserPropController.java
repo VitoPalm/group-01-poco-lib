@@ -290,28 +290,33 @@ public class UserPropController {
     private boolean validateInput() {
         StringBuilder errors = new StringBuilder();
 
+        // Validate ID
         if (!User.isValidID(idField.getText())) {
-            if (!errors.isEmpty()) errors.append("\n");
-            errors.append("Invalid ID. ID must be alphanumeric and 5-16 characters long.");
-        } else if (nameField.getText().isBlank()) {
-            if (!errors.isEmpty()) errors.append("\n");
-            errors.append("Name cannot be empty.");
-        } else if (surnameField.getText().isBlank()) {
-            if (!errors.isEmpty()) errors.append("\n");
-            errors.append("Name cannot be empty.");
-        } else if (!User.isValidEmail(emailField.getText())) {
-            if (!errors.isEmpty()) errors.append("\n");
-            errors.append("Invalid email format.");
+            errors.append("Invalid ID. ID must be alphanumeric and 5-16 characters long.\n");
         }
 
-        // TODO: Check what the fuck is up with the error label fucking up everything (the basterd)
+        // Validate Name
+        if (nameField.getText() == null || nameField.getText().isBlank()) {
+            errors.append("Name cannot be empty.\n");
+        }
+
+        // Validate Surname
+        if (surnameField.getText() == null || surnameField.getText().isBlank()) {
+            errors.append("Surname cannot be empty.\n");
+        }
+
+        // Validate Email
+        if (!User.isValidEmail(emailField.getText())) {
+            errors.append("Invalid email format.\n");
+        }
+
+        // Set error label and return result
         if (errors.isEmpty()) {
             errorLabel.setVisible(false);
             return true;
         } else {
             errorLabel.setText(errors.toString());
             errorLabel.setVisible(true);
-
             return false;
         }
     }
