@@ -489,27 +489,27 @@ class TestGuiLending {
         TableView<?> table = robot.lookup("#lendingTable").query();
         int initialCount = table.getItems().size();
         
-        // Step 1: Create lending
+        // Create lending
         LocalDate returnDate = LocalDate.now().plusDays(21);
         createLending(robot, returnDate);
         
-        // Step 2: Verify in lending table
+        // Verify in lending table
         navigateToLendingTab(robot);
         int afterCreate = table.getItems().size();
         assertTrue(afterCreate > initialCount, "Lending should be in table");
         
-        // Step 3: Select lending
+        // Select lending
         robot.clickOn(".table-row-cell");
         sleep(500, TimeUnit.MILLISECONDS);
         
-        // Step 4: Mark as returned
+        // Mark as returned
         robot.clickOn("#lendingReturnedButton");
         sleep(1000, TimeUnit.MILLISECONDS);
         
-        // Step 5: Verify button is disabled
+        // Verify button is disabled
         verifyThat("#lendingReturnedButton", isDisabled());
         
-        // Step 6: Verify data updated in other tabs
+        // Verify data updated in other tabs
         navigateToBookTab(robot);
         verifyThat("#bookTable", isVisible());
         
