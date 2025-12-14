@@ -57,7 +57,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testAvvioApplicazione(FxRobot robot) {
+    void testApplicationStartup(FxRobot robot) {
         verifyThat("#mainTabPane", isVisible());
     }
 
@@ -66,7 +66,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testNavigazioneBookTab(FxRobot robot) {
+    void testNavigationToBookTab(FxRobot robot) {
         navigateToBookTab(robot);
         verifyThat("#bookAddButton", hasText("Add"));
     }
@@ -76,7 +76,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testTabellaLibri(FxRobot robot) {
+    void testBookTable(FxRobot robot) {
         navigateToBookTab(robot);
         
         verifyThat("#bookTable", isVisible());
@@ -93,7 +93,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testOmnisearchLibri(FxRobot robot) {
+    void testBookOmnisearch(FxRobot robot) {
         navigateToBookTab(robot);
 
         verifyThat("#bookSearchField", isVisible());
@@ -131,7 +131,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottoniDisabilitatiSenzaSelezione(FxRobot robot) {
+    void testButtonsDisabledWithoutSelection(FxRobot robot) {
         navigateToBookTab(robot);
         
         // View & Edit and Lend buttons should be disabled when nothing is selected
@@ -144,7 +144,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottoneAggiungiAbilitato(FxRobot robot) {
+    void testAddButtonEnabled(FxRobot robot) {
         navigateToBookTab(robot);
         
         verifyThat("#bookAddButton", isEnabled());
@@ -156,7 +156,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testAperturaDialogAggiungiLibro(FxRobot robot) {
+    void testOpenAddBookDialog(FxRobot robot) {
         navigateToBookTab(robot);
         robot.clickOn("#bookAddButton");
         
@@ -180,7 +180,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottoneVisualizzaModifica(FxRobot robot) {
+    void testViewEditButton(FxRobot robot) {
         navigateToBookTab(robot);
         
         // Click on first row in table (select a table cell)
@@ -210,7 +210,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottonePrestito(FxRobot robot) {
+    void testLendButton(FxRobot robot) {
         navigateToBookTab(robot);
         
         // Click on first row in table
@@ -232,7 +232,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testSelezioneLibro(FxRobot robot) {
+    void testBookSelection(FxRobot robot) {
         navigateToBookTab(robot);
         
         // Initially buttons should be disabled
@@ -253,7 +253,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testAggiornamentoTabellaConRicerca(FxRobot robot) {
+    void testTableUpdateWithSearch(FxRobot robot) {
         navigateToBookTab(robot);
         
         TextField searchField = robot.lookup("#bookSearchField").query();
@@ -278,7 +278,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testRicercaPerISBN(FxRobot robot) {
+    void testSearchByISBN(FxRobot robot) {
         navigateToBookTab(robot);
         
         robot.clickOn("#bookSearchField");
@@ -298,7 +298,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testRicercaPerAutore(FxRobot robot) {
+    void testSearchByAuthor(FxRobot robot) {
         navigateToBookTab(robot);
         
         robot.clickOn("#bookSearchField");
@@ -318,7 +318,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testRicercaPerAnno(FxRobot robot) {
+    void testSearchByYear(FxRobot robot) {
         navigateToBookTab(robot);
         
         robot.clickOn("#bookSearchField");
@@ -338,7 +338,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testPlaceholderCampoRicerca(FxRobot robot) {
+    void testSearchFieldPlaceholder(FxRobot robot) {
         navigateToBookTab(robot);
         
         TextField searchField = robot.lookup("#bookSearchField").query();
@@ -352,7 +352,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testInserimentoLibroValido(FxRobot robot) {
+    void testAddValidBook(FxRobot robot) {
         navigateToBookTab(robot);
         
         // Click Add button to open dialog
@@ -402,7 +402,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testInserimentoLibroNonValido(FxRobot robot) {
+    void testAddInvalidBook(FxRobot robot) {
         navigateToBookTab(robot);
         
         // Click Add button
@@ -434,7 +434,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testInserimentoLibroSenzaISBN(FxRobot robot) {
+    void testAddBookWithoutISBN(FxRobot robot) {
         navigateToBookTab(robot);
         
         robot.clickOn("#bookAddButton");
@@ -467,7 +467,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testInserimentoLibroAnnoNonValido(FxRobot robot) {
+    void testAddBookWithInvalidYear(FxRobot robot) {
         navigateToBookTab(robot);
         
         robot.clickOn("#bookAddButton");
@@ -504,7 +504,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testIncrementoDecrementoCopie(FxRobot robot) {
+    void testIncrementDecrementCopies(FxRobot robot) {
         navigateToBookTab(robot);
         
         robot.clickOn("#bookAddButton");
@@ -547,7 +547,7 @@ class TestGuiBook {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testAnnullaInserimentoLibro(FxRobot robot) {
+    void testCancelBookAddition(FxRobot robot) {
         navigateToBookTab(robot);
         
         robot.clickOn("#bookAddButton");

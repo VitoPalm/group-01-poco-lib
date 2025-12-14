@@ -57,7 +57,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testNavigazioneUserTab(FxRobot robot) {
+    void testNavigationToUserTab(FxRobot robot) {
         navigateToUserTab(robot);
         verifyThat("#userAddButton", hasText("Add"));
     }
@@ -67,7 +67,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testCampoRicercaUtente(FxRobot robot) {
+    void testUserSearchField(FxRobot robot) {
         navigateToUserTab(robot);
         verifyThat("#userSearchField", isVisible());
         
@@ -80,7 +80,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testTabellaUtenti(FxRobot robot) {
+    void testUserTable(FxRobot robot) {
         navigateToUserTab(robot);
         
         verifyThat("#userTable", isVisible());
@@ -96,7 +96,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testOmnisearchUtenti(FxRobot robot) {
+    void testUserOmnisearch(FxRobot robot) {
         navigateToUserTab(robot);
         
         verifyThat("#userSearchField", isVisible());
@@ -119,7 +119,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottoniDisabilitatiSenzaSelezione(FxRobot robot) {
+    void testButtonsDisabledWithoutSelection(FxRobot robot) {
         navigateToUserTab(robot);
         
         // Buttons should be disabled when nothing is selected
@@ -132,7 +132,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottoneAggiungiAbilitato(FxRobot robot) {
+    void testAddButtonEnabled(FxRobot robot) {
         navigateToUserTab(robot);
         
         verifyThat("#userAddButton", isEnabled());
@@ -144,7 +144,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testAperturaDialogAggiungiUtente(FxRobot robot) {
+    void testOpenAddUserDialog(FxRobot robot) {
         navigateToUserTab(robot);
         robot.clickOn("#userAddButton");
         
@@ -167,7 +167,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottoneVisualizzaModifica(FxRobot robot) {
+    void testViewEditButton(FxRobot robot) {
         navigateToUserTab(robot);
         
         // Click on first row in table
@@ -195,7 +195,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottonePrestito(FxRobot robot) {
+    void testLendToButton(FxRobot robot) {
         navigateToUserTab(robot);
         
         // Click on first row in table
@@ -217,7 +217,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testSelezioneUtente(FxRobot robot) {
+    void testUserSelection(FxRobot robot) {
         navigateToUserTab(robot);
         
         // Initially buttons should be disabled
@@ -238,7 +238,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testAggiornamentoTabellaConRicerca(FxRobot robot) {
+    void testTableUpdateWithSearch(FxRobot robot) {
         navigateToUserTab(robot);
         
         TextField searchField = robot.lookup("#userSearchField").query();
@@ -263,7 +263,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testPlaceholderCampoRicerca(FxRobot robot) {
+    void testSearchFieldPlaceholder(FxRobot robot) {
         navigateToUserTab(robot);
         
         TextField searchField = robot.lookup("#userSearchField").query();
@@ -277,7 +277,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testInserimentoUtenteValido(FxRobot robot) {
+    void testAddValidUser(FxRobot robot) {
         navigateToUserTab(robot);
         
         // Click Add button to open dialog
@@ -324,7 +324,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testInserimentoUtenteNonValido(FxRobot robot) {
+    void testAddInvalidUser(FxRobot robot) {
         navigateToUserTab(robot);
         
         // Click Add button
@@ -344,7 +344,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testInserimentoUtenteSenzaID(FxRobot robot) {
+    void testAddUserWithoutID(FxRobot robot) {
         navigateToUserTab(robot);
         
         robot.clickOn("#userAddButton");
@@ -376,7 +376,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testInserimentoUtenteEmailNonValida(FxRobot robot) {
+    void testAddUserWithInvalidEmail(FxRobot robot) {
         navigateToUserTab(robot);
         
         robot.clickOn("#userAddButton");
@@ -412,7 +412,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testRicercaPerID(FxRobot robot) {
+    void testSearchByID(FxRobot robot) {
         navigateToUserTab(robot);
         
         robot.clickOn("#userSearchField");
@@ -432,7 +432,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testRicercaPerNome(FxRobot robot) {
+    void testSearchByName(FxRobot robot) {
         navigateToUserTab(robot);
         
         robot.clickOn("#userSearchField");
@@ -452,7 +452,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testRicercaPerEmail(FxRobot robot) {
+    void testSearchByEmail(FxRobot robot) {
         navigateToUserTab(robot);
         
         robot.clickOn("#userSearchField");
@@ -472,7 +472,7 @@ class TestGuiUsers {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testAnnullaInserimentoUtente(FxRobot robot) {
+    void testCancelUserAddition(FxRobot robot) {
         navigateToUserTab(robot);
         
         robot.clickOn("#userAddButton");

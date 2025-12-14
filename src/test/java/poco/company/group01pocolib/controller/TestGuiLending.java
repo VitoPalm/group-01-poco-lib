@@ -42,7 +42,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testNavigazioneLendingTab(FxRobot robot) {
+    void testNavigationToLendingTab(FxRobot robot) {
         robot.clickOn("Lending Page");
         verifyThat("#lendingTab", isVisible());
         verifyThat("#lendingSearchField", isVisible());
@@ -54,7 +54,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testCampoRicercaPrestiti(FxRobot robot) {
+    void testLendingSearchField(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         verifyThat("#lendingSearchField", isVisible());
@@ -67,7 +67,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testTabellaPrestiti(FxRobot robot) {
+    void testLendingTable(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         verifyThat("#lendingTable", isVisible());
@@ -84,7 +84,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testOmnisearchPrestiti(FxRobot robot) {
+    void testLendingOmnisearch(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         verifyThat("#lendingSearchField", isVisible());
@@ -116,7 +116,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottoniDisabilitatiSenzaSelezione(FxRobot robot) {
+    void testButtonsDisabledWithoutSelection(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         // Buttons should be disabled when nothing is selected
@@ -129,7 +129,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottoneVisualizzaModifica(FxRobot robot) {
+    void testViewEditButton(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         verifyThat("#lendingViewEditButton", hasText("View & Edit"));
@@ -140,7 +140,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testBottoneRestituzione(FxRobot robot) {
+    void testMarkAsReturnedButton(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         verifyThat("#lendingReturnedButton", hasText("Mark as returned"));
@@ -151,7 +151,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testAperturaDialogVisualizzaPrestito(FxRobot robot) {
+    void testOpenLendingViewDialog(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         // TODO: Implement controller feature - handleLendingViewEdit
@@ -166,7 +166,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testMarcaRestituzione(FxRobot robot) {
+    void testMarkAsReturned(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         // TODO: Implement controller feature - handleMarkAsReturned
@@ -181,7 +181,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testSelezionePrestito(FxRobot robot) {
+    void testLendingSelection(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         // TODO: Implement test with actual data
@@ -196,7 +196,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testAggiornamentoTabellaConRicerca(FxRobot robot) {
+    void testTableUpdateWithSearch(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         TextField searchField = robot.lookup("#lendingSearchField").query();
@@ -217,7 +217,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testRicercaPerISBN(FxRobot robot) {
+    void testSearchByISBN(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         robot.clickOn("#lendingSearchField");
@@ -235,7 +235,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testRicercaPerUtenteID(FxRobot robot) {
+    void testSearchByUserID(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         robot.clickOn("#lendingSearchField");
@@ -253,7 +253,7 @@ class TestGuiLending {
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
-    void testRicercaPerTitolo(FxRobot robot) {
+    void testSearchByTitle(FxRobot robot) {
         robot.clickOn("Lending Page");
         
         robot.clickOn("#lendingSearchField");
