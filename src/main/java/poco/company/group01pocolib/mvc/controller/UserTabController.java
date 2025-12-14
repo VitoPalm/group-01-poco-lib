@@ -154,6 +154,13 @@ public class UserTabController {
         this.lendingSet = lendingSet;
     }
 
+    // ------------------------------------------- //
+    // Something I may eventually decide to delete //
+    // ------------------------------------------- //
+    public TableView<User> getUserTable() {
+        return userTable;
+    }
+
     /**
      * @brief   Loads data from the model into the controller.
      * @todo    Understand why the not null check is necessary
