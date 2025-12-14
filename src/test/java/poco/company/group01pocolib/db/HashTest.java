@@ -42,9 +42,9 @@ class HashTest {
         file2 = tempDir.resolve("file2.txt");
         file3 = tempDir.resolve("file3.txt");
 
-        Files.writeString(file1, "Content A\nContent B");
-        Files.writeString(file2, "Content A\nContent B"); // Identico a file1
-        Files.writeString(file3, "Content B\nContent C"); // Diverso
+        Files.writeString(file1, "Content A\nContent B\n");
+        Files.writeString(file2, "Content A\nContent B\n"); // Identico a file1
+        Files.writeString(file3, "Content B\nContent C\n"); // Diverso
 
 
     }
@@ -57,7 +57,7 @@ class HashTest {
     void testGetFileHash() {
         
         String hash = Hash.getFileHash(file1);
-        String expectedHash = "KnlirmdL+MXT9I8hyQCM1Eod3abn3TMy5eE6/QG18Vc="; // Precomputed hash for "Content A\nContent B"
+        String expectedHash = "Ya3tSdDGM4mjYV+L9Em+V7KY5y+14lVi5FzQQS5NkGo="; // Precomputed hash for "Content A\nContent B\n"
         assertEquals(expectedHash, hash);
         
     }
