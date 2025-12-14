@@ -35,19 +35,127 @@ class DBTest {
      */
     @BeforeEach
     void setUp() throws IOException {
-        // Crea un file DB temporaneo per ogni test
         dbPath = tempDir.resolve("test.db");
         Files.createFile(dbPath);
         db = new DB(dbPath);
     }
 
     /**
+     * @brief Test method for database initialization.
+     */
+    @Test
+    void testDBInitialization() {
+        assertNotNull(db);
+        DB dbFromString = new DB(dbPath.toString());
+        assertNotNull(dbFromString);
+        assertEquals(dbPath.toString(), dbFromString.getDBPath());
+    }
+
+    /**
+     * @brief Test method for the updateDBFileHash method even with file deletion.
+     */
+    @Test
+    void testUpdateDBFileHash() {
+        String initialHash = db.getDBFileHash();
+        assertNotNull(initialHash);
+        String check = db.updateAndGetDBFileHash();
+        assertEquals(initialHash, check);
+        // Delete the DB file to test hash update on missing file
+        try {
+            Files.delete(dbPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        db.updateDBFileHash();
+        String updatedHash = db.getDBFileHash();
+        assertNull(updatedHash);
+
+    }
+
+    /**
+     * @brief Test method for the forceHashOnFile method.
+     * @throws IOException if an I/O error occurs during file operations.
+     */
+    @Test
+    void testForceHash() {
+        // Add initial content to ensure cache is not empty
+        db.appendLine("Initial content");
+        
+        // Force hash should return the same hash for unchanged file
+        String initialHash = db.updateAndGetDBFileHash();
+        assertNotNull(initialHash);
+        String forcedHash = db.forceHashOnFile();
+        assertEquals(initialHash, forcedHash);
+        
+        // Modify file externally (bypassing DB methods)
+        try {
+            Files.writeString(dbPath, "External modification\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        // Stored hash should still be the old one, even after update without force since the cache isn't changed
+        assertEquals(initialHash, db.getDBFileHash());
+        assertEquals(initialHash, db.updateAndGetDBFileHash());
+        
+        // Force hash should detect the change and update
+        forcedHash = db.forceHashOnFile();
+        assertNotEquals(initialHash, forcedHash);
+        assertEquals(forcedHash, db.getDBFileHash());
+        
+        // Verify cache was rebuilt - should contain the external modification
+        assertEquals("External modification", db.readNthLine(0));
+        
+        // Test with empty file, forcing hash should update accordingly
+        try {
+            Files.writeString(dbPath, "");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String emptyHash = db.forceHashOnFile();
+        assertNotEquals(forcedHash, emptyHash);
+        assertNull(db.readNthLine(0));
+    }
+
+    /**
+     * @brief Test method for detecting line separators in the database file.
+     */
+    @Test
+    void testDetectLineSeparator() {
+        // Initially, the file is empty, so line separator should be system default
+        String lineSeparator = db.detectLineSeparator();
+        assertEquals(System.lineSeparator(), lineSeparator);
+
+        // Write content with Unix line endings
+        try {
+            Files.writeString(dbPath, "Line 1\nLine 2\nLine 3\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        lineSeparator = db.detectLineSeparator();
+        assertEquals("\n", lineSeparator);
+
+        // Write content with Windows line endings
+        try {
+            Files.writeString(dbPath, "Line 1\r\nLine 2\r\nLine 3\r\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        lineSeparator = db.detectLineSeparator();
+        assertEquals("\r\n", lineSeparator);
+    }
+
+    /**
      * @brief Test method for reading data from the database.
      */
     @Test
-    void testReadData() throws IOException {
+    void testReadData() {
         // Write some test data to the DB file
-        Files.writeString(dbPath, "Line 0\nLine 1\nLine 2\n");
+        try {
+            Files.writeString(dbPath, "Line 0\nLine 1\nLine 2\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         db.buildCache();
 
         // Test reading the first line
@@ -75,7 +183,7 @@ class DBTest {
      * @brief Test method for writing data to the database.
      */
     @Test
-    void testWriteData() throws IOException {
+    void testWriteData() {
         // Test appending a line
         assertTrue(db.appendLine("First line"));
         assertEquals("First line", db.readNthLine(0));
@@ -99,10 +207,59 @@ class DBTest {
     }
 
     /**
+     * @brief Test method for write rollback functionality.
+     */
+    @Test
+    void testWriteRollback() {
+        // Initial write
+        db.appendLine("Line 1");
+        db.appendLine("Line 2");
+
+        // Make the file read-only to simulate write failure
+        dbPath.toFile().setReadOnly();
+
+        // Attempt to append should fail and rollback
+        assertFalse(db.appendLine("Line 3"));
+
+        // Restore write permissions for cleanup
+        dbPath.toFile().setWritable(true);
+
+        // Verify that the cache was rolled back - Line 3 should not exist
+        assertEquals("Line 1", db.readNthLine(0));
+        assertEquals("Line 2", db.readNthLine(1));
+        assertNull(db.readNthLine(2));
+    }
+
+    /**
+     * @brief Test method for remove rollback functionality.
+     */
+    @Test
+    void testRemoveRollback() {
+        // Initial write
+        db.appendLine("Line 1");
+        db.appendLine("Line 2");
+        db.appendLine("Line 3");
+
+        // Make the file read-only to simulate delete failure
+        dbPath.toFile().setReadOnly();
+
+        // Attempt to remove should fail and rollback
+        assertNull(db.removeNthLine(1));
+
+        // Restore write permissions for cleanup
+        dbPath.toFile().setWritable(true);
+
+        // Verify that the cache was rolled back - Line 2 should still exist
+        assertEquals("Line 1", db.readNthLine(0));
+        assertEquals("Line 2", db.readNthLine(1));
+        assertEquals("Line 3", db.readNthLine(2));
+    }
+
+    /**
      * @brief Test method for deleting data from the database.
      */
     @Test
-    void testDeleteData() throws IOException {
+    void testDeleteData() {
         // Populate DB with test data
         db.appendLine("Line 0");
         db.appendLine("Line 1");
@@ -135,33 +292,37 @@ class DBTest {
      * @brief Test method for auto-saving functionality of the database.
      */
     @Test
-    void testAutoSave() throws IOException {
+    void testAutoSave() {
         // Write data to DB
-        db.appendLine("Persistent Line 1");
-        db.appendLine("Persistent Line 2");
+        db.appendLine("Line 1");
+        db.appendLine("Line 2");
 
         // Create a new DB instance pointing to the same file
         // This simulates reopening the database
         DB newDB = new DB(dbPath);
 
         // Verify that data persists
-        assertEquals("Persistent Line 1", newDB.readNthLine(0));
-        assertEquals("Persistent Line 2", newDB.readNthLine(1));
+        assertEquals("Line 1", newDB.readNthLine(0));
+        assertEquals("Line 2", newDB.readNthLine(1));
 
         // Modify data with the new instance
-        newDB.appendLine("Persistent Line 3");
-
+        newDB.appendLine("Line 3");
         // Create another DB instance to verify persistence
         DB anotherDB = new DB(dbPath);
-        assertEquals("Persistent Line 1", anotherDB.readNthLine(0));
-        assertEquals("Persistent Line 2", anotherDB.readNthLine(1));
-        assertEquals("Persistent Line 3", anotherDB.readNthLine(2));
+        assertEquals("Line 1", anotherDB.readNthLine(0));
+        assertEquals("Line 2", anotherDB.readNthLine(1));
+        assertEquals("Line 3", anotherDB.readNthLine(2));
 
         // Test that file content matches cache
-        String fileContent = Files.readString(dbPath);
-        assertTrue(fileContent.contains("Persistent Line 1"));
-        assertTrue(fileContent.contains("Persistent Line 2"));
-        assertTrue(fileContent.contains("Persistent Line 3"));
+        String fileContent;
+        try {
+            fileContent = Files.readString(dbPath);
+            assertTrue(fileContent.contains("Line 1"));
+            assertTrue(fileContent.contains("Line 2"));
+            assertTrue(fileContent.contains("Line 3"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -180,7 +341,6 @@ class DBTest {
         int index = db.findFirstInstanceOfPattern(pattern);
         assertEquals(0, index);
 
-        // Test finding a pattern that exists later
         Pattern pattern2 = Pattern.compile("Third");
         index = db.findFirstInstanceOfPattern(pattern2);
         assertEquals(2, index);
