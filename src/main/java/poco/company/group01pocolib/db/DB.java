@@ -214,7 +214,7 @@ public class DB implements Serializable {
      */
     public void clear() {
         this.cache.clear();
-        this.updateDBFromCache(); // Scrive una stringa vuota nel file, svuotandolo
+        this.updateDBFromCache(); // Writes an empty string to the file, clearing it
     }
 
     /**
