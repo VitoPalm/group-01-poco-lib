@@ -432,8 +432,8 @@ public class UserTabController {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Lending Not Allowed");
             alert.setHeaderText("User Cannot Borrow More Books");
-            alert.setContentText("The selected user has reached the maximum number of borrowed books and cannot" +
-                                 " borrow more at this time.");
+            alert.setContentText("The selected user has reached the maximum number of borrowed books (" +
+                                 User.MAX_BORROWED_BOOKS + ") and cannot borrow more at this time.");
             alert.showAndWait();
             return;
         }
