@@ -183,6 +183,7 @@ public class BookSet implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             bookSet = new BookSet();
             bookSet.setDBPath(DBPath);
+            bookSet.setSerializationPath(serializationPath);
             bookSet.rebuildFromDB(DBPath);
             return bookSet;
         }
@@ -194,10 +195,12 @@ public class BookSet implements Serializable {
         // Check if the DB file has changed since the last serialization by comparing hashes
         if (currentDBHash.equals(bookSet.getLastKnownDBHash())) {
             bookSet.setDBPath(DBPath);
+            bookSet.setSerializationPath(serializationPath);
             bookSet.setBookDB(currentDB);
             return bookSet;
         } else {
             bookSet.setDBPath(DBPath);
+            bookSet.setSerializationPath(serializationPath);
             bookSet.rebuildFromDB(DBPath);
         }
 
@@ -424,6 +427,9 @@ public class BookSet implements Serializable {
      * @brief   Saves the current state of the BookSet to a serialized file on disk
      */
     private void saveToSerialized() {
+        if (serializationPath == null) {
+            return; // No serialization path configured, skip saving
+        }
 
         try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(serializationPath)))) {
             out.writeObject(this);

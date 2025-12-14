@@ -1,7 +1,9 @@
 package poco.company.group01pocolib.mvc.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -53,6 +55,7 @@ public class BookPropController {
     // ------------- //
     private Stage dialogStage;
     private Book book;
+    private String originalIsbn; // Store original ISBN to handle ISBN changes
     private BookSet bookSet;
     private PocoLibController mainController;
 
@@ -113,27 +116,29 @@ public class BookPropController {
      * @param   book The book to set
      */
     public void setBook(Book book) {
-        this.book = book;
-
         // If book is null, create a new empty book (for new book creation)
         if (book == null) {
-            book = new Book("", new ArrayList<String>(), "", 0, 1);
-            book.setAuthors("");
+            this.book = new Book("", new ArrayList<String>(), "", 0, 1);
+            this.book.setAuthors("");
+            this.originalIsbn = null; // New book has no original ISBN
+        } else {
+            this.book = book;
+            this.originalIsbn = book.getIsbn(); // Save original ISBN
         }
 
         // Set view labels
-        isbnLabel.setText(book.getIsbn());
-        titleLabel.setText(book.getTitle());
-        authorsLabel.setText(book.getAuthorsString());
-        yearLabel.setText(String.valueOf(book.getYear()));
-        copiesLabel.setText(String.valueOf(book.getCopies()));
+        isbnLabel.setText(this.book.getIsbn());
+        titleLabel.setText(this.book.getTitle());
+        authorsLabel.setText(this.book.getAuthorsString());
+        yearLabel.setText(String.valueOf(this.book.getYear()));
+        copiesLabel.setText(String.valueOf(this.book.getCopies()));
 
         // Set edit fields
-        isbnField.setText(book.getIsbn());
-        titleField.setText(book.getTitle());
-        authorsField.setText(book.getAuthorsString());
-        yearField.setText(String.valueOf(book.getYear()));
-        copiesField.setText(String.valueOf(book.getCopies()));
+        isbnField.setText(this.book.getIsbn());
+        titleField.setText(this.book.getTitle());
+        authorsField.setText(this.book.getAuthorsString());
+        yearField.setText(String.valueOf(this.book.getYear()));
+        copiesField.setText(String.valueOf(this.book.getCopies()));
     }
 
     /**
@@ -152,7 +157,8 @@ public class BookPropController {
      */
     @FXML
     private void handleEdit() {
-        // TODO: implement edit logic
+        setMode(PropMode.EDIT);
+        updateView();
     }
 
     /**
@@ -160,7 +166,20 @@ public class BookPropController {
      */
     @FXML
     private void handleDelete() {
-        // TODO: implement delete logic
+        // Create confirmation alert before deleting
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the Book?");
+        alert.initOwner(dialogStage);
+        alert.setTitle("Confirm Deletion");
+        alert.setHeaderText("Delete Book");
+
+        // Wait for confirmation
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                bookSet.removeBook(book.getIsbn());
+                mainController.refreshTabData();
+                dialogStage.close();
+            }
+        });
     }
 
     /**
@@ -169,7 +188,18 @@ public class BookPropController {
      */
     @FXML
     private void handleLend() {
-        // TODO: implement lend logic
+        if (book.getCopies() == 0) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(dialogStage);
+            alert.setTitle("Lending Not Allowed");
+            alert.setHeaderText("No Copies Available");
+            alert.setContentText("This book has no available copies and cannot be lent at this time.");
+            alert.showAndWait();
+            return;
+        }
+
+        // This is an observed property, so setting it will trigger a check by the PocoLibController to switch tabs
+        mainController.setMasterSelectedBook(book);
     }
 
     /**
@@ -190,7 +220,13 @@ public class BookPropController {
      */
     @FXML
     private void handleDecrement() {
-        // TODO: implement decrement logic
+        int currentCopies = getCopiesAsInteger();
+        if (currentCopies > 1) {
+            copiesField.setText(String.valueOf(currentCopies - 1));
+            errorLabel.setText("");
+        } else {
+            errorLabel.setText("Number of copies must be at least 1.");
+        }
     }
 
     /**
@@ -198,7 +234,14 @@ public class BookPropController {
      */
     @FXML
     private void handleIncrement() {
-        // TODO: implement increment logic
+        int currentCopies = getCopiesAsInteger();
+        if (currentCopies >= 1) {
+            copiesField.setText(String.valueOf(currentCopies + 1));
+            errorLabel.setText("");
+        } else {
+            copiesField.setText("1");
+            errorLabel.setText("");
+        }
     }
 
     /**
@@ -207,7 +250,33 @@ public class BookPropController {
      */
     @FXML
     private void handleSave() {
-        // TODO: implement save logic
+        if (!validateInput()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input fields.");
+            alert.initOwner(dialogStage);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorLabel.getText());
+            alert.showAndWait();
+        }else {
+            // If ISBN changed, remove the book with the old ISBN first
+            String newIsbn = isbnField.getText().trim();
+            if (originalIsbn != null && !originalIsbn.equals(newIsbn)) {
+                bookSet.removeBook(originalIsbn);
+            }
+            
+            book.setIsbn(newIsbn);
+            book.setTitle(titleField.getText());
+            book.setAuthors(authorsField.getText());
+            book.setYear(Integer.parseInt(yearField.getText()));
+            book.setCopies(getCopiesAsInteger());
+
+            bookSet.addOrEditBook(book);
+
+            //TODO: missing info label stuff and stuff if book is new (idk if we need that here)
+
+            mainController.refreshTabData();
+            dialogStage.close();
+        }
     }
 
     /**
@@ -223,8 +292,11 @@ public class BookPropController {
      * @return  The number of copies as an Integer, or -1 if conversion fails
      */
     private int getCopiesAsInteger() {
-        // TODO: implement conversion logic
-        return -1;
+        try {
+            return Integer.parseInt(copiesField.getText().trim());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
 
     /**
@@ -234,7 +306,46 @@ public class BookPropController {
      * @return  `true` if all fields are valid, `false` otherwise
      */
     private boolean validateInput() {
-        // TODO: implement validation logic
-        return false;
+        StringBuilder errorMessage = new StringBuilder();
+
+        // Validate ISBN
+        if (isbnField.getText() == null || isbnField.getText().trim().isEmpty()) {
+            errorMessage.append("ISBN is required.\n");
+        }
+
+        // Validate Title
+        if (titleField.getText() == null || titleField.getText().trim().isEmpty()) {
+            errorMessage.append("Title is required.\n");
+        }
+
+        // Validate Authors
+        if (authorsField.getText() == null || authorsField.getText().trim().isEmpty()) {
+            errorMessage.append("At least one author is required.\n");
+        }
+
+        // Validate Year
+        try {
+            int year = Integer.parseInt(yearField.getText().trim());
+            if (year < 1000 || year > 9999) {
+                errorMessage.append("Year must be a valid 4-digit number.\n");
+            }
+        } catch (NumberFormatException e) {
+            errorMessage.append("Year must be a valid number.\n");
+        }
+
+        // Validate Copies
+        int copies = getCopiesAsInteger();
+        if (copies < 1) {
+            errorMessage.append("Number of copies must be at least 1.\n");
+        }
+
+        // Set error label and return result
+        if (errorMessage.length() == 0) {
+            errorLabel.setText("");
+            return true;
+        } else {
+            errorLabel.setText(errorMessage.toString());
+            return false;
+        }
     }
 }

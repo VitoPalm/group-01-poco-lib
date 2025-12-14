@@ -161,8 +161,13 @@ public class BookTabController {
      * @author  Giovanni Orsini
      */
     void loadData() {
-        this.bookData = FXCollections.observableArrayList(bookSet.getListOfBooks());    ///< creates the observable list from the BookSet
-        bookTable.setItems(bookData);                                           
+        if (this.bookData == null) {
+            this.bookData = FXCollections.observableArrayList(bookSet.getListOfBooks());
+            bookTable.setItems(bookData);
+        } else {
+            // Update existing observable list to refresh the table
+            bookData.setAll(bookSet.getListOfBooks());
+        }
     }
 
     /**
