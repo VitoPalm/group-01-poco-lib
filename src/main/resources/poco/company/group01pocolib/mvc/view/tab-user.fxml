@@ -24,9 +24,23 @@
         <ImageView fx:id="pocologoImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@poco-logo.png" />
         </ImageView>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-            <TextField fx:id="userSearchField" alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch users" />
-        </HBox>
+        <GridPane fx:id="userSearchGridPane" alignment="TOP_CENTER" hgap="20.0" prefHeight="84.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" prefWidth="300.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="700.0" minWidth="10.0" prefWidth="500.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" prefWidth="300.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <TextField fx:id="userSearchField" alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch users" GridPane.columnIndex="1" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" />
+            </padding>
+        </GridPane>
+
         <TableView fx:id="userTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="userIdColumn" maxWidth="200.0" minWidth="105.0" prefWidth="180.0" text="ID" />

@@ -24,9 +24,22 @@
         <ImageView fx:id="pocologoImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@poco-logo.png" />
         </ImageView>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-            <TextField fx:id="bookSearchField" alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch books" />
-        </HBox>
+    <GridPane fx:id="bookSearchGridPane" alignment="TOP_CENTER" hgap="20.0" prefHeight="84.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" prefWidth="300.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="700.0" minWidth="10.0" prefWidth="500.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" prefWidth="300.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <children>
+            <TextField fx:id="bookSearchField" alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch books" GridPane.columnIndex="1"/>
+        </children>
+        <padding>
+            <Insets bottom="10.0" />
+        </padding>
+        </GridPane>
         <TableView fx:id="bookTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="bookIsbnColumn" maxWidth="200.0" minWidth="105.0" prefWidth="125.0" text="ISBN" />

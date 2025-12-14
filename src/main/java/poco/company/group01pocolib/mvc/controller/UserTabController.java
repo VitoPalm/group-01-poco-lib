@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -39,6 +41,9 @@ public class UserTabController {
 
     @FXML private ImageView pocologoImageView;
 
+    @FXML private GridPane userSearchGridPane;
+    private ColumnConstraints column0Constraints;
+    private ColumnConstraints column2Constraints;
     @FXML private TextField userSearchField;
 
     // User Table //
@@ -156,6 +161,34 @@ public class UserTabController {
                     userTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
                 } else {
                     userTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_SUBSEQUENT_COLUMNS);
+                }
+            });
+        });
+
+                column0Constraints = userSearchGridPane.getColumnConstraints().get(0);
+        column2Constraints = userSearchGridPane.getColumnConstraints().get(2);
+        Platform.runLater(() -> {
+            if (column0Constraints == null || column2Constraints == null || containerVBox.getScene() == null)
+                return;
+            
+            // width listener to control the search gridpane size and placement
+            containerVBox.getScene().widthProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.doubleValue() < 700) {
+                    column0Constraints.setPrefWidth(0); // (it hides the first and third column to take all the space)
+                    column0Constraints.setMinWidth(0);
+                    column0Constraints.setHgrow(javafx.scene.layout.Priority.NEVER);
+                    column2Constraints.setPrefWidth(0); 
+                    column2Constraints.setMinWidth(0);
+                    column2Constraints.setHgrow(javafx.scene.layout.Priority.NEVER);
+
+                } else {
+                    column0Constraints.setPrefWidth(300); // restores them
+                    column0Constraints.setMinWidth(10);
+                    column0Constraints.setHgrow(javafx.scene.layout.Priority.ALWAYS);
+                    column2Constraints.setPrefWidth(300); 
+                    column2Constraints.setMinWidth(10);
+                    column2Constraints.setHgrow(javafx.scene.layout.Priority.ALWAYS);
+
                 }
             });
         });

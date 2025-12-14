@@ -5,10 +5,13 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,7 +41,10 @@ public class LendingTabController {
 
     @FXML private ImageView pocologoImageView;
 
+    @FXML private GridPane lendingSearchGridPane;
+    private ColumnConstraints column0Constraints;
     @FXML private TextField lendingSearchField;
+    @FXML private CheckBox onlyActiveCheckBox;
 
     // Lending Table //
     // ------------------------------------------------ //
@@ -188,6 +194,45 @@ public class LendingTabController {
             });
         });
         
+        column0Constraints = lendingSearchGridPane.getColumnConstraints().get(0);
+        Platform.runLater(() -> {
+            if (column0Constraints == null || containerVBox.getScene() == null)
+                return;
+            
+            // width listener to control the search gridpane size and placement
+            containerVBox.getScene().widthProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.doubleValue() < 700) {
+                    column0Constraints.setPrefWidth(0); // (it hides the first column to take all the space)
+                    column0Constraints.setMinWidth(0);
+                    column0Constraints.setHgrow(javafx.scene.layout.Priority.NEVER);
+                } else {
+                    column0Constraints.setPrefWidth(300); // restores it
+                    column0Constraints.setMinWidth(10);
+                    column0Constraints.setHgrow(javafx.scene.layout.Priority.ALWAYS);
+                }
+            });
+        });
+
+        Platform.runLater(() -> {
+            if (onlyActiveCheckBox == null || containerVBox.getScene() == null)
+                return;
+
+            // width listener for custom ellipsis on the checkbox (totally worth the time I spent)
+            containerVBox.getScene().widthProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.doubleValue() > 600) {
+                    onlyActiveCheckBox.setText("Show only active");
+                } else if (newValue.doubleValue() > 500) {
+                    onlyActiveCheckBox.setText("Only active");
+                } else if (newValue.doubleValue() > 420) {
+                    onlyActiveCheckBox.setText("Active");
+                    lendingSearchGridPane.getColumnConstraints().get(2).setHalignment(HPos.LEFT);;
+
+                } else {
+                    onlyActiveCheckBox.setText("");
+                    lendingSearchGridPane.getColumnConstraints().get(2).setHalignment(HPos.CENTER);;
+                }
+            });
+        });
 
     }
 
