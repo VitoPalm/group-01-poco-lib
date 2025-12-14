@@ -168,7 +168,7 @@ class TestGuiBook {
         verifyThat("#titleField", isVisible());
         verifyThat("#authorsField", isVisible());
         verifyThat("#yearField", isVisible());
-        verifyThat("#copiesField", isVisible());
+        verifyThat("#copiesAvailableField", isVisible());
         
         // Close dialog
         robot.clickOn("Cancel");
@@ -375,7 +375,7 @@ class TestGuiBook {
         robot.clickOn("#yearField");
         robot.write("2024");
         
-        robot.clickOn("#copiesField");
+        robot.clickOn("#copiesAvailableField");
         // Clear default value first
         robot.press(javafx.scene.input.KeyCode.CONTROL, javafx.scene.input.KeyCode.A);
         robot.release(javafx.scene.input.KeyCode.A, javafx.scene.input.KeyCode.CONTROL);
@@ -500,7 +500,7 @@ class TestGuiBook {
     }
 
     /**
-     * @brief Test to verify incrementing and decrementing copies.
+     * @brief Test to verify incrementing and decrementing available copies.
      * @param robot The FxRobot instance for simulating user interactions.
      */
     @Test
@@ -511,32 +511,32 @@ class TestGuiBook {
         sleep(500, TimeUnit.MILLISECONDS);
         
         // Default copies should be 1
-        TextField copiesField = robot.lookup("#copiesField").query();
-        assertEquals("1", copiesField.getText());
+        TextField copiesAvailableField = robot.lookup("#copiesField").query();
+        assertEquals("1", copiesAvailableField.getText());
         
         // Increment copies
         robot.clickOn("#plusButton");
         sleep(100, TimeUnit.MILLISECONDS);
-        assertEquals("2", copiesField.getText());
+        assertEquals("2", copiesAvailableField.getText());
         
         robot.clickOn("#plusButton");
         sleep(100, TimeUnit.MILLISECONDS);
-        assertEquals("3", copiesField.getText());
+        assertEquals("3", copiesAvailableField.getText());
         
         // Decrement copies
         robot.clickOn("#minusButton");
         sleep(100, TimeUnit.MILLISECONDS);
-        assertEquals("2", copiesField.getText());
+        assertEquals("2", copiesAvailableField.getText());
         
         robot.clickOn("#minusButton");
         sleep(100, TimeUnit.MILLISECONDS);
-        assertEquals("1", copiesField.getText());
+        assertEquals("1", copiesAvailableField.getText());
         
         // Try to decrement below 1 - should show error
         robot.clickOn("#minusButton");
         sleep(100, TimeUnit.MILLISECONDS);
         // Should still be 1 and show error message in errorLabel
-        assertEquals("1", copiesField.getText());
+        assertEquals("1", copiesAvailableField.getText());
         
         robot.clickOn("Cancel");
         sleep(300, TimeUnit.MILLISECONDS);

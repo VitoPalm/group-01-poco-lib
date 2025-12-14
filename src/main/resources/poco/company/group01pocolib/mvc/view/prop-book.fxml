@@ -65,7 +65,7 @@
             <Label fx:id="titleLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="authorsLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="yearLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="copiesLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="copiesAvailableLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
             <Label text="Lent to" GridPane.rowIndex="5">
                 <font>
@@ -142,7 +142,7 @@
             <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                 <Button fx:id="minusButton" maxHeight="26.0" maxWidth="26.0" minHeight="26.0" minWidth="26.0" mnemonicParsing="false" onAction="#handleDecrement" prefHeight="26.0" prefWidth="26.0" text="-" />
 
-                <TextField fx:id="copiesField" prefWidth="40.0" text="0" />
+                <TextField fx:id="copiesAvailableField" prefWidth="40.0" text="0" />
 
                 <Button fx:id="plusButton" maxHeight="26.0" maxWidth="26.0" minHeight="26.0" minWidth="26.0" mnemonicParsing="false" onAction="#handleIncrement" prefHeight="26.0" prefWidth="26.0" text="+" />
             <Label fx:id="copiesEditLabel" text="(Lent: 0; Total: 0)" />

@@ -110,6 +110,8 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a86b52f6e5e63a48cdd393d1208e50413" id="r_a86b52f6e5e63a48cdd393d1208e50413"><td class="memItemLeft" align="right" valign="top"><a id="a86b52f6e5e63a48cdd393d1208e50413" name="a86b52f6e5e63a48cdd393d1208e50413"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td></tr>
 <tr class="memdesc:a86b52f6e5e63a48cdd393d1208e50413"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the controller class allowing real time ISBN verification. This method is automatically called after the fxml file has been loaded. <br /></td></tr>
+<tr class="memitem:a597d9f211ecff15d592a8499c88fba04" id="r_a597d9f211ecff15d592a8499c88fba04"><td class="memItemLeft" align="right" valign="top"><a id="a597d9f211ecff15d592a8499c88fba04" name="a597d9f211ecff15d592a8499c88fba04"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>initializeBindings</b> ()</td></tr>
 <tr class="memitem:a113b601d8de22f3f2fa59060a8370b11" id="r_a113b601d8de22f3f2fa59060a8370b11"><td class="memItemLeft" align="right" valign="top"><a id="a113b601d8de22f3f2fa59060a8370b11" name="a113b601d8de22f3f2fa59060a8370b11"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEdit</b> ()</td></tr>
 <tr class="memdesc:a113b601d8de22f3f2fa59060a8370b11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the edit button click event. It opens the book edit dialog and refreshes afterward. <br /></td></tr>
@@ -134,8 +136,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleSave</b> ()</td
 <tr class="memitem:ad7f6db1451d11b75a0dc482dd9069126" id="r_ad7f6db1451d11b75a0dc482dd9069126"><td class="memItemLeft" align="right" valign="top"><a id="ad7f6db1451d11b75a0dc482dd9069126" name="ad7f6db1451d11b75a0dc482dd9069126"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleCancel</b> ()</td></tr>
 <tr class="memdesc:ad7f6db1451d11b75a0dc482dd9069126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the cancel button click event. It simply closes the dialog without saving any changes. <br /></td></tr>
-<tr class="memitem:ae44fb7522b31513f4f6a70084477bb66" id="r_ae44fb7522b31513f4f6a70084477bb66"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae44fb7522b31513f4f6a70084477bb66">getCopiesAsInteger</a> ()</td></tr>
-<tr class="memdesc:ae44fb7522b31513f4f6a70084477bb66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the copies to an Integer. If the conversion fails, it returns -1.  <br /></td></tr>
+<tr class="memitem:a0cefe655b6774d203c5d669521948284" id="r_a0cefe655b6774d203c5d669521948284"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cefe655b6774d203c5d669521948284">getCopiesAvailableAsInteger</a> ()</td></tr>
+<tr class="memdesc:a0cefe655b6774d203c5d669521948284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the copies to an Integer. If the conversion fails, it returns -1.  <br /></td></tr>
 <tr class="memitem:a6c27575a6202574ccbc5aa3b13c3a090" id="r_a6c27575a6202574ccbc5aa3b13c3a090"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c27575a6202574ccbc5aa3b13c3a090">validateInput</a> ()</td></tr>
 <tr class="memdesc:a6c27575a6202574ccbc5aa3b13c3a090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the input fields in the dialog.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -151,14 +153,16 @@ Label&#160;</td><td class="memItemRight" valign="bottom"><b>titleLabel</b></td><
 Label&#160;</td><td class="memItemRight" valign="bottom"><b>authorsLabel</b></td></tr>
 <tr class="memitem:a6228a349472b828e09dc42677e39f6c8" id="r_a6228a349472b828e09dc42677e39f6c8"><td class="memItemLeft" align="right" valign="top"><a id="a6228a349472b828e09dc42677e39f6c8" name="a6228a349472b828e09dc42677e39f6c8"></a>
 Label&#160;</td><td class="memItemRight" valign="bottom"><b>yearLabel</b></td></tr>
-<tr class="memitem:a8cc3a4eb460f0fee1843562a7d8c18d5" id="r_a8cc3a4eb460f0fee1843562a7d8c18d5"><td class="memItemLeft" align="right" valign="top"><a id="a8cc3a4eb460f0fee1843562a7d8c18d5" name="a8cc3a4eb460f0fee1843562a7d8c18d5"></a>
-Label&#160;</td><td class="memItemRight" valign="bottom"><b>copiesLabel</b></td></tr>
+<tr class="memitem:a16cc33938ecf481d93362c4a9ef2feeb" id="r_a16cc33938ecf481d93362c4a9ef2feeb"><td class="memItemLeft" align="right" valign="top"><a id="a16cc33938ecf481d93362c4a9ef2feeb" name="a16cc33938ecf481d93362c4a9ef2feeb"></a>
+Label&#160;</td><td class="memItemRight" valign="bottom"><b>copiesAvailableLabel</b></td></tr>
 <tr class="memitem:afa18bf6a5e8d4e898d99d111ca5b0a91" id="r_afa18bf6a5e8d4e898d99d111ca5b0a91"><td class="memItemLeft" align="right" valign="top"><a id="afa18bf6a5e8d4e898d99d111ca5b0a91" name="afa18bf6a5e8d4e898d99d111ca5b0a91"></a>
 Hyperlink&#160;</td><td class="memItemRight" valign="bottom"><b>lentToLink</b></td></tr>
 <tr class="memitem:a678c5ea6000883cf00639d26227d68bd" id="r_a678c5ea6000883cf00639d26227d68bd"><td class="memItemLeft" align="right" valign="top"><a id="a678c5ea6000883cf00639d26227d68bd" name="a678c5ea6000883cf00639d26227d68bd"></a>
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>editButton</b></td></tr>
 <tr class="memitem:a94cde7770af97ff746940d59068bc0de" id="r_a94cde7770af97ff746940d59068bc0de"><td class="memItemLeft" align="right" valign="top"><a id="a94cde7770af97ff746940d59068bc0de" name="a94cde7770af97ff746940d59068bc0de"></a>
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>deleteButton</b></td></tr>
+<tr class="memitem:a32bc09cb8409eef5fea722452034e4af" id="r_a32bc09cb8409eef5fea722452034e4af"><td class="memItemLeft" align="right" valign="top"><a id="a32bc09cb8409eef5fea722452034e4af" name="a32bc09cb8409eef5fea722452034e4af"></a>
+Tooltip&#160;</td><td class="memItemRight" valign="bottom"><b>deleteButtonTooltip</b></td></tr>
 <tr class="memitem:a6a7763428094882709f0d95985ae25f2" id="r_a6a7763428094882709f0d95985ae25f2"><td class="memItemLeft" align="right" valign="top"><a id="a6a7763428094882709f0d95985ae25f2" name="a6a7763428094882709f0d95985ae25f2"></a>
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>lendButton</b></td></tr>
 <tr class="memitem:a5b6d0de3cc047c8e296a8049768d0cf0" id="r_a5b6d0de3cc047c8e296a8049768d0cf0"><td class="memItemLeft" align="right" valign="top"><a id="a5b6d0de3cc047c8e296a8049768d0cf0" name="a5b6d0de3cc047c8e296a8049768d0cf0"></a>
@@ -171,28 +175,39 @@ TextField&#160;</td><td class="memItemRight" valign="bottom"><b>titleField</b></
 TextField&#160;</td><td class="memItemRight" valign="bottom"><b>authorsField</b></td></tr>
 <tr class="memitem:abba3a727e65be9e6bd8056829f587bcb" id="r_abba3a727e65be9e6bd8056829f587bcb"><td class="memItemLeft" align="right" valign="top"><a id="abba3a727e65be9e6bd8056829f587bcb" name="abba3a727e65be9e6bd8056829f587bcb"></a>
 TextField&#160;</td><td class="memItemRight" valign="bottom"><b>yearField</b></td></tr>
+<tr class="memitem:a850b9fa2d557d39b8107537c0bb124dc" id="r_a850b9fa2d557d39b8107537c0bb124dc"><td class="memItemLeft" align="right" valign="top"><a id="a850b9fa2d557d39b8107537c0bb124dc" name="a850b9fa2d557d39b8107537c0bb124dc"></a>
+IntegerProperty&#160;</td><td class="memItemRight" valign="bottom"><b>yearProperty</b> = new SimpleIntegerProperty()</td></tr>
 <tr class="memitem:a345761e96d571f7d04cde9f275a766da" id="r_a345761e96d571f7d04cde9f275a766da"><td class="memItemLeft" align="right" valign="top"><a id="a345761e96d571f7d04cde9f275a766da" name="a345761e96d571f7d04cde9f275a766da"></a>
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>minusButton</b></td></tr>
-<tr class="memitem:aee7666d4728108e70d628493630e02ca" id="r_aee7666d4728108e70d628493630e02ca"><td class="memItemLeft" align="right" valign="top"><a id="aee7666d4728108e70d628493630e02ca" name="aee7666d4728108e70d628493630e02ca"></a>
-TextField&#160;</td><td class="memItemRight" valign="bottom"><b>copiesField</b></td></tr>
+<tr class="memitem:ac90801493593fd48ce56a03b0a51544e" id="r_ac90801493593fd48ce56a03b0a51544e"><td class="memItemLeft" align="right" valign="top"><a id="ac90801493593fd48ce56a03b0a51544e" name="ac90801493593fd48ce56a03b0a51544e"></a>
+TextField&#160;</td><td class="memItemRight" valign="bottom"><b>copiesAvailableField</b></td></tr>
+<tr class="memitem:a80175e923776d34e1f8e14b470e08c00" id="r_a80175e923776d34e1f8e14b470e08c00"><td class="memItemLeft" align="right" valign="top"><a id="a80175e923776d34e1f8e14b470e08c00" name="a80175e923776d34e1f8e14b470e08c00"></a>
+IntegerProperty&#160;</td><td class="memItemRight" valign="bottom"><b>copiesAvailableProperty</b> = new SimpleIntegerProperty()</td></tr>
+<tr class="memdesc:a80175e923776d34e1f8e14b470e08c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the number of available copies. <br /></td></tr>
 <tr class="memitem:a4b337ceb7ee7b2e6fe95c1f18f8fa274" id="r_a4b337ceb7ee7b2e6fe95c1f18f8fa274"><td class="memItemLeft" align="right" valign="top"><a id="a4b337ceb7ee7b2e6fe95c1f18f8fa274" name="a4b337ceb7ee7b2e6fe95c1f18f8fa274"></a>
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>plusButton</b></td></tr>
+<tr class="memitem:ab8c4c94bbf76128a363c009c0d58bf89" id="r_ab8c4c94bbf76128a363c009c0d58bf89"><td class="memItemLeft" align="right" valign="top"><a id="ab8c4c94bbf76128a363c009c0d58bf89" name="ab8c4c94bbf76128a363c009c0d58bf89"></a>
+Label&#160;</td><td class="memItemRight" valign="bottom"><b>copiesEditLabel</b></td></tr>
 <tr class="memitem:a6f413f9bf59d04e3f402628274694518" id="r_a6f413f9bf59d04e3f402628274694518"><td class="memItemLeft" align="right" valign="top"><a id="a6f413f9bf59d04e3f402628274694518" name="a6f413f9bf59d04e3f402628274694518"></a>
 Label&#160;</td><td class="memItemRight" valign="bottom"><b>errorLabel</b></td></tr>
 <tr class="memitem:accab863813caa614ae73b4ae81b5c539" id="r_accab863813caa614ae73b4ae81b5c539"><td class="memItemLeft" align="right" valign="top"><a id="accab863813caa614ae73b4ae81b5c539" name="accab863813caa614ae73b4ae81b5c539"></a>
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>saveButton</b></td></tr>
+<tr class="memitem:a6892373d97edc9aa820fa964a31f5266" id="r_a6892373d97edc9aa820fa964a31f5266"><td class="memItemLeft" align="right" valign="top"><a id="a6892373d97edc9aa820fa964a31f5266" name="a6892373d97edc9aa820fa964a31f5266"></a>
+BooleanProperty&#160;</td><td class="memItemRight" valign="bottom"><b>isbnIsValid</b> = new SimpleBooleanProperty(false)</td></tr>
 <tr class="memitem:a8c3fdb2033b45d27a82e82b2af8c3843" id="r_a8c3fdb2033b45d27a82e82b2af8c3843"><td class="memItemLeft" align="right" valign="top"><a id="a8c3fdb2033b45d27a82e82b2af8c3843" name="a8c3fdb2033b45d27a82e82b2af8c3843"></a>
 Stage&#160;</td><td class="memItemRight" valign="bottom"><b>dialogStage</b></td></tr>
 <tr class="memitem:ab350bd6cdd649b6fa84cfaedd2d1b216" id="r_ab350bd6cdd649b6fa84cfaedd2d1b216"><td class="memItemLeft" align="right" valign="top"><a id="ab350bd6cdd649b6fa84cfaedd2d1b216" name="ab350bd6cdd649b6fa84cfaedd2d1b216"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a>&#160;</td><td class="memItemRight" valign="bottom"><b>book</b></td></tr>
+<tr class="memitem:a74780739d2d5c60afa294d3aa4a91706" id="r_a74780739d2d5c60afa294d3aa4a91706"><td class="memItemLeft" align="right" valign="top"><a id="a74780739d2d5c60afa294d3aa4a91706" name="a74780739d2d5c60afa294d3aa4a91706"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><b>originalIsbn</b></td></tr>
 <tr class="memitem:af085539506aff903971c62490b08d1a1" id="r_af085539506aff903971c62490b08d1a1"><td class="memItemLeft" align="right" valign="top"><a id="af085539506aff903971c62490b08d1a1" name="af085539506aff903971c62490b08d1a1"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bookSet</b></td></tr>
 <tr class="memitem:ab4cec5981ce260adb04a21316ede855e" id="r_ab4cec5981ce260adb04a21316ede855e"><td class="memItemLeft" align="right" valign="top"><a id="ab4cec5981ce260adb04a21316ede855e" name="ab4cec5981ce260adb04a21316ede855e"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html">PocoLibController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mainController</b></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="ae44fb7522b31513f4f6a70084477bb66" name="ae44fb7522b31513f4f6a70084477bb66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae44fb7522b31513f4f6a70084477bb66">&#9670;&#160;</a></span>getCopiesAsInteger()</h2>
+<a id="a0cefe655b6774d203c5d669521948284" name="a0cefe655b6774d203c5d669521948284"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cefe655b6774d203c5d669521948284">&#9670;&#160;</a></span>getCopiesAvailableAsInteger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -201,7 +216,7 @@ Stage&#160;</td><td class="memItemRight" valign="bottom"><b>dialogStage</b></td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int poco.company.group01pocolib.mvc.controller.BookPropController.getCopiesAsInteger </td>
+          <td class="memname">int poco.company.group01pocolib.mvc.controller.BookPropController.getCopiesAvailableAsInteger </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>

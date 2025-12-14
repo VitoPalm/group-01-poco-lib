@@ -117,7 +117,7 @@ public class BookTabController {
 
         // Initialize binding telling if a book is lendable !!only updates on selectedBook updates
         selectedBookIsLendable = Bindings.greaterThan(Bindings.createIntegerBinding(() -> 
-                selectedBookProperty.get() != null? selectedBookProperty.get().getCopies() : 1, selectedBookProperty), 0);
+                selectedBookProperty.get() != null? selectedBookProperty.get().getCopiesAvailable() : 1, selectedBookProperty), 0);
 
         // Initialize Lend Button bindings for disabling when no selection or unavailable copies
         bookLendButton.disableProperty().bind(              
@@ -219,7 +219,7 @@ public class BookTabController {
         bookTitleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getTitle()));
         bookAuthorsColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAuthorsString()));
         bookYearColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getYear()));
-        bookAvailableColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopies() - cellData.getValue().getCopiesLent()));
+        bookAvailableColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopiesAvailable() - cellData.getValue().getCopiesLent()));
         bookLentColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopiesLent()));
     }
 
@@ -421,7 +421,7 @@ public class BookTabController {
             return; // No user selected(button disabled via Listener in TableHandler), do nothing
         }
 
-        if (selectedBook.getCopies() == selectedBook.getCopiesLent()) {
+        if (selectedBook.getCopiesAvailable() == selectedBook.getCopiesLent()) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Lending Not Allowed");
             alert.setHeaderText("Book Cannot Be Lent");

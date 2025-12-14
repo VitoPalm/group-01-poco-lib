@@ -4,6 +4,8 @@ var searchData=
   ['canborrow_1',['canBorrow',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ad92eb0a7ba1b6e805b206ace78f39264',1,'poco::company::group01pocolib::mvc::model::User']]],
   ['clear_2',['clear',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#ab1f4016df321fe69059f8ce4a9c28659',1,'poco::company::group01pocolib::db::DB']]],
   ['comparefilehashes_3',['compareFileHashes',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash.html#aabc4ee2893e5c2b8aaaf3b275971ea22',1,'poco::company::group01pocolib::db::Hash']]],
-  ['compareto_4',['compareTo',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ac2b5072afafb1e75db15627703ea2b06',1,'poco::company::group01pocolib::mvc::model::User']]],
-  ['createbackup_5',['createBackup',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1Backup.html#a43bb5bffef7315fc545d321512806cd0',1,'poco::company::group01pocolib::db::Backup']]]
+  ['comparefilehashesfromlines_4',['compareFileHashesFromLines',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash.html#a83a0bfd9e1ed07336580d74c065795da',1,'poco::company::group01pocolib::db::Hash']]],
+  ['comparefilehashwithlines_5',['compareFileHashWithLines',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash.html#a1a200fb8857d67b8004146c2a4bb433a',1,'poco::company::group01pocolib::db::Hash']]],
+  ['compareto_6',['compareTo',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html#ac2b5072afafb1e75db15627703ea2b06',1,'poco::company::group01pocolib::mvc::model::User']]],
+  ['createbackup_7',['createBackup',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1Backup.html#a43bb5bffef7315fc545d321512806cd0',1,'poco::company::group01pocolib::db::Backup']]]
 ];

@@ -118,7 +118,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleDelete</b> ()</
 <tr class="memdesc:ab8413b3a3e24ebab802f4b77015ab05b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the delete button click event. It deletes the user after confirmation. <br /></td></tr>
 <tr class="memitem:a9bc92bae2c7221ae11faedd4fee0b7a9" id="r_a9bc92bae2c7221ae11faedd4fee0b7a9"><td class="memItemLeft" align="right" valign="top"><a id="a9bc92bae2c7221ae11faedd4fee0b7a9" name="a9bc92bae2c7221ae11faedd4fee0b7a9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleLendTo</b> ()</td></tr>
-<tr class="memdesc:a9bc92bae2c7221ae11faedd4fee0b7a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the lend button click event. It switches to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> tab if no book was selected, if book was selected, it opens the dialog for a new lending (allowing the user to set the return date). <br /></td></tr>
+<tr class="memdesc:a9bc92bae2c7221ae11faedd4fee0b7a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the lend to button click event by setting the master selected user to this user. <br /></td></tr>
 <tr class="memitem:adc261a6827b389bfa8589e3500372b63" id="r_adc261a6827b389bfa8589e3500372b63"><td class="memItemLeft" align="right" valign="top"><a id="adc261a6827b389bfa8589e3500372b63" name="adc261a6827b389bfa8589e3500372b63"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleViewHistory</b> ()</td></tr>
 <tr class="memdesc:adc261a6827b389bfa8589e3500372b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the lent hyperlink click event. It switches to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> tab and selects the books currently borrowed by the user. <br /></td></tr>
@@ -161,6 +161,8 @@ TextField&#160;</td><td class="memItemRight" valign="bottom"><b>nameField</b></t
 TextField&#160;</td><td class="memItemRight" valign="bottom"><b>surnameField</b></td></tr>
 <tr class="memitem:ae1db4bff8168752df7075d2aee7de3f1" id="r_ae1db4bff8168752df7075d2aee7de3f1"><td class="memItemLeft" align="right" valign="top"><a id="ae1db4bff8168752df7075d2aee7de3f1" name="ae1db4bff8168752df7075d2aee7de3f1"></a>
 TextField&#160;</td><td class="memItemRight" valign="bottom"><b>emailField</b></td></tr>
+<tr class="memitem:a4ef356c4e8d6dffef3f7dc26e490fe72" id="r_a4ef356c4e8d6dffef3f7dc26e490fe72"><td class="memItemLeft" align="right" valign="top"><a id="a4ef356c4e8d6dffef3f7dc26e490fe72" name="a4ef356c4e8d6dffef3f7dc26e490fe72"></a>
+Label&#160;</td><td class="memItemRight" valign="bottom"><b>infoLabel</b></td></tr>
 <tr class="memitem:abb6681c9d0ed45eb8565cf5c3702826e" id="r_abb6681c9d0ed45eb8565cf5c3702826e"><td class="memItemLeft" align="right" valign="top"><a id="abb6681c9d0ed45eb8565cf5c3702826e" name="abb6681c9d0ed45eb8565cf5c3702826e"></a>
 Label&#160;</td><td class="memItemRight" valign="bottom"><b>errorLabel</b></td></tr>
 <tr class="memitem:aef92712f7b53ac8200fc0dfc7f8bb5c9" id="r_aef92712f7b53ac8200fc0dfc7f8bb5c9"><td class="memItemLeft" align="right" valign="top"><a id="aef92712f7b53ac8200fc0dfc7f8bb5c9" name="aef92712f7b53ac8200fc0dfc7f8bb5c9"></a>
@@ -169,10 +171,16 @@ Button&#160;</td><td class="memItemRight" valign="bottom"><b>saveButton</b></td>
 Stage&#160;</td><td class="memItemRight" valign="bottom"><b>dialogStage</b></td></tr>
 <tr class="memitem:ad053a183e7c0bfcbaf7cddb1c42bd15b" id="r_ad053a183e7c0bfcbaf7cddb1c42bd15b"><td class="memItemLeft" align="right" valign="top"><a id="ad053a183e7c0bfcbaf7cddb1c42bd15b" name="ad053a183e7c0bfcbaf7cddb1c42bd15b"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><b>user</b></td></tr>
+<tr class="memitem:a415501bc689033c5a8eb80848be50053" id="r_a415501bc689033c5a8eb80848be50053"><td class="memItemLeft" align="right" valign="top"><a id="a415501bc689033c5a8eb80848be50053" name="a415501bc689033c5a8eb80848be50053"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><b>originalId</b></td></tr>
 <tr class="memitem:a1440de2310b7c2403c21144af6dc9cc0" id="r_a1440de2310b7c2403c21144af6dc9cc0"><td class="memItemLeft" align="right" valign="top"><a id="a1440de2310b7c2403c21144af6dc9cc0" name="a1440de2310b7c2403c21144af6dc9cc0"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>userSet</b></td></tr>
 <tr class="memitem:a79313587720681190bed7c32820a4f8f" id="r_a79313587720681190bed7c32820a4f8f"><td class="memItemLeft" align="right" valign="top"><a id="a79313587720681190bed7c32820a4f8f" name="a79313587720681190bed7c32820a4f8f"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html">PocoLibController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mainController</b></td></tr>
+<tr class="memitem:a9c9691da47fa28778364d3931df01341" id="r_a9c9691da47fa28778364d3931df01341"><td class="memItemLeft" align="right" valign="top"><a id="a9c9691da47fa28778364d3931df01341" name="a9c9691da47fa28778364d3931df01341"></a>
+final BooleanProperty&#160;</td><td class="memItemRight" valign="bottom"><b>validInput</b> = new SimpleBooleanProperty(true)</td></tr>
+<tr class="memitem:af7617304b1be2bb53e96e255f19ff0f2" id="r_af7617304b1be2bb53e96e255f19ff0f2"><td class="memItemLeft" align="right" valign="top"><a id="af7617304b1be2bb53e96e255f19ff0f2" name="af7617304b1be2bb53e96e255f19ff0f2"></a>
+boolean&#160;</td><td class="memItemRight" valign="bottom"><b>isNewUser</b> = false</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="ac777d8b3407eae2187246cade7e03d45" name="ac777d8b3407eae2187246cade7e03d45"></a>
@@ -324,7 +332,7 @@ Stage&#160;</td><td class="memItemRight" valign="bottom"><b>dialogStage</b></td>
 </div><div class="memdoc">
 
 <p>Validates the input fields in the dialog. </p>
-<p>This method validates all input fields and displays error messages if any field is empty or not valid.</p>
+<p>This method validates all input fields and displays error messages if any field is empty or not valid. </p><dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug</a></b></dt><dd>The error label messes up the layout when shown. Needs investigation.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if all fields are valid, <span class="tt">false</span> otherwise </dd></dl>
 
 </div>

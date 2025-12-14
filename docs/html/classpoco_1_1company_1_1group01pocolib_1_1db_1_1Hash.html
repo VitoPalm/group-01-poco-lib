@@ -102,7 +102,11 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ada0897802d55acba15799b5661ecc653" id="r_ada0897802d55acba15799b5661ecc653"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada0897802d55acba15799b5661ecc653">getFileHashFromLines</a> (List&lt; String &gt; linesList, String lineSeparator)</td></tr>
 <tr class="memdesc:ada0897802d55acba15799b5661ecc653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to get the SHA-256 hash of a file by checking a List containing all the lines in the file.  <br /></td></tr>
 <tr class="memitem:aabc4ee2893e5c2b8aaaf3b275971ea22" id="r_aabc4ee2893e5c2b8aaaf3b275971ea22"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabc4ee2893e5c2b8aaaf3b275971ea22">compareFileHashes</a> (Path p1, Path p2)</td></tr>
-<tr class="memdesc:aabc4ee2893e5c2b8aaaf3b275971ea22"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes 2 files as input (through their <span class="tt">Path</span>) and calculates the SHA- 256 hashes for both of them. Then, it returns the result of the comparison.  <br /></td></tr>
+<tr class="memdesc:aabc4ee2893e5c2b8aaaf3b275971ea22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the SHA-256 hashes of two files.  <br /></td></tr>
+<tr class="memitem:a1a200fb8857d67b8004146c2a4bb433a" id="r_a1a200fb8857d67b8004146c2a4bb433a"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a200fb8857d67b8004146c2a4bb433a">compareFileHashWithLines</a> (Path p, List&lt; String &gt; linesList, String lineSeparator)</td></tr>
+<tr class="memdesc:a1a200fb8857d67b8004146c2a4bb433a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the SHA-256 hash of a file with that of a list of strings.  <br /></td></tr>
+<tr class="memitem:a83a0bfd9e1ed07336580d74c065795da" id="r_a83a0bfd9e1ed07336580d74c065795da"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83a0bfd9e1ed07336580d74c065795da">compareFileHashesFromLines</a> (List&lt; String &gt; linesList1, List&lt; String &gt; linesList2, String lineSeparator1, String lineSeparator2)</td></tr>
+<tr class="memdesc:a83a0bfd9e1ed07336580d74c065795da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the SHA-256 hashes of two lists of strings. (comparison is independent of line endings)  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple class containing static methods, for calculating hashes. </p>
@@ -134,7 +138,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This method takes 2 files as input (through their <span class="tt">Path</span>) and calculates the SHA- 256 hashes for both of them. Then, it returns the result of the comparison. </p>
+<p>Compares the SHA-256 hashes of two files. </p>
+<p>This method takes 2 files as input (through their <span class="tt">Path</span>) and calculates the SHA- 256 hashes for both of them. Then, it returns the result of the comparison.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p1</td><td>Path to the first file </td></tr>
@@ -143,6 +148,95 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the hashes correspond, <span class="tt">false</span> if they don't </dd></dl>
+
+</div>
+</div>
+<a id="a83a0bfd9e1ed07336580d74c065795da" name="a83a0bfd9e1ed07336580d74c065795da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83a0bfd9e1ed07336580d74c065795da">&#9670;&#160;</a></span>compareFileHashesFromLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean poco.company.group01pocolib.db.Hash.compareFileHashesFromLines </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; String &gt;</td>          <td class="paramname"><span class="paramname"><em>linesList1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; String &gt;</td>          <td class="paramname"><span class="paramname"><em>linesList2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>lineSeparator1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>lineSeparator2</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compares the SHA-256 hashes of two lists of strings. (comparison is independent of line endings) </p>
+<p>This method takes as input two <span class="tt">List&lt;String&gt;</span>, each containing the lines of a file. It calculates the SHA-256 hashes for both of them, and then returns the result of the comparison.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">linesList1</td><td>The first <span class="tt">List&lt;String&gt;</span> to compare </td></tr>
+    <tr><td class="paramname">linesList2</td><td>The second <span class="tt">List&lt;String&gt;</span> to compare </td></tr>
+    <tr><td class="paramname">lineSeparator1</td><td>The character that was used to separate the lines in the first file. </td></tr>
+    <tr><td class="paramname">lineSeparator2</td><td>The character that was used to separate the lines in the second file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the hashes correspond, <span class="tt">false</span> if they don't </dd></dl>
+
+</div>
+</div>
+<a id="a1a200fb8857d67b8004146c2a4bb433a" name="a1a200fb8857d67b8004146c2a4bb433a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a200fb8857d67b8004146c2a4bb433a">&#9670;&#160;</a></span>compareFileHashWithLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean poco.company.group01pocolib.db.Hash.compareFileHashWithLines </td>
+          <td>(</td>
+          <td class="paramtype">Path</td>          <td class="paramname"><span class="paramname"><em>p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; String &gt;</td>          <td class="paramname"><span class="paramname"><em>linesList</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>lineSeparator</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compares the SHA-256 hash of a file with that of a list of strings. </p>
+<p>This method takes as input a file (through its <span class="tt">Path</span>) and a <span class="tt">List&lt;String&gt;</span> containing the lines of another file. It calculates the SHA-256 hashes for both of them, and then returns the result of the comparison. </p>
 
 </div>
 </div>

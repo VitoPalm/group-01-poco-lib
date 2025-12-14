@@ -37,13 +37,13 @@ public class BookTest {
         assertEquals(b.getAuthorsString(), "City Council; Pennsylvania State University");
         assertEquals(b.getIsbn(), "316830724");
         assertEquals(b.getYear(), 1985);
-        assertEquals(b.getCopies(), 1);
+        assertEquals(b.getCopiesAvailable(), 1);
         assertEquals(b.getCopiesLent(), 0);
         assertEquals(b.getTimesLent(), 0);
     }
 
     /**
-     * @brief Tests that the constructor throws {@link poco.company.group01pocolib.exceptions.BookDataNotValidException BookDataNotValidException} when an invalid number of copies is provided.
+     * @brief Tests that the constructor throws {@link poco.company.group01pocolib.exceptions.BookDataNotValidException BookDataNotValidException} when an invalid number of available copies is provided.
      * @author Giovanni Orsini
      */
     @Test
@@ -70,7 +70,7 @@ public class BookTest {
         b.setAuthors("Unknown 2; Unknown 3; Unknown 4");
         b.setIsbn("Unknown");
         b.setYear(0);
-        b.setCopies(3);
+        b.setCopiesAvailable(3);
         b.setCopiesLent(2);
         b.setTimesLent(12);
         
@@ -78,7 +78,7 @@ public class BookTest {
         assertEquals("Unknown 2; Unknown 3; Unknown 4", b.getAuthorsString());
         assertEquals("Unknown", b.getIsbn());
         assertEquals(0, b.getYear());
-        assertEquals(3, b.getCopies());
+        assertEquals(3, b.getCopiesAvailable());
         assertEquals(2, b.getCopiesLent());
         assertEquals(12, b.getTimesLent());        
     }
@@ -95,7 +95,7 @@ public class BookTest {
         authors.add("Pennsylvania State University");
         Book b = new Book("General Plan for Phoenix, 1985-2000", authors, "316830724", 1985, 1);
         assertThrows(BookDataNotValidException.class, () -> {
-            b.setCopies(-1);
+            b.setCopiesAvailable(-1);
         });
     }
 
@@ -108,7 +108,7 @@ public class BookTest {
         Book b = new Book("General Plan for Phoenix, 1985-2000", "City Council", "316830724", 1985, 1);
 
         b.addCopy();
-        assertEquals(2, b.getCopies());
+        assertEquals(2, b.getCopiesAvailable());
     }
 
     /**
@@ -120,7 +120,7 @@ public class BookTest {
         Book b = new Book("General Plan for Phoenix, 1985-2000", "City Council", "316830724", 1985, 1);
                 
         b.removeCopy();
-        assertEquals(0, b.getCopies());
+        assertEquals(0, b.getCopiesAvailable());
     }
 
     /**
@@ -161,7 +161,7 @@ public class BookTest {
         assertEquals("City Council; Pennsylvania State University", b.getAuthorsString());
         assertEquals("316830724", b.getIsbn());
         assertEquals(1985, b.getYear());
-        assertEquals(3, b.getCopies());
+        assertEquals(3, b.getCopiesAvailable());
         assertEquals(2, b.getCopiesLent());
         assertEquals(5, b.getTimesLent());  
     }
@@ -185,7 +185,7 @@ public class BookTest {
     public void testToDBString() {
         Book b = new Book("General Plan for Phoenix, 1985-2000", "City Council; Pennsylvania State University", "316830724", 1985, 1);
         
-        b.setCopies(5);
+        b.setCopiesAvailable(5);
         b.setCopiesLent(3);
         b.setTimesLent(12);
 

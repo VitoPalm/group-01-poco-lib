@@ -161,12 +161,18 @@ TableColumn&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mv
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>lendingViewEditButton</b></td></tr>
 <tr class="memitem:a333f42d5f97833d1f38c5585519ef036" id="r_a333f42d5f97833d1f38c5585519ef036"><td class="memItemLeft" align="right" valign="top"><a id="a333f42d5f97833d1f38c5585519ef036" name="a333f42d5f97833d1f38c5585519ef036"></a>
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>lendingReturnedButton</b></td></tr>
+<tr class="memitem:a34de23a261a8e4cadf25ecbb0722da08" id="r_a34de23a261a8e4cadf25ecbb0722da08"><td class="memItemLeft" align="right" valign="top"><a id="a34de23a261a8e4cadf25ecbb0722da08" name="a34de23a261a8e4cadf25ecbb0722da08"></a>
+Tooltip&#160;</td><td class="memItemRight" valign="bottom"><b>lendingViewEditButtonTooltip</b></td></tr>
+<tr class="memitem:a13c032bfeefcf1a8a7aa815242f64e06" id="r_a13c032bfeefcf1a8a7aa815242f64e06"><td class="memItemLeft" align="right" valign="top"><a id="a13c032bfeefcf1a8a7aa815242f64e06" name="a13c032bfeefcf1a8a7aa815242f64e06"></a>
+Tooltip&#160;</td><td class="memItemRight" valign="bottom"><b>lendingReturnedButtonTooltip</b></td></tr>
 <tr class="memitem:a3ebdd682df7a7a38091873f1c9082bd5" id="r_a3ebdd682df7a7a38091873f1c9082bd5"><td class="memItemLeft" align="right" valign="top"><a id="a3ebdd682df7a7a38091873f1c9082bd5" name="a3ebdd682df7a7a38091873f1c9082bd5"></a>
 ObservableList&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lendingData</b></td></tr>
-<tr class="memitem:acb2fd69179dbf38a3e0dc636c92ee94e" id="r_acb2fd69179dbf38a3e0dc636c92ee94e"><td class="memItemLeft" align="right" valign="top"><a id="acb2fd69179dbf38a3e0dc636c92ee94e" name="acb2fd69179dbf38a3e0dc636c92ee94e"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><b>selectedLending</b></td></tr>
 <tr class="memitem:a317f07c7e0279dc8df083518e23098d2" id="r_a317f07c7e0279dc8df083518e23098d2"><td class="memItemLeft" align="right" valign="top"><a id="a317f07c7e0279dc8df083518e23098d2" name="a317f07c7e0279dc8df083518e23098d2"></a>
 List&lt; SearchResult&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>currentSearchResults</b></td></tr>
+<tr class="memitem:acb2fd69179dbf38a3e0dc636c92ee94e" id="r_acb2fd69179dbf38a3e0dc636c92ee94e"><td class="memItemLeft" align="right" valign="top"><a id="acb2fd69179dbf38a3e0dc636c92ee94e" name="acb2fd69179dbf38a3e0dc636c92ee94e"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><b>selectedLending</b></td></tr>
+<tr class="memitem:a2c858ae88eaf6948f35a729e1abf180b" id="r_a2c858ae88eaf6948f35a729e1abf180b"><td class="memItemLeft" align="right" valign="top"><a id="a2c858ae88eaf6948f35a729e1abf180b" name="a2c858ae88eaf6948f35a729e1abf180b"></a>
+ObjectProperty&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>selectedLendingProperty</b> = new SimpleObjectProperty&lt;&gt;()</td></tr>
 <tr class="memitem:a6fecc8f770a2f5dcabfc63ea67de6c00" id="r_a6fecc8f770a2f5dcabfc63ea67de6c00"><td class="memItemLeft" align="right" valign="top"><a id="a6fecc8f770a2f5dcabfc63ea67de6c00" name="a6fecc8f770a2f5dcabfc63ea67de6c00"></a>
 Stage&#160;</td><td class="memItemRight" valign="bottom"><b>primaryStage</b></td></tr>
 <tr class="memitem:ad152113ca120254b9db9e312da4d9da3" id="r_ad152113ca120254b9db9e312da4d9da3"><td class="memItemLeft" align="right" valign="top"><a id="ad152113ca120254b9db9e312da4d9da3" name="ad152113ca120254b9db9e312da4d9da3"></a>
@@ -310,7 +316,10 @@ Stage&#160;</td><td class="memItemRight" valign="bottom"><b>primaryStage</b></td
 
 <p>Initializes the controller class, setting up all the listeners. This method is automatically called after fxml file has been loaded. </p>
 <p>Setup of all the listeners of the LendingTab: selected table entry, Omnisearch textfield</p><ul>
-<li>When an entry is selected, the "Mark as returned" and "View/Edit" buttons will become clickable</li>
+<li>When an entry is selected, the "Mark as returned" and "View/Edit" buttons will become clickable<ul>
+<li>otherwise, a tooltip will show explaining why the buttons aren't clickable</li>
+</ul>
+</li>
 <li>When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box enables the view of the search results</li>
 <li>When the Omnisearch textfield is empty, the prompt text shows the number of entries in the Set</li>
 <li>When the window is resized to a tighter height, the pocologo is hidden</li>

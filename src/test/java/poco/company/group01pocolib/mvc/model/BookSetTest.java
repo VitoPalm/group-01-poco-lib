@@ -321,12 +321,12 @@ public class BookSetTest {
         Book retrieved1 = loadedBookSet.getBook("978-0439708180");
         assertNotNull(retrieved1);
         assertEquals("Harry Potter", retrieved1.getTitle());
-        assertEquals(25, retrieved1.getCopies());
+        assertEquals(25, retrieved1.getCopiesAvailable());
         
         Book retrieved2 = loadedBookSet.getBook("978-0743273565");
         assertNotNull(retrieved2);
         assertEquals("The Great Gatsby", retrieved2.getTitle());
-        assertEquals(12, retrieved2.getCopies());
+        assertEquals(12, retrieved2.getCopiesAvailable());
     }
 
     @Test
@@ -348,7 +348,7 @@ public class BookSetTest {
         Book retrieved = bookSet.getBook("978-0261102385");
         assertNotNull(retrieved);
         assertEquals("Il signore degli Anelli", retrieved.getTitle());
-        assertEquals(20, retrieved.getCopies());
+        assertEquals(20, retrieved.getCopiesAvailable());
         
         // Edit the book (same ISBN, different details)
         Book editedBook = new Book("Il Signore degli Anelli - Edizione Speciale", "J.R.R. Tolkien", "978-0261102385", 1954, 25);
@@ -360,7 +360,7 @@ public class BookSetTest {
         Book updatedBook = bookSet.getBook("978-0261102385");
         assertNotNull(updatedBook);
         assertEquals("Il Signore degli Anelli - Edizione Speciale", updatedBook.getTitle());
-        assertEquals(25, updatedBook.getCopies());
+        assertEquals(25, updatedBook.getCopiesAvailable());
     }
 
     /**
@@ -384,7 +384,7 @@ public class BookSetTest {
         Book retrieved = bookSet.getBook("978-1234567890");
         assertEquals("Second Title", retrieved.getTitle());
         assertEquals("Author Two", retrieved.getAuthorsString());
-        assertEquals(15, retrieved.getCopies());
+        assertEquals(15, retrieved.getCopiesAvailable());
     }
 
     /**
@@ -478,7 +478,7 @@ public class BookSetTest {
      */
     @Test
     public void testAddBookWithInvalidData() {
-        // Book with negative copies should throw exception
+        // Book with negative available copies should throw exception
         Assertions.assertThrows(BookDataNotValidException.class, () -> {
             Book invalidBook = new Book("Invalid Book", "Author", "978-1234567890", 2020, -5);
             bookSet.addOrEditBook(invalidBook);

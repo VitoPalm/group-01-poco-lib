@@ -29,7 +29,7 @@ public class Book implements Serializable {
     private List<String> authors;  
     private String isbn;
     private int year;
-    private int copies;
+    private int copiesAvailable;
     private int copiesLent;
     private int timesLent;
 
@@ -43,19 +43,19 @@ public class Book implements Serializable {
      * @param   authors The authors of the Book.
      * @param   isbn    The ISBN of the Book.
      * @param   year    The release year of the Book.
-     * @param   copies  The number of copies available of the Book.
+     * @param   copiesAvailable  The number of copies available of the Book.
      * 
      * @throws  BookDataNotValidException if the number of copies is negative.
      */
-    public Book(String title, List<String> authors, String isbn, int year, int copies) {
-        if (copies < 0)
+    public Book(String title, List<String> authors, String isbn, int year, int copiesAvailable) {
+        if (copiesAvailable < 0)
             throw new BookDataNotValidException("Cannot create book with fewer than 0 copies.");
 
         this.title = title;
         this.authors = new ArrayList<>(authors);
         this.isbn = isbn;
         this.year = year;
-        this.copies = copies;
+        this.copiesAvailable = copiesAvailable;
         this.copiesLent = 0;
         this.timesLent = 0;
     }
@@ -71,19 +71,19 @@ public class Book implements Serializable {
      * @param   authors The String of semicolon separated authors of the Book.
      * @param   isbn    The  ISBN of the Book.
      * @param   year    The release year of the Book.
-     * @param   copies  The number of copies available of the Book.
+     * @param   copiesAvailable  The number of copies available of the Book.
      * 
      * @throws  BookDataNotValidException if the number of copies is negative.
      */
-    public Book(String title, String authors, String isbn, int year, int copies) {
-        if (copies < 0)
+    public Book(String title, String authors, String isbn, int year, int copiesAvailable) {
+        if (copiesAvailable < 0)
             throw new BookDataNotValidException("Cannot create book with fewer than 0 copies.");
 
         this.title = title;
         this.setAuthors(authors);
         this.isbn = isbn;
         this.year = year;
-        this.copies = copies;
+        this.copiesAvailable = copiesAvailable;
         this.copiesLent = 0;
         this.timesLent = 0;
     }
@@ -189,7 +189,7 @@ public class Book implements Serializable {
      * @return  The new number of copies currently lent out.
      */
     public int incrementCopiesLent() {
-        if (this.copiesLent < this.copies) {
+        if (this.copiesLent < this.copiesAvailable) {
             this.timesLent++;
 
             return ++(this.copiesLent);
@@ -237,28 +237,28 @@ public class Book implements Serializable {
      * @brief   Gets the number of copies available of the Book.
      * @return  The number of copies available of the Book.
      */
-    public int getCopies() {
-        return copies;
+    public int getCopiesAvailable() {
+        return copiesAvailable;
     }
 
     /**
      * @brief   Sets the number of copies available of the Book.
      *
-     * @param   copies The number of copies to set.
+     * @param   copiesAvailable The number of copies to set.
      * @throws  BookDataNotValidException if the number of copies is negative.
      */
-    public void setCopies(int copies) {
-        if (copies < 0)
+    public void setCopiesAvailable(int copiesAvailable) {
+        if (copiesAvailable < 0)
             throw new BookDataNotValidException("Cannot create book with fewer than 0 copies.");
 
-        this.copies = copies;
+        this.copiesAvailable = copiesAvailable;
     }
 
     /**
      * @brief   Increases the number of copies by one.
      */
     public void addCopy() {
-        this.copies += 1;
+        this.copiesAvailable += 1;
     }
 
     /**
@@ -266,7 +266,7 @@ public class Book implements Serializable {
      * @throws  IllegalStateException if there are no copies available to remove.
      */
     public void removeCopy() {
-        if(this.copies > 0) this.copies -= 1;
+        if(this.copiesAvailable > 0) this.copiesAvailable -= 1;
         else throw new IllegalStateException("No copies available to remove.");
     }
 
@@ -294,7 +294,7 @@ public class Book implements Serializable {
 
     /**
      * @brief   Creates a Book object from its string representation (typically used for DB reads).
-     * @details The string representation format is Title␜Authors␜ISBN␜Year␜Copies␜CopiesLent␜TimesLent.
+     * @details The string representation format is Title␜Authors␜ISBN␜Year␜CopiesAvailable␜CopiesLent␜TimesLent.
      * 
      *
      * @param   bookStr The string representation of the Book.
@@ -319,7 +319,7 @@ public class Book implements Serializable {
 
     /**
      * @brief   Get a string containing only the searchable info of the book
-     * @details This includes title, authors, isbn, year, and copies. The string representation format is title␜authors␜isbn␜year␜copies.
+     * @details This includes title, authors, isbn, year, and available copies. The string representation format is title␜authors␜isbn␜year␜available_copies.
      *
      * @return  A string containing the searchable info of the book
      */
@@ -327,12 +327,12 @@ public class Book implements Serializable {
         return getTitle().strip().toLowerCase() +
                getAuthorsString().strip().toLowerCase() +
                getIsbn().strip().toLowerCase() +
-               getYear() + getCopies();
+               getYear() + getCopiesAvailable();
     }
 
     /**
      * @brief   Returns a string representation of the Book (typically used for DB writes).
-     * @details The string representation format is Title␜Authors␜ISBN␜Year␜Copies␜CopiesLent␜TimesLent.
+     * @details The string representation format is Title␜Authors␜ISBN␜Year␜CopiesAvailable␜CopiesLent␜TimesLent.
      *
      * @return  A string representation of the Book;
      */
@@ -342,7 +342,7 @@ public class Book implements Serializable {
                getAuthorsString() + FIELD_SEPARATOR +
                getIsbn() + FIELD_SEPARATOR +
                getYear() + FIELD_SEPARATOR +
-               getCopies() + FIELD_SEPARATOR +
+               getCopiesAvailable() + FIELD_SEPARATOR +
                getCopiesLent() + FIELD_SEPARATOR +
                getTimesLent();
     }
@@ -358,6 +358,6 @@ public class Book implements Serializable {
                 "\tauthors='" + getAuthorsString() + "\n" +
                 "\tisbn='" + getIsbn() + "\n" +
                 "\tyear=" + getYear() + "\n" +
-                "\tcopies=" + getCopies() + "\n";
+                "\tcopies=" + getCopiesAvailable() + "\n";
     }
 }

@@ -4,8 +4,8 @@ var indexSectionsWithContent =
   1: "bdhilpsu",
   2: "bdhlsu",
   3: "abcdefghilmorstuvw",
-  4: "d",
-  5: "ltv"
+  4: "cdp",
+  5: "bltv"
 };
 
 var indexSectionNames =

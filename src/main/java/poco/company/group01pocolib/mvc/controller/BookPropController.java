@@ -34,7 +34,7 @@ public class BookPropController {
     @FXML private Label titleLabel;
     @FXML private Label authorsLabel;
     @FXML private Label yearLabel;
-    @FXML private Label copiesLabel;
+    @FXML private Label copiesAvailableLabel;
     @FXML private Hyperlink lentToLink;
 
     @FXML private Button editButton;
@@ -54,8 +54,8 @@ public class BookPropController {
     private IntegerProperty yearProperty = new SimpleIntegerProperty();
 
     @FXML private Button minusButton;
-    @FXML private TextField copiesField;                /// Represents the number of available copies
-    private IntegerProperty copiesProperty = new SimpleIntegerProperty();
+    @FXML private TextField copiesAvailableField;                /// Represents the number of available copies
+    private IntegerProperty copiesAvailableProperty = new SimpleIntegerProperty();
     @FXML private Button plusButton;
     @FXML private Label copiesEditLabel;
 
@@ -150,8 +150,8 @@ public class BookPropController {
         titleLabel.setText(this.book.getTitle());
         authorsLabel.setText(this.book.getAuthorsString());
         yearLabel.setText(String.valueOf(this.book.getYear()));
-        copiesLabel.setText(String.format("%d available (%d total)", this.book.getCopies() - this.book.getCopiesLent(), this.book.getCopies()));
-        lentToLink.setText(String.format("%d copies (%d times)", this.book.getCopiesLent(), this.book.getTimesLent()));
+        copiesAvailableLabel.setText(String.format("%d now (%d total)", this.book.getCopiesAvailable(), this.book.getCopiesAvailable()+this.book.getCopiesLent()));
+        lentToLink.setText(String.format("%d users now (%d users total)", this.book.getCopiesLent(), this.book.getTimesLent()));
 
         // Buttons and Tooltips
         deleteButton.setDisable(this.book.getCopiesLent() > 0);
@@ -167,7 +167,7 @@ public class BookPropController {
         titleField.setText(this.book.getTitle());
         authorsField.setText(this.book.getAuthorsString());
         yearField.setText(String.valueOf(this.book.getYear()));
-        copiesField.setText(String.valueOf(this.book.getCopies()));
+        copiesAvailableField.setText(String.valueOf(this.book.getCopiesAvailable()));
 
         initializeBindings();
     }
@@ -183,11 +183,11 @@ public class BookPropController {
         // ----------------- //
 
         // Binding to get the value of numerical fields as an IntegerProperties
-        copiesField.textProperty().bindBidirectional(copiesProperty, new NumberStringConverter());
+        copiesAvailableField.textProperty().bindBidirectional(copiesAvailableProperty, new NumberStringConverter());
         yearField.textProperty().bindBidirectional(yearProperty, new NumberStringConverter());
 
         // Binding to disable the minus button on 0 in the available copiesField
-        minusButton.disableProperty().bind(Bindings.when(Bindings.lessThanOrEqual(copiesProperty, 0)).then(true).otherwise(false));
+        minusButton.disableProperty().bind(Bindings.when(Bindings.lessThanOrEqual(copiesAvailableProperty, 0)).then(true).otherwise(false));
 
         // ISBN univocity check
         isbnIsValid.bind(Bindings.createBooleanBinding(() -> {
@@ -202,7 +202,7 @@ public class BookPropController {
         // copiesEditLabel binding
         final int lentCopies = book.getCopiesLent();
         copiesEditLabel.textProperty().bind(Bindings.createStringBinding(() -> {
-            return String.format("(Lent: %d; Total: %d)", lentCopies, copiesProperty.get()+lentCopies);}, copiesProperty));
+            return String.format("(Lent: %d; Total: %d)", lentCopies, copiesAvailableProperty.get()+lentCopies);}, copiesAvailableProperty));
 
 
         // Save button disabling logic
@@ -211,12 +211,12 @@ public class BookPropController {
             titleField.textProperty().isEmpty().or(
             authorsField.textProperty().isEmpty().or(
             yearField.textProperty().isEmpty().or(
-            copiesField.textProperty().isEmpty().or(
+            copiesAvailableField.textProperty().isEmpty().or(
             
             Bindings.not(isbnIsValid).or(               // invalid isbn
             
             yearProperty.lessThanOrEqualTo(0).or(       // invalid numbers 
-            copiesProperty.lessThan(0)))))))));
+            copiesAvailableProperty.lessThan(0)))))))));
 
     }
 
@@ -267,7 +267,7 @@ public class BookPropController {
      */
     @FXML
     private void handleLend() {
-        if (book.getCopies() == 0) {
+        if (book.getCopiesAvailable() == 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(dialogStage);
             alert.setTitle("Lending Not Allowed");
@@ -299,8 +299,8 @@ public class BookPropController {
      */
     @FXML
     private void handleDecrement() {
-        int currentCopies = getCopiesAsInteger();
-        copiesField.setText(String.valueOf(currentCopies - 1));
+        int currentCopiesAvailable = getCopiesAvailableAsInteger();
+        copiesAvailableField.setText(String.valueOf(currentCopiesAvailable - 1));
     }
 
     /**
@@ -308,12 +308,12 @@ public class BookPropController {
      */
     @FXML
     private void handleIncrement() {
-        int currentCopies = getCopiesAsInteger();
-        if (currentCopies >= 1) {
-            copiesField.setText(String.valueOf(currentCopies + 1));
+        int currentCopiesAvailable = getCopiesAvailableAsInteger();
+        if (currentCopiesAvailable >= 1) {
+            copiesAvailableField.setText(String.valueOf(currentCopiesAvailable + 1));
             errorLabel.setText("");
         } else {
-            copiesField.setText("1");
+            copiesAvailableField.setText("1");
             errorLabel.setText("");
         }
     }
@@ -342,7 +342,7 @@ public class BookPropController {
             book.setTitle(titleField.getText());
             book.setAuthors(authorsField.getText());
             book.setYear(Integer.parseInt(yearField.getText()));
-            book.setCopies(getCopiesAsInteger());
+            book.setCopiesAvailable(getCopiesAvailableAsInteger());
 
             bookSet.addOrEditBook(book);
 
@@ -365,9 +365,9 @@ public class BookPropController {
      * @brief   Converts the copies to an Integer. If the conversion fails, it returns -1.
      * @return  The number of copies as an Integer, or -1 if conversion fails
      */
-    private int getCopiesAsInteger() {
+    private int getCopiesAvailableAsInteger() {
         try {
-            return Integer.parseInt(copiesField.getText().trim());
+            return Integer.parseInt(copiesAvailableField.getText().trim());
         } catch (NumberFormatException e) {
             return -1;
         }
@@ -407,10 +407,10 @@ public class BookPropController {
             errorMessage.append("Year must be a valid number.\n");
         }
 
-        // Validate Copies
-        int copies = getCopiesAsInteger();
-        if (copies < 1) {
-            errorMessage.append("Number of copies must be at least 1.\n");
+        // Validate Available Copies
+        int copiesAvailable = getCopiesAvailableAsInteger();
+        if (copiesAvailable < 0) {
+            errorMessage.append("Number of available copies must be at least 0.\n");
         }
 
         // Set error label and return result
