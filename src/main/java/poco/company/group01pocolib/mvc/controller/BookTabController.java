@@ -331,6 +331,7 @@ public class BookTabController {
         if (bookSearchField.textProperty().getValue().isBlank()) {
             loadData();
             applyDefaultSortMethod();
+            bookTable.scrollTo(0);
 
             // Remove eventual listener for search sort order
             bookTable.getSortOrder().removeListener(searchSortOrderListener);
@@ -357,6 +358,8 @@ public class BookTabController {
 
             // Add search sort listener
             bookTable.getSortOrder().addListener(searchSortOrderListener);
+
+            bookTable.scrollTo(0);
         }
     }
     

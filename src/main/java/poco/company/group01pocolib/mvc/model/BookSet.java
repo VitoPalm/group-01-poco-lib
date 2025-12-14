@@ -16,6 +16,9 @@ import poco.company.group01pocolib.db.omnisearch.Search.SearchResult;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.*;
+import static java.lang.Math.abs;
+
+import static poco.company.group01pocolib.db.omnisearch.Search.distance;
 
 /**
  * @class   BookSet
@@ -352,56 +355,63 @@ public class BookSet implements Serializable {
      * @return  A list of books matching the search query, ranked by relevance
      */
     public List<SearchResult<Book>> search(String rawQuery) {
-        return null;
+        List<SearchResult<Book>> rawSearchResults = Search.search(rawQuery, bookIndex);
 
-        // ArrayList<Search.SearchResult<Book>> searchResults = Search.search(rawQuery, bookIndex);
+        if (rawSearchResults == null) return null;
 
-        // if (searchResults == null || searchResults.isEmpty()) {
-        //     return new ArrayList<>();
-        // }
+        List<SearchResult<Book>> rankedResults = new ArrayList<>();
 
-        // searchResults.sort((r1,r2)-> {
-        //     int hitComparison = Integer.compare(r2.hits, r1.hits);
-        //     if (hitComparison != 0) {
-        //         return hitComparison;
-        //     }
+        for (SearchResult<Book> result : rawSearchResults) {
+            int score = calculateScore(result.item, rawQuery) + result.hits*5;
+            if (score >= 0) {
+                rankedResults.add(new SearchResult<>(result.item, score));
+            }
+        }
 
-        //     int score1 = calculateScore(r1.item, rawQuery);
-        //     int score2 = calculateScore(r2.item, rawQuery);
-        //     return Integer.compare(score2, score1);
-        // });
+        Collections.sort(rankedResults);
 
-        // List<Book> rankedBooks = new ArrayList<>();
-        // for (Search.SearchResult<Book> result : searchResults) {
-        //     rankedBooks.add(result.item);
-        // }   
+        // Expensive calculations for further ranking adjustments on best results
+        for (int i = 0; i < rankedResults.size() && i < 20; i++) {
+            String searchableString = rankedResults.get(i).item.toSearchableString();
+            String processedQuery = rawQuery.trim();
 
-        // return rankedBooks;
+            int distance = distance(searchableString, processedQuery);
+            distance -= abs(processedQuery.length() - searchableString.length());
 
-        //TODO: Vito pls look at this
+            // The higher the distance, the lower the match
+            rankedResults.get(i).hits -= distance * 2;
+        }
+
+        // Only re-sort top 20 results after distance adjustment
+        Collections.sort(rankedResults.subList(0, Math.min(20, rankedResults.size())));
+
+        return rankedResults;
     }
 
     /**
-     * @brief   Perform search on the indexed books without ranking
-     *
-     * @param   rawQuery The raw search query
-     * @return  A list of books matching the search query
-     */
-    private List<Book> rawSearch(String rawQuery) {
-        //TODO: Vito pls look at this
-        return null;
-    }
-
-    /**
-     * @brief   Calculate the relevance score of a book for a given search query
+     * @brief   Calculates relevance score of a book for a given search query (just used for exact matches of fields).
      *
      * @param   book The book to calculate the score for
      * @param   rawQuery The raw search query
      * @return  The relevance score of the book
      */
     private int calculateScore(Book book, String rawQuery) {
-        //TODO: Vito pls look at this
-        return 0;
+        if (book == null || rawQuery == null || rawQuery.isEmpty()) {
+            return-1;
+        }
+
+        int score = 0;
+
+        if (book.getIsbn().equals(rawQuery))
+            score += 1000;
+        if (book.getTitle().equals(rawQuery))
+            score += 500;
+        if (book.getAuthorsString().equals(rawQuery))
+            score += 300;
+        if (Integer.valueOf(book.getYear()).toString().equals(rawQuery))
+            score += 200;
+
+        return score;
     }
 
     /**
