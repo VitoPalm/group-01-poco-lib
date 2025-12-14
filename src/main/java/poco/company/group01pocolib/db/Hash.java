@@ -37,7 +37,7 @@ public class Hash {
             return Base64.getEncoder().encodeToString(bytes);
 
         } catch (NoSuchAlgorithmException | IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
@@ -74,7 +74,7 @@ public static String getFileHashFromLines(List<String> linesList, String lineSep
         byte[] hash = digest.digest();
         checksum = Base64.getEncoder().encodeToString(hash);
     } catch (NoSuchAlgorithmException e) {
-        System.err.println(e.getMessage());
+        e.printStackTrace();
         checksum = null;
     }
 

@@ -251,7 +251,7 @@ public class LendingSet implements Serializable {
                 this.lendingIndex.add(lending.toSearchableString(), lending);
 
             } catch (Exception e) {
-                System.err.println(e.getMessage());
+                e.printStackTrace();
             }
             i++;
         }
@@ -388,7 +388,7 @@ public class LendingSet implements Serializable {
             out.writeObject(this);
 
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

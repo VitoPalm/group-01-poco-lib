@@ -416,7 +416,7 @@ public class UserTabController {
             stage.show();
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

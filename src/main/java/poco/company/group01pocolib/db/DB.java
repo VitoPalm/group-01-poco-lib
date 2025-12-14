@@ -200,7 +200,7 @@ public class DB implements Serializable {
                 }
             }
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return System.lineSeparator(); // Default if no line breaks found
@@ -236,7 +236,7 @@ public class DB implements Serializable {
 
             return true;
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -259,7 +259,7 @@ public class DB implements Serializable {
             return true;
 
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
