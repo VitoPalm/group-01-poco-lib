@@ -57,7 +57,9 @@ class HashTest {
     void testGetFileHash() {
         
         String hash = Hash.getFileHash(file1);
-        assertNotNull(hash);
+        String expectedHash = "KnlirmdL+MXT9I8hyQCM1Eod3abn3TMy5eE6/QG18Vc="; // Precomputed hash for "Content A\nContent B"
+        assertEquals(expectedHash, hash);
+        
     }
 
     /**
@@ -70,6 +72,9 @@ class HashTest {
         String hash1 = Hash.getFileHash(file1);
         String hash2 = Hash.getFileHash(file2);
         assertEquals(hash1, hash2);
+        Boolean result = Hash.compareFileHashes(file1, file2);
+        assertTrue(result);
+
     }
 
     /**
@@ -82,8 +87,29 @@ class HashTest {
         String hash1 = Hash.getFileHash(file1);
         String hash3 = Hash.getFileHash(file3);
         assertNotEquals(hash1, hash3);
+        Boolean result = Hash.compareFileHashes(file1, file3);
+        assertFalse(result);
     }
     
+    /**
+     * @brief Tests hash generation for a non-existent file.
+     * @details The hash function should return null when the file does not exist.
+     */
+    @Test
+    void testGetFileHashNonExistentOrEmptyFile() {
+        Path nonExistentFile = tempDir.resolve("nonexistent.txt");
+        String hash = Hash.getFileHash(nonExistentFile);
+        assertNull(hash, "Hash of a non-existent file should be null");
+        // Create an empty file and test
+        try {
+            Files.createFile(nonExistentFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String emptyFileHash = Hash.getFileHash(nonExistentFile);
+        assertNotNull(emptyFileHash); // Hash of an empty file should not be null
+    }
+
     /**
      * @brief Tests the consistency of hash generation for the same file.
      * @details Multiple calls to hash function on the same file should return the same result
@@ -105,19 +131,17 @@ class HashTest {
 
     /**
      * @brief Tests hash generation from a list of lines.
-     * @details Verifies that getFileHashFromLines generates a hash from a list of strings.
+     * @details Verifies that getFileHashFromLines generates a hash from a list of strings by comparing it to the hash of a file with the same content.
      */
     @Test
     void testGetFileHashFromLines() {
-        // Create a list of lines for testing
-        List<String> lines = Arrays.asList("Line 1", "Line 2", "Line 3");
-        
-        // Generate hash from lines with newline separator
+        // List of lines matching the content of file1
+        List<String> lines = Arrays.asList("Content A", "Content B");
+
         String hash = Hash.getFileHashFromLines(lines, "\n");
-        
-        // Hash should not be null or empty
-        assertNotNull(hash);
-        assertFalse(hash.isEmpty());
+        String expectedHash = Hash.getFileHash(file1);
+
+        assertEquals(expectedHash, hash);
     }
 
     /**
@@ -173,25 +197,6 @@ class HashTest {
     }
 
     /**
-     * @brief Tests that the hash produced from lines matches the hash of a file with the same content.
-     * @details The hash generated from a list of lines should match the hash of a file containing the same lines.
-     */
-    @Test
-    void testGetFileHashFromLinesMatchesFileHash() {
-        // Create a list of lines matching the content of file1
-        List<String> lines = Arrays.asList("Content A", "Content B");
-
-        // Generate hash from lines with system line separator
-        String hashFromLines = Hash.getFileHashFromLines(lines, System.lineSeparator());
-
-        // Get hash of file1
-        String fileHash = Hash.getFileHash(file1);
-
-        // Hash from lines should match file hash
-        assertEquals(hashFromLines, fileHash);
-    }
-
-    /**
      * @brief Tests hash comparison for identical files.
      * @details compareFileHashes should return true for files with identical content.
      */
@@ -228,5 +233,39 @@ class HashTest {
         
         // A file compared to itself should always have matching hash
         assertTrue(result);
+    }
+
+    /**
+     * @brief Tests comparison of file hash with lines.
+     * @details compareFileHashWithLines should return true when the lines match the file content and false otherwise.
+     */
+    @Test
+    void testCompareFileHashWithLines() {
+        // List of lines matching the content of file1
+        List<String> lines = Arrays.asList("Content A", "Content B");
+
+        boolean resultSame = Hash.compareFileHashWithLines(file1, lines, "\n");
+        assertTrue(resultSame);
+
+        boolean resultDifferent = Hash.compareFileHashWithLines(file3, lines, "\n");
+        assertFalse(resultDifferent);
+    }
+
+    /**
+     * @brief Tests comparison of hashes from two lists of lines.
+     * @details compareFileHashesFromLines should return true when both lists have the same content and false otherwise.
+     */
+    @Test
+    void testCompareFileHashesFromLines() {
+        // Lists of lines for testing
+        List<String> lines1 = Arrays.asList("Line 1", "Line 2");
+        List<String> lines2 = Arrays.asList("Line 1", "Line 2");
+        List<String> lines3 = Arrays.asList("Line 1", "Line 3");
+
+        boolean resultSame = Hash.compareFileHashesFromLines(lines1, lines2, "\n", "\n");
+        assertTrue(resultSame);
+
+        boolean resultDifferent = Hash.compareFileHashesFromLines(lines1, lines3, "\n", "\n");
+        assertFalse(resultDifferent);
     }
 }
