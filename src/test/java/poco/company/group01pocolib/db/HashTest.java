@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -41,9 +42,11 @@ class HashTest {
         file2 = tempDir.resolve("file2.txt");
         file3 = tempDir.resolve("file3.txt");
 
-        Files.writeString(file1, "Content A");
-        Files.writeString(file2, "Content A"); // Identico a file1
-        Files.writeString(file3, "Content B"); // Diverso
+        Files.writeString(file1, "Content A\nContent B");
+        Files.writeString(file2, "Content A\nContent B"); // Identico a file1
+        Files.writeString(file3, "Content B\nContent C"); // Diverso
+
+
     }
 
     /**
@@ -167,6 +170,25 @@ class HashTest {
         
         // Different content should produce different hashes
         assertNotEquals(hash1, hash2);
+    }
+
+    /**
+     * @brief Tests that the hash produced from lines matches the hash of a file with the same content.
+     * @details The hash generated from a list of lines should match the hash of a file containing the same lines.
+     */
+    @Test
+    void testGetFileHashFromLinesMatchesFileHash() {
+        // Create a list of lines matching the content of file1
+        List<String> lines = Arrays.asList("Content A", "Content B");
+
+        // Generate hash from lines with system line separator
+        String hashFromLines = Hash.getFileHashFromLines(lines, System.lineSeparator());
+
+        // Get hash of file1
+        String fileHash = Hash.getFileHash(file1);
+
+        // Hash from lines should match file hash
+        assertEquals(hashFromLines, fileHash);
     }
 
     /**
