@@ -163,16 +163,16 @@ public class UserTabController {
 
     /**
      * @brief   Loads data from the model into the controller.
-     * @todo    Understand why the not null check is necessary
      */
     public void loadData() {
-//        // loads all data from the model into the observable lists
-//        if (userSet != null) {
-//            userData.setAll(userSet.getUserSet());
-//            userTable.setItems(userData);   //add all users to the table view
-//        }
-        this.userData = FXCollections.observableArrayList(userSet.getListOfUsers());
-        userTable.setItems(userData);   //add all users to the table view
+        if (this.userData == null) {
+            this.userData = FXCollections.observableArrayList(userSet.getListOfUsers());
+            userTable.setItems(userData);
+        } else {
+            // Use setAll to update existing ObservableList instead of creating new one
+            // This ensures table updates correctly when data changes
+            userData.setAll(userSet.getListOfUsers());
+        }
     }
 
     /**

@@ -42,6 +42,7 @@ public class UserPropController {
     // ------------- //
     private Stage dialogStage;
     private User user;
+    private String originalId; // Store original ID to handle ID changes
     private UserSet userSet;
     private PocoLibController mainController;
 
@@ -126,10 +127,13 @@ public class UserPropController {
 
         if (user == null) {
             isNewUser = true;
+            this.originalId = null; // New user has no original ID
 
             filler = "ᚁᚁᚁᚁᚁᚁ"; // Random ancient Irish glyphs to pass checks
             String mailFiller = "s.m.t.h@pocolib.com";
             this.user = new User(filler, filler, filler, mailFiller);
+        } else {
+            this.originalId = user.getId(); // Save original ID
         }
 
         // Set view fields (filler isn't handled cause a null user is only used to create new users)
@@ -187,6 +191,7 @@ public class UserPropController {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 userSet.removeUser(user.getId());
+                mainController.refreshTabData();
                 dialogStage.close();
             }
         });
@@ -227,8 +232,14 @@ public class UserPropController {
             alert.setContentText(errorLabel.getText());
             alert.showAndWait();
         } else {
+            // If ID changed, remove the user with the old ID first
+            String newId = idField.getText().trim();
+            if (originalId != null && !originalId.equals(newId)) {
+                userSet.removeUser(originalId);
+            }
+
             // Save user details from edit fields
-            user.setId(idField.getText());
+            user.setId(newId);
             user.setName(nameField.getText());
             user.setSurname(surnameField.getText());
             user.setEmail(emailField.getText());

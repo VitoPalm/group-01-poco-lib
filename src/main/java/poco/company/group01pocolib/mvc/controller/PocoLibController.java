@@ -110,6 +110,7 @@ public class PocoLibController {
      */
     public void setMasterSelectedUser(User user) {
         this.masterSelectedUser.set(user);
+        handleMasterPropertiesChange();
     }
 
     /**

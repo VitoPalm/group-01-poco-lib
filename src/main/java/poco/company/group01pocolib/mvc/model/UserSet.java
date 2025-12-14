@@ -182,6 +182,7 @@ public class UserSet implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             userSet = new UserSet();
             userSet.setDBPath(DBPath);
+            userSet.setSerializationPath(serializationPath);
             userSet.rebuildFromDB(DBPath);
             return userSet;
         }
@@ -193,10 +194,12 @@ public class UserSet implements Serializable {
         // Check if the DB file has changed since the last serialization by comparing hashes
         if (currentDBHash.equals(userSet.getLastKnownDBHash())) {
             userSet.setDBPath(DBPath);
+            userSet.setSerializationPath(serializationPath);
             userSet.setUserDB(currentDB);
             return userSet;
         } else {
             userSet.setDBPath(DBPath);
+            userSet.setSerializationPath(serializationPath);
             userSet.rebuildFromDB(DBPath);
         }
 
@@ -384,6 +387,10 @@ public class UserSet implements Serializable {
     }
 
     private void saveToSerialized() {
+        if (serializationPath == null) {
+            return; // No serialization path configured, skip saving
+        }
+
         try (ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(serializationPath)))) {
             out.writeObject(this);
 
