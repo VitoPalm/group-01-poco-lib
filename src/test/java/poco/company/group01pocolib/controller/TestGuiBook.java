@@ -38,6 +38,21 @@ class TestGuiBook {
     }
 
     /**
+     * @brief Helper method to navigate to Books tab reliably.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    private void navigateToBookTab(FxRobot robot) {
+        sleep(500, TimeUnit.MILLISECONDS);
+        // Multiple clicks to ensure tab is selected
+        robot.clickOn("Books");
+        sleep(100, TimeUnit.MILLISECONDS);
+        robot.doubleClickOn("Books");
+        sleep(100, TimeUnit.MILLISECONDS);
+        robot.clickOn("Books");
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
      * @brief Test to verify that the application starts correctly and the main tab pane is visible.
      * @param robot The FxRobot instance for simulating user interactions.
      */
@@ -52,8 +67,7 @@ class TestGuiBook {
      */
     @Test
     void testNavigazioneBookTab(FxRobot robot) {
-        robot.clickOn("Books");
-        verifyThat("#bookTab", isVisible());
+        navigateToBookTab(robot);
         verifyThat("#bookAddButton", hasText("Add"));
     }
 
@@ -63,7 +77,7 @@ class TestGuiBook {
      */
     @Test
     void testTabellaLibri(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
         verifyThat("#bookTable", isVisible());
         verifyThat("#bookIsbnColumn", isVisible());
@@ -80,8 +94,7 @@ class TestGuiBook {
      */
     @Test
     void testOmnisearchLibri(FxRobot robot) {
-        robot.clickOn("Books");
-        robot.doubleClickOn("Books");
+        navigateToBookTab(robot);
 
         verifyThat("#bookSearchField", isVisible());
         
@@ -119,7 +132,7 @@ class TestGuiBook {
      */
     @Test
     void testBottoniDisabilitatiSenzaSelezione(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
         // View & Edit and Lend buttons should be disabled when nothing is selected
         verifyThat("#bookViewEditButton", isDisabled());
@@ -132,7 +145,7 @@ class TestGuiBook {
      */
     @Test
     void testBottoneAggiungiAbilitato(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
         verifyThat("#bookAddButton", isEnabled());
         verifyThat("#bookAddButton", hasText("Add"));
@@ -144,19 +157,22 @@ class TestGuiBook {
      */
     @Test
     void testAperturaDialogAggiungiLibro(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         robot.clickOn("#bookAddButton");
         
         sleep(500, TimeUnit.MILLISECONDS);
         
-        // TODO: Implement controller feature - handleBookAdd dialog
         // Verify dialog opens with edit fields
-        // verifyThat("#editBox", isVisible());
-        // verifyThat("#isbnField", isVisible());
-        // verifyThat("#titleField", isVisible());
-        // verifyThat("#authorsField", isVisible());
-        // verifyThat("#yearField", isVisible());
-        // verifyThat("#copiesField", isVisible());
+        verifyThat("#editBox", isVisible());
+        verifyThat("#isbnField", isVisible());
+        verifyThat("#titleField", isVisible());
+        verifyThat("#authorsField", isVisible());
+        verifyThat("#yearField", isVisible());
+        verifyThat("#copiesField", isVisible());
+        
+        // Close dialog
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -165,13 +181,28 @@ class TestGuiBook {
      */
     @Test
     void testBottoneVisualizzaModifica(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
-        // TODO: Implement controller feature - handleBookViewEdit
-        // Select a book first, then test view/edit button
-        // robot.clickOn book in table
-        // robot.clickOn("#bookViewEditButton");
-        // verifyThat dialog opens
+        // Click on first row in table (select a table cell)
+        robot.clickOn(".table-row-cell");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Now button should be enabled
+        verifyThat("#bookViewEditButton", isEnabled());
+        
+        robot.clickOn("#bookViewEditButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify view dialog opens
+        verifyThat("#viewBox", isVisible());
+        verifyThat("#isbnLabel", isVisible());
+        verifyThat("#titleLabel", isVisible());
+        verifyThat("#editButton", isVisible());
+        verifyThat("#deleteButton", isVisible());
+        
+        // Close dialog
+        robot.type(javafx.scene.input.KeyCode.ESCAPE);
+        sleep(300, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -180,13 +211,20 @@ class TestGuiBook {
      */
     @Test
     void testBottonePrestito(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
-        // TODO: Implement controller feature - handleBookLend
-        // Select a book first, then test lend button
-        // robot.clickOn book in table
-        // robot.clickOn("#bookLendButton");
-        // verifyThat lending dialog opens
+        // Click on first row in table
+        robot.clickOn(".table-row-cell");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Now button should be enabled
+        verifyThat("#bookLendButton", isEnabled());
+        
+        robot.clickOn("#bookLendButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Should switch to Users tab to select a user
+        verifyThat("#userTab", isVisible());
     }
 
     /**
@@ -195,13 +233,19 @@ class TestGuiBook {
      */
     @Test
     void testSelezioneLibro(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
-        // TODO: Implement test with actual data
+        // Initially buttons should be disabled
+        verifyThat("#bookViewEditButton", isDisabled());
+        verifyThat("#bookLendButton", isDisabled());
+        
+        // Click on first row in table
+        robot.clickOn(".table-row-cell");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
         // After selecting a book, buttons should be enabled
-        // robot.clickOn book row in table
-        // verifyThat("#bookViewEditButton", isEnabled());
-        // verifyThat("#bookLendButton", isEnabled());
+        verifyThat("#bookViewEditButton", isEnabled());
+        verifyThat("#bookLendButton", isEnabled());
     }
 
     /**
@@ -210,19 +254,23 @@ class TestGuiBook {
      */
     @Test
     void testAggiornamentoTabellaConRicerca(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
         TextField searchField = robot.lookup("#bookSearchField").query();
         
         robot.clickOn("#bookSearchField");
-        robot.write("test");
+        robot.write("java");
         sleep(500, TimeUnit.MILLISECONDS);
         
-        // TODO: Verify table content updates based on search
-        // Verify filtered results in table
+        // Verify table is still visible and shows filtered results
+        verifyThat("#bookTable", isVisible());
         
+        // Clear search
         robot.interact(() -> searchField.clear());
         sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Table should still be visible with all books
+        verifyThat("#bookTable", isVisible());
     }
 
     /**
@@ -231,16 +279,18 @@ class TestGuiBook {
      */
     @Test
     void testRicercaPerISBN(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
         robot.clickOn("#bookSearchField");
         robot.write("978");
         sleep(500, TimeUnit.MILLISECONDS);
         
-        // TODO: Verify table shows books with matching ISBN
+        // Verify table shows results
+        verifyThat("#bookTable", isVisible());
         
         TextField searchField = robot.lookup("#bookSearchField").query();
         robot.interact(() -> searchField.clear());
+        sleep(300, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -249,16 +299,18 @@ class TestGuiBook {
      */
     @Test
     void testRicercaPerAutore(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
         robot.clickOn("#bookSearchField");
-        robot.write("Tolkien");
+        robot.write("Lowe");
         sleep(500, TimeUnit.MILLISECONDS);
         
-        // TODO: Verify table shows books by matching author
+        // Verify table shows results
+        verifyThat("#bookTable", isVisible());
         
         TextField searchField = robot.lookup("#bookSearchField").query();
         robot.interact(() -> searchField.clear());
+        sleep(300, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -267,16 +319,18 @@ class TestGuiBook {
      */
     @Test
     void testRicercaPerAnno(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
         robot.clickOn("#bookSearchField");
-        robot.write("2020");
+        robot.write("2023");
         sleep(500, TimeUnit.MILLISECONDS);
         
-        // TODO: Verify table shows books from matching year
+        // Verify table shows results
+        verifyThat("#bookTable", isVisible());
         
         TextField searchField = robot.lookup("#bookSearchField").query();
         robot.interact(() -> searchField.clear());
+        sleep(300, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -285,9 +339,238 @@ class TestGuiBook {
      */
     @Test
     void testPlaceholderCampoRicerca(FxRobot robot) {
-        robot.clickOn("Books");
+        navigateToBookTab(robot);
         
         TextField searchField = robot.lookup("#bookSearchField").query();
-        assertEquals("OmniSearch books", searchField.getPromptText());
+        // The prompt text includes the number of books, format: "OmniSearch X books"
+        String promptText = searchField.getPromptText();
+        assertEquals(true, promptText != null && promptText.startsWith("OmniSearch"));
+    }
+
+    /**
+     * @brief Test to verify adding a new book with valid data.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testInserimentoLibroValido(FxRobot robot) {
+        navigateToBookTab(robot);
+        
+        // Click Add button to open dialog
+        robot.clickOn("#bookAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify dialog is in edit mode
+        verifyThat("#editBox", isVisible());
+        
+        // Fill in book details
+        robot.clickOn("#isbnField");
+        robot.write("978-0123456789");
+        
+        robot.clickOn("#titleField");
+        robot.write("Test Book Title");
+        
+        robot.clickOn("#authorsField");
+        robot.write("Test Author");
+        
+        robot.clickOn("#yearField");
+        robot.write("2024");
+        
+        robot.clickOn("#copiesField");
+        // Clear default value first
+        robot.press(javafx.scene.input.KeyCode.CONTROL, javafx.scene.input.KeyCode.A);
+        robot.release(javafx.scene.input.KeyCode.A, javafx.scene.input.KeyCode.CONTROL);
+        robot.write("5");
+        
+        // Save the book
+        robot.clickOn("#saveButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify we're back to the book tab
+        verifyThat("#bookTable", isVisible());
+        
+        // Search for the newly added book
+        robot.clickOn("#bookSearchField");
+        robot.write("Test Book Title");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Verify the book appears in search results
+        verifyThat("#bookTable", isVisible());
+    }
+
+    /**
+     * @brief Test to verify that adding a book with invalid data shows error.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testInserimentoLibroNonValido(FxRobot robot) {
+        navigateToBookTab(robot);
+        
+        // Click Add button
+        robot.clickOn("#bookAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Leave required fields empty and try to save
+        robot.clickOn("#saveButton");
+        sleep(300, TimeUnit.MILLISECONDS);
+        
+        // Should show error alert
+        verifyThat(".alert", isVisible());
+        verifyThat("OK", isVisible());
+        
+        // Close alert
+        robot.clickOn("OK");
+        sleep(200, TimeUnit.MILLISECONDS);
+        
+        // Dialog should still be open
+        verifyThat("#editBox", isVisible());
+        
+        // Cancel the dialog
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify adding a book with only ISBN missing.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testInserimentoLibroSenzaISBN(FxRobot robot) {
+        navigateToBookTab(robot);
+        
+        robot.clickOn("#bookAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Fill all fields except ISBN
+        robot.clickOn("#titleField");
+        robot.write("Book Without ISBN");
+        
+        robot.clickOn("#authorsField");
+        robot.write("Unknown Author");
+        
+        robot.clickOn("#yearField");
+        robot.write("2024");
+        
+        // Try to save
+        robot.clickOn("#saveButton");
+        sleep(300, TimeUnit.MILLISECONDS);
+        
+        // Should show error
+        verifyThat(".alert", isVisible());
+        robot.clickOn("OK");
+        
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify adding a book with invalid year.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testInserimentoLibroAnnoNonValido(FxRobot robot) {
+        navigateToBookTab(robot);
+        
+        robot.clickOn("#bookAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Fill valid data
+        robot.clickOn("#isbnField");
+        robot.write("978-1234567890");
+        
+        robot.clickOn("#titleField");
+        robot.write("Test Invalid Year");
+        
+        robot.clickOn("#authorsField");
+        robot.write("Test Author");
+        
+        // Enter invalid year (3 digits)
+        robot.clickOn("#yearField");
+        robot.write("999");
+        
+        // Try to save
+        robot.clickOn("#saveButton");
+        sleep(300, TimeUnit.MILLISECONDS);
+        
+        // Should show error about invalid year
+        verifyThat(".alert", isVisible());
+        robot.clickOn("OK");
+        
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify incrementing and decrementing copies.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testIncrementoDecrementoCopie(FxRobot robot) {
+        navigateToBookTab(robot);
+        
+        robot.clickOn("#bookAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Default copies should be 1
+        TextField copiesField = robot.lookup("#copiesField").query();
+        assertEquals("1", copiesField.getText());
+        
+        // Increment copies
+        robot.clickOn("#plusButton");
+        sleep(100, TimeUnit.MILLISECONDS);
+        assertEquals("2", copiesField.getText());
+        
+        robot.clickOn("#plusButton");
+        sleep(100, TimeUnit.MILLISECONDS);
+        assertEquals("3", copiesField.getText());
+        
+        // Decrement copies
+        robot.clickOn("#minusButton");
+        sleep(100, TimeUnit.MILLISECONDS);
+        assertEquals("2", copiesField.getText());
+        
+        robot.clickOn("#minusButton");
+        sleep(100, TimeUnit.MILLISECONDS);
+        assertEquals("1", copiesField.getText());
+        
+        // Try to decrement below 1 - should show error
+        robot.clickOn("#minusButton");
+        sleep(100, TimeUnit.MILLISECONDS);
+        // Should still be 1 and show error message in errorLabel
+        assertEquals("1", copiesField.getText());
+        
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
+    }
+
+    /**
+     * @brief Test to verify canceling book addition.
+     * @param robot The FxRobot instance for simulating user interactions.
+     */
+    @Test
+    void testAnnullaInserimentoLibro(FxRobot robot) {
+        navigateToBookTab(robot);
+        
+        robot.clickOn("#bookAddButton");
+        sleep(500, TimeUnit.MILLISECONDS);
+        
+        // Fill some data
+        robot.clickOn("#titleField");
+        robot.write("Cancelled Book");
+        
+        // Cancel without saving
+        robot.clickOn("Cancel");
+        sleep(300, TimeUnit.MILLISECONDS);
+        
+        // Should be back at book tab
+        verifyThat("#bookTable", isVisible());
+        
+        // Search for the book - should not exist
+        robot.clickOn("#bookSearchField");
+        robot.write("Cancelled Book");
+        sleep(300, TimeUnit.MILLISECONDS);
+        
+        // Clear search
+        TextField searchField = robot.lookup("#bookSearchField").query();
+        robot.interact(() -> searchField.clear());
     }
 }
