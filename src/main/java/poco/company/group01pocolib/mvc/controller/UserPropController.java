@@ -1,10 +1,9 @@
 package poco.company.group01pocolib.mvc.controller;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import poco.company.group01pocolib.mvc.model.User;
@@ -33,7 +32,8 @@ public class UserPropController {
     @FXML private TextField nameField;
     @FXML private TextField surnameField;
     @FXML private TextField emailField;
-    
+
+    @FXML private Label infoLabel;
     @FXML private Label errorLabel;
     @FXML private Button saveButton;
 
@@ -45,6 +45,9 @@ public class UserPropController {
     private UserSet userSet;
     private PocoLibController mainController;
 
+    private final BooleanProperty validInput = new SimpleBooleanProperty(true);
+    private boolean isNewUser = false;
+
     // ------------ //
     // Edit methods //
     // ------------ //
@@ -54,7 +57,22 @@ public class UserPropController {
      */
     @FXML
     private void initialize() {
-        // TODO: implement initialization logic
+        viewBox.managedProperty().bind(viewBox.visibleProperty());
+        editBox.managedProperty().bind(editBox.visibleProperty());
+        errorLabel.managedProperty().bind(errorLabel.visibleProperty());
+
+        // Real-time input validation
+        idField.textProperty().addListener(observable -> validInput.set(validateInput()));
+        nameField.textProperty().addListener(observable -> validInput.set(validateInput()));
+        surnameField.textProperty().addListener(observable -> validInput.set(validateInput()));
+        emailField.textProperty().addListener(observable -> validInput.set(validateInput()));
+
+        errorLabel.textProperty().addListener(observable -> {
+            if (dialogStage != null) {
+                dialogStage.sizeToScene();
+            }
+        });
+        saveButton.disableProperty().bind(validInput.not());
     }
 
     /**
@@ -107,6 +125,8 @@ public class UserPropController {
         String filler = null;
 
         if (user == null) {
+            isNewUser = true;
+
             filler = "ᚁᚁᚁᚁᚁᚁ"; // Random ancient Irish glyphs to pass checks
             String mailFiller = "s.m.t.h@pocolib.com";
             this.user = new User(filler, filler, filler, mailFiller);
@@ -137,7 +157,7 @@ public class UserPropController {
      * @details This method is needed to refresh the dialog when the user details are changed by editing it.
      */
     public void updateView() {
-        // TODO: implement method to update user details for the dialog
+        setUser(this.user);
     }
 
     // -------------------- //
@@ -148,7 +168,8 @@ public class UserPropController {
      */
     @FXML
     private void handleEdit() {
-        // TODO: implement edit logic
+        setMode(PropMode.EDIT);
+        updateView();
     }
 
     /**
@@ -156,16 +177,28 @@ public class UserPropController {
      */
     @FXML
     private void handleDelete() {
-        // TODO: implement delete logic
+        // Create confirmation alert before deleting
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the user?");
+        alert.initOwner(dialogStage);
+        alert.setTitle("Confirm Deletion");
+        alert.setHeaderText("Delete User");
+
+        // Wait for confirmation
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                userSet.removeUser(user.getId());
+                dialogStage.close();
+            }
+        });
     }
 
     /**
-     * @brief   Handles the lend button click event. It switches to the Book tab if no book was selected, if book was
-     *          selected, it opens the dialog for a new lending (allowing the user to set the return date).
+     * @brief   Handles the lend to button click event by setting the master selected user to this user.
      */
     @FXML
     private void handleLendTo() {
-        // TODO: implement lend logic
+        if (user == null) return;
+        mainController.setMasterSelectedUser(user);
     }
 
     /**
@@ -186,7 +219,46 @@ public class UserPropController {
      */
     @FXML
     private void handleSave() {
-        // TODO: implement save logic
+        if (!validateInput()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input fields.");
+            alert.initOwner(dialogStage);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorLabel.getText());
+            alert.showAndWait();
+        } else {
+            // Save user details from edit fields
+            user.setId(idField.getText());
+            user.setName(nameField.getText());
+            user.setSurname(surnameField.getText());
+            user.setEmail(emailField.getText());
+
+            // Add or edit user in the user set
+            userSet.addOrEditUser(user);
+
+            // Show success info
+            infoLabel.setVisible(true);
+            errorLabel.setVisible(false);
+
+            // Wait a moment to show the info label
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.err.println(e.getMessage());
+            }
+
+            // Refresh the data in all tabs
+            mainController.refreshTabData();
+
+            if (isNewUser) {
+                // Select the newly created user in the User table
+                mainController.getUserTabController().getUserTable().getSelectionModel().select(user);
+                mainController.getUserTabController().getUserTable().scrollTo(user);
+            }
+
+            // Close the dialog
+            dialogStage.close();
+        }
     }
 
     /**
@@ -200,11 +272,36 @@ public class UserPropController {
     /**
      * @brief   Validates the input fields in the dialog.
      * @details This method validates all input fields and displays error messages if any field is empty or not valid.
+     * @bug     The error label messes up the layout when shown. Needs investigation.
      *
      * @return  `true` if all fields are valid, `false` otherwise
      */
     private boolean validateInput() {
-        // TODO: implement validation logic
-        return false;
+        StringBuilder errors = new StringBuilder();
+
+        if (!User.isValidID(idField.getText())) {
+            if (!errors.isEmpty()) errors.append("\n");
+            errors.append("Invalid ID. ID must be alphanumeric and 5-16 characters long.");
+        } else if (nameField.getText().isBlank()) {
+            if (!errors.isEmpty()) errors.append("\n");
+            errors.append("Name cannot be empty.");
+        } else if (surnameField.getText().isBlank()) {
+            if (!errors.isEmpty()) errors.append("\n");
+            errors.append("Name cannot be empty.");
+        } else if (!User.isValidEmail(emailField.getText())) {
+            if (!errors.isEmpty()) errors.append("\n");
+            errors.append("Invalid email format.");
+        }
+
+        // TODO: Check what the fuck is up with the error label fucking up everything (the basterd)
+        if (errors.isEmpty()) {
+            errorLabel.setVisible(false);
+            return true;
+        } else {
+            errorLabel.setText(errors.toString());
+            errorLabel.setVisible(true);
+
+            return false;
+        }
     }
 }
