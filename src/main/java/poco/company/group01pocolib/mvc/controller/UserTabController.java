@@ -101,8 +101,7 @@ public class UserTabController {
             if (userSet == null)
                 return;
 
-            // Binding for number of entries in the set
-            userSearchField.promptTextProperty().bind(Bindings.format("OmniSearch %d users", userSet.size()));
+            // Note: Actual binding is set in loadData() after userData initialization
         });
 
         Platform.runLater(() -> {
@@ -168,6 +167,8 @@ public class UserTabController {
         if (this.userData == null) {
             this.userData = FXCollections.observableArrayList(userSet.getListOfUsers());
             userTable.setItems(userData);
+            // Set up binding for prompt text to show number of users
+            userSearchField.promptTextProperty().bind(Bindings.format("OmniSearch %d users", Bindings.size(userData)));
         } else {
             // Use setAll to update existing ObservableList instead of creating new one
             // This ensures table updates correctly when data changes

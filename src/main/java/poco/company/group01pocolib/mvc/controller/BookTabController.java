@@ -104,8 +104,7 @@ public class BookTabController {
             if (bookSet == null)
                 return;
 
-            // Binding for number of entries in the set
-            bookSearchField.promptTextProperty().bind(Bindings.format("OmniSearch %d books", bookSet.size()));
+            // Note: Actual binding is set in loadData() after bookData initialization
         });
 
         Platform.runLater(() -> {
@@ -164,6 +163,8 @@ public class BookTabController {
         if (this.bookData == null) {
             this.bookData = FXCollections.observableArrayList(bookSet.getListOfBooks());
             bookTable.setItems(bookData);
+            // Set up binding for prompt text to show number of books
+            bookSearchField.promptTextProperty().bind(Bindings.format("OmniSearch %d books", Bindings.size(bookData)));
         } else {
             // Update existing observable list to refresh the table
             bookData.setAll(bookSet.getListOfBooks());
