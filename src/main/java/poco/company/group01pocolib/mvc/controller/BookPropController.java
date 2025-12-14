@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
@@ -21,6 +23,7 @@ import javafx.util.converter.NumberStringConverter;
 import poco.company.group01pocolib.mvc.model.Book;
 import poco.company.group01pocolib.mvc.model.BookSet;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BookPropController {
@@ -50,7 +53,7 @@ public class BookPropController {
     @FXML private TextField isbnField;
     @FXML private TextField titleField;
     @FXML private TextField authorsField;
-    @FXML private TextField yearField;
+    @FXML private Spinner<Integer> yearSpinner;
     private IntegerProperty yearProperty = new SimpleIntegerProperty();
 
     @FXML private Button minusButton;
@@ -61,6 +64,8 @@ public class BookPropController {
 
     @FXML private Label errorLabel;
     @FXML private Button saveButton;
+    @FXML private Tooltip saveButtonTooltip;
+    private BooleanBinding emptyTextfieldsBinding;
 
     private BooleanProperty isbnIsValid = new SimpleBooleanProperty(false);
 
@@ -166,7 +171,7 @@ public class BookPropController {
         isbnField.setText(this.book.getIsbn());
         titleField.setText(this.book.getTitle());
         authorsField.setText(this.book.getAuthorsString());
-        yearField.setText(String.valueOf(this.book.getYear()));
+        yearSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, LocalDate.now().getYear()+10, this.book.getYear() > 0? this.book.getYear() : LocalDate.now().getYear()));
         copiesAvailableField.setText(String.valueOf(this.book.getCopiesAvailable()));
 
         initializeBindings();
@@ -182,9 +187,16 @@ public class BookPropController {
         //   Edit bindings   //
         // ----------------- //
 
-        // Binding to get the value of numerical fields as an IntegerProperties
+        // Binding to get the value of numerical fields as an IntegerProperties (the numberstringconverter messes up with Locales)
         copiesAvailableField.textProperty().bindBidirectional(copiesAvailableProperty, new NumberStringConverter());
-        yearField.textProperty().bindBidirectional(yearProperty, new NumberStringConverter());
+        yearProperty.bind(yearSpinner.valueProperty());
+
+        // Binding for any of the textfields empty
+        emptyTextfieldsBinding = isbnField.textProperty().isEmpty().or(      
+            titleField.textProperty().isEmpty().or(
+            authorsField.textProperty().isEmpty().or(
+            yearSpinner.valueProperty().isNull().or(
+            copiesAvailableField.textProperty().isEmpty()))));
 
         // Binding to disable the minus button on 0 in the available copiesField
         minusButton.disableProperty().bind(Bindings.when(Bindings.lessThanOrEqual(copiesAvailableProperty, 0)).then(true).otherwise(false));
@@ -193,10 +205,13 @@ public class BookPropController {
         isbnIsValid.bind(Bindings.createBooleanBinding(() -> {
             String isbn = isbnField.getText();
 
-            if (isbn == null || isbn.isBlank()) 
+            if (isbn == null || isbn.isBlank())     // if blank it cannot be saved
                 return false;
 
-            return !bookSet.isStored(isbn);
+            if (isbn.equals(originalIsbn))               // In Edit mode you can make changes keeping the same isbn
+                return true;
+
+            return !bookSet.isStored(isbn);         // finally checks if other books have the same isbn inserted
         }, isbnField.textProperty()));
         
         // copiesEditLabel binding
@@ -204,20 +219,18 @@ public class BookPropController {
         copiesEditLabel.textProperty().bind(Bindings.createStringBinding(() -> {
             return String.format("(Lent: %d; Total: %d)", lentCopies, copiesAvailableProperty.get()+lentCopies);}, copiesAvailableProperty));
 
-
         // Save button disabling logic
-        saveButton.disableProperty().bind(
-            isbnField.textProperty().isEmpty().or(      // Any empty field
-            titleField.textProperty().isEmpty().or(
-            authorsField.textProperty().isEmpty().or(
-            yearField.textProperty().isEmpty().or(
-            copiesAvailableField.textProperty().isEmpty().or(
-            
+        saveButton.disableProperty().bind(emptyTextfieldsBinding.or(
             Bindings.not(isbnIsValid).or(               // invalid isbn
             
             yearProperty.lessThanOrEqualTo(0).or(       // invalid numbers 
-            copiesAvailableProperty.lessThan(0)))))))));
+            copiesAvailableProperty.lessThan(0)))));
 
+        // Save button tooltip message logic
+        saveButtonTooltip.textProperty().bind(
+            Bindings.when(emptyTextfieldsBinding)
+                .then("Some fields are incomplete")
+            .otherwise("Some data is invalid"));
     }
 
     /**
@@ -341,7 +354,7 @@ public class BookPropController {
             book.setIsbn(newIsbn);
             book.setTitle(titleField.getText());
             book.setAuthors(authorsField.getText());
-            book.setYear(Integer.parseInt(yearField.getText()));
+            book.setYear(yearSpinner.getValue());
             book.setCopiesAvailable(getCopiesAvailableAsInteger());
 
             bookSet.addOrEditBook(book);
@@ -397,15 +410,6 @@ public class BookPropController {
             errorMessage.append("At least one author is required.\n");
         }
 
-        // Validate Year
-        try {
-            int year = Integer.parseInt(yearField.getText().trim());
-            if (year <= 0) {
-                errorMessage.append("We only accept books published after the birth of Our Lord And Savior Jesus Christ\n");
-            }
-        } catch (NumberFormatException e) {
-            errorMessage.append("Year must be a valid number.\n");
-        }
 
         // Validate Available Copies
         int copiesAvailable = getCopiesAvailableAsInteger();
