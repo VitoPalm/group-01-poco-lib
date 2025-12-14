@@ -113,7 +113,8 @@
             <TextField fx:id="surnameField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
             <TextField fx:id="emailField" text="inv@lid" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
         </GridPane>
-        <Label fx:id="errorLabel" text="Email seems to be invalid" textFill="#e00000"/>
+        <Label fx:id="infoLabel" text="Saved!" textFill="#474747" visible="false" managed="false"/>
+        <Label fx:id="errorLabel" text="Email seems to be invalid" textFill="#e00000" visible="false" managed="false"/>
         <HBox alignment="CENTER" spacing="10.0">
             <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="Cancel"/>
             <Button fx:id="saveButton" defaultButton="true" disable="true" mnemonicParsing="false"
