@@ -2,10 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -50,13 +52,27 @@
                     <Insets top="10.0" />
                 </padding>
                 <Button fx:id="userAddButton" mnemonicParsing="false" onAction="#handleUserAdd" text="Add" />
-                <Button fx:id="userViewEditButton" mnemonicParsing="false" onAction="#handleUserViewEdit" text="View &amp; Edit" />
+            <Label>
+               <tooltip>
+                  <Tooltip fx:id="userViewEditButtonTooltip" />
+               </tooltip>
+               <graphic>
+                      <Button fx:id="userViewEditButton" mnemonicParsing="false" onAction="#handleUserViewEdit" text="View &amp; Edit" />
+               </graphic>
+            </Label>
             </HBox>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
                 <padding>
                     <Insets top="10.0" />
                 </padding>
-                <Button fx:id="userLendButton" mnemonicParsing="false" onAction="#handleUserLend" text="Lend to" />
+            <Label>
+               <graphic>
+                      <Button fx:id="userLendButton" mnemonicParsing="false" onAction="#handleUserLend" text="Lend to" />
+               </graphic>
+               <tooltip>
+                  <Tooltip fx:id="userLendButtonTooltip" />
+               </tooltip>
+            </Label>
             </HBox>
         </GridPane>
     </VBox>

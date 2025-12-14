@@ -1,6 +1,7 @@
 package poco.company.group01pocolib.mvc.controller;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import poco.company.group01pocolib.db.omnisearch.Search.SearchResult;
 import poco.company.group01pocolib.mvc.model.*;
@@ -59,10 +61,17 @@ public class LendingTabController {
     @FXML private Button lendingViewEditButton;
     @FXML private Button lendingReturnedButton;
 
+    // Lending Tab Button Tooltips
+    @FXML private Tooltip lendingViewEditButtonTooltip;
+    @FXML private Tooltip lendingReturnedButtonTooltip;
+
     // Data management
     private ObservableList<Lending> lendingData;
-    private Lending selectedLending;
     private List<SearchResult<Lending>> currentSearchResults;
+    
+    // Table entry selection
+    private Lending selectedLending;
+    private ObjectProperty<Lending> selectedLendingProperty = new SimpleObjectProperty<>();
 
     private Stage primaryStage;
     private PocoLibController mainController;
@@ -73,6 +82,7 @@ public class LendingTabController {
      * @details
      * Setup of all the listeners of the LendingTab: selected table entry, Omnisearch textfield
      * - When an entry is selected, the "Mark as returned" and "View/Edit" buttons will become clickable 
+     *   - otherwise, a tooltip will show explaining why the buttons aren't clickable
      * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
      *   enables the view of the search results
      * - When the Omnisearch textfield is empty, the prompt text shows the number of entries in the Set
@@ -84,18 +94,27 @@ public class LendingTabController {
      */
     @FXML
     private void initialize() {
-        // Initialize buttons bindings for disabling when no selection
-        lendingViewEditButton.disableProperty().bind(
-            lendingTable.getSelectionModel().selectedItemProperty().isNull()
-        );
-        lendingReturnedButton.disableProperty().bind(
-            lendingTable.getSelectionModel().selectedItemProperty().isNull()
-        );
-
         // Binding for selected lending
         lendingTable.getSelectionModel().selectedItemProperty().addListener(observable -> {
-            selectedLending = lendingTable.getSelectionModel().getSelectedItem();
-        });
+            selectedLending = lendingTable.getSelectionModel().getSelectedItem();});
+
+        selectedLendingProperty.bind(lendingTable.getSelectionModel().selectedItemProperty());
+
+
+        // Initialize buttons bindings for disabling when no selection
+        lendingViewEditButton.disableProperty().bind(selectedLendingProperty.isNull());
+        lendingReturnedButton.disableProperty().bind(selectedLendingProperty.isNull());
+
+        // Tooltips binding
+        lendingViewEditButtonTooltip.textProperty().bind(
+            Bindings.when(selectedLendingProperty.isNull())
+                .then("No lending selected")
+                .otherwise(""));
+
+        lendingReturnedButtonTooltip.textProperty().bind(
+                Bindings.when(selectedLendingProperty.isNull())
+                    .then("No lending selected")
+                    .otherwise(""));
 
         // Initialize search field listener
         lendingSearchField.textProperty().addListener(observable -> {

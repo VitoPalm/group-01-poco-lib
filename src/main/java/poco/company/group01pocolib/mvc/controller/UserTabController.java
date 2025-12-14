@@ -5,7 +5,10 @@ import java.util.List;
 
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.*;
 import javafx.fxml.FXML;
@@ -54,10 +57,19 @@ public class UserTabController {
     @FXML private Button userViewEditButton;
     @FXML private Button userLendButton;
 
+    // User Tab Button Tooltips
+    @FXML private Tooltip userLendButtonTooltip;
+    @FXML private Tooltip userViewEditButtonTooltip;
+
     // Data management
     private ObservableList<User> userData;
-    private User selectedUser;
     private List<SearchResult<User>> currentSearchResults;
+    
+    // Table entry selection
+    private User selectedUser;
+    private ObjectProperty<User> selectedUserProperty = new SimpleObjectProperty<>();
+    private BooleanBinding selectedUserCanBorrow;
+
 
     private Stage primaryStage;
     private PocoLibController mainController;
@@ -67,9 +79,10 @@ public class UserTabController {
      * 
      * @details
      * Setup of all the listeners of the UserTab: selected table entry, Omnisearch textfield
-     * - When an entry is selected, the "Lend to" and "View/Edit" buttons will become clickable
-     * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
-     *   enables the view of the search results
+     * - When an entry is selected, the "View/Edit" button will become clickable
+     *   - otherwise, a tooltip will show explaining why the button isn't clickable
+     * - When an entry with available copies is selected, the "Lend to" button will become clickable
+     *   - otherwise, a tooltip will show explaining why the button isn't clickable
      * - When the Omnisearch textfield is empty, the prompt text shows the number of entries in the Set
      * - When the window is resized to a tighter height, the pocologo is hidden
      * - When the window is resized to a tighter width, the table resize policy becomes unconstrained to correctly visualize min. column sizes
@@ -79,18 +92,36 @@ public class UserTabController {
      */
     @FXML
     private void initialize() {
-        // Initialize buttons bindings for disabling when no selection
-        userViewEditButton.disableProperty().bind(
-                userTable.getSelectionModel().selectedItemProperty().isNull()
-        );
-        userLendButton.disableProperty().bind(
-                userTable.getSelectionModel().selectedItemProperty().isNull()
-        );
-
-        // Binding for selected user
+        // Binding for selected user and property
         userTable.getSelectionModel().selectedItemProperty().addListener(observable -> {
-            selectedUser = userTable.getSelectionModel().getSelectedItem();
-        });
+            selectedUser = userTable.getSelectionModel().getSelectedItem();});
+        
+        selectedUserProperty.bind(userTable.getSelectionModel().selectedItemProperty());
+
+        // Initialize View/Edit Button bindings for disabling when no selection
+        userViewEditButton.disableProperty().bind(selectedUserProperty.isNull());
+
+        // Bind View/Edit Tooltip
+        userViewEditButtonTooltip.textProperty().bind(
+            Bindings.when(selectedUserProperty.isNull())
+                .then("No user selected")
+                .otherwise(""));
+
+        // Intialize binding telling if a user can borrow !!only updates on selectedUser updates
+        selectedUserCanBorrow = Bindings.lessThan(Bindings.createIntegerBinding(() -> 
+                selectedUserProperty.get() != null? selectedUserProperty.get().getBorrowedBooksCount() : 1, selectedUserProperty), 3);
+
+        // Initialize Lend Button bindings for disabling when no selection or unavailable copies
+        userLendButton.disableProperty().bind(
+                userTable.getSelectionModel().selectedItemProperty().isNull().or(Bindings.not(selectedUserCanBorrow)));
+
+        // Bind Lend to button tooltip
+        userLendButtonTooltip.textProperty().bind(
+            Bindings.when(selectedUserProperty.isNull())
+            .then("No user selected")
+            .otherwise(Bindings.when(selectedUserCanBorrow)
+                .then("")
+                .otherwise("Selected User has too many books currently borrowed")));
 
         // Initialize search field listener
         userSearchField.textProperty().addListener(observable -> {

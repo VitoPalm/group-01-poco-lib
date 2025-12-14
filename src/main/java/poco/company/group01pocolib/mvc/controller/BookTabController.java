@@ -5,8 +5,13 @@ import java.util.List;
 
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableNumberValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -58,20 +63,33 @@ public class BookTabController {
     @FXML private Button bookViewEditButton;
     @FXML private Button bookLendButton;
 
+    // Book Tab Button Tooltips
+    @FXML private Tooltip bookLendButtonTooltip;
+    @FXML private Tooltip bookViewEditButtonTooltip;
+
     // Data management
     private ObservableList<Book> bookData;
-    private Book selectedBook;
     private List<SearchResult<Book>> currentSearchResults;
+
+    // Table entry selection
+    private Book selectedBook;
+    private ObjectProperty<Book> selectedBookProperty = new SimpleObjectProperty<>();
+    private BooleanBinding selectedBookIsLendable;          /// This binding only updates based on the selected book, NOT the book's attributes
+
 
     private Stage primaryStage;
     private PocoLibController mainController;
 
     /**
      * @brief   Initializes the controller class, setting up all the listeners. This method is automatically called after fxml file has been loaded.
+     * @todo    IMPORTANT: ADD `selectedBookProperty.set(book)` EACH TIME THE NUMBER OF COPIES IS MODIFIED
      * 
      * @details
      * Setup of all the listeners of the BookTab: selected table entry, Omnisearch textfield
-     * - When an entry is selected, the "Lend" and "View/Edit" buttons will become clickable
+     * - When an entry is selected, the "View/Edit" button will become clickable
+     *   - otherwise, a tooltip will show explaining why the button isn't clickable
+     * - When an entry with available copies is selected, the "Lend" button will become clickable
+     *   - otherwise, a tooltip will show explaining why the button isn't clickable
      * - When the Omnisearch textfield is empty, the full table data is shown, whereas a type in the search box
      *   enables the view of the search results
      * - When the Omnisearch textfield is empty, the prompt text shows the number of entries in the Set
@@ -82,18 +100,36 @@ public class BookTabController {
      */
     @FXML
     private void initialize() {
-        // Initialize buttons bindings for disabling when no selection
-        bookViewEditButton.disableProperty().bind(
-                bookTable.getSelectionModel().selectedItemProperty().isNull()
-        );
-        bookLendButton.disableProperty().bind(
-                bookTable.getSelectionModel().selectedItemProperty().isNull()
-        );
-
-        // Binding for selected book
+        // Binding for selected book and property
         bookTable.getSelectionModel().selectedItemProperty().addListener(observable -> {
-            selectedBook = bookTable.getSelectionModel().getSelectedItem();
-        });
+            selectedBook = bookTable.getSelectionModel().getSelectedItem();});
+
+        selectedBookProperty.bind(bookTable.getSelectionModel().selectedItemProperty());
+        
+        // Initialize View/Edit Button bindings for disabling when no selection
+        bookViewEditButton.disableProperty().bind(selectedBookProperty.isNull());
+
+        // Bind View/Edit Tooltip
+        bookViewEditButtonTooltip.textProperty().bind(
+            Bindings.when(selectedBookProperty.isNull())
+                .then("No book selected")
+                .otherwise(""));
+
+        // Initialize binding telling if a book is lendable !!only updates on selectedBook updates
+        selectedBookIsLendable = Bindings.greaterThan(Bindings.createIntegerBinding(() -> 
+                selectedBookProperty.get() != null? selectedBookProperty.get().getCopies() : 1, selectedBookProperty), 0);
+
+        // Initialize Lend Button bindings for disabling when no selection or unavailable copies
+        bookLendButton.disableProperty().bind(              
+                bookTable.getSelectionModel().selectedItemProperty().isNull().or(Bindings.not(selectedBookIsLendable))); 
+
+        // Bind Lend Button tooltip
+        bookLendButtonTooltip.textProperty().bind(
+            Bindings.when(selectedBookProperty.isNull())
+                .then("No book selected")
+                .otherwise(Bindings.when(selectedBookIsLendable)
+                    .then("")
+                    .otherwise("Selected Book has no available copies")));
 
         // Initialize search field listener
         bookSearchField.textProperty().addListener(observable -> {

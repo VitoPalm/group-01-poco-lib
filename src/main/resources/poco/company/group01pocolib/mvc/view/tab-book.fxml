@@ -2,10 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -51,14 +53,31 @@
                     <Insets top="10.0" />
                 </padding>
                 <Button fx:id="bookAddButton" mnemonicParsing="false" onAction="#handleBookAdd" text="Add" />
-                <Button fx:id="bookViewEditButton" mnemonicParsing="false" onAction="#handleBookViewEdit" text="View &amp; Edit" />
+            <Label>
+               <tooltip>
+                  <Tooltip fx:id="bookViewEditButtonTooltip" />
+               </tooltip>
+               <graphic>
+                      <Button fx:id="bookViewEditButton" mnemonicParsing="false" onAction="#handleBookViewEdit" text="View &amp; Edit" />
+               </graphic>
+            </Label>
             </HBox>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
                 <padding>
                     <Insets top="10.0" />
                 </padding>
-                <Button fx:id="bookLendButton" mnemonicParsing="false" onAction="#handleBookLend" text="Lend" />
+            <Label>
+               <graphic>
+                      <Button fx:id="bookLendButton" mnemonicParsing="false" onAction="#handleBookLend" text="Lend" />
+               </graphic>
+               <tooltip>
+                        <Tooltip fx:id="bookLendButtonTooltip" />
+               </tooltip>
+            </Label>
             </HBox>
         </GridPane>
     </VBox>
+   <tooltip>
+      <Tooltip text="Empty Tooltip" />
+   </tooltip>
 </Tab>
