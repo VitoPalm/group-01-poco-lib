@@ -260,7 +260,7 @@ public class LendingPropController {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                System.err.println(e.getMessage());
+                e.printStackTrace();
             }
 
             // Clear selected book and user in main controller if it was a new lending

@@ -37,7 +37,7 @@ public class Hash {
             return Base64.getEncoder().encodeToString(bytes);
 
         } catch (NoSuchAlgorithmException | IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
@@ -61,20 +61,17 @@ public static String getFileHashFromLines(List<String> linesList, String lineSep
     try {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
-        for (int i = 0; i < linesList.size(); i++) {
-            byte[] lineBytes = linesList.get(i).getBytes(StandardCharsets.UTF_8);
+        for (String line : linesList) {
+            byte[] lineBytes = line.getBytes(StandardCharsets.UTF_8);
             digest.update(lineBytes);
-
-            // Add line separator after each line except the last
-            if (i < linesList.size() - 1) {
-                digest.update(lineSeparator.getBytes(StandardCharsets.UTF_8));
-            }
+            // Add line separator after each line (including the last one)
+            digest.update(lineSeparator.getBytes(StandardCharsets.UTF_8));
         }
 
         byte[] hash = digest.digest();
         checksum = Base64.getEncoder().encodeToString(hash);
     } catch (NoSuchAlgorithmException e) {
-        System.err.println(e.getMessage());
+        e.printStackTrace();
         checksum = null;
     }
 

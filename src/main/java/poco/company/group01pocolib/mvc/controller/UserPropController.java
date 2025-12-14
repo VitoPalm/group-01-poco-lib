@@ -256,7 +256,7 @@ public class UserPropController {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                System.err.println(e.getMessage());
+                e.printStackTrace();
             }
 
             // Refresh the data in all tabs

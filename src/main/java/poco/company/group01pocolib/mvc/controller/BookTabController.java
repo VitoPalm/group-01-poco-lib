@@ -414,7 +414,7 @@ public class BookTabController {
             stage.show();
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

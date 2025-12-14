@@ -70,19 +70,19 @@ public class Search {
             return null;
         }
 
-        // Generate trigrams from the processed query
-        List<String> trigrams = index.generateTrigrams(processedQuery);
+        // Generate ngrams from the processed query
+        List<String> ngrams = index.generateNGrams(processedQuery);
 
-        if (trigrams == null) {
+        if (ngrams == null) {
             return null;
         }
 
         // Map to store items and their hit counts
         Map<T, SearchResult<T>> hitCounts = new HashMap<>();
 
-        for (String trigram : trigrams) {
-            // Retrieve set of items for the current trigram
-            Set<T> items = index.getTriMappings().get(trigram);
+        for (String ngram : ngrams) {
+            // Retrieve set of items for the current ngram
+            Set<T> items = index.getNGramMappings().get(ngram);
 
             // If items are found in the index
             if (items != null) {
