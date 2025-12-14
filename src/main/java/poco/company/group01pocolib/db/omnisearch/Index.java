@@ -113,6 +113,7 @@ public class Index<T> implements Serializable {
      */
     public void fastRemove(String searchableContent, T item) {
         List<String> keys = generateTrigrams(searchableContent);
+        if (keys == null) return;
 
         for (String key : keys) {
             Set<T> items = triMappings.get(key);
