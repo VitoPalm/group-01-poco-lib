@@ -1,151 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<Pane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12"
-      fx:controller="poco.company.group01pocolib.mvc.controller.BookPropController">
-    <VBox fx:id="viewBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-          minWidth="-Infinity" spacing="20.0" visible="true">
+<Pane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poco.company.group01pocolib.mvc.controller.BookPropController">
+    <VBox fx:id="viewBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0">
 
         <padding>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
         </padding>
 
         <GridPane hgap="10.0" vgap="10.0">
             <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
 
             <Label text="ISBN">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
             <Label text="Title" GridPane.rowIndex="1">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
             <Label text="Authors" GridPane.rowIndex="2">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
             <Label text="Year" GridPane.rowIndex="3">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
             <Label text="Available copies" GridPane.rowIndex="4">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
 
-            <Label fx:id="isbnLabel" text="..." GridPane.columnIndex="1"/>
-            <Label fx:id="titleLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label fx:id="authorsLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-            <Label fx:id="yearLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-            <Label fx:id="copiesLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <Label fx:id="isbnLabel" text="..." GridPane.columnIndex="1" />
+            <Label fx:id="titleLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="authorsLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="yearLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="copiesLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
             <Label text="Lent to" GridPane.rowIndex="5">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
 
-            <Hyperlink fx:id="lentToLink" onAction="#handleViewHistory" text="0 users (0 total)"
-                       GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            <Hyperlink fx:id="lentToLink" onAction="#handleViewHistory" text="0 users (0 total)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
         </GridPane>
 
         <HBox alignment="CENTER" spacing="10.0">
-            <Button fx:id="editButton" onAction="#handleEdit" text="Edit"/>
-            <Button fx:id="deleteButton" onAction="#handleDelete" text="Delete" textFill="#e00000"/>
-            <Button fx:id="lendButton" onAction="#handleLend" text="Lend"/>
+            <Button fx:id="editButton" onAction="#handleEdit" text="Edit" />
+         <Label>
+            <graphic>
+                  <Button fx:id="deleteButton" onAction="#handleDelete" text="Delete" textFill="#e00000" />
+            </graphic>
+            <tooltip>
+               <Tooltip fx:id="deleteButtonTooltip" />
+            </tooltip>
+         </Label>
+            <Button fx:id="lendButton" onAction="#handleLend" text="Lend" />
         </HBox>
     </VBox>
-    <VBox fx:id="editBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-          minWidth="-Infinity" spacing="20.0" visible="false">
+    <VBox fx:id="editBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" visible="false">
 
         <padding>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
         </padding>
 
         <GridPane hgap="10.0" vgap="10.0">
             <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
 
             <Label text="ISBN">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
             <Label text="Title" GridPane.rowIndex="1">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
             <Label text="Authors" GridPane.rowIndex="2">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
             <Label text="Year" GridPane.rowIndex="3">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
             <Label text="Available copies" GridPane.rowIndex="4">
                 <font>
-                    <Font name="System Bold" size="13.0"/>
+                    <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
 
-            <TextField fx:id="isbnField" promptText="978-..." GridPane.columnIndex="1"/>
-            <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <TextField fx:id="authorsField" promptText="Author 1; Author 2" GridPane.columnIndex="1"
-                       GridPane.rowIndex="2"/>
-            <TextField fx:id="yearField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <TextField fx:id="isbnField" promptText="or other unique identifier" GridPane.columnIndex="1" />
+            <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="authorsField" promptText="Author 1; Author 2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="yearField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
             <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                <Button fx:id="minusButton" maxHeight="26.0" maxWidth="26.0" minHeight="26.0" minWidth="26.0"
-                        mnemonicParsing="false" onAction="#handleDecrement" prefHeight="26.0" prefWidth="26.0"
-                        text="-"/>
+                <Button fx:id="minusButton" maxHeight="26.0" maxWidth="26.0" minHeight="26.0" minWidth="26.0" mnemonicParsing="false" onAction="#handleDecrement" prefHeight="26.0" prefWidth="26.0" text="-" />
 
-                <TextField fx:id="copiesField" prefWidth="40.0" text="0"/>
+                <TextField fx:id="copiesField" prefWidth="40.0" text="0" />
 
-                <Button fx:id="plusButton" maxHeight="26.0" maxWidth="26.0" minHeight="26.0" minWidth="26.0"
-                        mnemonicParsing="false" onAction="#handleIncrement" prefHeight="26.0" prefWidth="26.0"
-                        text="+"/>
+                <Button fx:id="plusButton" maxHeight="26.0" maxWidth="26.0" minHeight="26.0" minWidth="26.0" mnemonicParsing="false" onAction="#handleIncrement" prefHeight="26.0" prefWidth="26.0" text="+" />
+            <Label fx:id="copiesEditLabel" text="(Lent: 0; Total: 0)" />
             </HBox>
         </GridPane>
 
-        <Label fx:id="errorLabel" text="ISBN seems to be invalid" textFill="#e00000" visible="false"/>
+        <Label fx:id="errorLabel" text="ISBN seems to be invalid" textFill="#e00000" visible="false" />
 
         <HBox alignment="CENTER" spacing="10.0">
-            <Button cancelButton="true" onAction="#handleCancel" text="Cancel"/>
-            <Button fx:id="saveButton" defaultButton="true" onAction="#handleSave" text="Save"/>
+            <Button cancelButton="true" onAction="#handleCancel" text="Cancel" />
+            <Button fx:id="saveButton" defaultButton="true" onAction="#handleSave" text="Save" />
         </HBox>
     </VBox>
 </Pane>

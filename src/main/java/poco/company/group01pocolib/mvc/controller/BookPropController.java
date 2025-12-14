@@ -1,5 +1,12 @@
 package poco.company.group01pocolib.mvc.controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableNumberValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -7,8 +14,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
 import poco.company.group01pocolib.mvc.model.Book;
 import poco.company.group01pocolib.mvc.model.BookSet;
 
@@ -30,6 +39,7 @@ public class BookPropController {
 
     @FXML private Button editButton;
     @FXML private Button deleteButton;
+    @FXML private Tooltip deleteButtonTooltip;
     @FXML private Button lendButton;
 
     // ----------------- //
@@ -41,13 +51,18 @@ public class BookPropController {
     @FXML private TextField titleField;
     @FXML private TextField authorsField;
     @FXML private TextField yearField;
+    private IntegerProperty yearProperty = new SimpleIntegerProperty();
 
     @FXML private Button minusButton;
-    @FXML private TextField copiesField;
+    @FXML private TextField copiesField;                /// Represents the number of available copies
+    private IntegerProperty copiesProperty = new SimpleIntegerProperty();
     @FXML private Button plusButton;
+    @FXML private Label copiesEditLabel;
 
     @FXML private Label errorLabel;
     @FXML private Button saveButton;
+
+    private BooleanProperty isbnIsValid = new SimpleBooleanProperty(false);
 
 
     // ------------- //
@@ -126,19 +141,83 @@ public class BookPropController {
             this.originalIsbn = book.getIsbn(); // Save original ISBN
         }
 
-        // Set view labels
+        // ------------------ //
+        //  View static sets  //
+        // ------------------ //
+
+        // Properties
         isbnLabel.setText(this.book.getIsbn());
         titleLabel.setText(this.book.getTitle());
         authorsLabel.setText(this.book.getAuthorsString());
         yearLabel.setText(String.valueOf(this.book.getYear()));
-        copiesLabel.setText(String.valueOf(this.book.getCopies()));
+        copiesLabel.setText(String.format("%d now (%d total)", this.book.getCopies(), this.book.getCopies()+this.book.getCopiesLent()));
+        lentToLink.setText(String.format("%d users now (%d users total)", this.book.getCopiesLent(), this.book.getTimesLent()));
 
-        // Set edit fields
+        // Buttons and Tooltips
+        deleteButton.setDisable(this.book.getCopiesLent() > 0);
+        deleteButtonTooltip.setText(this.book.getCopiesLent() > 0? "Book has active lendings" : "");
+        
+        
+        // ------------------ //
+        //  Edit static sets  //
+        // ------------------ //
+
+        // Set edit properties
         isbnField.setText(this.book.getIsbn());
         titleField.setText(this.book.getTitle());
         authorsField.setText(this.book.getAuthorsString());
         yearField.setText(String.valueOf(this.book.getYear()));
         copiesField.setText(String.valueOf(this.book.getCopies()));
+
+        initializeBindings();
+    }
+
+    private void initializeBindings() {
+        // ----------------- //
+        //   View bindings   //
+        // ----------------- //
+
+
+        // ----------------- //
+        //   Edit bindings   //
+        // ----------------- //
+
+        // Binding to get the value of numerical fields as an IntegerProperties
+        copiesField.textProperty().bindBidirectional(copiesProperty, new NumberStringConverter());
+        yearField.textProperty().bindBidirectional(yearProperty, new NumberStringConverter());
+
+        // Binding to disable the minus button on 0 in the available copiesField
+        minusButton.disableProperty().bind(Bindings.when(Bindings.lessThanOrEqual(copiesProperty, 0)).then(true).otherwise(false));
+
+        // ISBN univocity check
+        isbnIsValid.bind(Bindings.createBooleanBinding(() -> {
+            String isbn = isbnField.getText();
+
+            if (isbn == null || isbn.isBlank()) 
+                return false;
+
+            return !bookSet.isStored(isbn);
+        }, isbnField.textProperty()));
+        
+        // copiesEditLabel binding
+        final int lentCopies = book.getCopiesLent();
+        copiesEditLabel.textProperty().bind(Bindings.createStringBinding(() -> {
+            return String.format("(Lent: %d; Total: %d)", lentCopies, copiesProperty.get()+lentCopies);}, copiesProperty));
+
+
+        // Save button disabling logic
+        saveButton.disableProperty().bind(
+            isbnField.textProperty().isEmpty().or(      // Any empty field
+            titleField.textProperty().isEmpty().or(
+            authorsField.textProperty().isEmpty().or(
+            yearField.textProperty().isEmpty().or(
+            copiesField.textProperty().isEmpty().or(
+            
+            Bindings.not(isbnIsValid).or(               // invalid isbn
+            
+            yearProperty.lessThanOrEqualTo(0).or(       // invalid numbers 
+            copiesProperty.lessThan(0)))))))));
+
     }
 
     /**
@@ -221,12 +300,7 @@ public class BookPropController {
     @FXML
     private void handleDecrement() {
         int currentCopies = getCopiesAsInteger();
-        if (currentCopies > 1) {
-            copiesField.setText(String.valueOf(currentCopies - 1));
-            errorLabel.setText("");
-        } else {
-            errorLabel.setText("Number of copies must be at least 1.");
-        }
+        copiesField.setText(String.valueOf(currentCopies - 1));
     }
 
     /**

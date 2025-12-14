@@ -178,11 +178,9 @@ public class Book implements Serializable {
     /**
      * @brief   Sets the number of copies currently lent out of the Book.
      * @param   copiesLent The number of copies currently lent out.
-     * @throws  BookDataNotValidException If the number of copies lent is greater than the total number of copies.
      */
     public void setCopiesLent(int copiesLent) {
-        if (copiesLent < this.copies) this.copiesLent = copiesLent;
-        else throw new BookDataNotValidException("Cannot set copies lent greater than total copies.");
+        this.copiesLent = copiesLent;
     }
 
     /**

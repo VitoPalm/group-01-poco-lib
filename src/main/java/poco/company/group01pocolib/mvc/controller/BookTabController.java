@@ -214,18 +214,12 @@ public class BookTabController {
      * @author  Giovanni Orsini
      */
     private void initializeBookColumns() {
-        bookIsbnColumn.setCellValueFactory(cellData ->
-                                           new ReadOnlyObjectWrapper<>(cellData.getValue().getIsbn()));
-        bookTitleColumn.setCellValueFactory(cellData ->
-                                            new ReadOnlyObjectWrapper<>(cellData.getValue().getTitle()));
-        bookAuthorsColumn.setCellValueFactory(cellData ->
-                                              new ReadOnlyObjectWrapper<>(cellData.getValue().getAuthorsString()));
-        bookYearColumn.setCellValueFactory(cellData ->
-                                           new ReadOnlyObjectWrapper<>(cellData.getValue().getYear()));
-        bookAvailableColumn.setCellValueFactory(cellData ->
-                                                new ReadOnlyObjectWrapper<>(cellData.getValue().getCopies()));
-        bookLentColumn.setCellValueFactory(cellData ->
-                                           new ReadOnlyObjectWrapper<>(cellData.getValue().getCopiesLent()));
+        bookIsbnColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getIsbn()));
+        bookTitleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getTitle()));
+        bookAuthorsColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getAuthorsString()));
+        bookYearColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getYear()));
+        bookAvailableColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopies()));
+        bookLentColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCopiesLent()));
     }
 
     /**
