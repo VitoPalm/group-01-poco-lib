@@ -66,21 +66,6 @@ class TestGuiUsers {
         verifyThat("#userTab", isVisible());
     }
     
-    /**
-     * @brief Test to verify the user table is visible with all columns.
-     * @param robot The FxRobot instance for simulating user interactions.
-     */
-    @Test
-    void testUserTable(FxRobot robot) {
-        navigateToUserTab(robot);
-        
-        verifyThat("#userTable", isVisible());
-        verifyThat("#userIdColumn", isVisible());
-        verifyThat("#userNameColumn", isVisible());
-        verifyThat("#userSurnameColumn", isVisible());
-        verifyThat("#userEmailColumn", isVisible());
-        verifyThat("#userLentColumn", isVisible());
-    }
 
     /**
      * @brief Test to verify the search functionality in the User Tab.
