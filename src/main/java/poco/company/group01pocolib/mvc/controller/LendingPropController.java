@@ -51,7 +51,6 @@ public class LendingPropController {
     @FXML private DatePicker returnDatePicker;
 
     @FXML private Label infoLabel;
-    @FXML private Label errorLabel;
     @FXML private Button saveButton;
 
     
@@ -68,12 +67,7 @@ public class LendingPropController {
         viewBox.managedProperty().bind(viewBox.visibleProperty());
         editBox.managedProperty().bind(editBox.visibleProperty());
         infoLabel.managedProperty().bind(infoLabel.visibleProperty());
-        errorLabel.managedProperty().bind(errorLabel.visibleProperty());
-
-        returnDatePicker.valueProperty().addListener(observable -> {
-            validInput.set(validateInput());
-        });
-
+        
         saveButton.disableProperty().bind(validInput.not());
     }
 
@@ -241,49 +235,39 @@ public class LendingPropController {
      */
     @FXML
     private void handleSave() {
-        if (!validateInput()) {
-            Alert alert = new Alert(AlertType.ERROR, "Invalid input fields.");
-            alert.initOwner(dialogStage);
-            alert.setTitle("Invalid Input");
-            alert.setHeaderText("Please correct invalid fields");
-            alert.setContentText(errorLabel.getText());
-            alert.showAndWait();
-        } else {
-            // Save lending details from edit fields
-            lending.setReturnDate(returnDatePicker.getValue());
+        // Save lending details from edit fields
+        lending.setReturnDate(returnDatePicker.getValue());
 
-            // Add or edit lending in the lending set
-            lendingSet.addOrEditLending(lending);
+        // Add or edit lending in the lending set
+        lendingSet.addOrEditLending(lending);
 
-            // Show success info
-            infoLabel.setVisible(true);
-            errorLabel.setVisible(false);
+        // Show success info
+        infoLabel.setVisible(true);
 
-            // Wait a moment to show the info label
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            // Clear selected book and user in main controller if it was a new lending
-            if (isNewLending) {
-                // Increment counters for new lending
-                lending.getBook().lendCopy();
-                lending.getUser().incrementBorrowedBooksCount();
-                // Save updated book and user
-                bookSet.addOrEditBook(lending.getBook());
-                userSet.addOrEditUser(lending.getUser());
-                mainController.setMasterSelectedBook(null);
-                mainController.setMasterSelectedUser(null);
-            }
-
-            // Refresh the data in all tabs
-            mainController.refreshTabData();
-
-            // Close the dialog
-            dialogStage.close();
+        // Wait a moment to show the info label
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+        // Clear selected book and user in main controller if it was a new lending
+        if (isNewLending) {
+            // Increment counters for new lending
+            lending.getBook().lendCopy();
+            lending.getUser().incrementBorrowedBooksCount();
+            // Save updated book and user
+            bookSet.addOrEditBook(lending.getBook());
+            userSet.addOrEditUser(lending.getUser());
+            mainController.setMasterSelectedBook(null);
+            mainController.setMasterSelectedUser(null);
+        }
+
+        // Refresh the data in all tabs
+        mainController.refreshTabData();
+
+        // Close the dialog
+        dialogStage.close();
     }
 
     /**
@@ -292,33 +276,6 @@ public class LendingPropController {
     @FXML
     private void handleCancel() {
         dialogStage.close();
-    }
-
-    /**
-     * @brief   Validates the input fields in the dialog.
-     * @details This method validates all input fields and displays error messages if any field is empty or not valid.
-     *
-     * @return  `true` if all fields are valid, `false` otherwise
-     */
-    private boolean validateInput() {
-        boolean output = true;
-        errorLabel.setVisible(false);
-
-        if (lending.getBook() == null) {
-            errorLabel.setText("Book cannot be null.");
-            errorLabel.setVisible(true);
-            output = false;
-        } else if (lending.getUser() == null) {
-            errorLabel.setText("User cannot be null.");
-            errorLabel.setVisible(true);
-            output = false;
-        } else if (returnDatePicker.getValue() == null) {
-            errorLabel.setText("Return date cannot be empty.");
-            errorLabel.setVisible(true);
-            output = false;
-        }
-
-        return output;
     }
 
     // ------------- //

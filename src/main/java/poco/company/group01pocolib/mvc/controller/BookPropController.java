@@ -72,7 +72,6 @@ public class BookPropController {
     @FXML private Button plusButton;
     @FXML private Label copiesEditLabel;
 
-    @FXML private Label errorLabel;
     @FXML private Button saveButton;
     @FXML private Tooltip saveButtonTooltip;
     private BooleanBinding emptyTextfieldsBinding;
@@ -333,10 +332,8 @@ public class BookPropController {
         int currentCopiesAvailable = getCopiesAvailableAsInteger();
         if (currentCopiesAvailable >= 1) {
             copiesAvailableField.setText(String.valueOf(currentCopiesAvailable + 1));
-            errorLabel.setText("");
         } else {
             copiesAvailableField.setText("1");
-            errorLabel.setText("");
         }
     }
 
