@@ -138,6 +138,24 @@ public class Lending implements Serializable {
     }
 
     /**
+     * @brief   Sets the lending counter to a specific value.
+     * @details This method should be called when loading lendings from the database to ensure
+     *          that new lendings don't reuse existing IDs.
+     * @param   counter The value to set the lending counter to.
+     */
+    public static void setLendingCounter(int counter) {
+        lendingCounter = counter;
+    }
+
+    /**
+     * @brief   Gets the current value of the lending counter.
+     * @return  The current lending counter value.
+     */
+    public static int getLendingCounter() {
+        return lendingCounter;
+    }
+
+    /**
      * @brief   Checks if the Book has been returned.
      * @return  true if the Book has been returned, false otherwise.
      */
@@ -258,6 +276,13 @@ public class Lending implements Serializable {
      * @author  Giovanni Orsini
      */
     public String toDBString() {
+        // Validate that book and user are not null to prevent NullPointerException
+        if (book == null || user == null) {
+            System.err.println("Error: Cannot create DB string for lending " + lendingId + 
+                             " - book or user is null (book: " + book + ", user: " + user + ")");
+            throw new IllegalStateException("Cannot save lending with null book or user");
+        }
+        
         return getLendingId() + FIELD_SEPARATOR +
                getBook().getIsbn() + FIELD_SEPARATOR + 
                getUser().getId() + FIELD_SEPARATOR +

@@ -143,6 +143,15 @@ public class UserPropController {
         emailLabel.setText(this.user.getEmail());
         borrowedLink.setText(this.user.getBorrowedBooksCount() + " books (" + this.user.getBorrowedBooksEverCount() + " total)");
 
+        // Disable delete button if user has active lendings
+        if (this.user.getBorrowedBooksCount() > 0) {
+            deleteButton.setDisable(true);
+            deleteButton.setTooltip(new Tooltip("Cannot delete user with active lendings"));
+        } else {
+            deleteButton.setDisable(false);
+            deleteButton.setTooltip(null);
+        }
+
         // Set edit fields
         if (filler != null) {
             idField.setText("");

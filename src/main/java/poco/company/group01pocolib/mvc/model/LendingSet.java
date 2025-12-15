@@ -194,6 +194,8 @@ public class LendingSet implements Serializable {
         if (currentDBHash.equals(lendingSet.getLastKnownDBHash())) {
             lendingSet.setDBPath(DBPath);
             lendingSet.setLendingDB(currentDB);
+            // Restore the lending counter from the loaded set
+            lendingSet.restoreLendingCounter();
             return lendingSet;
         } else {
             lendingSet.setDBPath(DBPath);
@@ -241,6 +243,7 @@ public class LendingSet implements Serializable {
 
         int i = 0;
         String line;
+        int lastLendingId = 0;
 
         // Iterate through each line in the DB file and parse it into a Lending object
         while ((line = this.lendingDB.readNthLine(i)) != null) {
@@ -248,16 +251,54 @@ public class LendingSet implements Serializable {
 
                 Lending lending = Lending.fromDBString(line, bookSet, userSet);
 
+                // Skip lending if book or user is null (corrupted data)
+                if (lending.getBook() == null || lending.getUser() == null) {
+                    System.err.println("Warning: Skipping corrupted lending at line " + i + 
+                                     " - book or user not found in database");
+                    System.err.println("  Line content: " + line);
+                    i++;
+                    continue;
+                }
+
                 this.lendingSet.add(lending);
-                this.lendingIndex.add(lending.toSearchableString(), lending);
+                String searchableString = lending.toSearchableString();
+                if (!searchableString.isEmpty()) {
+                    this.lendingIndex.add(searchableString, lending);
+                }
+
+                // Track the last lending ID to restore the counter
+                if (lending.getLendingId() > lastLendingId) {
+                    lastLendingId = lending.getLendingId();
+                }
 
             } catch (Exception e) {
+                System.err.println("Error parsing lending at line " + i + ": " + e.getMessage());
                 e.printStackTrace();
             }
             i++;
         }
 
+        // Restore the lending counter to continue from the last ID found
+        Lending.setLendingCounter(lastLendingId);
+        System.out.println("Restored lending counter to: " + lastLendingId);
+
         updateLastKnownDBHash();
+    }
+
+    /**
+     * @brief   Restores the lending counter from the current set of lendings.
+     * @details Finds the maximum lending ID in the set and sets the counter accordingly.
+     *          This ensures new lendings won't reuse existing IDs.
+     */
+    private void restoreLendingCounter() {
+        int lastLendingId = 0;
+        for (Lending lending : lendingSet) {
+            if (lending.getLendingId() > lastLendingId) {
+                lastLendingId = lending.getLendingId();
+            }
+        }
+        Lending.setLendingCounter(lastLendingId);
+        System.out.println("Restored lending counter to: " + lastLendingId);
     }
 
     /**
@@ -279,9 +320,16 @@ public class LendingSet implements Serializable {
 
     /**
      * @brief   Removes a Lending from the LendingSet.
+     * @details If the lending is still active (not returned), this method will automatically
+     *          update the book and user counters (return the copy and decrement borrowed books).
      * @param   lending The Lending to remove.
      */
     public void removeLending(Lending lending){
+        // If the lending was not returned, mark it as returned to update counters
+        if (lending != null && !lending.isReturned()) {
+            lending.setReturned();
+        }
+        
         lendingSet.remove(lending);
         lendingIndex.remove(lending);
 
@@ -389,6 +437,7 @@ public class LendingSet implements Serializable {
      * @author  Giovanni Orsini
      */
     private void syncOnWrite() {
+        
         // Clear the DB file
         lendingDB.clear();
 

@@ -72,7 +72,7 @@ public class LendingTabController {
     @FXML private Tooltip lendingReturnedButtonTooltip;
 
     // Data management
-    private ObservableList<Lending> lendingData;
+    private ObservableList<Lending> lendingData = FXCollections.observableArrayList();
     private List<SearchResult<Lending>> currentSearchResults;
     
     // Table entry selection
@@ -165,8 +165,8 @@ public class LendingTabController {
             if (lendingSet == null)
                 return;
 
-            // Binding for number of entries in the set
-            lendingSearchField.promptTextProperty().bind(Bindings.format("OmniSearch %d lendings", lendingSet.size()));
+            // Binding for number of entries in the observable list (reflects actual table content)
+            lendingSearchField.promptTextProperty().bind(Bindings.format("OmniSearch %d lendings", Bindings.size(lendingData)));
         });
         
         Platform.runLater(() -> {
@@ -262,7 +262,7 @@ public class LendingTabController {
      * @brief   Loads data from the model into the controller.
      */
     public void loadData() {
-        this.lendingData = FXCollections.observableArrayList(lendingSet.getAllLendingsAsList());
+        lendingData.setAll(lendingSet.getAllLendingsAsList());
         lendingTable.setItems(lendingData);
         lendingTable.refresh(); // Force refresh to update cell values
     }
