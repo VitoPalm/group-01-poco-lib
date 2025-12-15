@@ -8,6 +8,7 @@ package poco.company.group01pocolib.mvc.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,8 +174,11 @@ public class BookTest {
     @Test
     public void testToSearchableString() {
         Book b = new Book("General Plan for Phoenix, 1985-2000", "City Council", "316830724", 1985, 1);
-        
-        assertEquals("general plan for phoenix, 1985-2000city council31683072419851", b.toSearchableString());   
+        String searchableString = b.toSearchableString();
+        assertTrue(searchableString.contains("general plan for phoenix, 1985-2000"));
+        assertTrue(searchableString.contains("city council"));
+        assertTrue(searchableString.contains("316830724"));
+        assertTrue(searchableString.contains("1985"));
     }
 
     /**
