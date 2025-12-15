@@ -120,6 +120,14 @@ public class DB implements Serializable {
     }
 
     /**
+     * @brief   Gets the line separator used in the DB file.
+     * @return  The line separator used in the DB file.
+     */
+    public String getLineSeparator() {
+        return this.lineSeparator;
+    }
+
+    /**
      * @brief   Updates the stored hash of the DB file.
      * @details This method recalculates the hash of the DB file based on its current content. It uses the internal
      *          cache of lines to compute the hash efficiently. If the cache is empty and cannot be built, it sets the
@@ -215,6 +223,23 @@ public class DB implements Serializable {
     public void clear() {
         this.cache.clear();
         this.updateDBFromCache(); // Writes an empty string to the file, clearing it
+    }
+
+    /**
+     * @brief   Rebuilds the whole database from a single input `String`.
+     * @details This method completely overwrites the database file with the provided input string. It also rebuilds
+     *          the internal cache to reflect the new content of the database file.
+     */
+    public boolean rebuildDBFromString(String newDBContent) {
+        try {
+            Files.writeString(this.getDBPathAsPath(), newDBContent, StandardCharsets.UTF_8);
+            this.buildCache();
+            this.updateDBFileHash();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -456,7 +481,6 @@ public class DB implements Serializable {
     public boolean appendLine(String newLine) {
         return writeNthLineWShift(this.cache.size(), newLine);
     }
-
     @Override
     public String toString() {
         if (this.cache.isEmpty()) this.buildCache();
