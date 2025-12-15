@@ -3,6 +3,7 @@ package poco.company.group01pocolib.mvc.controller;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
@@ -53,6 +54,7 @@ public class LendingTabController {
     // Lending Specific Columns
     @FXML private TableColumn<Lending, Integer> lendingIdColumn;
     @FXML private TableColumn<Lending, LocalDate> lendingReturnDateColumn;
+    @FXML private TableColumn<Lending, String> lendingStateColumn;
 
     // Book Specific Columns
     @FXML private TableColumn<Lending, String> lendingIsbnColumn;
@@ -112,14 +114,16 @@ public class LendingTabController {
 
         // Initialize buttons bindings for disabling when no selection
         lendingViewEditButton.disableProperty().bind(selectedLendingProperty.isNull());
-        lendingReturnedButton.disableProperty().bind(
-            selectedLendingProperty.isNull()
-            .or(Bindings.createBooleanBinding(
-                () -> selectedLendingProperty.get() != null && selectedLendingProperty.get().isReturned(),
-                selectedLendingProperty
-            ))
-        );
+        lendingReturnedButton.disableProperty().bind(selectedLendingProperty.isNull());
 
+        // binding for mark - unmark
+        lendingReturnedButton.textProperty().bind(Bindings.when(
+            Bindings.createBooleanBinding(() -> 
+            selectedLendingProperty.get() != null && selectedLendingProperty.get().isReturned(), selectedLendingProperty)
+            
+        ).then("Unmark as Returned").otherwise("Mark as Returned"));
+
+       
         // Tooltips binding
         lendingViewEditButtonTooltip.textProperty().bind(
             Bindings.when(selectedLendingProperty.isNull())
@@ -288,6 +292,8 @@ public class LendingTabController {
                 .toList();
             lendingData.setAll(filteredList);
         }
+
+        applyDefaultSortMethod();
         
         lendingTable.setItems(lendingData);
         lendingTable.refresh(); // Force refresh to update cell values
@@ -327,6 +333,11 @@ public class LendingTabController {
         lendingReturnDateColumn.setCellValueFactory(cellData -> {
             Lending lending = cellData.getValue();
             return new ReadOnlyObjectWrapper<>(lending != null ? lending.getReturnDate() : null);
+        });
+
+        lendingStateColumn.setCellValueFactory(cellData -> {
+            Lending lending = cellData.getValue();
+            return new ReadOnlyObjectWrapper<>(lending.isReturned()? "Returned" : (LocalDate.now().isAfter(lending.getReturnDate())? "Overdue" : "Active"));
         });
 
         // Book specific columns - accessing nested Book object
@@ -373,6 +384,13 @@ public class LendingTabController {
                 lendingData.sort((l1, l2) -> {
                     long diff1 = Math.abs(java.time.temporal.ChronoUnit.DAYS.between(today, l1.getReturnDate()));
                     long diff2 = Math.abs(java.time.temporal.ChronoUnit.DAYS.between(today, l2.getReturnDate()));
+
+                    if (diff1 == diff2) {
+                        // If equal, make active lendings come first, before overdue and returned ones
+                        if (!l1.isReturned() && l2.isReturned()) return -1;
+                        else if (l1.isReturned() && !l2.isReturned()) return 1;
+                        else return 0;
+                    }
                     return Long.compare(diff1, diff2);
                 });
         } finally {
@@ -518,6 +536,21 @@ public class LendingTabController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setResizable(false);
 
+            stage.setOnCloseRequest(event -> {
+                if (controller.getReturnButton().getText().equals("Mark as returned")) {     // it means that it is NOT returned
+                    if (lendingToViewOrEdit.isReturned())                               // so if it was returned
+                        lendingToViewOrEdit.setNotReturned();                           // updates to isn't anymore
+                } else {
+                    if (!lendingToViewOrEdit.isReturned())                              // it is returned and it wasn't returned
+                        lendingToViewOrEdit.setReturned();                              // now it is
+                }
+                lendingSet.addOrEditLending(lendingToViewOrEdit);
+                // Save updated book and user with decremented counters
+                bookSet.addOrEditBook(lendingToViewOrEdit.getBook());
+                userSet.addOrEditUser(lendingToViewOrEdit.getUser());
+                mainController.refreshTabData();
+            });
+
             stage.show();
 
         } catch (Exception e) {
@@ -548,7 +581,11 @@ public class LendingTabController {
     @FXML
     private void handleMarkAsReturned() {
         if (selectedLending != null) {
-            selectedLending.setReturned();
+            if (!selectedLending.isReturned()) 
+                selectedLending.setReturned();
+            else 
+                selectedLending.setNotReturned();
+
             lendingSet.addOrEditLending(selectedLending);
             // Save updated book and user with decremented counters
             bookSet.addOrEditBook(selectedLending.getBook());

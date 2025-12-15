@@ -54,7 +54,7 @@ public class UserTabController {
     @FXML private TableColumn<User, String> userNameColumn;
     @FXML private TableColumn<User, String> userSurnameColumn;
     @FXML private TableColumn<User, String> userEmailColumn;
-    @FXML private TableColumn<User, Integer> userLentColumn;
+    @FXML private TableColumn<User, Integer> userBorrowedColumn;
     // ------------------------------------------------ //
 
     // User Tab Buttons
@@ -238,6 +238,9 @@ public class UserTabController {
             // This ensures table updates correctly when data changes
             userData.setAll(userSet.getListOfUsers());
         }
+
+        applyDefaultSortMethod();
+        userTable.refresh();
     }
 
     /**
@@ -258,7 +261,7 @@ public class UserTabController {
         userEmailColumn.setCellValueFactory(cellData -> 
             new SimpleStringProperty(cellData.getValue().getEmail()));
         
-        userLentColumn.setCellValueFactory(cellData -> 
+        userBorrowedColumn.setCellValueFactory(cellData -> 
             new SimpleIntegerProperty(cellData.getValue().getBorrowedBooksCount()).asObject());
     }
 

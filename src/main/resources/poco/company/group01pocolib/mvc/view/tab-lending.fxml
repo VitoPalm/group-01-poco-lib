@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.CheckBox?>
 
 <Tab fx:id="lendingTab" text="Lending Page" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poco.company.group01pocolib.mvc.controller.LendingTabController">
     <VBox fx:id="containerVBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
@@ -36,7 +36,7 @@
         </rowConstraints>
         <children>
             <TextField fx:id="lendingSearchField" alignment="CENTER" prefHeight="26.0" prefWidth="381.0" promptText="OmniSearch lent" GridPane.columnIndex="1" />
-            <CheckBox fx:id="onlyActiveCheckBox" alignment="CENTER" ellipsisString="" mnemonicParsing="false" text="Show only active" textOverrun="LEADING_WORD_ELLIPSIS" GridPane.columnIndex="2" />
+            <CheckBox fx:id="onlyActiveCheckBox" alignment="CENTER" ellipsisString="" mnemonicParsing="false" selected="true" text="Show only active" textOverrun="LEADING_WORD_ELLIPSIS" GridPane.columnIndex="2" />
         </children>
         <padding>
             <Insets bottom="10.0" />
@@ -46,6 +46,7 @@
             <columns>
                 <TableColumn fx:id="lendingIdColumn" maxWidth="200.0" minWidth="90.0" prefWidth="110.0" text="Lending ID" />
                 <TableColumn fx:id="lendingReturnDateColumn" maxWidth="200.0" minWidth="90.0" prefWidth="110.0" text="Return date" />
+            <TableColumn fx:id="lendingStateColumn" maxWidth="200.0" minWidth="90.0" prefWidth="110.0" text="Status" />
                 <TableColumn fx:id="lendingIsbnColumn" maxWidth="200.0" minWidth="105.0" prefWidth="125.0" text="ISBN" />
                 <TableColumn fx:id="lendingTitleColumn" maxWidth="1500.0" minWidth="200.0" prefWidth="700.0" text="Title" />
                 <TableColumn fx:id="lendingUserIdColumn" maxWidth="200.0" minWidth="105.0" prefWidth="180.0" text="User ID" />

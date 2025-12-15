@@ -1,5 +1,6 @@
 package poco.company.group01pocolib.mvc.controller;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
@@ -86,10 +87,8 @@ public class LendingPropController {
             
             // Update return button based on lending status
             if (lending != null && lending.isReturned()) {
-                returnButton.setDisable(true);
-                returnButton.setText("Already returned");
+                returnButton.setText("Unmark as returned");
             } else {
-                returnButton.setDisable(false);
                 returnButton.setText("Mark as returned");
             }
         } else if (mode == PropMode.EDIT) {
@@ -175,6 +174,10 @@ public class LendingPropController {
         setLending(this.lending);
     }
 
+    public Button getReturnButton() {
+        return returnButton;
+    }
+
 
     // -------------------- //
     // View button handlers //
@@ -189,18 +192,17 @@ public class LendingPropController {
     }
 
     /**
-     * @brief   Handles the mark as returned button click event. It marks the lending as returned.
+     * @brief   Handles the mark as returned button click event. It marks the lending as returned for it to be updated on closure by LendingTabController
      */
     @FXML
     private void handleMarkAsReturned() {
-        lending.setReturned();
-        lendingSet.addOrEditLending(lending);
-        // Save updated book and user with decremented counters
-        bookSet.addOrEditBook(lending.getBook());
-        userSet.addOrEditUser(lending.getUser());
-        mainController.refreshTabData();
-        updateView();
+        if (returnButton.getText().equals("Mark as returned")) 
+            returnButton.setText("Unmarked as returned");
+
+        else    
+            returnButton.setText("Mark as returned");
     }
+    
 
     /**
      * @brief   Handles the delete button click event. It deletes the lending after confirmation.
