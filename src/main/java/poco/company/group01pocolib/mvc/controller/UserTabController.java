@@ -458,16 +458,6 @@ public class UserTabController {
             return; // No user selected(button disabled via Listener in TableHandler), do nothing
         }
 
-        if (!selectedUser.canBorrow()) {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Lending Not Allowed");
-            alert.setHeaderText("User Cannot Borrow More Books");
-            alert.setContentText("The selected user has reached the maximum number of borrowed books (" +
-                                 User.MAX_BORROWED_BOOKS + ") and cannot borrow more at this time.");
-            alert.showAndWait();
-            return;
-        }
-
         // This is an observed property, so setting it will trigger a check by the PocoLibController to switch tabs
         mainController.setMasterSelectedUser(selectedUser);
     }

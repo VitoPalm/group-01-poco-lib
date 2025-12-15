@@ -456,15 +456,6 @@ public class BookTabController {
             return; // No user selected(button disabled via Listener in TableHandler), do nothing
         }
 
-        if (selectedBook.getCopiesAvailable() == selectedBook.getCopiesLent()) {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Lending Not Allowed");
-            alert.setHeaderText("Book Cannot Be Lent");
-            alert.setContentText("The selected book has no available copies and cannot be lent at this time.");
-            alert.showAndWait();
-            return;
-        }
-
         // This is an observed property, so setting it will trigger a check by the PocoLibController to switch tabs
         mainController.setMasterSelectedBook(selectedBook);
     }

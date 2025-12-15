@@ -67,7 +67,11 @@ public class LendingPropController {
         viewBox.managedProperty().bind(viewBox.visibleProperty());
         editBox.managedProperty().bind(editBox.visibleProperty());
         infoLabel.managedProperty().bind(infoLabel.visibleProperty());
-        
+
+        returnDatePicker.valueProperty().addListener(observable -> {
+            validInput.set(validateInput());
+        });
+
         saveButton.disableProperty().bind(validInput.not());
     }
 
@@ -276,6 +280,27 @@ public class LendingPropController {
     @FXML
     private void handleCancel() {
         dialogStage.close();
+    }
+
+
+    /**
+     * @brief   Validates the input fields in the dialog.
+     * @details This method validates all input fields and displays error messages if any field is empty or not valid.
+     *
+     * @return  `true` if all fields are valid, `false` otherwise
+     */
+    private boolean validateInput() {
+        boolean output = true;
+
+        if (lending.getBook() == null) {
+            output = false;
+        } else if (lending.getUser() == null) {
+            output = false;
+        } else if (returnDatePicker.getValue() == null) {
+            output = false;
+        }
+
+        return output;
     }
 
     // ------------- //
