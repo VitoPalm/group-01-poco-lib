@@ -250,8 +250,12 @@ public class DB implements Serializable {
     private boolean updateDBFromCache() {
         StringBuilder updatedDB = new StringBuilder();
 
-        for(String line : this.cache) {
-            updatedDB.append(line).append(System.lineSeparator());
+        for(int i = 0; i < this.cache.size(); i++) {
+            updatedDB.append(this.cache.get(i));
+
+            if (i < this.cache.size() - 1) {
+                updatedDB.append(this.lineSeparator);
+            }
         }
 
         try {

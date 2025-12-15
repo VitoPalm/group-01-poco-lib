@@ -42,9 +42,9 @@ class HashTest {
         file2 = tempDir.resolve("file2.txt");
         file3 = tempDir.resolve("file3.txt");
 
-        Files.writeString(file1, "Content A\nContent B\n");
-        Files.writeString(file2, "Content A\nContent B\n"); // Identico a file1
-        Files.writeString(file3, "Content B\nContent C\n"); // Diverso
+        Files.writeString(file1, "Content A\nContent B");
+        Files.writeString(file2, "Content A\nContent B"); // Identico a file1
+        Files.writeString(file3, "Content B\nContent C"); // Diverso
 
 
     }
@@ -57,7 +57,7 @@ class HashTest {
     void testGetFileHash() {
         
         String hash = Hash.getFileHash(file1);
-        String expectedHash = "Ya3tSdDGM4mjYV+L9Em+V7KY5y+14lVi5FzQQS5NkGo="; // Precomputed hash for "Content A\nContent B\n"
+        String expectedHash = "KnlirmdL+MXT9I8hyQCM1Eod3abn3TMy5eE6/QG18Vc="; // Precomputed hash for "Content A\nContent B"
         assertEquals(expectedHash, hash);
         
     }
@@ -72,7 +72,7 @@ class HashTest {
         String hash1 = Hash.getFileHash(file1);
         String hash2 = Hash.getFileHash(file2);
         assertEquals(hash1, hash2);
-        Boolean result = Hash.compareFileHashes(file1, file2);
+        boolean result = Hash.compareFileHashes(file1, file2);
         assertTrue(result);
 
     }
@@ -87,7 +87,7 @@ class HashTest {
         String hash1 = Hash.getFileHash(file1);
         String hash3 = Hash.getFileHash(file3);
         assertNotEquals(hash1, hash3);
-        Boolean result = Hash.compareFileHashes(file1, file3);
+        boolean result = Hash.compareFileHashes(file1, file3);
         assertFalse(result);
     }
     
