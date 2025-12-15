@@ -292,6 +292,8 @@ public class LendingTabController {
                 .toList();
             lendingData.setAll(filteredList);
         }
+
+        applyDefaultSortMethod();
         
         lendingTable.setItems(lendingData);
         lendingTable.refresh(); // Force refresh to update cell values
@@ -376,9 +378,21 @@ public class LendingTabController {
 
         try {
             lendingTable.getSortOrder().clear();
-            lendingReturnDateColumn.setSortType(TableColumn.SortType.ASCENDING);
-            lendingTable.getSortOrder().add(lendingReturnDateColumn);
-            lendingTable.sort();
+
+                // Set default sort to return date closest to today
+                LocalDate today = LocalDate.now();
+                lendingData.sort((l1, l2) -> {
+                    long diff1 = Math.abs(java.time.temporal.ChronoUnit.DAYS.between(today, l1.getReturnDate()));
+                    long diff2 = Math.abs(java.time.temporal.ChronoUnit.DAYS.between(today, l2.getReturnDate()));
+
+                    if (diff1 == diff2) {
+                        // If equal, make active lendings come first, before overdue and returned ones
+                        if (!l1.isReturned() && l2.isReturned()) return -1;
+                        else if (l1.isReturned() && !l2.isReturned()) return 1;
+                        else return 0;
+                    }
+                    return Long.compare(diff1, diff2);
+                });
         } finally {
             lendingTable.getSortOrder().addListener(defaultSortOrderListener);
         }
@@ -438,9 +452,10 @@ public class LendingTabController {
      * @brief   Allows handling of swaps of shown lists based on the search field and sorting
      */
     private void lendingTableHandler() {
-        if (lendingSearchField.textProperty().getValue().isBlank()) {
+        if (lendingSearchField.textProperty().isEmpty().get()) {
             loadData();
             applyDefaultSortMethod();
+            lendingTable.scrollTo(0);
 
             // Remove eventual listener for search sort order
             lendingTable.getSortOrder().removeListener(searchSortOrderListener);
@@ -467,6 +482,8 @@ public class LendingTabController {
 
             // Add search sort listener
             lendingTable.getSortOrder().addListener(searchSortOrderListener);
+
+            lendingTable.scrollTo(0);
         }
     }
 
@@ -475,6 +492,7 @@ public class LendingTabController {
      */
     public void initializeTable() {
         initializeLendingColumns();
+        lendingTableHandler();
     }
 
     /**

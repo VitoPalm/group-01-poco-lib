@@ -178,7 +178,7 @@ public class BookTabController {
         Platform.runLater(() -> {
             if (column0Constraints == null || column2Constraints == null || containerVBox.getScene() == null)
                 return;
-            
+
             // width listener to control the search gridpane size and placement
             containerVBox.getScene().widthProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue.doubleValue() < 700) {
@@ -238,6 +238,8 @@ public class BookTabController {
             // Update existing observable list to refresh the table
             bookData.setAll(bookSet.getListOfBooks());
         }
+
+        applyDefaultSortMethod();
         bookTable.refresh(); // Force refresh to update cell values
     }
 
@@ -323,7 +325,6 @@ public class BookTabController {
         }
     };
 
-
     /**
      * @brief   Allows handling of swaps of shown lists based on the search field and sorting
      */
@@ -367,8 +368,8 @@ public class BookTabController {
      * @brief   Initializes the book table by setting up the handler and columns.
      */
     public void initializeTable() {
-        bookTableHandler();
         initializeBookColumns();
+        bookTableHandler();
     }
 
     /**

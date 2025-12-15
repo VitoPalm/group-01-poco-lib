@@ -115,7 +115,6 @@ public class PocoLibController {
         this.researchSelectedUserInLendings.set(user);
     }
 
-
     /**
      * @brief   Gets the app-wide selected user.
      * @return  The selected user.
