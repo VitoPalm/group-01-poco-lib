@@ -150,7 +150,7 @@
             </HBox>
         </GridPane>
 
-        <Label fx:id="errorLabel" text="ISBN seems to be invalid" textFill="#e00000" visible="false" />
+        <Label textFill="#e00000" visible="false" />
 
         <HBox alignment="CENTER" spacing="10.0">
             <Button cancelButton="true" onAction="#handleCancel" text="Cancel" />

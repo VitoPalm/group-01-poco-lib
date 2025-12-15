@@ -1,5 +1,7 @@
 package poco.company.group01pocolib.mvc.controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
@@ -32,6 +34,7 @@ public class UserPropController {
 
     @FXML private Button editButton;
     @FXML private Button deleteButton;
+    @FXML private Tooltip deleteButtonTooltip;
     @FXML private Button lendToButton;
 
     // ----------------- //
@@ -44,8 +47,12 @@ public class UserPropController {
     @FXML private TextField emailField;
 
     @FXML private Label infoLabel;
-    @FXML private Label errorLabel;
     @FXML private Button saveButton;
+    @FXML private Tooltip saveButtonTooltip;
+    private BooleanBinding emptyTextfieldsBinding;
+
+    private BooleanProperty idIsValid = new SimpleBooleanProperty(false);
+    private BooleanProperty emailIsValid = new SimpleBooleanProperty(false);
 
 
 
@@ -61,22 +68,7 @@ public class UserPropController {
      */
     @FXML
     private void initialize() {
-        viewBox.managedProperty().bind(viewBox.visibleProperty());
-        editBox.managedProperty().bind(editBox.visibleProperty());
-        errorLabel.managedProperty().bind(errorLabel.visibleProperty());
 
-        // Real-time input validation
-        idField.textProperty().addListener(observable -> validInput.set(validateInput()));
-        nameField.textProperty().addListener(observable -> validInput.set(validateInput()));
-        surnameField.textProperty().addListener(observable -> validInput.set(validateInput()));
-        emailField.textProperty().addListener(observable -> validInput.set(validateInput()));
-
-        errorLabel.textProperty().addListener(observable -> {
-            if (dialogStage != null) {
-                dialogStage.sizeToScene();
-            }
-        });
-        saveButton.disableProperty().bind(validInput.not());
     }
 
     /**
@@ -139,12 +131,20 @@ public class UserPropController {
             this.originalId = user.getId(); // Save original ID
         }
 
-        // Set view fields (filler isn't handled cause a null user is only used to create new users)
+        // ------------------ //
+        //  View static sets  //
+        // ------------------ //
+
+        // Properties
         idLabel.setText(this.user.getId());
         nameLabel.setText(this.user.getName());
         surnameLabel.setText(this.user.getSurname());
         emailLabel.setText(this.user.getEmail());
         borrowedLink.setText(this.user.getBorrowedBooksCount() + " books (" + this.user.getBorrowedBooksEverCount() + " total)");
+
+        // Buttons and Tooltips
+        deleteButton.setDisable(!this.user.canBorrow());
+        deleteButtonTooltip.setText(this.user.canBorrow()? "" : "User has active lendings");
 
         // Disable delete button if user has active lendings
         if (this.user.getBorrowedBooksCount() > 0) {
@@ -155,7 +155,11 @@ public class UserPropController {
             deleteButton.setTooltip(null);
         }
 
-        // Set edit fields
+        // ------------------ //
+        //  Edit static sets  //
+        // ------------------ //
+
+        // Set edit properties
         if (filler != null) {
             idField.setText("");
             nameField.setText("");
@@ -167,9 +171,63 @@ public class UserPropController {
             surnameField.setText(this.user.getSurname());
             emailField.setText(this.user.getEmail());
         }
+
+        initializeBindings();
     }
 
-    /**
+    private void initializeBindings() {
+        // ----------------- //
+        //   Edit bindings   //
+        // ----------------- //
+
+        // Binding for any of the textfields empty
+        emptyTextfieldsBinding = Bindings.createBooleanBinding(() -> idField.getText().isBlank(), idField.textProperty()).or(
+            Bindings.createBooleanBinding(() -> nameField.getText().isBlank(), nameField.textProperty()).or(
+            Bindings.createBooleanBinding(() -> surnameField.getText().isBlank(), surnameField.textProperty()).or(
+            Bindings.createBooleanBinding(() -> emailField.getText().isBlank(), emailField.textProperty()))));
+
+        // Binding for Id validity
+        idIsValid.bind(Bindings.createBooleanBinding(() -> User.isValidID(idField.getText()), idField.textProperty()));
+
+        // Binding for email validity
+        emailIsValid.bind(Bindings.createBooleanBinding(() -> 
+            User.isValidEmail(emailField.getText()), emailField.textProperty()));
+
+        // Red border around invalid values
+        idField.styleProperty().bind(Bindings.when(Bindings.not(idIsValid)).then("-fx-background-color: red, white; -fx-background-insets: 0, 1; -fx-background-radius: 3, 2; -fx-padding: 4 7 4 0.60em;").otherwise(""));
+        emailField.styleProperty().bind(Bindings.when(Bindings.not(emailIsValid)).then("-fx-background-color: red, white; -fx-background-insets: 0, 1; -fx-background-radius: 3, 2; -fx-padding: 4 7 4 0.60em;").otherwise(""));
+
+        // Save Button disabling logic
+        saveButton.disableProperty().bind(emptyTextfieldsBinding.or(
+            Bindings.not(idIsValid).or(
+            Bindings.not(emailIsValid))));
+
+        // Save Button tooltip message logic
+        saveButtonTooltip.textProperty().bind(Bindings.createStringBinding(() -> {
+            StringBuilder tip = new StringBuilder();
+            boolean atLeastOne = false;
+
+            if (emptyTextfieldsBinding.get()) {
+                tip.append("Some fields are incomplete");
+                atLeastOne = true;
+            }
+
+            if (!idIsValid.get()) {
+                if (atLeastOne) tip.append("\n");
+                tip.append("ID has to be alphanumeric and 5-16 characters");
+                atLeastOne = true;
+            }
+
+            if (!emailIsValid.get()) {
+                if (atLeastOne) tip.append("\n");
+                tip.append("Invalid email format");
+            }
+
+            return tip.toString();
+        }, emptyTextfieldsBinding, idIsValid, emailIsValid));
+    } 
+
+ /**
      * @brief   Updates the view with the current user details
      * @details This method is needed to refresh the dialog when the user details are changed by editing it.
      */
@@ -238,52 +296,42 @@ public class UserPropController {
      */
     @FXML
     private void handleSave() {
-        if (!validateInput()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input fields.");
-            alert.initOwner(dialogStage);
-            alert.setTitle("Invalid Input");
-            alert.setHeaderText("Please correct invalid fields");
-            alert.setContentText(errorLabel.getText());
-            alert.showAndWait();
-        } else {
-            // If ID changed, remove the user with the old ID first
-            String newId = idField.getText().trim();
-            if (originalId != null && !originalId.equals(newId)) {
-                userSet.removeUser(originalId);
-            }
-
-            // Save user details from edit fields
-            user.setId(newId);
-            user.setName(nameField.getText());
-            user.setSurname(surnameField.getText());
-            user.setEmail(emailField.getText());
-
-            // Add or edit user in the user set
-            userSet.addOrEditUser(user);
-
-            // Show success info
-            infoLabel.setVisible(true);
-            errorLabel.setVisible(false);
-
-            // Wait a moment to show the info label
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            // Refresh the data in all tabs
-            mainController.refreshTabData();
-
-            if (isNewUser) {
-                // Select the newly created user in the User table
-                mainController.getUserTabController().getUserTable().getSelectionModel().select(user);
-                mainController.getUserTabController().getUserTable().scrollTo(user);
-            }
-
-            // Close the dialog
-            dialogStage.close();
+        // If ID changed, remove the user with the old ID first
+        String newId = idField.getText().trim();
+        if (originalId != null && !originalId.equals(newId)) {
+            userSet.removeUser(originalId);
         }
+
+        // Save user details from edit fields
+        user.setId(newId);
+        user.setName(nameField.getText());
+        user.setSurname(surnameField.getText());
+        user.setEmail(emailField.getText());
+
+        // Add or edit user in the user set
+        userSet.addOrEditUser(user);
+
+        // Show success info
+        infoLabel.setVisible(true);
+
+        // Wait a moment to show the info label
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Refresh the data in all tabs
+        mainController.refreshTabData();
+
+        if (isNewUser) {
+            // Select the newly created user in the User table
+            mainController.getUserTabController().getUserTable().getSelectionModel().select(user);
+            mainController.getUserTabController().getUserTable().scrollTo(user);
+        }
+
+        // Close the dialog
+        dialogStage.close();
     }
 
     /**
@@ -292,46 +340,5 @@ public class UserPropController {
     @FXML
     private void handleCancel() {
         dialogStage.close();
-    }
-
-    /**
-     * @brief   Validates the input fields in the dialog.
-     * @details This method validates all input fields and displays error messages if any field is empty or not valid.
-     * @bug     The error label messes up the layout when shown. Needs investigation.
-     *
-     * @return  `true` if all fields are valid, `false` otherwise
-     */
-    private boolean validateInput() {
-        StringBuilder errors = new StringBuilder();
-
-        // Validate ID
-        if (!User.isValidID(idField.getText())) {
-            errors.append("Invalid ID. ID must be alphanumeric and 5-16 characters long.\n");
-        }
-
-        // Validate Name
-        if (nameField.getText() == null || nameField.getText().isBlank()) {
-            errors.append("Name cannot be empty.\n");
-        }
-
-        // Validate Surname
-        if (surnameField.getText() == null || surnameField.getText().isBlank()) {
-            errors.append("Surname cannot be empty.\n");
-        }
-
-        // Validate Email
-        if (!User.isValidEmail(emailField.getText())) {
-            errors.append("Invalid email format.\n");
-        }
-
-        // Set error label and return result
-        if (errors.isEmpty()) {
-            errorLabel.setVisible(false);
-            return true;
-        } else {
-            errorLabel.setText(errors.toString());
-            errorLabel.setVisible(true);
-            return false;
-        }
     }
 }

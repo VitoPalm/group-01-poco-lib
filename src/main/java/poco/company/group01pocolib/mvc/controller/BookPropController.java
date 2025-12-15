@@ -180,11 +180,6 @@ public class BookPropController {
 
     private void initializeBindings() {
         // ----------------- //
-        //   View bindings   //
-        // ----------------- //
-
-
-        // ----------------- //
         //   Edit bindings   //
         // ----------------- //
 
@@ -192,12 +187,12 @@ public class BookPropController {
         copiesAvailableField.textProperty().bindBidirectional(copiesAvailableProperty, new NumberStringConverter());
         yearProperty.bind(yearSpinner.valueProperty());
 
-        // Binding for any of the textfields empty
-        emptyTextfieldsBinding = isbnField.textProperty().isEmpty().or(      
-            titleField.textProperty().isEmpty().or(
-            authorsField.textProperty().isEmpty().or(
+        // Binding for any of the textfields empty -- updated to booleanbinding to convert empty to blank
+        emptyTextfieldsBinding = Bindings.createBooleanBinding(() -> isbnField.getText().isBlank(), isbnField.textProperty()).or(      
+            Bindings.createBooleanBinding(() -> titleField.getText().isBlank(), titleField.textProperty()).or(
+            Bindings.createBooleanBinding(() -> authorsField.getText().isBlank(), authorsField.textProperty()).or(
             yearSpinner.valueProperty().isNull().or(
-            copiesAvailableField.textProperty().isEmpty()))));
+            Bindings.createBooleanBinding(() -> copiesAvailableField.getText().isBlank(), copiesAvailableField.textProperty())))));
 
         // Binding to disable the minus button on 0 in the available copiesField
         minusButton.disableProperty().bind(Bindings.when(Bindings.lessThanOrEqual(copiesAvailableProperty, 0)).then(true).otherwise(false));
@@ -211,6 +206,7 @@ public class BookPropController {
             return !bookSet.isStored(isbn);         // finally checks if other books have the same isbn inserted
         }, isbnField.textProperty()));
 
+        // Red border around invalid (duplicate) value
         isbnField.styleProperty().bind(Bindings.when(Bindings.not(isbnIsValid)).then("-fx-background-color: red, white; -fx-background-insets: 0, 1; -fx-background-radius: 3, 2; -fx-padding: 4 7 4 0.60em;").otherwise(""));
         
         // copiesEditLabel binding
@@ -226,10 +222,22 @@ public class BookPropController {
             copiesAvailableProperty.lessThan(0)))));
 
         // Save button tooltip message logic
-        saveButtonTooltip.textProperty().bind(
-            Bindings.when(emptyTextfieldsBinding)
-                .then("Some fields are incomplete")
-            .otherwise("Some data is invalid"));
+        saveButtonTooltip.textProperty().bind(Bindings.createStringBinding(() -> {
+            StringBuilder tip = new StringBuilder();
+            boolean atLeastOne = false;
+
+            if (emptyTextfieldsBinding.get()) {
+                tip.append("Some fields are incomplete");
+                atLeastOne = true;
+            }
+
+            if (!isbnIsValid.get()) {
+                if (atLeastOne) tip.append("\n");
+                tip.append("ISBN is duplicate");
+            }
+
+            return tip.toString();
+        }, emptyTextfieldsBinding, isbnIsValid));
     }
 
     /**
@@ -338,33 +346,24 @@ public class BookPropController {
      */
     @FXML
     private void handleSave() {
-        if (!validateInput()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input fields.");
-            alert.initOwner(dialogStage);
-            alert.setTitle("Invalid Input");
-            alert.setHeaderText("Please correct invalid fields");
-            alert.setContentText(errorLabel.getText());
-            alert.showAndWait();
-        }else {
-            // If ISBN changed, remove the book with the old ISBN first
-            String newIsbn = isbnField.getText().trim();
-            if (originalIsbn != null && !originalIsbn.equals(newIsbn)) {
-                bookSet.removeBook(originalIsbn);
-            }
-            
-            book.setIsbn(newIsbn);
-            book.setTitle(titleField.getText());
-            book.setAuthors(authorsField.getText());
-            book.setYear(yearSpinner.getValue());
-            book.setCopiesAvailable(getCopiesAvailableAsInteger());
-
-            bookSet.addOrEditBook(book);
-
-            //TODO: missing info label stuff and stuff if book is new (idk if we need that here)
-
-            mainController.refreshTabData();
-            dialogStage.close();
+        // If ISBN changed, remove the book with the old ISBN first
+        String newIsbn = isbnField.getText().trim();
+        if (originalIsbn != null && !originalIsbn.equals(newIsbn)) {
+            bookSet.removeBook(originalIsbn);
         }
+        
+        book.setIsbn(newIsbn);
+        book.setTitle(titleField.getText());
+        book.setAuthors(authorsField.getText());
+        book.setYear(yearSpinner.getValue());
+        book.setCopiesAvailable(getCopiesAvailableAsInteger());
+
+        bookSet.addOrEditBook(book);
+
+        //TODO: missing info label stuff and stuff if book is new (idk if we need that here) --- ????
+
+        mainController.refreshTabData();
+        dialogStage.close();
     }
 
     /**
@@ -385,47 +384,6 @@ public class BookPropController {
             return Integer.parseInt(copiesAvailableField.getText().trim());
         } catch (NumberFormatException e) {
             return -1;
-        }
-    }
-
-    /**
-     * @brief   Validates the input fields in the dialog.
-     * @details This method validates all input fields and displays error messages if any field is empty or not valid.
-     *
-     * @return  `true` if all fields are valid, `false` otherwise
-     */
-    private boolean validateInput() {
-        StringBuilder errorMessage = new StringBuilder();
-
-        // Validate ISBN
-        if (isbnField.getText() == null || isbnField.getText().trim().isEmpty()) {
-            errorMessage.append("ISBN is required.\n");
-        }
-
-        // Validate Title
-        if (titleField.getText() == null || titleField.getText().trim().isEmpty()) {
-            errorMessage.append("Title is required.\n");
-        }
-
-        // Validate Authors
-        if (authorsField.getText() == null || authorsField.getText().trim().isEmpty()) {
-            errorMessage.append("At least one author is required.\n");
-        }
-
-
-        // Validate Available Copies
-        int copiesAvailable = getCopiesAvailableAsInteger();
-        if (copiesAvailable < 0) {
-            errorMessage.append("Number of available copies must be at least 0.\n");
-        }
-
-        // Set error label and return result
-        if (errorMessage.length() == 0) {
-            errorLabel.setText("");
-            return true;
-        } else {
-            errorLabel.setText(errorMessage.toString());
-            return false;
         }
     }
 }
