@@ -205,14 +205,16 @@ public class BookPropController {
         isbnIsValid.bind(Bindings.createBooleanBinding(() -> {
             String isbn = isbnField.getText();
 
-            if (isbn == null || isbn.isBlank())     // if blank it cannot be saved
-                return false;
+            // if (isbn == null || isbn.isBlank())     // if blank it cannot be saved
+            //     return false;
 
             if (isbn.equals(originalIsbn))               // In Edit mode you can make changes keeping the same isbn
                 return true;
 
             return !bookSet.isStored(isbn);         // finally checks if other books have the same isbn inserted
         }, isbnField.textProperty()));
+
+        isbnField.styleProperty().bind(Bindings.when(Bindings.not(isbnIsValid)).then("-fx-background-color: red, white; -fx-background-insets: 0, 1; -fx-background-radius: 3, 2; -fx-padding: 4 7 4 0.60em;").otherwise(""));
         
         // copiesEditLabel binding
         final int lentCopies = book.getCopiesLent();
