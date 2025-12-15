@@ -216,26 +216,33 @@ public class Book implements Serializable {
     }
 
     /**
-     * @brief   Increments the number of copies currently lent out for the Book by one. Also increments the times lent.
-     * @throws  BookDataNotValidException If all copies are already lent out.
+     * @brief   Lends a copy of the Book by decreasing available copies and increasing lent copies.
+     * @details Decrements copiesAvailable by one, increments copiesLent by one, and increments timesLent.
+     *          This method manages the transition of a book copy from available to lent status.
+     * @throws  BookDataNotValidException If no copies are available to lend.
      * @return  The new number of copies currently lent out.
      */
-    public int incrementCopiesLent() {
-        if (this.copiesLent < this.copiesAvailable) {
+    public int lendCopy() {
+        if (this.copiesAvailable > 0) {
             this.timesLent++;
-
+            this.copiesAvailable--;
             return ++(this.copiesLent);
         }
         else throw new BookDataNotValidException("All copies are already lent out.");
     }
 
     /**
-     * @brief   Decrements the number of copies currently lent out for the Book by one.
+     * @brief   Returns a copy of the Book by increasing available copies and decreasing lent copies.
+     * @details Increments copiesAvailable by one and decrements copiesLent by one.
+     *          This method manages the transition of a book copy from lent to available status.
      * @throws  BookDataNotValidException If no copies are currently lent out.
      * @return  The new number of copies currently lent out.
      */
-    public int decrementCopiesLent() {
-        if (this.copiesLent > 0) return --this.copiesLent;
+    public int returnCopy() {
+        if (this.copiesLent > 0) {
+            this.copiesAvailable++;
+            return --this.copiesLent;
+        }
         else throw new BookDataNotValidException("No copies are currently lent out.");
     }
 

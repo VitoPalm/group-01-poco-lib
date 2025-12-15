@@ -152,7 +152,7 @@ public class Lending implements Serializable {
         if (!this.returned) {
             this.returned = true;
             this.user.decrementBorrowedBooksCount();
-            this.book.decrementCopiesLent();
+            this.book.returnCopy();
         }
     }
 
