@@ -64,7 +64,7 @@ public class Search {
      * @return  A list of SearchResult objects containing the items found and their hit counts.
      */
     public static <T> ArrayList<SearchResult<T>> search(String query, Index<T> index) {
-        String processedQuery = query.toLowerCase().trim();
+        String processedQuery = query.trim();
 
         if (processedQuery.isEmpty() || index == null) {
             return null;
@@ -185,7 +185,7 @@ public class Search {
      * @param   query The reference string to compare against.
      * @param   input The list of strings to be ordered.
      */
-    public static void orderByDistance(String query, ArrayList<String> input) {
+    public static void orderByDistance(String query, List<String> input) {
         if (query == null || input == null) return;
 
         input.sort(Comparator.comparingInt(s -> distance(query, s)));

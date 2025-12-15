@@ -218,7 +218,7 @@ public class UserTabController {
     }
 
     // ------------------------------------------- //
-    // Something I may eventually decide to delete // // TODO: ciao vito
+    // Something I may eventually decide to delete //  
     // ------------------------------------------- //
     public TableView<User> getUserTable() {
         return userTable;

@@ -306,9 +306,9 @@ public class BookSet implements Serializable {
      *
      * @param   isbn The ISBN of the book to get
      * @return  The Book object if found, null otherwise
-     */
+     * We need this for testing purposes
+     */ 
     public Book getBook(String isbn){
-        // TODO: Implement using a more efficient method than linear search (pls let me use HashMap)
         dummy.setIsbn(isbn);
         for (Book book : bookSet) {
             if (book.equals(dummy)) {

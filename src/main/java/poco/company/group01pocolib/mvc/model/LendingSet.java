@@ -340,12 +340,13 @@ public class LendingSet implements Serializable {
 
     /**
      * @brief   Gets a Lending by its ID.
+     * @details Iterates through the lending set to find the lending with the specified ID.
+     * This is stupidly inefficient but whatever we need it for testing purposes only.
      *
      * @param   id The ID of the Lending to retrieve.
      * @return  The Lending with the specified ID, null otherwise.
      */
     public Lending getLending(int id){
-        // TODO: Implement using a more efficient method than linear search (pls let me use HashMap)
         for (Lending lending : lendingSet) {
             if (lending.getLendingId() == id) {
                 return lending;

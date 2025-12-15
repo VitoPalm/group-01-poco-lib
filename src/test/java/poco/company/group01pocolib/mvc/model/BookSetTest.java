@@ -2,6 +2,7 @@
  * @file BookSetTest.java
  * @brief Unit tests for the BookSet class.
  * @author Daniele Pepe
+ * @author Francesco M
  */
 package poco.company.group01pocolib.mvc.model;
 
@@ -10,6 +11,7 @@ import poco.company.group01pocolib.db.omnisearch.Index;
 import poco.company.group01pocolib.exceptions.BookDataNotValidException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -19,11 +21,13 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 
+import poco.company.group01pocolib.db.omnisearch.Search.SearchResult;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * @class BookSetTest
@@ -33,6 +37,8 @@ public class BookSetTest {
 
     private BookSet bookSet;
     private Book book;
+    private Book book2;
+    private Book book3;
     private DB bookDB;
 
     @BeforeEach
@@ -45,6 +51,8 @@ public class BookSetTest {
         bookSet.setSerializationPath("testBookSet.ser");
 
         book = new Book("Il signore degli Anelli", "J.R.R. Tolkien", "978-0261102385", 1954, 20);
+        book2 = new Book("Lo Hobbit", "J.R.R. Tolkien", "978-0261102217", 1937, 15);
+        book3 = new Book("Il Capitale", "Karl Marx", "978-8807170106", 1867, 5);
     }
 
     @AfterEach
@@ -510,6 +518,51 @@ public class BookSetTest {
         Assertions.assertTrue(hasBook2);
     }
 
-    //TODO: add tests for search methods
+    /**
+     * @brief Tests the search functionality of BookSet.
+     */
+    @Test
+    public void testSearch(){
+        bookSet.addOrEditBook(book);
+        bookSet.addOrEditBook(book2);
+        bookSet.addOrEditBook(book3);
+
+        // Search by title
+        List<SearchResult<Book>> results = bookSet.search("Il signore degli Anelli");
+        Book resultBook = results.get(0).item;
+        assertEquals(book, resultBook);
+
+        // Search by author
+        results = bookSet.search("Karl Marx");
+        resultBook = results.get(0).item;
+        assertEquals(book3, resultBook);
+
+        // Search by ISBN
+        results = bookSet.search("978-0261102217");
+        resultBook = results.get(0).item;
+        assertEquals(book2, resultBook);
+
+        // Search by partial title
+        results = bookSet.search("Hobbit");
+        resultBook = results.get(0).item;
+        assertEquals(book2, resultBook);
+        
+    }
+
+    /**
+     * @brief Tests searching for a non-existent book returns empty results.
+     */
+    @Test
+    public void testSearchNonExistentBook(){
+        bookSet.addOrEditBook(book);
+        bookSet.addOrEditBook(book2);
+        bookSet.addOrEditBook(book3);
+
+        // Search for a non-existent book
+        List<SearchResult<Book>> results = bookSet.search("Non Existent Book");
+        assertEquals(0, results.size());
+        
+    }
+
 
 }

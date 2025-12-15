@@ -34,13 +34,14 @@ public class BookTest {
         authors.add("Pennsylvania State University");
         Book b = new Book("General Plan for Phoenix, 1985-2000", authors, "316830724", 1985, 1);
 
-        assertEquals(b.getTitle(), "General Plan for Phoenix, 1985-2000");
-        assertEquals(b.getAuthorsString(), "City Council; Pennsylvania State University");
-        assertEquals(b.getIsbn(), "316830724");
-        assertEquals(b.getYear(), 1985);
-        assertEquals(b.getCopiesAvailable(), 1);
-        assertEquals(b.getCopiesLent(), 0);
-        assertEquals(b.getTimesLent(), 0);
+        assertEquals("General Plan for Phoenix, 1985-2000", b.getTitle());
+        assertEquals("City Council; Pennsylvania State University", b.getAuthorsString());
+        assertEquals("316830724", b.getIsbn());
+        assertEquals(1985, b.getYear());
+        assertEquals(authors, b.getAuthors());
+        assertEquals(1, b.getCopiesAvailable());
+        assertEquals(0, b.getCopiesLent());
+        assertEquals(0, b.getTimesLent());
     }
 
     /**
@@ -52,9 +53,9 @@ public class BookTest {
         List<String> authors = new ArrayList<>();
         authors.add("Some author");
         assertThrows(BookDataNotValidException.class, () -> {
-            Book b = new Book("The Book", authors, "9788888888", 2009, -4);
+            new Book("The Book", authors, "9788888888", 2009, -4);
         });
-        }
+    }
     
     /**
      * @brief Tests the edit method to ensure book details are updated correctly. 
@@ -196,7 +197,4 @@ public class BookTest {
         assertEquals("General Plan for Phoenix, 1985-2000\u001CCity Council; Pennsylvania State University\u001C316830724\u001C1985\u001C5\u001C3\u001C12", b.toDBString());
     }
 
-
-
-    
 }

@@ -76,6 +76,9 @@ public class UserTest {
         assertEquals(2, user.getBorrowedBooksEverCount());
     }
 
+    /**
+     * @brief Tests the canBorrow method to verify borrowing eligibility based on borrowed books count.
+     */
     @Test
     public void testCanBorrow(){
         User user = new User("GHI11223", "Sebastian", "Vettel", "sebastian.vettel@fia.com");
@@ -86,6 +89,9 @@ public class UserTest {
         assertTrue(user.canBorrow());
     }
 
+    /**
+     * @brief Tests the increment and decrement methods for borrowed books count.
+     */
     @Test
     public void testIncrementDecrementBorrowedBooksCount(){
         User user = new User("JKL44556", "Lewis", "Hamilton", "lewis.hamilton@fia.com");
@@ -99,6 +105,9 @@ public class UserTest {
         assertEquals(1, user.getBorrowedBooksCount());
     }
 
+    /**
+     * @brief Tests the hashCode method to ensure consistent hashing for equal User objects and different hashes for different User objects.
+     */
     @Test
     public void testHashCode(){
         User user1 = new User("MNO77889", "Fernando", "Alonso", "fernando.alonso@fia.com");
@@ -109,6 +118,9 @@ public class UserTest {
         assertNotEquals(user2.hashCode(), user3.hashCode());
     }
 
+    /**
+     * @brief Tests the equals method to verify equality checks between User objects.
+     */
     @Test
     public void testEquals(){
         User user1 = new User("MNO77889", "Fernando", "Alonso", "fernando.alonso@fia.com");
@@ -119,6 +131,9 @@ public class UserTest {
         assertNotEquals(user2, user3);
     }
 
+    /**
+     * @brief Tests the fromDBString method to ensure correct parsing of a User object from a database string representation.
+     */
     @Test 
     public void testFromDBString(){
         
@@ -131,6 +146,9 @@ public class UserTest {
         assertEquals(expectedUser, user);
     }
 
+    /**
+     * @brief Tests the toDBString method to ensure correct conversion of a User object to its database string representation.
+     */
     @Test
     public void testToDBString(){
         User user = new User("STU22334", "Valtteri", "Bottas", "valtteri.bottas@fia.com");
@@ -140,6 +158,9 @@ public class UserTest {
         assertEquals(expectedString, user.toDBString());
     }
 
+    /**
+     * @brief Tests the toSearchableString method to ensure correct generation of a searchable string representation of a User object.
+     */
     @Test
     public void testToSearchableString(){
         User user = new User("VWX55667", "George", "Russell", "george.russell@fia.com");

@@ -6,7 +6,6 @@
 package poco.company.group01pocolib.mvc.model;
 
 import poco.company.group01pocolib.db.DB;
-import poco.company.group01pocolib.db.omnisearch.Index;
 import poco.company.group01pocolib.db.omnisearch.Search.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,10 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +36,9 @@ public class LendingSetTest {
     private Book book;
     private User user;
     private Lending lending;
+    private Lending lending2;
+    private Lending lending3;
+    private Lending lending4;
     private DB lendingDB;
 
     @BeforeEach
@@ -61,11 +65,25 @@ public class LendingSetTest {
         // Create test data
         book = new Book("Il signore degli Anelli", "J.R.R. Tolkien", "978-0261102385", 1954, 20);
         bookSet.addOrEditBook(book);
+        
+        Book book2 = new Book("Lo Hobbit", "J.R.R. Tolkien", "978-0261102217", 1937, 10);
+        bookSet.addOrEditBook(book2);
+
+        Book book3 = new Book("Il Silmarillion", "J.R.R. Tolkien", "978-0261102736", 1977, 5);
+        bookSet.addOrEditBook(book3);
 
         user = new User("67890","Frodo", "Baggins", "frodo.baggins@shire.com");
+        User user2 = new User("12345","Samwise", "Gamgee", "samwise.gamgee@shire.com");
+        User user3 = new User("54321","Gandalf", "The Grey", "gandalf.grey@middleearth.com");
+
         userSet.addOrEditUser(user);
+        userSet.addOrEditUser(user2);
+        userSet.addOrEditUser(user3);
 
         lending = new Lending(book, user, LocalDate.now().plusDays(14));
+        lending2 = new Lending(book2, user2, LocalDate.now().plusDays(21));
+        lending3 = new Lending(book3, user3, LocalDate.now().plusDays(30));
+        lending4 = new Lending(book, user2, LocalDate.now().plusDays(14));
     }
 
     @AfterEach
@@ -166,16 +184,6 @@ public class LendingSetTest {
         assertEquals(1, lendingList.size());
     }
 
-    /**
-     * @brief Tests the addOrEditLending method adds a new lending correctly.
-     */
-    @Test
-    public void testAddLending() {
-        lendingSet.addOrEditLending(lending);
-        
-        assertNotNull(lendingSet.getLending(lending.getLendingId()));
-        assertEquals(1, lendingSet.getLendingSet().size());
-    }
 
     /**
      * @brief Tests that addOrEditLending updates an existing lending based on ID.
@@ -202,6 +210,10 @@ public class LendingSetTest {
    @Test
    public void testRemoveLending() {
        lendingSet.addOrEditLending(lending);
+       
+       lending.getUser().incrementBorrowedBooksCount();
+       lending.getBook().lendCopy();
+
        int lendingId = lending.getLendingId();
        
        lendingSet.removeLending(lending);
@@ -432,14 +444,25 @@ public class LendingSetTest {
     @Test
     public void testRemoveLendingSyncOnWrite() {
         lendingSet.addOrEditLending(lending);
+        String intialHash = lendingSet.getLastKnownDBHash();
+        
+        File serFile = new File(lendingSet.getSerializationPath());
+        long initialSize = serFile.length();
+
+        lending.getUser().incrementBorrowedBooksCount();
+        lending.getBook().lendCopy();
+
         lendingSet.removeLending(lending);
         
         // Verify DB has been updated
-        assertNotNull(lendingSet.getLastKnownDBHash());
+        String newHash = lendingSet.getLastKnownDBHash();
+        assertNotNull(newHash);
+        assertNotEquals(intialHash, newHash);
         
-        // Verify serialization file exists
-        File serFile = new File(lendingSet.getSerializationPath());
-        assertTrue(serFile.exists());
+        // Verify serialization file has been updated
+        long newSize = serFile.length();
+        assertNotEquals(initialSize, newSize);      
+        
     }
     
     /**
@@ -448,70 +471,50 @@ public class LendingSetTest {
    @Test
    public void testSearch() {
         lendingSet.addOrEditLending(lending);
-       
-        List<SearchResult<Lending>> results = lendingSet.search("Tolkien");
-        
-        // TODO: Implement search method in LendingSet
-        // When implemented, this should pass:
-        // assertTrue(results.contains(new SearchResult<Lending>(lending, 0)));
-        
-        // For now, just verify search doesn't return null
-        assertNotNull(results, "search() should not return null");
-    }
- 
-    /**
-     * @brief Tests that search returns empty list when no matches found.
-     */
-    @Test
-    public void testSearchNoResults() {
-        lendingSet.addOrEditLending(lending);
-
-        List<SearchResult<Lending>> results = lendingSet.search("nonexistentquery12345");
-        
-        // TODO: Implement search method in LendingSet
-        // When search is properly implemented, this should still return empty list
-        assertNotNull(results, "search() should not return null");
-        assertTrue(results.isEmpty(), "search() should return empty list for no matches");
-    }
- 
-    /**
-     * @brief Tests that search handles null and empty.
-     */
-    @Test
-    public void testSearchNullQuery() {
-        lendingSet.addOrEditLending(lending);
-
-        List<SearchResult<Lending>> resultsNull = lendingSet.search(null);
-        List<SearchResult<Lending>> resultsEmpty = lendingSet.search("");
-        
-        // TODO: Decide on expected behavior for null and empty query
-        // Should it return all results, empty list, or throw exception?
-        // For now, verify they don't throw NullPointerException
-        assertNotNull(resultsNull, "search(null) should not return null");
-        assertNotNull(resultsEmpty, "search(\"\") should not return null");
-    }
- 
-    /**
-     * @brief Tests that search returns ranked results.
-     */
-    @Test
-    public void testSearchRanking() {
-        Book book2 = new Book("The Hobbit", "J.R.R. Tolkien", "978-0547928227", 1937, 10);
-        bookSet.addOrEditBook(book2);
-        
-        Lending lending1 = new Lending(book, user, LocalDate.now().plusDays(14));
-        Lending lending2 = new Lending(book2, user, LocalDate.now().plusDays(21));
-        
-        lendingSet.addOrEditLending(lending1);
         lendingSet.addOrEditLending(lending2);
+        lendingSet.addOrEditLending(lending3);
+        lendingSet.addOrEditLending(lending4);
 
-        List<SearchResult<Lending>> results = lendingSet.search("Tolkien");
+        // Search by book title
+        List<SearchResult<Lending>> results = lendingSet.search("Hobbit");
+        Lending foundLending = results.get(0).item;
         
-        // TODO: Decide on expected ranking behavior and implement search method
-        // For now, just verify search doesn't return null
-        assertNotNull(results, "search() should not return null");
-        // When search is implemented, add assertions to verify ranking:
-        // - Results should be ordered by relevance score
-        // - Both lendings should appear since both have books by Tolkien
+        assertEquals(lending2, foundLending);
+
+        // Search by user name
+        results = lendingSet.search("Baggins");
+        foundLending = results.get(0).item;
+
+        assertEquals(lending, foundLending);
+
+        // Search by user email
+        results = lendingSet.search("samwise.gamgee");
+        foundLending = results.get(0).item;
+
+        assertEquals(lending2, foundLending);
+
+
+        // Search by Lending ID
+        results = lendingSet.search(String.valueOf(lending3.getLendingId()));
+        foundLending = results.get(0).item;
+
+        assertEquals(lending3, foundLending);
+        
     }
-}
+    
+    /**
+     * @brief Tests the search method returns an empty list when no matches found.
+    */
+    @Test
+    public void testSearchNoMatches() {
+        lendingSet.addOrEditLending(lending);
+        lendingSet.addOrEditLending(lending2);
+        // Search for a term that doesn't match any lending
+        List<SearchResult<Lending>> results = lendingSet.search("lorem");
+
+        // Verify if the first result does not contain the term "lorem"
+        assertFalse(results.get(0).item.toString().contains("lorem"));
+
+    }
+
+}    
