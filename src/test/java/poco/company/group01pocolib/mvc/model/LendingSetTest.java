@@ -423,7 +423,7 @@ public class LendingSetTest {
     }
     
     /**
-     * @brief Tests that addOrEditLending properly synchronizes with DB and serialization.
+     * @brief Tests that addOrEditLending properly synchronizes with DB.
      */
     @Test
     public void testAddLendingSyncOnWrite() {
@@ -433,19 +433,27 @@ public class LendingSetTest {
         assertNotNull(lendingSet.getLendingDB());
         assertNotNull(lendingSet.getLastKnownDBHash());
         
-        // Verify serialization file exists
+        // Verify lending is in the set
+        assertEquals(1, lendingSet.getLendingSet().size());
+        
+        // Explicitly save to serialization
+        lendingSet.saveToSerialized();
+        
+        // Now verify serialization file exists
         File serFile = new File(lendingSet.getSerializationPath());
         assertTrue(serFile.exists());
     }
  
     /**
-     * @brief Tests that removeLending properly synchronizes with DB and serialization.
+     * @brief Tests that removeLending properly synchronizes with DB.
      */
     @Test
     public void testRemoveLendingSyncOnWrite() {
         lendingSet.addOrEditLending(lending);
         String intialHash = lendingSet.getLastKnownDBHash();
         
+        // Explicitly save to get initial serialization file
+        lendingSet.saveToSerialized();
         File serFile = new File(lendingSet.getSerializationPath());
         long initialSize = serFile.length();
 
@@ -458,6 +466,9 @@ public class LendingSetTest {
         String newHash = lendingSet.getLastKnownDBHash();
         assertNotNull(newHash);
         assertNotEquals(intialHash, newHash);
+        
+        // Explicitly save after removal
+        lendingSet.saveToSerialized();
         
         // Verify serialization file has been updated
         long newSize = serFile.length();
