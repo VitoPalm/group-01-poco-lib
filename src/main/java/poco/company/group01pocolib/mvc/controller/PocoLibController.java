@@ -150,13 +150,13 @@ public class PocoLibController {
 
 
         masterSelectedBook.addListener(observable -> {
-            if (lendingTabController != null) {
+            if (lendingTabController != null && masterSelectedBook.get() != null) {
                 handleMasterPropertiesChange();
             }
         });
 
         masterSelectedUser.addListener(observable -> {
-            if (lendingTabController != null) {
+            if (lendingTabController != null && masterSelectedUser.get() != null) {
                 handleMasterPropertiesChange();
             }
         });
