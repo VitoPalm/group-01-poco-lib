@@ -164,7 +164,7 @@ public class Lending implements Serializable {
     }
 
     /**
-     * @brief   Marks the Book as returned.
+     * @brief   Decrements borrowed books count for user, returns copy for book (increases available, decreases lent)
      */
     public void setReturned() {
         if (!this.returned) {
@@ -175,12 +175,13 @@ public class Lending implements Serializable {
     }
 
     /**
-     * @brief   Marks the Book as not returned.
+     * @brief   Increments borrowed for the user, lends copy for book (decreases available, increases lent)
      */
     public void setNotReturned() {
         if (this.returned) {
             this.returned = false;
             this.user.incrementBorrowedBooksCount();
+            this.book.lendCopy();
         }
     }
 
