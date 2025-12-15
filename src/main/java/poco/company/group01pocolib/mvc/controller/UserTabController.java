@@ -218,7 +218,7 @@ public class UserTabController {
     }
 
     // ------------------------------------------- //
-    // Something I may eventually decide to delete //
+    // Something I may eventually decide to delete // // TODO: ciao vito
     // ------------------------------------------- //
     public TableView<User> getUserTable() {
         return userTable;
@@ -410,7 +410,6 @@ public class UserTabController {
 
             controller.setMode(mode);
             stage.initOwner(ownerStage);
-            stage.initModality(Modality.WINDOW_MODAL);
             stage.setResizable(false);
 
             stage.show();

@@ -11,6 +11,20 @@ import java.time.LocalDate;
 import javafx.scene.control.Alert.AlertType;
 
 public class LendingPropController {
+    // ------------- //
+    // Shared fields //
+    // ------------- //
+    private Stage dialogStage;
+    private Lending lending;
+    private LendingSet lendingSet;
+    private BookSet bookSet;
+    private UserSet userSet;
+    private PocoLibController mainController;
+
+    private final BooleanProperty validInput = new SimpleBooleanProperty(true);
+    private boolean isNewLending = false;
+
+    
     // ----------------- //
     // View declarations //
     // ----------------- //
@@ -40,18 +54,7 @@ public class LendingPropController {
     @FXML private Label errorLabel;
     @FXML private Button saveButton;
 
-    // ------------- //
-    // Shared fields //
-    // ------------- //
-    private Stage dialogStage;
-    private Lending lending;
-    private LendingSet lendingSet;
-    private BookSet bookSet;
-    private UserSet userSet;
-    private PocoLibController mainController;
-
-    private final BooleanProperty validInput = new SimpleBooleanProperty(true);
-    private boolean isNewLending = false;
+    
 
     // ------------ //
     // Edit methods //

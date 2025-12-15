@@ -30,8 +30,7 @@ public class PocoLibController {
     private ObjectProperty<User> masterSelectedUser;
     private ObjectProperty<Book> researchSelectedBookInLendings;
     private ObjectProperty<User> researchSelectedUserInLendings;
-    private ObjectProperty<Lending> researchSelectedLendinginBooks;
-    private ObjectProperty<Lending> researchSelectedLendinginUsers;
+
 
     private Stage primaryStage;
     private Tab selectedTab;
@@ -104,28 +103,12 @@ public class PocoLibController {
         return researchSelectedBookInLendings.get();
     }
 
-    public Lending getResearchSelectedLendinginBooks() {
-        return researchSelectedLendinginBooks.get();
-    }
-
-    public Lending getResearchSelectedLendinginUsers() {
-        return researchSelectedLendinginUsers.get();
-    }
-
     public User getResearchSelectedUserInLendings() {
         return researchSelectedUserInLendings.get();
     }
 
     public void setResearchSelectedBookInLendings(Book book) {
         this.researchSelectedBookInLendings.set(book);
-    }
-
-    public void setResearchSelectedLendinginBooks(Lending lending) {
-        this.researchSelectedLendinginBooks.set(lending);
-    }
-
-    public void setResearchSelectedLendinginUsers(Lending lending) {
-        this.researchSelectedLendinginUsers.set(lending);
     }
 
     public void setResearchSelectedUserInLendings(User user) {
@@ -164,8 +147,7 @@ public class PocoLibController {
         masterSelectedUser = new SimpleObjectProperty<>();
         researchSelectedBookInLendings = new SimpleObjectProperty<>();
         researchSelectedUserInLendings = new SimpleObjectProperty<>();
-        researchSelectedLendinginBooks = new SimpleObjectProperty<>();
-        researchSelectedLendinginUsers = new SimpleObjectProperty<>();
+
 
         masterSelectedBook.addListener(observable -> {
             if (lendingTabController != null) {
@@ -185,15 +167,8 @@ public class PocoLibController {
         });
 
         researchSelectedUserInLendings.addListener(observable -> {
-            // handleResearchUserInLendingsChange();
-        });
-
-        researchSelectedLendinginBooks.addListener(observable -> {
-            // handleResearchLendinginBooksChange();
-        });
-
-        researchSelectedLendinginUsers.addListener(observable -> {
-            // handleResearchLendinginUsersChange();
+            switchToTab(lendingTab);
+            lendingTabController.setSearchText(researchSelectedUserInLendings.get().getId());
         });
     }
 
@@ -263,6 +238,4 @@ public class PocoLibController {
             lendingTabController.initializeNewLending();
         }
     }
-
-
 }

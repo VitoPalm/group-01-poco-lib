@@ -18,7 +18,6 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import poco.company.group01pocolib.mvc.model.Book;

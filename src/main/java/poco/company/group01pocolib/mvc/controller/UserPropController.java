@@ -10,6 +10,16 @@ import poco.company.group01pocolib.mvc.model.User;
 import poco.company.group01pocolib.mvc.model.UserSet;
 
 public class UserPropController {
+    // ------------- //
+    // Shared fields //
+    // ------------- //
+    private Stage dialogStage;
+    private User user;
+    private String originalId; // Store original ID to handle ID changes
+    private UserSet userSet;
+    private PocoLibController mainController;
+
+
     // ----------------- //
     // View declarations //
     // ----------------- //
@@ -37,14 +47,7 @@ public class UserPropController {
     @FXML private Label errorLabel;
     @FXML private Button saveButton;
 
-    // ------------- //
-    // Shared fields //
-    // ------------- //
-    private Stage dialogStage;
-    private User user;
-    private String originalId; // Store original ID to handle ID changes
-    private UserSet userSet;
-    private PocoLibController mainController;
+
 
     private final BooleanProperty validInput = new SimpleBooleanProperty(true);
     private boolean isNewUser = false;
@@ -222,7 +225,8 @@ public class UserPropController {
      */
     @FXML
     private void handleViewHistory() {
-        // TODO: implement view history logic
+        // focus lending tab
+        mainController.setResearchSelectedUserInLendings(user);
     }
 
     // -------------------- //
