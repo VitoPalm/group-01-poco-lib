@@ -181,6 +181,7 @@ public class LendingSet implements Serializable {
         // If any error occurs during deserialization, rebuild the LendingSet from the DB
         } catch (IOException | ClassNotFoundException e) {
             lendingSet = new LendingSet();
+            lendingSet.setSerializationPath(serializationPath);
             lendingSet.setDBPath(DBPath);
             lendingSet.rebuildFromDB(DBPath, bookSet, userSet);
             return lendingSet;
