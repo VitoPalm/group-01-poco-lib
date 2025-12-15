@@ -417,14 +417,23 @@ public class BookSet implements Serializable {
      * @brief   Synchronizes the current state of the BookSet to the DB and serialized file on write operations
      */
     private void syncOnWrite() {
-        
         // Clear the DB file
         bookDB.clear();
-            
-        // Write all books to the DB file
+
+        StringBuilder newDBContent = new StringBuilder();
+
+        // Add all books to the newDBContent, separated by line separators (all but the last line)
         for (Book book : bookSet) {
-            bookDB.appendLine(book.toDBString());
+            newDBContent.append(book.toDBString()).append(bookDB.getLineSeparator());
         }
+
+        // Remove the last line separator if there are any books
+        if (!bookSet.isEmpty()) {
+            newDBContent.setLength(newDBContent.length() - bookDB.getLineSeparator().length());
+        }
+
+        // Write the new content to the DB file
+        bookDB.rebuildDBFromString(newDBContent.toString());
         
         // Update the hash after writing to DB
         updateLastKnownDBHash();
