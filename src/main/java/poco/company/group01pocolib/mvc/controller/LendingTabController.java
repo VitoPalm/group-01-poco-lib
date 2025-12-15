@@ -446,7 +446,7 @@ public class LendingTabController {
             // Clear any existing sort order to show results by hits
             lendingTable.getSortOrder().clear();
 
-            String query = lendingSearchField.textProperty().getValue();
+            String query = lendingSearchField.textProperty().getValue().trim().toLowerCase();
 
             // Perform search and store results
             currentSearchResults = lendingSet.search(query);

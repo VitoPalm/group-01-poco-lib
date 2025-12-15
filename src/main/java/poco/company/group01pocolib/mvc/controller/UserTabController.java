@@ -346,7 +346,7 @@ public class UserTabController {
             // Clear any existing sort order to show results by hits
             userTable.getSortOrder().clear();
 
-            String query = userSearchField.textProperty().getValue();
+            String query = userSearchField.textProperty().getValue().trim().toLowerCase();
 
             // Perform search and store results
             currentSearchResults = userSet.search(query);
