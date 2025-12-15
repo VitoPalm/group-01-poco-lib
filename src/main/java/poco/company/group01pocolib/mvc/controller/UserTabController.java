@@ -336,6 +336,7 @@ public class UserTabController {
         if (userSearchField.textProperty().getValue().isBlank()) {
             loadData();
             applyDefaultSortMethod();
+            userTable.scrollTo(0);
 
             // Remove eventual listener for search sort order
             userTable.getSortOrder().removeListener(searchSortOrderListener);
@@ -362,6 +363,8 @@ public class UserTabController {
 
             // Add search sort listener
             userTable.getSortOrder().addListener(searchSortOrderListener);
+
+            userTable.scrollTo(0);
         }
     }
 
@@ -369,8 +372,8 @@ public class UserTabController {
      * @brief   Initializes the user table by setting up the handler and columns.
      */
     public void initializeTable() {
-        userTableHandler();
         initializeUserColumns();
+        userTableHandler();
     }
 
     /**

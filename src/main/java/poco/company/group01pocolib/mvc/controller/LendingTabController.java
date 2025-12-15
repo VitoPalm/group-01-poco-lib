@@ -367,9 +367,14 @@ public class LendingTabController {
 
         try {
             lendingTable.getSortOrder().clear();
-            lendingReturnDateColumn.setSortType(TableColumn.SortType.ASCENDING);
-            lendingTable.getSortOrder().add(lendingReturnDateColumn);
-            lendingTable.sort();
+
+                // Set default sort to return date closest to today
+                LocalDate today = LocalDate.now();
+                lendingData.sort((l1, l2) -> {
+                    long diff1 = Math.abs(java.time.temporal.ChronoUnit.DAYS.between(today, l1.getReturnDate()));
+                    long diff2 = Math.abs(java.time.temporal.ChronoUnit.DAYS.between(today, l2.getReturnDate()));
+                    return Long.compare(diff1, diff2);
+                });
         } finally {
             lendingTable.getSortOrder().addListener(defaultSortOrderListener);
         }
@@ -429,9 +434,10 @@ public class LendingTabController {
      * @brief   Allows handling of swaps of shown lists based on the search field and sorting
      */
     private void lendingTableHandler() {
-        if (lendingSearchField.textProperty().getValue().isBlank()) {
+        if (lendingSearchField.textProperty().isEmpty().get()) {
             loadData();
             applyDefaultSortMethod();
+            lendingTable.scrollTo(0);
 
             // Remove eventual listener for search sort order
             lendingTable.getSortOrder().removeListener(searchSortOrderListener);
@@ -458,6 +464,8 @@ public class LendingTabController {
 
             // Add search sort listener
             lendingTable.getSortOrder().addListener(searchSortOrderListener);
+
+            lendingTable.scrollTo(0);
         }
     }
 
@@ -466,6 +474,7 @@ public class LendingTabController {
      */
     public void initializeTable() {
         initializeLendingColumns();
+        lendingTableHandler();
     }
 
     /**
