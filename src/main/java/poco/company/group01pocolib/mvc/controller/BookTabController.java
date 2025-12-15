@@ -238,6 +238,8 @@ public class BookTabController {
             // Update existing observable list to refresh the table
             bookData.setAll(bookSet.getListOfBooks());
         }
+
+        applyDefaultSortMethod();
         bookTable.refresh(); // Force refresh to update cell values
     }
 

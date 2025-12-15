@@ -288,6 +288,8 @@ public class LendingTabController {
                 .toList();
             lendingData.setAll(filteredList);
         }
+
+        applyDefaultSortMethod();
         
         lendingTable.setItems(lendingData);
         lendingTable.refresh(); // Force refresh to update cell values
@@ -373,6 +375,13 @@ public class LendingTabController {
                 lendingData.sort((l1, l2) -> {
                     long diff1 = Math.abs(java.time.temporal.ChronoUnit.DAYS.between(today, l1.getReturnDate()));
                     long diff2 = Math.abs(java.time.temporal.ChronoUnit.DAYS.between(today, l2.getReturnDate()));
+
+                    if (diff1 == diff2) {
+                        // If equal, make active lendings come first, before overdue and returned ones
+                        if (!l1.isReturned() && l2.isReturned()) return -1;
+                        else if (l1.isReturned() && !l2.isReturned()) return 1;
+                        else return 0;
+                    }
                     return Long.compare(diff1, diff2);
                 });
         } finally {

@@ -238,6 +238,9 @@ public class UserTabController {
             // This ensures table updates correctly when data changes
             userData.setAll(userSet.getListOfUsers());
         }
+
+        applyDefaultSortMethod();
+        userTable.refresh();
     }
 
     /**
