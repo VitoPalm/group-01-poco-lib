@@ -46,12 +46,31 @@ public class Lending implements Serializable {
      * @throws  BookDataNotValidException If trying to lend a book that has no available copies.
      * @throws  UserDataNotValidException If the user has reached the maximum number of borrowed books.
      */
-    public Lending (Book book, User user, LocalDate returnDate) {
+    public Lending(Book book, User user, LocalDate returnDate) {
         this.book = book;
         this.user = user;
         this.returnDate = returnDate;
         this.lendingId = ++lendingCounter;
         this.returned = false;
+    }
+
+    /**
+     * @brief   Constructs a new Lending object. No checks are performed on anything.
+     *
+     * @param   lendingID   The unique ID of the Lending.
+     * @param   book        The Book being lent.
+     * @param   user        The User who is borrowing the Book.
+     * @param   returnDate  The date by which the Book should be returned.
+     * @param   returned    The status indicating whether the Book has been returned.
+     *
+     * @warning This constructor should only be used when reading from the DB.
+     */
+    public Lending(int lendingID, Book book, User user, LocalDate returnDate, boolean returned) {
+        this.lendingId = lendingID;
+        this.book = book;
+        this.user = user;
+        this.returnDate = returnDate;
+        this.returned = returned;
     }
 
     /**
@@ -171,10 +190,11 @@ public class Lending implements Serializable {
 
     /**
      * @brief   Creates a Lending object from its string representation, used for DB reads.
-     * @details The string representation format is "'ID'␜'BookISBN'␜'UserID'␜'ReturnDate'␜'isReturned'".
+     * @details The string representation format is "ID␜BookISBN␜UserID␜ReturnDate␜isReturned".
      * 
      * @todo    Test if the new lending is created successfully
      * @param   lendingStr The string representation of the Lending.
+     * @throws  IllegalArgumentException If the string format is incorrect.
      * @return  A Lending object created from the string representation.
      * @author  Giovanni Orsini
      * @author  Daniele Pepe
@@ -183,14 +203,19 @@ public class Lending implements Serializable {
         if(lendingStr == null || lendingStr.isEmpty()) {
             return null;
         }
+
         String[] fields = lendingStr.split(FIELD_SEPARATOR);
-        if(fields.length != 5) {
+
+        if (fields.length != 5) {
             throw new IllegalArgumentException("Wrong format for Lending DB string");
         }
-        Lending lending = new Lending(bookSet.getBook(fields[1]), userSet.getUser(fields[2]), LocalDate.parse(fields[3]));
-        if (Boolean.parseBoolean(fields[4]))
-            lending.setReturned();
-        return lending;
+
+        return new Lending(Integer.parseInt(fields[0]),         // lendingId
+                           bookSet.getBook(fields[1]),          // book
+                           userSet.getUser(fields[2]),          // user
+                           LocalDate.parse(fields[3]),          // returnDate
+                           Boolean.parseBoolean(fields[4])      // returned
+        );
     }
 
     /**
@@ -213,7 +238,7 @@ public class Lending implements Serializable {
         }
 
         length = returnDate.toString().length();
-        output.append(returnDate.toString());
+        output.append(returnDate);
         while (length < NGRAM_SIZE) {
             output.append(PADDING_CHAR);
             length++;

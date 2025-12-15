@@ -42,7 +42,6 @@ public class User implements Comparable<User>, Serializable {
      * @brief   Default constructor for utility purposes
      */
     public User(){
-
     }
 
     /**
@@ -78,6 +77,28 @@ public class User implements Comparable<User>, Serializable {
         this.email = email;
         this.borrowedBooksCount = 0;
         this.borrowedBooksEverCount = 0;
+    }
+
+    /**
+     * @brief   Constructs a new `User` object
+     *
+     * @param   id                      User's unique ID
+     * @param   name                    User's name
+     * @param   surname                 User's surname
+     * @param   email                   User's email
+     * @param   borrowedBooksCount      Number of currently borrowed books by the User
+     * @param   borrowedBooksEverCount  Total number of books ever borrowed by the User
+     *
+     * @warning This constructor should only be used when reading from the DB.
+     */
+    public User(String id, String name, String surname, String email,
+                int borrowedBooksCount, int borrowedBooksEverCount) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.borrowedBooksCount = borrowedBooksCount;
+        this.borrowedBooksEverCount = borrowedBooksEverCount;
     }
 
     /**
@@ -316,14 +337,23 @@ public class User implements Comparable<User>, Serializable {
      * @details The string representation format is "'ID'␜'Name'␜'Surname'␜'Email'␜'BorrowedBooksCount'␜'BorrowedBooksEverCount'".
      *
      * @param   userStr The string representation of the User from the DB.
+     * @throws  IllegalArgumentException if the string format is incorrect.
      * @return  The User object.
      */
     public static User fromDBString(String userStr) {
         String[] fields = userStr.split(FIELD_SEPARATOR);
-        User user = new User(fields[0], fields[1], fields[2], fields[3]);
-        user.setBorrowedBooksCount(Integer.parseInt(fields[4]));
-        user.setBorrowedBooksEverCount(Integer.parseInt(fields[5]));
-        return user;
+
+        if (fields.length != 6) {
+            throw new IllegalArgumentException("Wrong format for User DB string");
+        }
+
+        return new User(fields[0],                      // id
+                        fields[1],                      // name
+                        fields[2],                      // surname
+                        fields[3],                      // email
+                        Integer.parseInt(fields[4]),    // borrowedBooksCount
+                        Integer.parseInt(fields[5])     // borrowedBooksEverCount
+        );
     }
 
     /**
@@ -337,28 +367,28 @@ public class User implements Comparable<User>, Serializable {
 
         int length = id.strip().length();
 
-        output.append(id.strip());
+        output.append(id.strip().toLowerCase());
         while (length < NGRAM_SIZE) {
             output.append(PADDING_CHAR);
             length++;
         }
 
         length = name.strip().length();
-        output.append(name.strip());
+        output.append(name.strip().toLowerCase());
         while (length < NGRAM_SIZE) {
             output.append(PADDING_CHAR);
             length++;
         }
 
         length = surname.strip().length();
-        output.append(surname.strip());
+        output.append(surname.strip().toLowerCase());
         while (length < NGRAM_SIZE) {
             output.append(PADDING_CHAR);
             length++;
         }
 
         length = email.strip().length();
-        output.append(email.strip());
+        output.append(email.strip().toLowerCase());
         while (length < NGRAM_SIZE) {
             output.append(PADDING_CHAR);
             length++;

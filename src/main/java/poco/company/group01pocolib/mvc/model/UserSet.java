@@ -10,14 +10,15 @@ package poco.company.group01pocolib.mvc.model;
 
 import poco.company.group01pocolib.db.DB;
 import poco.company.group01pocolib.db.omnisearch.Index;
+import poco.company.group01pocolib.db.omnisearch.Search;
 import poco.company.group01pocolib.db.omnisearch.Search.*;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
+import java.util.*;
+
+import static java.lang.Math.abs;
+import static poco.company.group01pocolib.db.omnisearch.Search.distance;
 
 /**
  * @class   UserSet
@@ -39,8 +40,7 @@ public class UserSet implements Serializable {
     private Index<User> userIndex;
     private DB userDB;
 
-    private User dummy;     ///< This attribute is used in {@link poco.company.group01pocolib.mvc.model.UserSet#isStored
-                            ///  isStored()} as a dummy object for the `contains()` method of the Collection
+    private User dummy;     ///< This attribute is used for fast searches based on ID
 
     private String lastKnownDBHash;
     private String DBPath;
@@ -250,7 +250,6 @@ public class UserSet implements Serializable {
             i++;
         }
 
-        // Update the hash to indicate that we are synchronized with the DB
         updateLastKnownDBHash();
     }
 
@@ -295,9 +294,9 @@ public class UserSet implements Serializable {
      * @param   id The ID of the user to search for
      * @return  The found user or null if the user is not found
      */
-    public User getUser(String id){
-        // TODO: Implement using a more efficient method than linear search (pls let me use HashMap)
+    public User getUser(String id) {
         dummy.setId(id);
+
         for (User user : userSet) {
             if (user.equals(dummy)) {
                 return user;
@@ -343,31 +342,63 @@ public class UserSet implements Serializable {
      * @return  A list of users matching the search query, ranked by relevance
      */
     public List<SearchResult<User>> search(String rawQuery) {
-        // TODO: Implement search
-        return null;
+        List<SearchResult<User>> rawSearchResults = Search.search(rawQuery, userIndex);
+
+        if (rawSearchResults == null) return null;
+
+        List<SearchResult<User>> rankedResults = new ArrayList<>();
+
+        for (SearchResult<User> result : rawSearchResults) {
+            int score = calculateScore(result.item, rawQuery) + result.hits*5;
+            if (score >= 0) {
+                rankedResults.add(new SearchResult<>(result.item, score));
+            }
+        }
+
+        Collections.sort(rankedResults);
+
+        // Expensive calculations for further ranking adjustments on best results
+        for (int i = 0; i < rankedResults.size() && i < 20; i++) {
+            String searchableString = rankedResults.get(i).item.toSearchableString();
+            String processedQuery = rawQuery.trim();
+
+            int distance = distance(searchableString, processedQuery);
+            distance -= abs(processedQuery.length() - searchableString.length());
+
+            // The higher the distance, the lower the match
+            rankedResults.get(i).hits -= distance * 2;
+        }
+
+        // Only re-sort top 20 results after distance adjustment
+        Collections.sort(rankedResults.subList(0, Math.min(20, rankedResults.size())));
+
+        return rankedResults;
     }
 
     /**
-     * @brief   Perform search on the indexed users without ranking
-     *
-     * @param   rawQuery The raw search query
-     * @return  A list of users matching the search query
-     */
-    private List<SearchResult<User>> rawSearch(String rawQuery) {
-        // TODO: Implement search
-        return null;
-    }
-
-    /**
-     * @brief   Calculate the relevance score of a user for a given search query
+     * @brief   Calculates relevance score of a user for a given search query (just used for exact matches of fields).
      *
      * @param   user The user to calculate the score for
      * @param   rawQuery The raw search query
      * @return  The relevance score of the user
      */
-    private int calculateScore(User user, String rawQuery) {
-        // TODO: Implement score calculation
-        return 0;
+    public static int calculateScore(User user, String rawQuery) {
+        if (user == null || rawQuery == null || rawQuery.isEmpty()) {
+            return-1;
+        }
+
+        int score = 0;
+
+        if (user.getId().equals(rawQuery))
+            score += 1000;
+        if (user.getName().equals(rawQuery))
+            score += 500;
+        if (user.getSurname().equals(rawQuery))
+            score += 500;
+        if (user.getEmail().equals(rawQuery))
+            score += 200;
+
+        return score;
     }
 
     private void syncOnWrite() {

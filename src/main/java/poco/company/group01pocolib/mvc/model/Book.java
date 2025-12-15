@@ -42,11 +42,11 @@ public class Book implements Serializable {
     /**
      * @brief   Constructs a new Book object.
      *
-     * @param   title   The title of the Book.
-     * @param   authors The authors of the Book.
-     * @param   isbn    The ISBN of the Book.
-     * @param   year    The release year of the Book.
-     * @param   copiesAvailable  The number of copies available of the Book.
+     * @param   title           The title of the Book.
+     * @param   authors         The authors of the Book.
+     * @param   isbn            The ISBN of the Book.
+     * @param   year            The release year of the Book.
+     * @param   copiesAvailable The number of copies available of the Book.
      * 
      * @throws  BookDataNotValidException if the number of copies is negative.
      */
@@ -63,6 +63,11 @@ public class Book implements Serializable {
         this.timesLent = 0;
     }
 
+    /**
+     * @brief   Constructs a new Book object with only an identifier (ISBN).
+     *
+     * @param   identifier  The ISBN of the Book.
+     */
     public Book(String identifier) {
         this.isbn = identifier;
     }
@@ -70,12 +75,12 @@ public class Book implements Serializable {
     /**
      * @brief   Constructs a new Book object. That takes authors as a single `String` separated by "; ".
      *
-     * @param   title   The title of the Book.
-     * @param   authors The String of semicolon separated authors of the Book.
-     * @param   isbn    The  ISBN of the Book.
-     * @param   year    The release year of the Book.
-     * @param   copiesAvailable  The number of copies available of the Book.
-     * 
+     * @param   title           The title of the Book.
+     * @param   authors         The String of semicolon separated authors of the Book.
+     * @param   isbn            The ISBN of the Book.
+     * @param   year            The release year of the Book.
+     * @param   copiesAvailable The number of copies available of the Book.
+     *
      * @throws  BookDataNotValidException if the number of copies is negative.
      */
     public Book(String title, String authors, String isbn, int year, int copiesAvailable) {
@@ -89,6 +94,30 @@ public class Book implements Serializable {
         this.copiesAvailable = copiesAvailable;
         this.copiesLent = 0;
         this.timesLent = 0;
+    }
+
+    /**
+     * @brief   Constructs a new Book. No checks are performed on anything.
+     *
+     * @param   title           The title of the Book.
+     * @param   authors         The List of authors of the Book.
+     * @param   isbn            The ISBN of the Book.
+     * @param   year            The release year of the Book.
+     * @param   copiesAvailable The number of copies available of the Book.
+     * @param   copiesLent      The number of copies currently lent out.
+     * @param   timesLent       The number of times the Book has been lent.
+     *
+     * @warning This constructor should only be used when reading from the DB.
+     */
+    public Book(String title, List<String> authors, String isbn, int year,
+                int copiesAvailable, int copiesLent, int timesLent) {
+        this.title = title;
+        this.authors = authors;
+        this.isbn = isbn;
+        this.year = year;
+        this.copiesAvailable = copiesAvailable;
+        this.copiesLent = copiesLent;
+        this.timesLent = timesLent;
     }
 
     /**
@@ -297,27 +326,28 @@ public class Book implements Serializable {
 
     /**
      * @brief   Creates a Book object from its string representation (typically used for DB reads).
-     * @details The string representation format is Title␜Authors␜ISBN␜Year␜CopiesAvailable␜CopiesLent␜TimesLent.
-     * 
+     * @details The string representation format is !Title␜Authors␜ISBN␜Year␜CopiesAvailable␜CopiesLent␜TimesLent".
      *
      * @param   bookStr The string representation of the Book.
+     * @throws  IllegalArgumentException if the string format is incorrect.
      * @return  The Book object.
      */
     public static Book fromDBString(String bookStr) {
-       String[] fields = bookStr.split("\u001C");
-    
-        Book book = new Book(
-            fields[0], 
-            List.of(fields[1].split("; ")), 
-            fields[2], 
-            Integer.parseInt(fields[3]), 
-            Integer.parseInt(fields[4])
-        );
+       String[] fields = bookStr.split(FIELD_SEPARATOR);
 
-        book.setCopiesLent(Integer.parseInt(fields[5]));
-        book.setTimesLent(Integer.parseInt(fields[6]));
-    
-        return book;
+        if (fields.length != 7) {
+            throw new IllegalArgumentException("Wrong format for Book DB string");
+        }
+
+        return new Book(
+            fields[0],                              // title
+            List.of(fields[1].split("; ")),   // authors
+            fields[2],                              // isbn
+            Integer.parseInt(fields[3]),            // year
+            Integer.parseInt(fields[4]),            // copiesAvailable
+            Integer.parseInt(fields[5]),            // copiesLent
+            Integer.parseInt(fields[6])             // timesLent
+        );
     }
 
     /**
@@ -332,21 +362,21 @@ public class Book implements Serializable {
 
         int length = isbn.strip().length();
 
-        output.append(isbn.strip());
+        output.append(isbn.strip().toLowerCase());
         while (length < NGRAM_SIZE) {
             output.append(PADDING_CHAR);
             length++;
         }
 
         length = title.strip().length();
-        output.append(title.strip());
+        output.append(title.strip().toLowerCase());
         while (length < NGRAM_SIZE) {
             output.append(PADDING_CHAR);
             length++;
         }
 
         length = getAuthorsString().strip().length();
-        output.append(getAuthorsString().strip());
+        output.append(getAuthorsString().strip().toLowerCase());
         while (length < NGRAM_SIZE) {
             output.append(PADDING_CHAR);
             length++;

@@ -7,15 +7,16 @@ package poco.company.group01pocolib.mvc.model;
 
 import poco.company.group01pocolib.db.DB;
 import poco.company.group01pocolib.db.omnisearch.Index;
+import poco.company.group01pocolib.db.omnisearch.Search;
 import poco.company.group01pocolib.db.omnisearch.Search.*;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
+import static java.lang.Math.abs;
+import static poco.company.group01pocolib.db.omnisearch.Search.distance;
 
 /**
  * @class   LendingSet
@@ -256,7 +257,6 @@ public class LendingSet implements Serializable {
             i++;
         }
 
-        // Update the hash to indicate that we are synchronized with the DB
         updateLastKnownDBHash();
     }
 
@@ -312,32 +312,76 @@ public class LendingSet implements Serializable {
      * @return  A list of lendings matching the search query, ranked by relevance
      */
     public List<SearchResult<Lending>> search(String rawQuery) {
-        // TODO: Implement search
-        // Temporary implementation: return empty list instead of null to avoid NullPointerException
-        return new ArrayList<>();
+        List<SearchResult<Lending>> rawSearchResults = Search.search(rawQuery, lendingIndex);
+
+        if (rawSearchResults == null) return null;
+
+        List<SearchResult<Lending>> rankedResults = new ArrayList<>();
+
+        for (SearchResult<Lending> result : rawSearchResults) {
+            int score = calculateScore(result.item, rawQuery) + result.hits*5;
+            if (score >= 0) {
+                rankedResults.add(new SearchResult<>(result.item, score));
+            }
+        }
+
+        Collections.sort(rankedResults);
+
+        // Expensive calculations for further ranking adjustments on best results
+        for (int i = 0; i < rankedResults.size() && i < 20; i++) {
+            String searchableString = rankedResults.get(i).item.toSearchableString();
+            String processedQuery = rawQuery.trim();
+
+            int distance = distance(searchableString, processedQuery);
+            distance -= abs(processedQuery.length() - searchableString.length());
+
+            // The higher the distance, the lower the match
+            rankedResults.get(i).hits -= distance * 2;
+        }
+
+        // Only re-sort top 20 results after distance adjustment
+        Collections.sort(rankedResults.subList(0, Math.min(20, rankedResults.size())));
+
+        return rankedResults;
     }
 
     /**
-     * @brief   Perform search on the indexed lendings without ranking
-     *
-     * @param   rawQuery The raw search query
-     * @return  A list of lendings matching the search query
-     */
-    private List<SearchResult<Lending>> rawSearch(String rawQuery) {
-        // TODO: Implement search
-        return null;
-    }
-
-    /**
-     * @brief   Calculate the relevance score of a lending for a given search query
+     * @brief   Calculates relevance score of a lending for a given search query (just used for exact matches of fields).
      *
      * @param   lending The lending to calculate the score for
      * @param   rawQuery The raw search query
      * @return  The relevance score of the lending
      */
-    private int calculateScore(Lending lending, String rawQuery) {
-        // TODO: Implement score calculation
-        return 0;
+    public static int calculateScore(Lending lending, String rawQuery) {
+        if (lending == null || rawQuery == null || rawQuery.isEmpty()) {
+            return-1;
+        }
+
+        int score = 0;
+
+        score += UserSet.calculateScore(lending.getUser(), rawQuery);
+        score += BookSet.calculateScore(lending.getBook(), rawQuery);
+
+        if (Integer.valueOf(lending.getLendingId()).toString().equals(rawQuery))
+            score += 1000;
+        if (lending.getReturnDate().toString().equals(rawQuery))
+            score += 500;
+
+        String alternateDateFormat = String.format("%02d %02d %04d",
+                lending.getReturnDate().getDayOfMonth(),
+                lending.getReturnDate().getMonthValue(),
+                lending.getReturnDate().getYear());
+        if (alternateDateFormat.equals(rawQuery))
+            score += 500;
+
+        alternateDateFormat = String.format("%02d/%02d/%04d",
+                lending.getReturnDate().getDayOfMonth(),
+                lending.getReturnDate().getMonthValue(),
+                lending.getReturnDate().getYear());
+        if (alternateDateFormat.equals(rawQuery))
+            score += 500;
+
+        return score;
     }
 
     /**

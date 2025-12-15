@@ -261,7 +261,6 @@ public class BookSet implements Serializable {
             i++;
         }
 
-        // Update the hash to indicate that we are synchronized with the DB
         updateLastKnownDBHash();
     }
 
@@ -395,7 +394,7 @@ public class BookSet implements Serializable {
      * @param   rawQuery The raw search query
      * @return  The relevance score of the book
      */
-    private int calculateScore(Book book, String rawQuery) {
+    public static int calculateScore(Book book, String rawQuery) {
         if (book == null || rawQuery == null || rawQuery.isEmpty()) {
             return-1;
         }
