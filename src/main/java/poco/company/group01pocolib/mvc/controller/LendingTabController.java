@@ -554,17 +554,19 @@ public class LendingTabController {
      */
     private void updateRowStyle(TableRow<Lending> row) {
         Lending lending = row.getItem();
-        if (row.isEmpty() || lending == null) {
-            row.setStyle("");
+        if (row.isEmpty() || lending == null || row.isSelected()) {
+            // If empty, null, or SELECTED, we use default styles.
+            // This ensures standard selection visibility (Blue background, White text)
+            // and avoids accessibility issues or visual glitches.
+            row.setStyle(""); 
         } else {
-            boolean isSelected = row.isSelected(); 
-            
+            // Only apply custom colors when NOT selected
             if (lending.isReturned()) {
-                // Returned: Green 100 / Green 200
-                row.setStyle(isSelected? "-fx-background-color: #A5D6A7;" : "-fx-background-color: #C8E6C9;");
+                // Returned: Gray text, default background (looks inactive)
+                row.setStyle("-fx-text-background-color: #808080;");
             } else if (lending.getReturnDate().isBefore(LocalDate.now())) {
-                // Late: Red 100 / Red 200
-                row.setStyle(isSelected? "-fx-background-color: #EF9A9A;" : "-fx-background-color: #FFCDD2;");
+                // Late: Red 100 background
+                row.setStyle("-fx-background-color: #FFCDD2;");
             } else {
                 // Normal
                 row.setStyle(""); 
