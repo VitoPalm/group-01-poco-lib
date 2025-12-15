@@ -81,7 +81,10 @@ public class LendingTest {
     @Test
     public void testLendingEdit() {
         Lending lending = new Lending(testBook, testUser, testReturnDate);
-        
+        // Manually increment counters for book and user to simulate lending creation effects
+        testBook.lendCopy();
+        testUser.incrementBorrowedBooksCount();
+
         // Test initial state
         assertFalse(lending.isReturned());
         
@@ -205,6 +208,9 @@ public class LendingTest {
     @Test
     public void testMultipleReturnedStatusChanges() {
         Lending lending = new Lending(testBook, testUser, testReturnDate);
+        // Manually increment counters for book and user to simulate lending creation effects
+        testBook.lendCopy();
+        testUser.incrementBorrowedBooksCount();
         
         lending.setReturned();
         assertTrue(lending.isReturned());
