@@ -14,6 +14,9 @@ import java.util.List;
 
 import poco.company.group01pocolib.exceptions.BookDataNotValidException;
 
+import static poco.company.group01pocolib.db.omnisearch.Index.NGRAM_SIZE;
+import static poco.company.group01pocolib.db.omnisearch.Index.PADDING_CHAR;
+
 /**
  * @class   Book
  * @brief   Represents a Book in the library.
@@ -318,16 +321,45 @@ public class Book implements Serializable {
     }
 
     /**
-     * @brief   Get a string containing only the searchable info of the book
-     * @details This includes title, authors, isbn, year, and available copies. The string representation format is title␜authors␜isbn␜year␜available_copies.
+     * @brief   Generates a string containing only the searchable info of the book.
+     * @details The searchable info includes the title, authors, and ISBN, each padded to a fixed minimum length defined
+     *          by NGRAM_SIZE.
      *
      * @return  A string containing the searchable info of the book
      */
     public String toSearchableString() {
-        return getTitle().strip().toLowerCase() +
-               getAuthorsString().strip().toLowerCase() +
-               getIsbn().strip().toLowerCase() +
-               getYear() + getCopiesAvailable();
+        StringBuilder output = new StringBuilder();
+
+        int length = isbn.strip().length();
+
+        output.append(isbn.strip());
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
+        }
+
+        length = title.strip().length();
+        output.append(title.strip());
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
+        }
+
+        length = getAuthorsString().strip().length();
+        output.append(getAuthorsString().strip());
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
+        }
+
+        length = Integer.valueOf(year).toString().length();
+        output.append(year);
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
+        }
+
+        return output.toString();
     }
 
     /**

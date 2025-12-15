@@ -13,6 +13,9 @@ import poco.company.group01pocolib.exceptions.UserDataNotValidException;
 import java.io.Serial;
 import java.io.Serializable;
 
+import static poco.company.group01pocolib.db.omnisearch.Index.NGRAM_SIZE;
+import static poco.company.group01pocolib.db.omnisearch.Index.PADDING_CHAR;
+
 
 /**
  * @class   User
@@ -310,7 +313,7 @@ public class User implements Comparable<User>, Serializable {
 
     /**
      * @brief   Creates a User object from its string representation used for DB reads.
-     * @details The string representation format is "'ID'\u001C'Name'\u001C'Surname'\u001C'Email'\u001C'BorrowedBooksCount'\u001C'BorrowedBooksEverCount'".
+     * @details The string representation format is "'ID'␜'Name'␜'Surname'␜'Email'␜'BorrowedBooksCount'␜'BorrowedBooksEverCount'".
      *
      * @param   userStr The string representation of the User from the DB.
      * @return  The User object.
@@ -325,20 +328,48 @@ public class User implements Comparable<User>, Serializable {
 
     /**
      * @brief   Get a string containing only the searchable info of the user
-     * @details This includes id, name, surname and email. The string representation format is "'ID''Name''Surname''Email'".
+     * @details This includes id, name, surname and email.
      *
      * @return  A string containing the searchable info of the user.
      */
     public String toSearchableString() {
-        return getId().strip().toLowerCase() +
-               getName().strip().toLowerCase() +
-               getSurname().strip().toLowerCase() +
-               getEmail().strip().toLowerCase();
+        StringBuilder output = new StringBuilder();
+
+        int length = id.strip().length();
+
+        output.append(id.strip());
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
         }
+
+        length = name.strip().length();
+        output.append(name.strip());
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
+        }
+
+        length = surname.strip().length();
+        output.append(surname.strip());
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
+        }
+
+        length = email.strip().length();
+        output.append(email.strip());
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
+        }
+
+        return output.toString().toLowerCase();
+    }
 
     /**
      * @brief   Returns a string representation of the User used for DB writes.
-     * @details The string representation format is "'ID'\u001C'Name'\u001C'Surname'\u001C'Email'\u001C'BorrowedBooksCount'\u001C'BorrowedBooksEverCount'".
+     * @details The string representation format is "'ID'␜'Name'␜'Surname'␜'Email'␜'BorrowedBooksCount'␜'BorrowedBooksEverCount'".
      *
      * @return  A string representation of the User for DB writes.
      */

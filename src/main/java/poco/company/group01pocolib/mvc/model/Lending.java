@@ -11,6 +11,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import poco.company.group01pocolib.exceptions.*;
 
+import static poco.company.group01pocolib.db.omnisearch.Index.NGRAM_SIZE;
+import static poco.company.group01pocolib.db.omnisearch.Index.PADDING_CHAR;
+
 /**
  * @class   Lending
  * @brief   Represents a Lending in the library.
@@ -168,7 +171,7 @@ public class Lending implements Serializable {
 
     /**
      * @brief   Creates a Lending object from its string representation, used for DB reads.
-     * @details The string representation format is "'ID'\u001C'BookISBN'\u001C'UserID'\u001C'ReturnDate'\u001C'isReturned'".
+     * @details The string representation format is "'ID'␜'BookISBN'␜'UserID'␜'ReturnDate'␜'isReturned'".
      * 
      * @todo    Test if the new lending is created successfully
      * @param   lendingStr The string representation of the Lending.
@@ -193,21 +196,38 @@ public class Lending implements Serializable {
     /**
      * @brief   Get a string containing only the searchable info of the lending
      * @details The searchable version of the string will include the searchable info of the book and user, plus the
-     *          return date, and the id of the lending. The string representation format is TODO: implement.
+     *          return date, and the id of the lending.
      *
      * @return  A string containing the searchable info of the lending
      * @author  Giovanni Orsini
      */
     public String toSearchableString() {
-        return Integer.toString(getLendingId()) +
-               getBook().toSearchableString() +
-               getUser().toSearchableString() +
-               getReturnDate().toString().strip().toLowerCase();
+        StringBuilder output = new StringBuilder();
+
+        int length = Integer.valueOf(lendingId).toString().length();
+
+        output.append(lendingId);
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
+        }
+
+        length = returnDate.toString().length();
+        output.append(returnDate.toString());
+        while (length < NGRAM_SIZE) {
+            output.append(PADDING_CHAR);
+            length++;
+        }
+
+        output.append(book.toSearchableString());
+        output.append(user.toSearchableString());
+
+        return output.toString();
     }
 
     /**
      * @brief   Returns a string representation of the Lending.
-     * @details The string representation format is "'ID'\u001C'BookISBN'\u001C'UserID'\u001C'ReturnDate'\u001C'isReturned'".
+     * @details The string representation format is "'ID'␜'BookISBN'␜'UserID'␜'ReturnDate'␜'isReturned'".
      * 
      * @return  A string representation of the Lending.
      * @author  Giovanni Orsini
