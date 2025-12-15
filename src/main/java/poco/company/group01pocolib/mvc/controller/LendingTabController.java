@@ -150,23 +150,19 @@ public class LendingTabController {
         });
 
         // Set row factory for color coding
-        lendingTable.setRowFactory(tv -> new TableRow<Lending>() {
-            @Override
-            protected void updateItem(Lending lending, boolean empty) {
-                super.updateItem(lending, empty);
-                
-                if (empty || lending == null) {
-                    setStyle("");
-                } else if (lending.isReturned()) {
-                    // Green background for returned lendings
-                    setStyle("-fx-background-color: #90EE90;");
-                } else if (lending.getReturnDate().isBefore(LocalDate.now())) {
-                    // Red background for overdue lendings
-                    setStyle("-fx-background-color: #FFB6C1;");
-                } else {
-                    setStyle("");
+        lendingTable.setRowFactory(tv -> {
+            TableRow<Lending> row = new TableRow<>() {
+                @Override
+                protected void updateItem(Lending lending, boolean empty) {
+                    super.updateItem(lending, empty);
+                    updateRowStyle(this);
                 }
-            }
+            };
+
+            // Listener for selection changes
+            row.selectedProperty().addListener((obs, wasSelected, isSelected) -> updateRowStyle(row));
+
+            return row;
         });
         
         Platform.runLater(() -> {
@@ -549,6 +545,30 @@ public class LendingTabController {
             bookSet.addOrEditBook(selectedLending.getBook());
             userSet.addOrEditUser(selectedLending.getUser());
             mainController.refreshTabData();
+        }
+    }
+
+    /**
+     * @brief   Updates the style of a row based on the lending status and selection state.
+     * @param   row The row to update.
+     */
+    private void updateRowStyle(TableRow<Lending> row) {
+        Lending lending = row.getItem();
+        if (row.isEmpty() || lending == null) {
+            row.setStyle("");
+        } else {
+            boolean isSelected = row.isSelected(); 
+            
+            if (lending.isReturned()) {
+                // Returned: Green 100 / Green 200
+                row.setStyle(isSelected? "-fx-background-color: #A5D6A7;" : "-fx-background-color: #C8E6C9;");
+            } else if (lending.getReturnDate().isBefore(LocalDate.now())) {
+                // Late: Red 100 / Red 200
+                row.setStyle(isSelected? "-fx-background-color: #EF9A9A;" : "-fx-background-color: #FFCDD2;");
+            } else {
+                // Normal
+                row.setStyle(""); 
+            }
         }
     }
 }
