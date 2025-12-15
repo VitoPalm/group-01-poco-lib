@@ -266,7 +266,7 @@ public class LendingPropController {
             // Clear selected book and user in main controller if it was a new lending
             if (isNewLending) {
                 // Increment counters for new lending
-                lending.getBook().incrementCopiesLent();
+                lending.getBook().lendCopy();
                 lending.getUser().incrementBorrowedBooksCount();
                 // Save updated book and user
                 bookSet.addOrEditBook(lending.getBook());
