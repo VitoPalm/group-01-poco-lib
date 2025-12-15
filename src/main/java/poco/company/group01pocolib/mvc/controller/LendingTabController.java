@@ -82,6 +82,9 @@ public class LendingTabController {
     private Stage primaryStage;
     private PocoLibController mainController;
 
+
+    
+
     /**
      * @brief   Initializes the controller class, setting up all the listeners. This method is automatically called after fxml file has been loaded.
      * 
@@ -256,6 +259,15 @@ public class LendingTabController {
         this.bookSet = bookSet;
         this.userSet = userSet;
         this.lendingSet = lendingSet;
+    }
+
+    /**
+     * @brief   Sets the query from outside for the OmniSearch in this tab
+     * @param   query       The string to search
+     */
+    public void setSearchText(String query) {
+        this.lendingSearchField.setText(query);
+        this.lendingSearchField.requestFocus();    
     }
 
     /**

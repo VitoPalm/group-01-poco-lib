@@ -408,7 +408,6 @@ public class BookTabController {
 
             controller.setMode(mode);
             stage.initOwner(ownerStage);
-            stage.initModality(Modality.WINDOW_MODAL);
             stage.setResizable(false);
 
             stage.show();

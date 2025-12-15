@@ -18,6 +18,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import poco.company.group01pocolib.mvc.model.Book;
@@ -27,6 +28,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BookPropController {
+    // ------------- //
+    // Shared fields //
+    // ------------- //
+    private Stage dialogStage;
+    private Book book;
+    private String originalIsbn; // Store original ISBN to handle ISBN changes
+    private BookSet bookSet;
+    private PocoLibController mainController;
+    private Stage primaryStage;
+
 
     // ----------------- //
     // View declarations //
@@ -69,15 +80,6 @@ public class BookPropController {
 
     private BooleanProperty isbnIsValid = new SimpleBooleanProperty(false);
 
-
-    // ------------- //
-    // Shared fields //
-    // ------------- //
-    private Stage dialogStage;
-    private Book book;
-    private String originalIsbn; // Store original ISBN to handle ISBN changes
-    private BookSet bookSet;
-    private PocoLibController mainController;
 
     /**
      * @brief   Initializes the controller class allowing real time ISBN verification. This method is automatically
@@ -204,10 +206,6 @@ public class BookPropController {
         // ISBN univocity check
         isbnIsValid.bind(Bindings.createBooleanBinding(() -> {
             String isbn = isbnField.getText();
-
-            // if (isbn == null || isbn.isBlank())     // if blank it cannot be saved
-            //     return false;
-
             if (isbn.equals(originalIsbn))               // In Edit mode you can make changes keeping the same isbn
                 return true;
 
@@ -297,12 +295,14 @@ public class BookPropController {
     }
 
     /**
-     * @brief   Handles the lent to hyperlink click event. It switches to the User tab and selects the user who has
+     * @brief   Handles the lent to hyperlink click event. It switches to the Lendings tab and researches the Lendings involving this Book
      *          currently borrowed the book.
+     * @author  Giovanni Orsini
      */
     @FXML
     private void handleViewHistory() {
-        // TODO: implement view history logic
+        // focus lending tab
+        mainController.setResearchSelectedBookInLendings(book);
     }
 
     // -------------------- //
@@ -374,6 +374,7 @@ public class BookPropController {
     @FXML
     private void handleCancel() {
         dialogStage.close();
+        // TODO: cancel in edit has to bring back to view
     }
 
     /**
