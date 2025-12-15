@@ -144,6 +144,11 @@ public class LendingTabController {
             lendingTableHandler();
         });
 
+        // Initialize checkbox listener
+        onlyActiveCheckBox.selectedProperty().addListener(observable -> {
+            lendingTableHandler();
+        });
+
         // Set row factory for color coding
         lendingTable.setRowFactory(tv -> new TableRow<Lending>() {
             @Override
@@ -169,7 +174,11 @@ public class LendingTabController {
                 return;
 
             // Binding for number of entries in the observable list (reflects actual table content)
-            lendingSearchField.promptTextProperty().bind(Bindings.format("OmniSearch %d lendings", Bindings.size(lendingData)));
+            lendingSearchField.promptTextProperty().bind(
+                Bindings.when(onlyActiveCheckBox.selectedProperty())
+                    .then(Bindings.format("OmniSearch %d active lendings", Bindings.size(lendingData)))
+                    .otherwise(Bindings.format("OmniSearch %d lendings", Bindings.size(lendingData)))
+            );
         });
         
         Platform.runLater(() -> {
@@ -275,6 +284,15 @@ public class LendingTabController {
      */
     public void loadData() {
         lendingData.setAll(lendingSet.getAllLendingsAsList());
+        
+        // Apply active filter if checkbox is selected
+        if (onlyActiveCheckBox != null && onlyActiveCheckBox.isSelected()) {
+            List<Lending> filteredList = lendingData.stream()
+                .filter(lending -> !lending.isReturned())
+                .toList();
+            lendingData.setAll(filteredList);
+        }
+        
         lendingTable.setItems(lendingData);
         lendingTable.refresh(); // Force refresh to update cell values
     }
@@ -381,6 +399,8 @@ public class LendingTabController {
                         .sorted()
                         // Map to underlying Lending objects
                         .map(sr -> sr.item)
+                        // Filter for active lendings if checkbox is selected
+                        .filter(lending -> !onlyActiveCheckBox.isSelected() || !lending.isReturned())
                         // Collect to list
                         .toList();
                 // Update the observable list with hit-sorted lendings
