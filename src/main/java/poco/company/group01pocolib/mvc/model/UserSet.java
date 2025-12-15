@@ -404,11 +404,21 @@ public class UserSet implements Serializable {
     private void syncOnWrite() {
         // Clear the DB file
         userDB.clear();
-            
-        // Write all users to the DB file
+
+        StringBuilder newDBContent = new StringBuilder();
+
+        // Add all users to the newDBContent, separated by line separators (all but the last line)
         for (User user : userSet) {
-            userDB.appendLine(user.toDBString());
+            newDBContent.append(user.toDBString()).append(userDB.getLineSeparator());
         }
+
+        // Remove the last line separator if there are any users
+        if (!userSet.isEmpty()) {
+            newDBContent.setLength(newDBContent.length() - userDB.getLineSeparator().length());
+        }
+
+        // Write the new content to the DB file
+        userDB.rebuildDBFromString(newDBContent.toString());
         
         // Update the hash after writing to DB
         updateLastKnownDBHash();

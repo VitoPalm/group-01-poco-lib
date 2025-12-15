@@ -306,7 +306,7 @@ public class LendingSet implements Serializable {
      * @brief   Adds a Lending to the collection. If the Lending already exists (based on lending ID), it is edited.
      * @param   lending The Lending object to add or edit.
      */
-    public void addOrEditLending(Lending lending){
+    public void addOrEditLending(Lending lending) {
         // Removes the lending if it already exists
         lendingSet.remove(lending);
         lendingIndex.remove(lending);
@@ -439,14 +439,23 @@ public class LendingSet implements Serializable {
      * @author  Giovanni Orsini
      */
     private void syncOnWrite() {
-        
         // Clear the DB file
         lendingDB.clear();
 
-        // Write all lendings to the DB file
+        StringBuilder newDBContent = new StringBuilder();
+
+        // Add all lendings to the newDBContent, separated by line separators (all but the last line)
         for (Lending lending : lendingSet) {
-            lendingDB.appendLine(lending.toDBString());
+            newDBContent.append(lending.toDBString()).append(lendingDB.getLineSeparator());
         }
+
+        // Remove the last line separator if there are any lendings
+        if (!lendingSet.isEmpty()) {
+            newDBContent.setLength(newDBContent.length() - lendingDB.getLineSeparator().length());
+        }
+
+        // Write the new content to the DB file
+        lendingDB.rebuildDBFromString(newDBContent.toString());
 
         // Update the hash after writing to DB
         updateLastKnownDBHash();

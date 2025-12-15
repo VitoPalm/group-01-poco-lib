@@ -342,7 +342,7 @@ public class BookTabController {
             // Clear any existing sort order to show results by hits
             bookTable.getSortOrder().clear();
 
-            String query = bookSearchField.textProperty().getValue();
+            String query = bookSearchField.textProperty().getValue().trim().toLowerCase();
 
             // Perform search and store results
             currentSearchResults = bookSet.search(query);
