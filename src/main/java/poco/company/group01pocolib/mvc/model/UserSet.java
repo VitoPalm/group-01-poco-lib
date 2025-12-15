@@ -422,12 +422,9 @@ public class UserSet implements Serializable {
         
         // Update the hash after writing to DB
         updateLastKnownDBHash();
-        
-        // Save the serialized version
-        saveToSerialized();
     }
 
-    private void saveToSerialized() {
+    public void saveToSerialized() {
         if (serializationPath == null || serializationPath.isEmpty()) {
             return;
         }

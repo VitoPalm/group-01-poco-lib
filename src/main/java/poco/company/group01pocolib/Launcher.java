@@ -89,6 +89,25 @@ public class Launcher extends Application {
         stage.setMinWidth(350);
         stage.setMinHeight(250);
 
+        // Save to serialized on close
+        stage.setOnCloseRequest(event -> {
+            stage.hide();
+
+            Task<Void> saveTask = new Task<>() {
+                @Override
+                protected Void call() {
+                    bookSet.saveToSerialized();
+                    userSet.saveToSerialized();
+                    lendingSet.saveToSerialized();
+                    return null;
+                }
+            };
+
+            saveTask.setOnSucceeded(e -> Platform.exit());
+            new Thread(saveTask).start();
+            event.consume(); // Prevent the default close behavior until saving is done
+        });
+
         stage.show();
     }
 

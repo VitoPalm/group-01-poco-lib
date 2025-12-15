@@ -459,16 +459,13 @@ public class LendingSet implements Serializable {
 
         // Update the hash after writing to DB
         updateLastKnownDBHash();
-
-        // Save the serialized version
-        saveToSerialized();
     }
 
     /**
      * @brief   Saves the current state of the LendingSet to a serialized file on disk
      * @author  Giovanni Orsini
      */
-    private void saveToSerialized() {
+    public void saveToSerialized() {
         if (serializationPath == null || serializationPath.isEmpty()) {
             return;
         }
