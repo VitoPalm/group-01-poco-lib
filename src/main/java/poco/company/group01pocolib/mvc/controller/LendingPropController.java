@@ -197,7 +197,7 @@ public class LendingPropController {
     @FXML
     private void handleMarkAsReturned() {
         if (returnButton.getText().equals("Mark as returned")) 
-            returnButton.setText("Unmarked as returned");
+            returnButton.setText("Unmark as returned");
 
         else    
             returnButton.setText("Mark as returned");
