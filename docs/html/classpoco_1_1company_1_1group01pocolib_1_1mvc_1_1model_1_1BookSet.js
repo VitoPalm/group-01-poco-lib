@@ -2,7 +2,6 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet =
 [
     [ "BookSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#af509c3efe269646259ce601fe97d600d", null ],
     [ "addOrEditBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#aeb982062bce3b5afdea3587af0c851a1", null ],
-    [ "calculateScore", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a28d8ffa41454d70ee55ce8de2ed36831", null ],
     [ "getBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a2fc96a88016b915435711305c128f3c0", null ],
     [ "getBookDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a5c616214ad39d286be2d402c8bcd3026", null ],
     [ "getBookIndex", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#ad4e722f5f0f51ccf9a9f10a55f95d7d9", null ],
@@ -13,7 +12,6 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet =
     [ "getSerializationPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a9f735270a6341a755430960ec913c930", null ],
     [ "isStored", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a7afa792729fd6a804b57aef2e153f86f", null ],
     [ "isStored", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#af4e0369a2e2eef09ca8bc6c5bec00767", null ],
-    [ "rawSearch", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#accbd04d1ee1fa1a3fae7b32e8fc299d3", null ],
     [ "rebuildFromDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#adab5eecb7ed65793b96b2756a6d11288", null ],
     [ "removeBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a5b2b1aa29b8d1bbcc01e7ac739c0b146", null ],
     [ "saveToSerialized", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#a6dd5550ae6e963a7b3b0cde5aa431409", null ],

@@ -6,9 +6,9 @@ var annotated_dup =
           [ "db", null, [
             [ "omnisearch", null, [
               [ "Index", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index" ],
+              [ "IndexTest", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1IndexTest.html", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1IndexTest" ],
               [ "Search", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Search.html", null ]
             ] ],
-            [ "Backup", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Backup.html", null ],
             [ "DB", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB" ],
             [ "Hash", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash.html", null ]
           ] ],

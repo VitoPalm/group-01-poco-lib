@@ -108,6 +108,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aed9890f5c97eee2fe7640947be36d03a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for utility purposes. <br /></td></tr>
 <tr class="memitem:a5b68d36f684e18d34db7919cd551054e" id="r_a5b68d36f684e18d34db7919cd551054e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b68d36f684e18d34db7919cd551054e">User</a> (String id, String name, String surname, String email)</td></tr>
 <tr class="memdesc:a5b68d36f684e18d34db7919cd551054e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a></span> object.  <br /></td></tr>
+<tr class="memitem:abff6bec8efaea55a9f5368967cbad869" id="r_abff6bec8efaea55a9f5368967cbad869"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abff6bec8efaea55a9f5368967cbad869">User</a> (String id, String name, String surname, String email, int borrowedBooksCount, int borrowedBooksEverCount)</td></tr>
+<tr class="memdesc:abff6bec8efaea55a9f5368967cbad869"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a></span> object.  <br /></td></tr>
 <tr class="memitem:ad92eb0a7ba1b6e805b206ace78f39264" id="r_ad92eb0a7ba1b6e805b206ace78f39264"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad92eb0a7ba1b6e805b206ace78f39264">canBorrow</a> ()</td></tr>
 <tr class="memdesc:ad92eb0a7ba1b6e805b206ace78f39264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to check whether the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> can borrow more books.  <br /></td></tr>
 <tr class="memitem:a2c1777901844231ae566c0a03d8661e0" id="r_a2c1777901844231ae566c0a03d8661e0"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c1777901844231ae566c0a03d8661e0">getId</a> ()</td></tr>
@@ -194,7 +196,7 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>FIELD_
 <p>Each <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> has a unique ID, a name, a surname, an email, a number of currently borrowed books, and a total number of books borrowed ever. The ID and email must be of valid format for the object to be created. The class can be serialized for persistence. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5b68d36f684e18d34db7919cd551054e" name="a5b68d36f684e18d34db7919cd551054e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b68d36f684e18d34db7919cd551054e">&#9670;&#160;</a></span>User()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b68d36f684e18d34db7919cd551054e">&#9670;&#160;</a></span>User() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,6 +242,61 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>FIELD_
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="abff6bec8efaea55a9f5368967cbad869" name="abff6bec8efaea55a9f5368967cbad869"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abff6bec8efaea55a9f5368967cbad869">&#9670;&#160;</a></span>User() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">poco.company.group01pocolib.mvc.model.User.User </td>
+          <td>(</td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>surname</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>email</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>borrowedBooksCount</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>borrowedBooksEverCount</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a></span> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>'s unique ID </td></tr>
+    <tr><td class="paramname">name</td><td><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>'s name </td></tr>
+    <tr><td class="paramname">surname</td><td><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>'s surname </td></tr>
+    <tr><td class="paramname">email</td><td><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a>'s email </td></tr>
+    <tr><td class="paramname">borrowedBooksCount</td><td>Number of currently borrowed books by the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> </td></tr>
+    <tr><td class="paramname">borrowedBooksEverCount</td><td>Total number of books ever borrowed by the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>This constructor should only be used when reading from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>. </dd></dl>
 
 </div>
 </div>
@@ -366,10 +423,16 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>FIELD_
 </div><div class="memdoc">
 
 <p>Creates a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> object from its string representation used for <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> reads. </p>
-<p>The string representation format is "'ID'\u001C'Name'\u001C'Surname'\u001C'Email'\u001C'BorrowedBooksCount'\u001C'BorrowedBooksEverCount'".</p>
+<p>The string representation format is "'ID'␜'Name'␜'Surname'␜'Email'␜'BorrowedBooksCount'␜'BorrowedBooksEverCount'".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">userStr</td><td>The string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">IllegalArgumentException</td><td>if the string format is incorrect. </td></tr>
   </table>
   </dd>
 </dl>
@@ -809,7 +872,7 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>FIELD_
 </div><div class="memdoc">
 
 <p>Returns a string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> used for <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> writes. </p>
-<p>The string representation format is "'ID'\u001C'Name'\u001C'Surname'\u001C'Email'\u001C'BorrowedBooksCount'\u001C'BorrowedBooksEverCount'".</p>
+<p>The string representation format is "'ID'␜'Name'␜'Surname'␜'Email'␜'BorrowedBooksCount'␜'BorrowedBooksEverCount'".</p>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> for <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> writes. </dd></dl>
 
 </div>
@@ -830,7 +893,7 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>FIELD_
 </div><div class="memdoc">
 
 <p>Get a string containing only the searchable info of the user. </p>
-<p>This includes id, name, surname and email. The string representation format is "'ID''Name''Surname''Email'".</p>
+<p>This includes id, name, surname and email.</p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing the searchable info of the user. </dd></dl>
 
 </div>

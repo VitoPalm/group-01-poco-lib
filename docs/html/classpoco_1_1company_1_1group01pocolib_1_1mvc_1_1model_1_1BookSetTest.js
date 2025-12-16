@@ -20,6 +20,8 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest =
     [ "testMultipleAdditionsAndRemovals", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest.html#a6dc526c8e18841fc52f0d3bb04c4c159", null ],
     [ "testRemoveBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest.html#a599be2886bc926b52970068ce3f3591d", null ],
     [ "testRemoveNonExistentBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest.html#ab5e8ac596c1b1a4c724de680a7fd1482", null ],
+    [ "testSearch", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest.html#a0c14c43f7fd4d69ea6d34e6f6b97340a", null ],
+    [ "testSearchNonExistentBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest.html#a4c86d21bc450a2c50646225845986064", null ],
     [ "testSerializationCycle", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest.html#a00eb2db4a2e5303641b0cd541245120c", null ],
     [ "testSetBookSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest.html#a55e3719bf1e0ea2484e4f5398078f1d7", null ]
 ];

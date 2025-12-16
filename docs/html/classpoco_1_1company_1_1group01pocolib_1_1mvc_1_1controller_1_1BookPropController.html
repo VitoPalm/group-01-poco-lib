@@ -121,9 +121,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleDelete</b> ()</
 <tr class="memitem:a96b5b978944ead711c4ae77af566dbed" id="r_a96b5b978944ead711c4ae77af566dbed"><td class="memItemLeft" align="right" valign="top"><a id="a96b5b978944ead711c4ae77af566dbed" name="a96b5b978944ead711c4ae77af566dbed"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleLend</b> ()</td></tr>
 <tr class="memdesc:a96b5b978944ead711c4ae77af566dbed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the lend button click event. It switches to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> tab if no user was selected, if user was selected, it opens the dialog for a new lending (allowing the user to set the return date). <br /></td></tr>
-<tr class="memitem:af734cd23abc28babcb420bf234264e6c" id="r_af734cd23abc28babcb420bf234264e6c"><td class="memItemLeft" align="right" valign="top"><a id="af734cd23abc28babcb420bf234264e6c" name="af734cd23abc28babcb420bf234264e6c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handleViewHistory</b> ()</td></tr>
-<tr class="memdesc:af734cd23abc28babcb420bf234264e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the lent to hyperlink click event. It switches to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> tab and selects the user who has currently borrowed the book. <br /></td></tr>
+<tr class="memitem:af734cd23abc28babcb420bf234264e6c" id="r_af734cd23abc28babcb420bf234264e6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af734cd23abc28babcb420bf234264e6c">handleViewHistory</a> ()</td></tr>
+<tr class="memdesc:af734cd23abc28babcb420bf234264e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the lent to hyperlink click event. It switches to the Lendings tab and researches the Lendings involving this <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> currently borrowed the book.  <br /></td></tr>
 <tr class="memitem:a86de3f80bdbc3a9da27837caa7f12665" id="r_a86de3f80bdbc3a9da27837caa7f12665"><td class="memItemLeft" align="right" valign="top"><a id="a86de3f80bdbc3a9da27837caa7f12665" name="a86de3f80bdbc3a9da27837caa7f12665"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleDecrement</b> ()</td></tr>
 <tr class="memdesc:a86de3f80bdbc3a9da27837caa7f12665"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the decrement button click event. It simply decreases the number in the 'copiesField' by 1. <br /></td></tr>
@@ -138,11 +137,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleCancel</b> ()</
 <tr class="memdesc:ad7f6db1451d11b75a0dc482dd9069126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the cancel button click event. It simply closes the dialog without saving any changes. <br /></td></tr>
 <tr class="memitem:a0cefe655b6774d203c5d669521948284" id="r_a0cefe655b6774d203c5d669521948284"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cefe655b6774d203c5d669521948284">getCopiesAvailableAsInteger</a> ()</td></tr>
 <tr class="memdesc:a0cefe655b6774d203c5d669521948284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the copies to an Integer. If the conversion fails, it returns -1.  <br /></td></tr>
-<tr class="memitem:a6c27575a6202574ccbc5aa3b13c3a090" id="r_a6c27575a6202574ccbc5aa3b13c3a090"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c27575a6202574ccbc5aa3b13c3a090">validateInput</a> ()</td></tr>
-<tr class="memdesc:a6c27575a6202574ccbc5aa3b13c3a090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the input fields in the dialog.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a8c3fdb2033b45d27a82e82b2af8c3843" id="r_a8c3fdb2033b45d27a82e82b2af8c3843"><td class="memItemLeft" align="right" valign="top"><a id="a8c3fdb2033b45d27a82e82b2af8c3843" name="a8c3fdb2033b45d27a82e82b2af8c3843"></a>
+Stage&#160;</td><td class="memItemRight" valign="bottom"><b>dialogStage</b></td></tr>
+<tr class="memitem:ab350bd6cdd649b6fa84cfaedd2d1b216" id="r_ab350bd6cdd649b6fa84cfaedd2d1b216"><td class="memItemLeft" align="right" valign="top"><a id="ab350bd6cdd649b6fa84cfaedd2d1b216" name="ab350bd6cdd649b6fa84cfaedd2d1b216"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a>&#160;</td><td class="memItemRight" valign="bottom"><b>book</b></td></tr>
+<tr class="memitem:a74780739d2d5c60afa294d3aa4a91706" id="r_a74780739d2d5c60afa294d3aa4a91706"><td class="memItemLeft" align="right" valign="top"><a id="a74780739d2d5c60afa294d3aa4a91706" name="a74780739d2d5c60afa294d3aa4a91706"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><b>originalIsbn</b></td></tr>
+<tr class="memitem:af085539506aff903971c62490b08d1a1" id="r_af085539506aff903971c62490b08d1a1"><td class="memItemLeft" align="right" valign="top"><a id="af085539506aff903971c62490b08d1a1" name="af085539506aff903971c62490b08d1a1"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bookSet</b></td></tr>
+<tr class="memitem:ab4cec5981ce260adb04a21316ede855e" id="r_ab4cec5981ce260adb04a21316ede855e"><td class="memItemLeft" align="right" valign="top"><a id="ab4cec5981ce260adb04a21316ede855e" name="ab4cec5981ce260adb04a21316ede855e"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html">PocoLibController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mainController</b></td></tr>
+<tr class="memitem:acbfaa203f72cd06be0615927a906bd29" id="r_acbfaa203f72cd06be0615927a906bd29"><td class="memItemLeft" align="right" valign="top"><a id="acbfaa203f72cd06be0615927a906bd29" name="acbfaa203f72cd06be0615927a906bd29"></a>
+Stage&#160;</td><td class="memItemRight" valign="bottom"><b>primaryStage</b></td></tr>
 <tr class="memitem:af0c4773bee99a98a581c148abb181b31" id="r_af0c4773bee99a98a581c148abb181b31"><td class="memItemLeft" align="right" valign="top"><a id="af0c4773bee99a98a581c148abb181b31" name="af0c4773bee99a98a581c148abb181b31"></a>
 VBox&#160;</td><td class="memItemRight" valign="bottom"><b>viewBox</b></td></tr>
 <tr class="memitem:a9f4a39863b47a96db02aa6ca9d043c5e" id="r_a9f4a39863b47a96db02aa6ca9d043c5e"><td class="memItemLeft" align="right" valign="top"><a id="a9f4a39863b47a96db02aa6ca9d043c5e" name="a9f4a39863b47a96db02aa6ca9d043c5e"></a>
@@ -173,8 +182,8 @@ TextField&#160;</td><td class="memItemRight" valign="bottom"><b>isbnField</b></t
 TextField&#160;</td><td class="memItemRight" valign="bottom"><b>titleField</b></td></tr>
 <tr class="memitem:abd993e903664c7bc32520172849c5dd7" id="r_abd993e903664c7bc32520172849c5dd7"><td class="memItemLeft" align="right" valign="top"><a id="abd993e903664c7bc32520172849c5dd7" name="abd993e903664c7bc32520172849c5dd7"></a>
 TextField&#160;</td><td class="memItemRight" valign="bottom"><b>authorsField</b></td></tr>
-<tr class="memitem:abba3a727e65be9e6bd8056829f587bcb" id="r_abba3a727e65be9e6bd8056829f587bcb"><td class="memItemLeft" align="right" valign="top"><a id="abba3a727e65be9e6bd8056829f587bcb" name="abba3a727e65be9e6bd8056829f587bcb"></a>
-TextField&#160;</td><td class="memItemRight" valign="bottom"><b>yearField</b></td></tr>
+<tr class="memitem:a2dca61e1d1d8a42b5f90455af1fcf7e7" id="r_a2dca61e1d1d8a42b5f90455af1fcf7e7"><td class="memItemLeft" align="right" valign="top"><a id="a2dca61e1d1d8a42b5f90455af1fcf7e7" name="a2dca61e1d1d8a42b5f90455af1fcf7e7"></a>
+Spinner&lt; Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>yearSpinner</b></td></tr>
 <tr class="memitem:a850b9fa2d557d39b8107537c0bb124dc" id="r_a850b9fa2d557d39b8107537c0bb124dc"><td class="memItemLeft" align="right" valign="top"><a id="a850b9fa2d557d39b8107537c0bb124dc" name="a850b9fa2d557d39b8107537c0bb124dc"></a>
 IntegerProperty&#160;</td><td class="memItemRight" valign="bottom"><b>yearProperty</b> = new SimpleIntegerProperty()</td></tr>
 <tr class="memitem:a345761e96d571f7d04cde9f275a766da" id="r_a345761e96d571f7d04cde9f275a766da"><td class="memItemLeft" align="right" valign="top"><a id="a345761e96d571f7d04cde9f275a766da" name="a345761e96d571f7d04cde9f275a766da"></a>
@@ -188,22 +197,14 @@ IntegerProperty&#160;</td><td class="memItemRight" valign="bottom"><b>copiesAvai
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>plusButton</b></td></tr>
 <tr class="memitem:ab8c4c94bbf76128a363c009c0d58bf89" id="r_ab8c4c94bbf76128a363c009c0d58bf89"><td class="memItemLeft" align="right" valign="top"><a id="ab8c4c94bbf76128a363c009c0d58bf89" name="ab8c4c94bbf76128a363c009c0d58bf89"></a>
 Label&#160;</td><td class="memItemRight" valign="bottom"><b>copiesEditLabel</b></td></tr>
-<tr class="memitem:a6f413f9bf59d04e3f402628274694518" id="r_a6f413f9bf59d04e3f402628274694518"><td class="memItemLeft" align="right" valign="top"><a id="a6f413f9bf59d04e3f402628274694518" name="a6f413f9bf59d04e3f402628274694518"></a>
-Label&#160;</td><td class="memItemRight" valign="bottom"><b>errorLabel</b></td></tr>
 <tr class="memitem:accab863813caa614ae73b4ae81b5c539" id="r_accab863813caa614ae73b4ae81b5c539"><td class="memItemLeft" align="right" valign="top"><a id="accab863813caa614ae73b4ae81b5c539" name="accab863813caa614ae73b4ae81b5c539"></a>
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>saveButton</b></td></tr>
+<tr class="memitem:a2f2a68c27651056040251ebb14af5812" id="r_a2f2a68c27651056040251ebb14af5812"><td class="memItemLeft" align="right" valign="top"><a id="a2f2a68c27651056040251ebb14af5812" name="a2f2a68c27651056040251ebb14af5812"></a>
+Tooltip&#160;</td><td class="memItemRight" valign="bottom"><b>saveButtonTooltip</b></td></tr>
+<tr class="memitem:a2ddfe796e087dcb532cbd19466ad4b27" id="r_a2ddfe796e087dcb532cbd19466ad4b27"><td class="memItemLeft" align="right" valign="top"><a id="a2ddfe796e087dcb532cbd19466ad4b27" name="a2ddfe796e087dcb532cbd19466ad4b27"></a>
+BooleanBinding&#160;</td><td class="memItemRight" valign="bottom"><b>emptyTextfieldsBinding</b></td></tr>
 <tr class="memitem:a6892373d97edc9aa820fa964a31f5266" id="r_a6892373d97edc9aa820fa964a31f5266"><td class="memItemLeft" align="right" valign="top"><a id="a6892373d97edc9aa820fa964a31f5266" name="a6892373d97edc9aa820fa964a31f5266"></a>
 BooleanProperty&#160;</td><td class="memItemRight" valign="bottom"><b>isbnIsValid</b> = new SimpleBooleanProperty(false)</td></tr>
-<tr class="memitem:a8c3fdb2033b45d27a82e82b2af8c3843" id="r_a8c3fdb2033b45d27a82e82b2af8c3843"><td class="memItemLeft" align="right" valign="top"><a id="a8c3fdb2033b45d27a82e82b2af8c3843" name="a8c3fdb2033b45d27a82e82b2af8c3843"></a>
-Stage&#160;</td><td class="memItemRight" valign="bottom"><b>dialogStage</b></td></tr>
-<tr class="memitem:ab350bd6cdd649b6fa84cfaedd2d1b216" id="r_ab350bd6cdd649b6fa84cfaedd2d1b216"><td class="memItemLeft" align="right" valign="top"><a id="ab350bd6cdd649b6fa84cfaedd2d1b216" name="ab350bd6cdd649b6fa84cfaedd2d1b216"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a>&#160;</td><td class="memItemRight" valign="bottom"><b>book</b></td></tr>
-<tr class="memitem:a74780739d2d5c60afa294d3aa4a91706" id="r_a74780739d2d5c60afa294d3aa4a91706"><td class="memItemLeft" align="right" valign="top"><a id="a74780739d2d5c60afa294d3aa4a91706" name="a74780739d2d5c60afa294d3aa4a91706"></a>
-String&#160;</td><td class="memItemRight" valign="bottom"><b>originalIsbn</b></td></tr>
-<tr class="memitem:af085539506aff903971c62490b08d1a1" id="r_af085539506aff903971c62490b08d1a1"><td class="memItemLeft" align="right" valign="top"><a id="af085539506aff903971c62490b08d1a1" name="af085539506aff903971c62490b08d1a1"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bookSet</b></td></tr>
-<tr class="memitem:ab4cec5981ce260adb04a21316ede855e" id="r_ab4cec5981ce260adb04a21316ede855e"><td class="memItemLeft" align="right" valign="top"><a id="ab4cec5981ce260adb04a21316ede855e" name="ab4cec5981ce260adb04a21316ede855e"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html">PocoLibController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mainController</b></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a0cefe655b6774d203c5d669521948284" name="a0cefe655b6774d203c5d669521948284"></a>
@@ -231,6 +232,34 @@ String&#160;</td><td class="memItemRight" valign="bottom"><b>originalIsbn</b></t
 
 <p>Converts the copies to an Integer. If the conversion fails, it returns -1. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of copies as an Integer, or -1 if conversion fails </dd></dl>
+
+</div>
+</div>
+<a id="af734cd23abc28babcb420bf234264e6c" name="af734cd23abc28babcb420bf234264e6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af734cd23abc28babcb420bf234264e6c">&#9670;&#160;</a></span>handleViewHistory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void poco.company.group01pocolib.mvc.controller.BookPropController.handleViewHistory </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles the lent to hyperlink click event. It switches to the Lendings tab and researches the Lendings involving this <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> currently borrowed the book. </p>
+<dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
 
 </div>
 </div>
@@ -357,35 +386,6 @@ String&#160;</td><td class="memItemRight" valign="bottom"><b>originalIsbn</b></t
 
 <p>Updates the view with the current book details. </p>
 <p>This method is needed to refresh the dialog when the book details are changed by editing it. </p>
-
-</div>
-</div>
-<a id="a6c27575a6202574ccbc5aa3b13c3a090" name="a6c27575a6202574ccbc5aa3b13c3a090"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c27575a6202574ccbc5aa3b13c3a090">&#9670;&#160;</a></span>validateInput()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean poco.company.group01pocolib.mvc.controller.BookPropController.validateInput </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Validates the input fields in the dialog. </p>
-<p>This method validates all input fields and displays error messages if any field is empty or not valid.</p>
-<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if all fields are valid, <span class="tt">false</span> otherwise </dd></dl>
 
 </div>
 </div>

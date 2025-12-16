@@ -92,7 +92,7 @@ $(function(){initNavTree('classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnise
 </div><!--header-->
 <div class="contents">
 
-<p>Represents a trigram index for fast searching of items based on a provided <span class="tt">String</span>.  
+<p>Represents an ngram index for fast searching of items based on a provided <span class="tt">String</span>.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for poco.company.group01pocolib.db.omnisearch.Index&lt; T &gt;:</div>
@@ -105,11 +105,11 @@ Inheritance diagram for poco.company.group01pocolib.db.omnisearch.Index&lt; T &g
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aca04020c3ba9cbd1392ac268069405a2" id="r_aca04020c3ba9cbd1392ac268069405a2"><td class="memItemLeft" align="right" valign="top"><a id="aca04020c3ba9cbd1392ac268069405a2" name="aca04020c3ba9cbd1392ac268069405a2"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Index</b> ()</td></tr>
-<tr class="memdesc:aca04020c3ba9cbd1392ac268069405a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor initializes the trigram mappings. <br /></td></tr>
-<tr class="memitem:a21fe3ddcbcc0ee4f2e447d8917e50e45" id="r_a21fe3ddcbcc0ee4f2e447d8917e50e45"><td class="memItemLeft" align="right" valign="top">Map&lt; String, Set&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21fe3ddcbcc0ee4f2e447d8917e50e45">getTriMappings</a> ()</td></tr>
-<tr class="memdesc:a21fe3ddcbcc0ee4f2e447d8917e50e45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the trigram mappings.  <br /></td></tr>
-<tr class="memitem:a54edbc79a2e54cb08ed8a34395477de3" id="r_a54edbc79a2e54cb08ed8a34395477de3"><td class="memItemLeft" align="right" valign="top">List&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54edbc79a2e54cb08ed8a34395477de3">generateTrigrams</a> (String searchableContent)</td></tr>
-<tr class="memdesc:a54edbc79a2e54cb08ed8a34395477de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates trigrams from the provided searchable content.  <br /></td></tr>
+<tr class="memdesc:aca04020c3ba9cbd1392ac268069405a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor initializes the ngram mappings. <br /></td></tr>
+<tr class="memitem:af59f0315be19d2051bd80c189a1b15f7" id="r_af59f0315be19d2051bd80c189a1b15f7"><td class="memItemLeft" align="right" valign="top">Map&lt; String, Set&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af59f0315be19d2051bd80c189a1b15f7">getNGramMappings</a> ()</td></tr>
+<tr class="memdesc:af59f0315be19d2051bd80c189a1b15f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ngram mappings.  <br /></td></tr>
+<tr class="memitem:a1633daaa2db99d92d8055e8931b2299b" id="r_a1633daaa2db99d92d8055e8931b2299b"><td class="memItemLeft" align="right" valign="top">List&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1633daaa2db99d92d8055e8931b2299b">generateNGrams</a> (String searchableContent)</td></tr>
+<tr class="memdesc:a1633daaa2db99d92d8055e8931b2299b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates ngrams from the provided searchable content.  <br /></td></tr>
 <tr class="memitem:a9b8e4703ccbff55fd3c4e78d1c657f9d" id="r_a9b8e4703ccbff55fd3c4e78d1c657f9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b8e4703ccbff55fd3c4e78d1c657f9d">add</a> (String searchableContent, T item)</td></tr>
 <tr class="memdesc:a9b8e4703ccbff55fd3c4e78d1c657f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an item to the index based on the provided searchable content.  <br /></td></tr>
 <tr class="memitem:ae657e547266d1bba55064bcda5ace8bb" id="r_ae657e547266d1bba55064bcda5ace8bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae657e547266d1bba55064bcda5ace8bb">remove</a> (T item)</td></tr>
@@ -117,21 +117,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9b396fd06a17ba9862d1c03d22725dfb" id="r_a9b396fd06a17ba9862d1c03d22725dfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b396fd06a17ba9862d1c03d22725dfb">fastRemove</a> (String searchableContent, T item)</td></tr>
 <tr class="memdesc:a9b396fd06a17ba9862d1c03d22725dfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an item from the index using searchableContent related to it.  <br /></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ab6a42f30b28d3abaa5f465d990532bd2" id="r_ab6a42f30b28d3abaa5f465d990532bd2"><td class="memItemLeft" align="right" valign="top"><a id="ab6a42f30b28d3abaa5f465d990532bd2" name="ab6a42f30b28d3abaa5f465d990532bd2"></a>
+static final int&#160;</td><td class="memItemRight" valign="bottom"><b>NGRAM_SIZE</b> = 3</td></tr>
+<tr class="memitem:a8b242d508b9512642fd6497d88d9db0c" id="r_a8b242d508b9512642fd6497d88d9db0c"><td class="memItemLeft" align="right" valign="top"><a id="a8b242d508b9512642fd6497d88d9db0c" name="a8b242d508b9512642fd6497d88d9db0c"></a>
+static final String&#160;</td><td class="memItemRight" valign="bottom"><b>PADDING_CHAR</b> = &quot;\u0007&quot;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a0cd26c538bc7d9604541f115e0808bb3" id="r_a0cd26c538bc7d9604541f115e0808bb3"><td class="memItemLeft" align="right" valign="top"><a id="a0cd26c538bc7d9604541f115e0808bb3" name="a0cd26c538bc7d9604541f115e0808bb3"></a>
-Map&lt; String, Set&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>triMappings</b></td></tr>
+<tr class="memitem:ae7b7db89f2361500e310ef724e003e56" id="r_ae7b7db89f2361500e310ef724e003e56"><td class="memItemLeft" align="right" valign="top"><a id="ae7b7db89f2361500e310ef724e003e56" name="ae7b7db89f2361500e310ef724e003e56"></a>
+Map&lt; String, Set&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ngramMappings</b></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a9c7f3af4965191821096adc8567c4e25" id="r_a9c7f3af4965191821096adc8567c4e25"><td class="memItemLeft" align="right" valign="top"><a id="a9c7f3af4965191821096adc8567c4e25" name="a9c7f3af4965191821096adc8567c4e25"></a>
 static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVersionUID</b> = 1L</td></tr>
-<tr class="memitem:a8b242d508b9512642fd6497d88d9db0c" id="r_a8b242d508b9512642fd6497d88d9db0c"><td class="memItemLeft" align="right" valign="top"><a id="a8b242d508b9512642fd6497d88d9db0c" name="a8b242d508b9512642fd6497d88d9db0c"></a>
-static final String&#160;</td><td class="memItemRight" valign="bottom"><b>PADDING_CHAR</b> = &quot;\u0007&quot;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents a trigram index for fast searching of items based on a provided <span class="tt">String</span>. </p>
-<p>This class allows adding, removing, and generating trigrams for searchable content associated with items of type <span class="tt">T</span>. The trigrams are stored in a map where each trigram maps to a list of items related to that trigram.</p>
+<div class="textblock"><p>Represents an ngram index for fast searching of items based on a provided <span class="tt">String</span>. </p>
+<p>This class allows adding, removing, and generating ngrams for searchable content associated with items of type <span class="tt">T</span>. The ngrams are stored in a map where each ngram maps to a list of items related to that ngram.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">&lt;T&gt;</td><td>The type of items to be indexed. </td></tr>
@@ -161,7 +166,7 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>PADDIN
 <p>Adds an item to the index based on the provided searchable content. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">searchableContent</td><td>The content used to generate trigrams for indexing. </td></tr>
+    <tr><td class="paramname">searchableContent</td><td>The content used to generate ngrams for indexing. </td></tr>
     <tr><td class="paramname">item</td><td>The item to be indexed. </td></tr>
   </table>
   </dd>
@@ -200,14 +205,14 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>PADDIN
 
 </div>
 </div>
-<a id="a54edbc79a2e54cb08ed8a34395477de3" name="a54edbc79a2e54cb08ed8a34395477de3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54edbc79a2e54cb08ed8a34395477de3">&#9670;&#160;</a></span>generateTrigrams()</h2>
+<a id="a1633daaa2db99d92d8055e8931b2299b" name="a1633daaa2db99d92d8055e8931b2299b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1633daaa2db99d92d8055e8931b2299b">&#9670;&#160;</a></span>generateNGrams()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt; String &gt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html">poco.company.group01pocolib.db.omnisearch.Index</a>&lt; T &gt;.generateTrigrams </td>
+          <td class="memname">List&lt; String &gt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html">poco.company.group01pocolib.db.omnisearch.Index</a>&lt; T &gt;.generateNGrams </td>
           <td>(</td>
           <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>searchableContent</em></span></td><td>)</td>
           <td></td>
@@ -215,30 +220,30 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>PADDIN
       </table>
 </div><div class="memdoc">
 
-<p>Generates trigrams from the provided searchable content. </p>
-<p>A trigram is a contiguous sequence of three characters from a given string. This method extracts all possible trigrams from the input string and returns them as a list. <br  />
+<p>Generates ngrams from the provided searchable content. </p>
+<p>An ngram is a contiguous sequence of three characters from a given string. This method extracts all possible ngrams from the input string and returns them as a list. <br  />
 <br  />
- If the input string is shorter than three characters, it will generate all possible combinations of the Ngram available, that result into a trigram when adding bell characters as padding. <br  />
+ If the input string is shorter than <span class="tt">NGRAM_SIZE</span> characters, it will add padding characters (defined by <span class="tt">PADDING_CHAR</span>) to the end of the string until it reaches a length of <span class="tt">NGRAM_SIZE</span>. <br  />
 <br  />
- The method does some basic preprocessing, such as converting the string to lowercase, and trimming whitespace.</p>
+ The method trims leading and trailing whitespace before generating ngrams.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">searchableContent</td><td>The content to generate trigrams from. </td></tr>
+    <tr><td class="paramname">searchableContent</td><td>The content to generate ngrams from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A <span class="tt">List</span> of generated trigrams. <span class="tt">null</span> if the input <span class="tt">String</span> is empty. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <span class="tt">List</span> of generated ngrams. <span class="tt">null</span> if the input <span class="tt">String</span> is empty. </dd></dl>
 
 </div>
 </div>
-<a id="a21fe3ddcbcc0ee4f2e447d8917e50e45" name="a21fe3ddcbcc0ee4f2e447d8917e50e45"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21fe3ddcbcc0ee4f2e447d8917e50e45">&#9670;&#160;</a></span>getTriMappings()</h2>
+<a id="af59f0315be19d2051bd80c189a1b15f7" name="af59f0315be19d2051bd80c189a1b15f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af59f0315be19d2051bd80c189a1b15f7">&#9670;&#160;</a></span>getNGramMappings()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Map&lt; String, Set&lt; T &gt; &gt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html">poco.company.group01pocolib.db.omnisearch.Index</a>&lt; T &gt;.getTriMappings </td>
+          <td class="memname">Map&lt; String, Set&lt; T &gt; &gt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html">poco.company.group01pocolib.db.omnisearch.Index</a>&lt; T &gt;.getNGramMappings </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -246,8 +251,8 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>PADDIN
       </table>
 </div><div class="memdoc">
 
-<p>Get the trigram mappings. </p>
-<dl class="section return"><dt>Returns</dt><dd>A map of trigrams to lists of items. </dd></dl>
+<p>Get the ngram mappings. </p>
+<dl class="section return"><dt>Returns</dt><dd>A map of ngrams to lists of items. </dd></dl>
 
 </div>
 </div>

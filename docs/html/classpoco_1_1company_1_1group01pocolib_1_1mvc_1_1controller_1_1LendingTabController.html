@@ -98,6 +98,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac2ac920441e6896adfedbc3ebd97b3d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the primary stage and main controller references.  <br /></td></tr>
 <tr class="memitem:a33d7f0ab4d9bec977e3db7542dbc7d9b" id="r_a33d7f0ab4d9bec977e3db7542dbc7d9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33d7f0ab4d9bec977e3db7542dbc7d9b">setDataSets</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a> bookSet, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a> userSet, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html">LendingSet</a> lendingSet)</td></tr>
 <tr class="memdesc:a33d7f0ab4d9bec977e3db7542dbc7d9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the data sets for the controller.  <br /></td></tr>
+<tr class="memitem:a348274ed11790ae2069b88b00d636fb8" id="r_a348274ed11790ae2069b88b00d636fb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a348274ed11790ae2069b88b00d636fb8">setSearchText</a> (String query)</td></tr>
+<tr class="memdesc:a348274ed11790ae2069b88b00d636fb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the query from outside for the OmniSearch in this tab.  <br /></td></tr>
 <tr class="memitem:a76f677ddd8beed78253f116c6d4174bd" id="r_a76f677ddd8beed78253f116c6d4174bd"><td class="memItemLeft" align="right" valign="top"><a id="a76f677ddd8beed78253f116c6d4174bd" name="a76f677ddd8beed78253f116c6d4174bd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>loadData</b> ()</td></tr>
 <tr class="memdesc:a76f677ddd8beed78253f116c6d4174bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads data from the model into the controller. <br /></td></tr>
@@ -126,6 +128,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>lendingTableHandler</
 <tr class="memdesc:aa6857d320e39cf37e6f4f03111594c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to view or edit the selected lending when the "View &amp; Edit" button is clicked on the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> tab.  <br /></td></tr>
 <tr class="memitem:a28807fe114487f0473350a4efd5d3f5b" id="r_a28807fe114487f0473350a4efd5d3f5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28807fe114487f0473350a4efd5d3f5b">handleMarkAsReturned</a> ()</td></tr>
 <tr class="memdesc:a28807fe114487f0473350a4efd5d3f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks the selected lending as returned when the "Mark as Returned" button is clicked on the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> tab.  <br /></td></tr>
+<tr class="memitem:a08a8f2ec4a3d754ed7b2ad405e754e29" id="r_a08a8f2ec4a3d754ed7b2ad405e754e29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a8f2ec4a3d754ed7b2ad405e754e29">updateRowStyle</a> (TableRow&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt; row)</td></tr>
+<tr class="memdesc:a08a8f2ec4a3d754ed7b2ad405e754e29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the style of a row based on the lending status and selection state.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -141,14 +145,22 @@ Tab&#160;</td><td class="memItemRight" valign="bottom"><b>lendingTab</b></td></t
 VBox&#160;</td><td class="memItemRight" valign="bottom"><b>containerVBox</b></td></tr>
 <tr class="memitem:aefaeac1d20afc574ff8b03d80e49dedf" id="r_aefaeac1d20afc574ff8b03d80e49dedf"><td class="memItemLeft" align="right" valign="top"><a id="aefaeac1d20afc574ff8b03d80e49dedf" name="aefaeac1d20afc574ff8b03d80e49dedf"></a>
 ImageView&#160;</td><td class="memItemRight" valign="bottom"><b>pocologoImageView</b></td></tr>
+<tr class="memitem:aa878c9b296d3f167582d2b01aafc445e" id="r_aa878c9b296d3f167582d2b01aafc445e"><td class="memItemLeft" align="right" valign="top"><a id="aa878c9b296d3f167582d2b01aafc445e" name="aa878c9b296d3f167582d2b01aafc445e"></a>
+GridPane&#160;</td><td class="memItemRight" valign="bottom"><b>lendingSearchGridPane</b></td></tr>
+<tr class="memitem:a7a80479e230874dbd8f9923601865830" id="r_a7a80479e230874dbd8f9923601865830"><td class="memItemLeft" align="right" valign="top"><a id="a7a80479e230874dbd8f9923601865830" name="a7a80479e230874dbd8f9923601865830"></a>
+ColumnConstraints&#160;</td><td class="memItemRight" valign="bottom"><b>column0Constraints</b></td></tr>
 <tr class="memitem:a79ecb7d12b27c247d4cd9bf2d08d24b4" id="r_a79ecb7d12b27c247d4cd9bf2d08d24b4"><td class="memItemLeft" align="right" valign="top"><a id="a79ecb7d12b27c247d4cd9bf2d08d24b4" name="a79ecb7d12b27c247d4cd9bf2d08d24b4"></a>
 TextField&#160;</td><td class="memItemRight" valign="bottom"><b>lendingSearchField</b></td></tr>
+<tr class="memitem:a000722ef7390148379ecabd317deb44c" id="r_a000722ef7390148379ecabd317deb44c"><td class="memItemLeft" align="right" valign="top"><a id="a000722ef7390148379ecabd317deb44c" name="a000722ef7390148379ecabd317deb44c"></a>
+CheckBox&#160;</td><td class="memItemRight" valign="bottom"><b>onlyActiveCheckBox</b></td></tr>
 <tr class="memitem:afb872abdb3e208859fdee884d87ad286" id="r_afb872abdb3e208859fdee884d87ad286"><td class="memItemLeft" align="right" valign="top"><a id="afb872abdb3e208859fdee884d87ad286" name="afb872abdb3e208859fdee884d87ad286"></a>
 TableView&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lendingTable</b></td></tr>
 <tr class="memitem:a1aea870cb1d6286ca3387c739db181bb" id="r_a1aea870cb1d6286ca3387c739db181bb"><td class="memItemLeft" align="right" valign="top"><a id="a1aea870cb1d6286ca3387c739db181bb" name="a1aea870cb1d6286ca3387c739db181bb"></a>
 TableColumn&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lendingIdColumn</b></td></tr>
 <tr class="memitem:a1643c1189e1256b728b8e3f467f2f5af" id="r_a1643c1189e1256b728b8e3f467f2f5af"><td class="memItemLeft" align="right" valign="top"><a id="a1643c1189e1256b728b8e3f467f2f5af" name="a1643c1189e1256b728b8e3f467f2f5af"></a>
 TableColumn&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>, LocalDate &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lendingReturnDateColumn</b></td></tr>
+<tr class="memitem:adbb92b50cfd58ce260e9d05b0bc42723" id="r_adbb92b50cfd58ce260e9d05b0bc42723"><td class="memItemLeft" align="right" valign="top"><a id="adbb92b50cfd58ce260e9d05b0bc42723" name="adbb92b50cfd58ce260e9d05b0bc42723"></a>
+TableColumn&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>, String &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lendingStateColumn</b></td></tr>
 <tr class="memitem:a530a210897a1e8b34f7ea7d0e5a609ec" id="r_a530a210897a1e8b34f7ea7d0e5a609ec"><td class="memItemLeft" align="right" valign="top"><a id="a530a210897a1e8b34f7ea7d0e5a609ec" name="a530a210897a1e8b34f7ea7d0e5a609ec"></a>
 TableColumn&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>, String &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lendingIsbnColumn</b></td></tr>
 <tr class="memitem:a73a2a0b0c91e4faaddd936ee6bc32467" id="r_a73a2a0b0c91e4faaddd936ee6bc32467"><td class="memItemLeft" align="right" valign="top"><a id="a73a2a0b0c91e4faaddd936ee6bc32467" name="a73a2a0b0c91e4faaddd936ee6bc32467"></a>
@@ -166,7 +178,7 @@ Tooltip&#160;</td><td class="memItemRight" valign="bottom"><b>lendingViewEditBut
 <tr class="memitem:a13c032bfeefcf1a8a7aa815242f64e06" id="r_a13c032bfeefcf1a8a7aa815242f64e06"><td class="memItemLeft" align="right" valign="top"><a id="a13c032bfeefcf1a8a7aa815242f64e06" name="a13c032bfeefcf1a8a7aa815242f64e06"></a>
 Tooltip&#160;</td><td class="memItemRight" valign="bottom"><b>lendingReturnedButtonTooltip</b></td></tr>
 <tr class="memitem:a3ebdd682df7a7a38091873f1c9082bd5" id="r_a3ebdd682df7a7a38091873f1c9082bd5"><td class="memItemLeft" align="right" valign="top"><a id="a3ebdd682df7a7a38091873f1c9082bd5" name="a3ebdd682df7a7a38091873f1c9082bd5"></a>
-ObservableList&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lendingData</b></td></tr>
+ObservableList&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lendingData</b> = FXCollections.observableArrayList()</td></tr>
 <tr class="memitem:a317f07c7e0279dc8df083518e23098d2" id="r_a317f07c7e0279dc8df083518e23098d2"><td class="memItemLeft" align="right" valign="top"><a id="a317f07c7e0279dc8df083518e23098d2" name="a317f07c7e0279dc8df083518e23098d2"></a>
 List&lt; SearchResult&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>currentSearchResults</b></td></tr>
 <tr class="memitem:acb2fd69179dbf38a3e0dc636c92ee94e" id="r_acb2fd69179dbf38a3e0dc636c92ee94e"><td class="memItemLeft" align="right" valign="top"><a id="acb2fd69179dbf38a3e0dc636c92ee94e" name="acb2fd69179dbf38a3e0dc636c92ee94e"></a>
@@ -481,6 +493,64 @@ Giovanni Orsini </dd></dl>
   <table class="params">
     <tr><td class="paramname">primaryStage</td><td>The primary stage to set. </td></tr>
     <tr><td class="paramname">mainController</td><td>The main controller reference. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a348274ed11790ae2069b88b00d636fb8" name="a348274ed11790ae2069b88b00d636fb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a348274ed11790ae2069b88b00d636fb8">&#9670;&#160;</a></span>setSearchText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void poco.company.group01pocolib.mvc.controller.LendingTabController.setSearchText </td>
+          <td>(</td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>query</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the query from outside for the OmniSearch in this tab. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>The string to search </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a08a8f2ec4a3d754ed7b2ad405e754e29" name="a08a8f2ec4a3d754ed7b2ad405e754e29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08a8f2ec4a3d754ed7b2ad405e754e29">&#9670;&#160;</a></span>updateRowStyle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void poco.company.group01pocolib.mvc.controller.LendingTabController.updateRowStyle </td>
+          <td>(</td>
+          <td class="paramtype">TableRow&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>row</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates the style of a row based on the lending status and selection state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>The row to update. </td></tr>
   </table>
   </dd>
 </dl>

@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['rawsearch_0',['rawSearch',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#accbd04d1ee1fa1a3fae7b32e8fc299d3',1,'poco.company.group01pocolib.mvc.model.BookSet.rawSearch()'],['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#aef947b62b5f6f31ee5b487715e482ace',1,'poco.company.group01pocolib.mvc.model.LendingSet.rawSearch()'],['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#af804ec9af846b206e3f3f1b8a6100fae',1,'poco.company.group01pocolib.mvc.model.UserSet.rawSearch()']]],
-  ['readfirstlinecontainingpattern_1',['readFirstLineContainingPattern',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#abc431ac44126ca9463ff694b64d6f08c',1,'poco::company::group01pocolib::db::DB']]],
-  ['readnthline_2',['readNthLine',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#aa97aca0ea71ea0fe4034b52ccc0f9f60',1,'poco::company::group01pocolib::db::DB']]],
+  ['readfirstlinecontainingpattern_0',['readFirstLineContainingPattern',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#abc431ac44126ca9463ff694b64d6f08c',1,'poco::company::group01pocolib::db::DB']]],
+  ['readnthline_1',['readNthLine',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#aa97aca0ea71ea0fe4034b52ccc0f9f60',1,'poco::company::group01pocolib::db::DB']]],
+  ['rebuilddbfromstring_2',['rebuildDBFromString',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#aa53494a9735fac70649ed59f2fc3f07a',1,'poco::company::group01pocolib::db::DB']]],
   ['rebuildfromdb_3',['rebuildFromDB',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html#adab5eecb7ed65793b96b2756a6d11288',1,'poco.company.group01pocolib.mvc.model.BookSet.rebuildFromDB()'],['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#adc4cec5a2caa0a1f1afcb335fd9ce0de',1,'poco.company.group01pocolib.mvc.model.LendingSet.rebuildFromDB()'],['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a2a27eba14eb88e371bec45f7b3dc6cc3',1,'poco.company.group01pocolib.mvc.model.UserSet.rebuildFromDB()']]],
   ['refreshtabdata_4',['refreshTabData',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html#ab228e548b1268bcf52c8612559ed7b15',1,'poco::company::group01pocolib::mvc::controller::PocoLibController']]],
   ['remove_5',['remove',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html#ae657e547266d1bba55064bcda5ace8bb',1,'poco::company::group01pocolib::db::omnisearch::Index']]],
@@ -11,8 +11,9 @@ var searchData=
   ['removelending_8',['removeLending',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#a41581ca538c6d01c3ff31b25eb31747b',1,'poco::company::group01pocolib::mvc::model::LendingSet']]],
   ['removenthline_9',['removeNthLine',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html#a1f84d6a097b09312775eb613dae550de',1,'poco::company::group01pocolib::db::DB']]],
   ['removeuser_10',['removeUser',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#ad54abab423b1c3de64276598af76db20',1,'poco::company::group01pocolib::mvc::model::UserSet']]],
-  ['restorebackup_11',['restoreBackup',['../classpoco_1_1company_1_1group01pocolib_1_1db_1_1Backup.html#a07bcecc896b2950863483c7fb7db31a1',1,'poco::company::group01pocolib::db::Backup']]],
-  ['restorebookset_12',['restoreBookSet',['../classpoco_1_1company_1_1group01pocolib_1_1Launcher.html#a22107c5774f5716316edb6f04fba591c',1,'poco::company::group01pocolib::Launcher']]],
+  ['restorebookset_11',['restoreBookSet',['../classpoco_1_1company_1_1group01pocolib_1_1Launcher.html#a22107c5774f5716316edb6f04fba591c',1,'poco::company::group01pocolib::Launcher']]],
+  ['restorelendingcounter_12',['restoreLendingCounter',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html#aee7e93cbcab9c206b55ed0605b4fc404',1,'poco::company::group01pocolib::mvc::model::LendingSet']]],
   ['restorelendingset_13',['restoreLendingSet',['../classpoco_1_1company_1_1group01pocolib_1_1Launcher.html#a722416d86b1998f4c8a170af07e3a718',1,'poco::company::group01pocolib::Launcher']]],
-  ['restoreuserset_14',['restoreUserSet',['../classpoco_1_1company_1_1group01pocolib_1_1Launcher.html#a1f00f967e9d0a641f368c74eb538f56d',1,'poco::company::group01pocolib::Launcher']]]
+  ['restoreuserset_14',['restoreUserSet',['../classpoco_1_1company_1_1group01pocolib_1_1Launcher.html#a1f00f967e9d0a641f368c74eb538f56d',1,'poco::company::group01pocolib::Launcher']]],
+  ['returncopy_15',['returnCopy',['../classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#ab3da3977beef92afd26efd4684ac8fa5',1,'poco::company::group01pocolib::mvc::model::Book']]]
 ];

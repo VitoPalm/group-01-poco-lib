@@ -105,6 +105,8 @@ Inheritance diagram for poco.company.group01pocolib.mvc.model.Lending:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad866b75162899081062ed7743e7d6734" id="r_ad866b75162899081062ed7743e7d6734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad866b75162899081062ed7743e7d6734">Lending</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> book, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> user, LocalDate returnDate)</td></tr>
 <tr class="memdesc:ad866b75162899081062ed7743e7d6734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> object.  <br /></td></tr>
+<tr class="memitem:aa0706190bfd50d0276659a8cced2e197" id="r_aa0706190bfd50d0276659a8cced2e197"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0706190bfd50d0276659a8cced2e197">Lending</a> (int lendingID, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> book, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> user, LocalDate returnDate, boolean returned)</td></tr>
+<tr class="memdesc:aa0706190bfd50d0276659a8cced2e197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> object. No checks are performed on anything.  <br /></td></tr>
 <tr class="memitem:a5acde1953be055bb6d3ad7794452e820" id="r_a5acde1953be055bb6d3ad7794452e820"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5acde1953be055bb6d3ad7794452e820">getBook</a> ()</td></tr>
 <tr class="memdesc:a5acde1953be055bb6d3ad7794452e820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> being lent.  <br /></td></tr>
 <tr class="memitem:a3c5c560d8ef841705fa750832a70f3d2" id="r_a3c5c560d8ef841705fa750832a70f3d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c5c560d8ef841705fa750832a70f3d2">setBook</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> book)</td></tr>
@@ -125,10 +127,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afab472ac4acb87801a1746cce214ae98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> has been returned.  <br /></td></tr>
 <tr class="memitem:a4a803ebae1fb5523f496e7f07997becf" id="r_a4a803ebae1fb5523f496e7f07997becf"><td class="memItemLeft" align="right" valign="top"><a id="a4a803ebae1fb5523f496e7f07997becf" name="a4a803ebae1fb5523f496e7f07997becf"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setReturned</b> ()</td></tr>
-<tr class="memdesc:a4a803ebae1fb5523f496e7f07997becf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> as returned. <br /></td></tr>
+<tr class="memdesc:a4a803ebae1fb5523f496e7f07997becf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrements borrowed books count for user, returns copy for book (increases available, decreases lent) <br /></td></tr>
 <tr class="memitem:a699aae1116e39cf430607dc52112a1f7" id="r_a699aae1116e39cf430607dc52112a1f7"><td class="memItemLeft" align="right" valign="top"><a id="a699aae1116e39cf430607dc52112a1f7" name="a699aae1116e39cf430607dc52112a1f7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setNotReturned</b> ()</td></tr>
-<tr class="memdesc:a699aae1116e39cf430607dc52112a1f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> as not returned. <br /></td></tr>
+<tr class="memdesc:a699aae1116e39cf430607dc52112a1f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments borrowed for the user, lends copy for book (decreases available, increases lent) <br /></td></tr>
 <tr class="memitem:a830c807d21de368e5a8a9d26f65d2c72" id="r_a830c807d21de368e5a8a9d26f65d2c72"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a830c807d21de368e5a8a9d26f65d2c72">hashCode</a> ()</td></tr>
 <tr class="memdesc:a830c807d21de368e5a8a9d26f65d2c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides <span class="tt">hashCode</span> method to use the lending ID as unique identifier.  <br /></td></tr>
 <tr class="memitem:a30c16310d0819cb3f512347ca051dd0c" id="r_a30c16310d0819cb3f512347ca051dd0c"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30c16310d0819cb3f512347ca051dd0c">equals</a> (Object obj)</td></tr>
@@ -142,6 +144,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setNotReturned</b> ()
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab6530f03679d30b6763a996ce7ca7a2f" id="r_ab6530f03679d30b6763a996ce7ca7a2f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6530f03679d30b6763a996ce7ca7a2f">setLendingCounter</a> (int counter)</td></tr>
+<tr class="memdesc:ab6530f03679d30b6763a996ce7ca7a2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the lending counter to a specific value.  <br /></td></tr>
+<tr class="memitem:a2eb9f1eecfeae6f0b3522aafdeaa889b" id="r_a2eb9f1eecfeae6f0b3522aafdeaa889b"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2eb9f1eecfeae6f0b3522aafdeaa889b">getLendingCounter</a> ()</td></tr>
+<tr class="memdesc:a2eb9f1eecfeae6f0b3522aafdeaa889b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current value of the lending counter.  <br /></td></tr>
 <tr class="memitem:a87d5497b05d5bf26dc60124af36c8f71" id="r_a87d5497b05d5bf26dc60124af36c8f71"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87d5497b05d5bf26dc60124af36c8f71">fromDBString</a> (String lendingStr, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a> bookSet, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a> userSet)</td></tr>
 <tr class="memdesc:a87d5497b05d5bf26dc60124af36c8f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> object from its string representation, used for <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> reads.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -172,7 +178,7 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>FIELD_
 <p>Each <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> has a unique ID, a book being lent, a user who is borrowing the book, a return date, and a status indicating whether the book has been returned. The lending ID is auto-incremented for each new lending created. The class can be serialized for persistence. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad866b75162899081062ed7743e7d6734" name="ad866b75162899081062ed7743e7d6734"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad866b75162899081062ed7743e7d6734">&#9670;&#160;</a></span>Lending()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad866b75162899081062ed7743e7d6734">&#9670;&#160;</a></span>Lending() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,6 +218,55 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>FIELD_
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aa0706190bfd50d0276659a8cced2e197" name="aa0706190bfd50d0276659a8cced2e197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0706190bfd50d0276659a8cced2e197">&#9670;&#160;</a></span>Lending() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">poco.company.group01pocolib.mvc.model.Lending.Lending </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lendingID</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a></td>          <td class="paramname"><span class="paramname"><em>book</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a></td>          <td class="paramname"><span class="paramname"><em>user</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LocalDate</td>          <td class="paramname"><span class="paramname"><em>returnDate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boolean</td>          <td class="paramname"><span class="paramname"><em>returned</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> object. No checks are performed on anything. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lendingID</td><td>The unique ID of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a>. </td></tr>
+    <tr><td class="paramname">book</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> being lent. </td></tr>
+    <tr><td class="paramname">user</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html" title="Represents a Library User.">User</a> who is borrowing the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a>. </td></tr>
+    <tr><td class="paramname">returnDate</td><td>The date by which the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> should be returned. </td></tr>
+    <tr><td class="paramname">returned</td><td>The status indicating whether the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> has been returned.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>This constructor should only be used when reading from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>. </dd></dl>
 
 </div>
 </div>
@@ -275,11 +330,17 @@ static final String&#160;</td><td class="memItemRight" valign="bottom"><b>FIELD_
 </div><div class="memdoc">
 
 <p>Creates a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> object from its string representation, used for <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> reads. </p>
-<p>The string representation format is "'ID'\u001C'BookISBN'\u001C'UserID'\u001C'ReturnDate'\u001C'isReturned'".</p>
+<p>The string representation format is "ID␜BookISBN␜UserID␜ReturnDate␜isReturned".</p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo</a></b></dt><dd>Test if the new lending is created successfully </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lendingStr</td><td>The string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">IllegalArgumentException</td><td>If the string format is incorrect. </td></tr>
   </table>
   </dd>
 </dl>
@@ -307,6 +368,34 @@ Daniele Pepe </dd></dl>
 
 <p>Gets the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> being lent. </p>
 <dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> being lent. </dd></dl>
+
+</div>
+</div>
+<a id="a2eb9f1eecfeae6f0b3522aafdeaa889b" name="a2eb9f1eecfeae6f0b3522aafdeaa889b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eb9f1eecfeae6f0b3522aafdeaa889b">&#9670;&#160;</a></span>getLendingCounter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int poco.company.group01pocolib.mvc.model.Lending.getLendingCounter </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current value of the lending counter. </p>
+<dl class="section return"><dt>Returns</dt><dd>The current lending counter value. </dd></dl>
 
 </div>
 </div>
@@ -435,6 +524,39 @@ Daniele Pepe </dd></dl>
 
 </div>
 </div>
+<a id="ab6530f03679d30b6763a996ce7ca7a2f" name="ab6530f03679d30b6763a996ce7ca7a2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6530f03679d30b6763a996ce7ca7a2f">&#9670;&#160;</a></span>setLendingCounter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void poco.company.group01pocolib.mvc.model.Lending.setLendingCounter </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>counter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the lending counter to a specific value. </p>
+<p>This method should be called when loading lendings from the database to ensure that new lendings don't reuse existing IDs. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">counter</td><td>The value to set the lending counter to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a503eb277a1174844f92a820b0abbd091" name="a503eb277a1174844f92a820b0abbd091"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a503eb277a1174844f92a820b0abbd091">&#9670;&#160;</a></span>setLendingId()</h2>
 
@@ -526,7 +648,7 @@ Daniele Pepe </dd></dl>
 </div><div class="memdoc">
 
 <p>Returns a string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a>. </p>
-<p>The string representation format is "'ID'\u001C'BookISBN'\u001C'UserID'\u001C'ReturnDate'\u001C'isReturned'".</p>
+<p>The string representation format is "'ID'␜'BookISBN'␜'UserID'␜'ReturnDate'␜'isReturned'".</p>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a>. </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
 
@@ -548,7 +670,7 @@ Daniele Pepe </dd></dl>
 </div><div class="memdoc">
 
 <p>Get a string containing only the searchable info of the lending. </p>
-<p>The searchable version of the string will include the searchable info of the book and user, plus the return date, and the id of the lending. The string representation format is TODO: implement.</p>
+<p>The searchable version of the string will include the searchable info of the book and user, plus the return date, and the id of the lending.</p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing the searchable info of the lending </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
 

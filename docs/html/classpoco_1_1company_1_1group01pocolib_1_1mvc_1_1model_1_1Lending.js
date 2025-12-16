@@ -1,6 +1,7 @@
 var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending =
 [
     [ "Lending", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#ad866b75162899081062ed7743e7d6734", null ],
+    [ "Lending", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#aa0706190bfd50d0276659a8cced2e197", null ],
     [ "equals", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a30c16310d0819cb3f512347ca051dd0c", null ],
     [ "getBook", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a5acde1953be055bb6d3ad7794452e820", null ],
     [ "getLendingId", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html#a6cda9180b43507970d682d1347f28436", null ],

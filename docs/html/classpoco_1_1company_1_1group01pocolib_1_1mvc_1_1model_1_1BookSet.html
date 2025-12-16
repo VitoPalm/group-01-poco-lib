@@ -147,6 +147,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateLastKnownDBHash
 <tr class="memdesc:af4e0369a2e2eef09ca8bc6c5bec00767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a book is already registred in the Set.  <br /></td></tr>
 <tr class="memitem:ac88a8b0fc939e379582f7ad4664e7ee3" id="r_ac88a8b0fc939e379582f7ad4664e7ee3"><td class="memItemLeft" align="right" valign="top">List&lt; SearchResult&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac88a8b0fc939e379582f7ad4664e7ee3">search</a> (String rawQuery)</td></tr>
 <tr class="memdesc:ac88a8b0fc939e379582f7ad4664e7ee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform search on the indexed books with ranking.  <br /></td></tr>
+<tr class="memitem:a6dd5550ae6e963a7b3b0cde5aa431409" id="r_a6dd5550ae6e963a7b3b0cde5aa431409"><td class="memItemLeft" align="right" valign="top"><a id="a6dd5550ae6e963a7b3b0cde5aa431409" name="a6dd5550ae6e963a7b3b0cde5aa431409"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>saveToSerialized</b> ()</td></tr>
+<tr class="memdesc:a6dd5550ae6e963a7b3b0cde5aa431409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a> to a serialized file on disk. <br /></td></tr>
 <tr class="memitem:ac141b5c08fb5642fc996c627d01e0d61" id="r_ac141b5c08fb5642fc996c627d01e0d61"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac141b5c08fb5642fc996c627d01e0d61">size</a> ()</td></tr>
 <tr class="memdesc:ac141b5c08fb5642fc996c627d01e0d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get number of entries in the current Set.  <br /></td></tr>
 <tr class="memitem:a3f6d69121eff712c1b07699a4369d394" id="r_a3f6d69121eff712c1b07699a4369d394"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f6d69121eff712c1b07699a4369d394">toString</a> ()</td></tr>
@@ -156,19 +159,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateLastKnownDBHash
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a4d27594fc1dbee121f0b6bdfd397d691" id="r_a4d27594fc1dbee121f0b6bdfd397d691"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d27594fc1dbee121f0b6bdfd397d691">loadFromSerialized</a> (String serializationPath, String DBPath)</td></tr>
 <tr class="memdesc:a4d27594fc1dbee121f0b6bdfd397d691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a></span> from a serialized version on disk.  <br /></td></tr>
+<tr class="memitem:a2b884f98b40a53173462a23a1c51a696" id="r_a2b884f98b40a53173462a23a1c51a696"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b884f98b40a53173462a23a1c51a696">calculateScore</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> book, String rawQuery)</td></tr>
+<tr class="memdesc:a2b884f98b40a53173462a23a1c51a696"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates relevance score of a book for a given search query (just used for exact matches of fields).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:accbd04d1ee1fa1a3fae7b32e8fc299d3" id="r_accbd04d1ee1fa1a3fae7b32e8fc299d3"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accbd04d1ee1fa1a3fae7b32e8fc299d3">rawSearch</a> (String rawQuery)</td></tr>
-<tr class="memdesc:accbd04d1ee1fa1a3fae7b32e8fc299d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform search on the indexed books without ranking.  <br /></td></tr>
-<tr class="memitem:a28d8ffa41454d70ee55ce8de2ed36831" id="r_a28d8ffa41454d70ee55ce8de2ed36831"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28d8ffa41454d70ee55ce8de2ed36831">calculateScore</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> book, String rawQuery)</td></tr>
-<tr class="memdesc:a28d8ffa41454d70ee55ce8de2ed36831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the relevance score of a book for a given search query.  <br /></td></tr>
 <tr class="memitem:ad824c8871e6816e99b5e9947f02ec48b" id="r_ad824c8871e6816e99b5e9947f02ec48b"><td class="memItemLeft" align="right" valign="top"><a id="ad824c8871e6816e99b5e9947f02ec48b" name="ad824c8871e6816e99b5e9947f02ec48b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>syncOnWrite</b> ()</td></tr>
 <tr class="memdesc:ad824c8871e6816e99b5e9947f02ec48b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronizes the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a> to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> and serialized file on write operations. <br /></td></tr>
-<tr class="memitem:a6dd5550ae6e963a7b3b0cde5aa431409" id="r_a6dd5550ae6e963a7b3b0cde5aa431409"><td class="memItemLeft" align="right" valign="top"><a id="a6dd5550ae6e963a7b3b0cde5aa431409" name="a6dd5550ae6e963a7b3b0cde5aa431409"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>saveToSerialized</b> ()</td></tr>
-<tr class="memdesc:a6dd5550ae6e963a7b3b0cde5aa431409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a> to a serialized file on disk. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -195,7 +193,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 <div class="textblock"><p>A collection of books that acts as the real data interface for the main controller to interact with. </p>
 <p>This class is the real data model for books for the MVC structure of this project. It allows object permanence between sessions through serialization, and allows searching through an indexed <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> of books. <br  />
 <br  />
- The fact that the collection of books is essentially memorized in three different data structures (the Set, the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file, and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a>) may seem like a waste of resources, but it allows for some serious optimization of search operations, as well as a mechanism to recover the data in the case of the application being run on a different machine or after an update that may have corrupted the serialized data. (This is due to serialization requiring the structure of all classes involved to remain the same between sessions) </p>
+ The fact that the collection of books is essentially memorized in three different data structures (the Set, the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file, and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a>) may seem like a waste of resources, but it allows for some serious optimization of search operations, as well as a mechanism to recover the data in the case of the application being run on a different machine or after an update that may have corrupted the serialized data. (This is due to serialization requiring the structure of all classes involved to remain the same between sessions) </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="aeb982062bce3b5afdea3587af0c851a1" name="aeb982062bce3b5afdea3587af0c851a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeb982062bce3b5afdea3587af0c851a1">&#9670;&#160;</a></span>addOrEditBook()</h2>
@@ -223,8 +221,8 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 </div>
 </div>
-<a id="a28d8ffa41454d70ee55ce8de2ed36831" name="a28d8ffa41454d70ee55ce8de2ed36831"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28d8ffa41454d70ee55ce8de2ed36831">&#9670;&#160;</a></span>calculateScore()</h2>
+<a id="a2b884f98b40a53173462a23a1c51a696" name="a2b884f98b40a53173462a23a1c51a696"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b884f98b40a53173462a23a1c51a696">&#9670;&#160;</a></span>calculateScore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -245,12 +243,12 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Calculate the relevance score of a book for a given search query. </p>
+<p>Calculates relevance score of a book for a given search query (just used for exact matches of fields). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">book</td><td>The book to calculate the score for </td></tr>
@@ -284,7 +282,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> object if found, null otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html" title="Represents a Book in the library.">Book</a> object if found, null otherwise We need this for testing purposes </dd></dl>
 
 </div>
 </div>
@@ -324,7 +322,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 </div><div class="memdoc">
 
 <p>Get the book index. </p>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a> object for the books </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a> object for the books </dd></dl>
 
 </div>
 </div>
@@ -512,7 +510,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 </div><div class="memdoc">
 
 <p>Loads a <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a></span> from a serialized version on disk. </p>
-<p>If the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file has changed since the last serialization, the <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a></span> will be rebuilt from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file. Otherwise, it will be loaded as is. This includes re-hydrating the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a> and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> object itself. (This is done to avoid rebuilding the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>'s internal Cache from scratch)</p>
+<p>If the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file has changed since the last serialization, the <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a></span> will be rebuilt from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file. Otherwise, it will be loaded as is. This includes re-hydrating the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a> and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> object itself. (This is done to avoid rebuilding the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>'s internal Cache from scratch)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">serializationPath</td><td>The path to the serialized <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a></span> </td></tr>
@@ -521,40 +519,6 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The loaded <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html" title="A collection of books that acts as the real data interface for the main controller to interact with.">BookSet</a></span> object </dd></dl>
-
-</div>
-</div>
-<a id="accbd04d1ee1fa1a3fae7b32e8fc299d3" name="accbd04d1ee1fa1a3fae7b32e8fc299d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#accbd04d1ee1fa1a3fae7b32e8fc299d3">&#9670;&#160;</a></span>rawSearch()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">List&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html">Book</a> &gt; poco.company.group01pocolib.mvc.model.BookSet.rawSearch </td>
-          <td>(</td>
-          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>rawQuery</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Perform search on the indexed books without ranking. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">rawQuery</td><td>The raw search query </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A list of books matching the search query </dd></dl>
 
 </div>
 </div>
@@ -677,7 +641,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 <p>Set the book index. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bookIndex</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a> object to set <span class="tt">bookIndex</span> to </td></tr>
+    <tr><td class="paramname">bookIndex</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a> object to set <span class="tt">bookIndex</span> to </td></tr>
   </table>
   </dd>
 </dl>

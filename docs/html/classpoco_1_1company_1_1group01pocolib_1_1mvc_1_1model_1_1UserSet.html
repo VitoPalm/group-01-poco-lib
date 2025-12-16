@@ -147,6 +147,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateLastKnownDBHash
 <tr class="memdesc:adeb9839975d9beaff00817618206d0d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a user is already registered in the Set.  <br /></td></tr>
 <tr class="memitem:af1aa911ec7588a08340012dc8e43f3b1" id="r_af1aa911ec7588a08340012dc8e43f3b1"><td class="memItemLeft" align="right" valign="top">List&lt; SearchResult&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1aa911ec7588a08340012dc8e43f3b1">search</a> (String rawQuery)</td></tr>
 <tr class="memdesc:af1aa911ec7588a08340012dc8e43f3b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform search on the indexed users with ranking.  <br /></td></tr>
+<tr class="memitem:af5cbad482053cc76a9a22636de2459c1" id="r_af5cbad482053cc76a9a22636de2459c1"><td class="memItemLeft" align="right" valign="top"><a id="af5cbad482053cc76a9a22636de2459c1" name="af5cbad482053cc76a9a22636de2459c1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>saveToSerialized</b> ()</td></tr>
 <tr class="memitem:ae67ea65bce397b6be75f7c194c441a28" id="r_ae67ea65bce397b6be75f7c194c441a28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae67ea65bce397b6be75f7c194c441a28">size</a> ()</td></tr>
 <tr class="memdesc:ae67ea65bce397b6be75f7c194c441a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get number of entries in the current Set.  <br /></td></tr>
 <tr class="memitem:a124dd4454e1a2a044bed8df74e51e2fc" id="r_a124dd4454e1a2a044bed8df74e51e2fc"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a124dd4454e1a2a044bed8df74e51e2fc">toString</a> ()</td></tr>
@@ -156,17 +158,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateLastKnownDBHash
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ab94b0a513ab2dc8fdbe827bdd4afaa6d" id="r_ab94b0a513ab2dc8fdbe827bdd4afaa6d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab94b0a513ab2dc8fdbe827bdd4afaa6d">loadFromSerialized</a> (String serializationPath, String DBPath)</td></tr>
 <tr class="memdesc:ab94b0a513ab2dc8fdbe827bdd4afaa6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html" title="A collection of userSet that acts as the real data interface for the main controller to interact with...">UserSet</a></span> from a serialized version on disk.  <br /></td></tr>
+<tr class="memitem:a276eb07f84bf3504f7b60f3121851772" id="r_a276eb07f84bf3504f7b60f3121851772"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a276eb07f84bf3504f7b60f3121851772">calculateScore</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> user, String rawQuery)</td></tr>
+<tr class="memdesc:a276eb07f84bf3504f7b60f3121851772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates relevance score of a user for a given search query (just used for exact matches of fields).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:af804ec9af846b206e3f3f1b8a6100fae" id="r_af804ec9af846b206e3f3f1b8a6100fae"><td class="memItemLeft" align="right" valign="top">List&lt; SearchResult&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af804ec9af846b206e3f3f1b8a6100fae">rawSearch</a> (String rawQuery)</td></tr>
-<tr class="memdesc:af804ec9af846b206e3f3f1b8a6100fae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform search on the indexed users without ranking.  <br /></td></tr>
-<tr class="memitem:a2830f9baacecb44108143357381ccb11" id="r_a2830f9baacecb44108143357381ccb11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2830f9baacecb44108143357381ccb11">calculateScore</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> user, String rawQuery)</td></tr>
-<tr class="memdesc:a2830f9baacecb44108143357381ccb11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the relevance score of a user for a given search query.  <br /></td></tr>
 <tr class="memitem:acd45790f8a4a1909e3173ac037f605d3" id="r_acd45790f8a4a1909e3173ac037f605d3"><td class="memItemLeft" align="right" valign="top"><a id="acd45790f8a4a1909e3173ac037f605d3" name="acd45790f8a4a1909e3173ac037f605d3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>syncOnWrite</b> ()</td></tr>
-<tr class="memitem:af5cbad482053cc76a9a22636de2459c1" id="r_af5cbad482053cc76a9a22636de2459c1"><td class="memItemLeft" align="right" valign="top"><a id="af5cbad482053cc76a9a22636de2459c1" name="af5cbad482053cc76a9a22636de2459c1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>saveToSerialized</b> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -176,7 +174,9 @@ Set&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1mod
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html">Index</a>&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>userIndex</b></td></tr>
 <tr class="memitem:a74fa3912281d4c8568534fb7aa36efcd" id="r_a74fa3912281d4c8568534fb7aa36efcd"><td class="memItemLeft" align="right" valign="top"><a id="a74fa3912281d4c8568534fb7aa36efcd" name="a74fa3912281d4c8568534fb7aa36efcd"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html">DB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>userDB</b></td></tr>
-<tr class="memitem:aed6bb44e6524c05e61dedef9b4258883" id="r_aed6bb44e6524c05e61dedef9b4258883"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed6bb44e6524c05e61dedef9b4258883">dummy</a></td></tr>
+<tr class="memitem:aed6bb44e6524c05e61dedef9b4258883" id="r_aed6bb44e6524c05e61dedef9b4258883"><td class="memItemLeft" align="right" valign="top"><a id="aed6bb44e6524c05e61dedef9b4258883" name="aed6bb44e6524c05e61dedef9b4258883"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dummy</b></td></tr>
+<tr class="memdesc:aed6bb44e6524c05e61dedef9b4258883"><td class="mdescLeft">&#160;</td><td class="mdescRight">This attribute is used for fast searches based on ID. <br /></td></tr>
 <tr class="memitem:a8056750642fb65ec26264836c552e4ab" id="r_a8056750642fb65ec26264836c552e4ab"><td class="memItemLeft" align="right" valign="top"><a id="a8056750642fb65ec26264836c552e4ab" name="a8056750642fb65ec26264836c552e4ab"></a>
 String&#160;</td><td class="memItemRight" valign="bottom"><b>lastKnownDBHash</b></td></tr>
 <tr class="memitem:a75e824b4b7d9ae52d82fb17627f9aee3" id="r_a75e824b4b7d9ae52d82fb17627f9aee3"><td class="memItemLeft" align="right" valign="top"><a id="a75e824b4b7d9ae52d82fb17627f9aee3" name="a75e824b4b7d9ae52d82fb17627f9aee3"></a>
@@ -193,7 +193,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 <div class="textblock"><p>A collection of userSet that acts as the real data interface for the main controller to interact with. </p>
 <p>This class is the real data model for userSet for the MVC structure of this project. It allows object permanence between sessions through serialization, and allows searching through an indexed <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> of books. <br  />
 <br  />
- The fact that the collection of userSet is essentially memorized in three different data structures (the Set, the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file, and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a>) may seem like a waste of resources, but it allows for some serious optimization of search operations, as well as a mechanism to recover the data in the case of the application being run on a different machine or after an update that may have corrupted the serialized data. (This is due to serialization requiring the structure of all classes involved to remain the same between sessions) </p>
+ The fact that the collection of userSet is essentially memorized in three different data structures (the Set, the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file, and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a>) may seem like a waste of resources, but it allows for some serious optimization of search operations, as well as a mechanism to recover the data in the case of the application being run on a different machine or after an update that may have corrupted the serialized data. (This is due to serialization requiring the structure of all classes involved to remain the same between sessions) </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a4908788deafa8b48d073b80d7f1b6b07" name="a4908788deafa8b48d073b80d7f1b6b07"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4908788deafa8b48d073b80d7f1b6b07">&#9670;&#160;</a></span>addOrEditUser()</h2>
@@ -221,8 +221,8 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 </div>
 </div>
-<a id="a2830f9baacecb44108143357381ccb11" name="a2830f9baacecb44108143357381ccb11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2830f9baacecb44108143357381ccb11">&#9670;&#160;</a></span>calculateScore()</h2>
+<a id="a276eb07f84bf3504f7b60f3121851772" name="a276eb07f84bf3504f7b60f3121851772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a276eb07f84bf3504f7b60f3121851772">&#9670;&#160;</a></span>calculateScore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,12 +243,12 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Calculate the relevance score of a user for a given search query. </p>
+<p>Calculates relevance score of a user for a given search query (just used for exact matches of fields). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">user</td><td>The user to calculate the score for </td></tr>
@@ -510,7 +510,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 </div><div class="memdoc">
 
 <p>Loads a <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html" title="A collection of userSet that acts as the real data interface for the main controller to interact with...">UserSet</a></span> from a serialized version on disk. </p>
-<p>If the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file has changed since the last serialization, the <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html" title="A collection of userSet that acts as the real data interface for the main controller to interact with...">UserSet</a></span> will be rebuilt from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file. Otherwise, it will be loaded as is. This includes re-hydrating the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a> and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> object itself. (This is done to avoid rebuilding the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>'s internal Cache from scratch)</p>
+<p>If the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file has changed since the last serialization, the <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html" title="A collection of userSet that acts as the real data interface for the main controller to interact with...">UserSet</a></span> will be rebuilt from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file. Otherwise, it will be loaded as is. This includes re-hydrating the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a> and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> object itself. (This is done to avoid rebuilding the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>'s internal Cache from scratch)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">serializationPath</td><td>The path to the serialized <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html" title="A collection of userSet that acts as the real data interface for the main controller to interact with...">UserSet</a></span> </td></tr>
@@ -519,40 +519,6 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The loaded <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html" title="A collection of userSet that acts as the real data interface for the main controller to interact with...">UserSet</a></span> object </dd></dl>
-
-</div>
-</div>
-<a id="af804ec9af846b206e3f3f1b8a6100fae" name="af804ec9af846b206e3f3f1b8a6100fae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af804ec9af846b206e3f3f1b8a6100fae">&#9670;&#160;</a></span>rawSearch()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">List&lt; SearchResult&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> &gt; &gt; poco.company.group01pocolib.mvc.model.UserSet.rawSearch </td>
-          <td>(</td>
-          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>rawQuery</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Perform search on the indexed users without ranking. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">rawQuery</td><td>The raw search query </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A list of users matching the search query </dd></dl>
 
 </div>
 </div>
@@ -725,7 +691,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 <p>Set the user index. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">userIndex</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a> of users to set userIndex to </td></tr>
+    <tr><td class="paramname">userIndex</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a> of users to set userIndex to </td></tr>
   </table>
   </dd>
 </dl>
@@ -795,30 +761,6 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 <p>Returns a string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html" title="A collection of userSet that acts as the real data interface for the main controller to interact with...">UserSet</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string representation of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html" title="A collection of userSet that acts as the real data interface for the main controller to interact with...">UserSet</a>. </dd></dl>
-
-</div>
-</div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="aed6bb44e6524c05e61dedef9b4258883" name="aed6bb44e6524c05e61dedef9b4258883"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed6bb44e6524c05e61dedef9b4258883">&#9670;&#160;</a></span>dummy</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a> poco.company.group01pocolib.mvc.model.UserSet.dummy</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>This attribute is used in <code><a class="el" href="#a379edebed96f0474d51f5a83482ba5dc">isStored()</a></code> as a dummy object for the <span class="tt">contains()</span> method of the Collection </p>
 
 </div>
 </div>

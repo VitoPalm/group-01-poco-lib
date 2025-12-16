@@ -3,7 +3,6 @@ var hierarchy =
     [ "Application", null, [
       [ "poco.company.group01pocolib.Launcher", "classpoco_1_1company_1_1group01pocolib_1_1Launcher.html", null ]
     ] ],
-    [ "poco.company.group01pocolib.db.Backup", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Backup.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.BookPropController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html", null ],
     [ "poco.company.group01pocolib.mvc.model.BookSetTest", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSetTest.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.BookTabController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookTabController.html", null ],
@@ -12,6 +11,7 @@ var hierarchy =
       [ "poco.company.group01pocolib.mvc.model.User", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html", null ]
     ] ],
     [ "poco.company.group01pocolib.db.Hash", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1Hash.html", null ],
+    [ "poco.company.group01pocolib.db.omnisearch.IndexTest", "classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1IndexTest.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.LendingPropController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingPropController.html", null ],
     [ "poco.company.group01pocolib.mvc.model.LendingSetTest", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSetTest.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.LendingTabController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html", null ],

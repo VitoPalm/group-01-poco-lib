@@ -143,6 +143,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateLastKnownDBHash
 <tr class="memdesc:a8390b799fbba34e1baba17aad66c8621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> by its ID.  <br /></td></tr>
 <tr class="memitem:aed56034e562b5112e70447d76243c607" id="r_aed56034e562b5112e70447d76243c607"><td class="memItemLeft" align="right" valign="top">List&lt; SearchResult&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed56034e562b5112e70447d76243c607">search</a> (String rawQuery)</td></tr>
 <tr class="memdesc:aed56034e562b5112e70447d76243c607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform search on the indexed lendings with ranking.  <br /></td></tr>
+<tr class="memitem:a09f86a8eff534e2fd12536a4ebe913a8" id="r_a09f86a8eff534e2fd12536a4ebe913a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09f86a8eff534e2fd12536a4ebe913a8">saveToSerialized</a> ()</td></tr>
+<tr class="memdesc:a09f86a8eff534e2fd12536a4ebe913a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to a serialized file on disk.  <br /></td></tr>
 <tr class="memitem:acd14d1f0c009e149add1bb7489281d86" id="r_acd14d1f0c009e149add1bb7489281d86"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd14d1f0c009e149add1bb7489281d86">size</a> ()</td></tr>
 <tr class="memdesc:acd14d1f0c009e149add1bb7489281d86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get number of entries in the current Set.  <br /></td></tr>
 <tr class="memitem:a426f4fe1a26faff61658cb5e935f739f" id="r_a426f4fe1a26faff61658cb5e935f739f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a426f4fe1a26faff61658cb5e935f739f">toString</a> ()</td></tr>
@@ -152,17 +154,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>updateLastKnownDBHash
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aeccb0fd2271dcaab66034ef9ccbea0ea" id="r_aeccb0fd2271dcaab66034ef9ccbea0ea"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html">LendingSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeccb0fd2271dcaab66034ef9ccbea0ea">loadFromSerialized</a> (String serializationPath, String DBPath, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a> bookSet, <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a> userSet)</td></tr>
 <tr class="memdesc:aeccb0fd2271dcaab66034ef9ccbea0ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> from a serialized version on disk.  <br /></td></tr>
+<tr class="memitem:ade99993b76c0ff5ef74c24b45d03f90f" id="r_ade99993b76c0ff5ef74c24b45d03f90f"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade99993b76c0ff5ef74c24b45d03f90f">calculateScore</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> lending, String rawQuery)</td></tr>
+<tr class="memdesc:ade99993b76c0ff5ef74c24b45d03f90f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates relevance score of a lending for a given search query (just used for exact matches of fields).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:aef947b62b5f6f31ee5b487715e482ace" id="r_aef947b62b5f6f31ee5b487715e482ace"><td class="memItemLeft" align="right" valign="top">List&lt; SearchResult&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef947b62b5f6f31ee5b487715e482ace">rawSearch</a> (String rawQuery)</td></tr>
-<tr class="memdesc:aef947b62b5f6f31ee5b487715e482ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform search on the indexed lendings without ranking.  <br /></td></tr>
-<tr class="memitem:a40bef270619b1e196af178e65774af37" id="r_a40bef270619b1e196af178e65774af37"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40bef270619b1e196af178e65774af37">calculateScore</a> (<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> lending, String rawQuery)</td></tr>
-<tr class="memdesc:a40bef270619b1e196af178e65774af37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the relevance score of a lending for a given search query.  <br /></td></tr>
+<tr class="memitem:aee7e93cbcab9c206b55ed0605b4fc404" id="r_aee7e93cbcab9c206b55ed0605b4fc404"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee7e93cbcab9c206b55ed0605b4fc404">restoreLendingCounter</a> ()</td></tr>
+<tr class="memdesc:aee7e93cbcab9c206b55ed0605b4fc404"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores the lending counter from the current set of lendings.  <br /></td></tr>
 <tr class="memitem:aa53512d5477f1dee32107bc224305b43" id="r_aa53512d5477f1dee32107bc224305b43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa53512d5477f1dee32107bc224305b43">syncOnWrite</a> ()</td></tr>
 <tr class="memdesc:aa53512d5477f1dee32107bc224305b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronizes the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> and serialized file on write operations.  <br /></td></tr>
-<tr class="memitem:a09f86a8eff534e2fd12536a4ebe913a8" id="r_a09f86a8eff534e2fd12536a4ebe913a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09f86a8eff534e2fd12536a4ebe913a8">saveToSerialized</a> ()</td></tr>
-<tr class="memdesc:a09f86a8eff534e2fd12536a4ebe913a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to a serialized file on disk.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -191,7 +191,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 <div class="textblock"><p>A collection of lendings that acts as the real data interface for the main controller to interact with. </p>
 <p>This class is the actual data model for lendings for the MVC structure of this project. It allows object permanence between sessions through serialization, and allows searching through an indexed <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> of lendings. <br  />
 <br  />
- The fact that the collection of lendings is essentially memorized in three different data structures (the Set, the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file, and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a>) may seem like a waste of resources, but it allows for some serious optimization of search operations, as well as a mechanism to recover the data in the case of the application being run on a different machine or after an update that may have corrupted the serialized data. (This is due to serialization requiring the structure of all classes involved to remain the same between sessions) </p>
+ The fact that the collection of lendings is essentially memorized in three different data structures (the Set, the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file, and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a>) may seem like a waste of resources, but it allows for some serious optimization of search operations, as well as a mechanism to recover the data in the case of the application being run on a different machine or after an update that may have corrupted the serialized data. (This is due to serialization requiring the structure of all classes involved to remain the same between sessions) </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a3f927587938eb87095ae29b87fa62d5f" name="a3f927587938eb87095ae29b87fa62d5f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f927587938eb87095ae29b87fa62d5f">&#9670;&#160;</a></span>addOrEditLending()</h2>
@@ -218,8 +218,8 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 </div>
 </div>
-<a id="a40bef270619b1e196af178e65774af37" name="a40bef270619b1e196af178e65774af37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40bef270619b1e196af178e65774af37">&#9670;&#160;</a></span>calculateScore()</h2>
+<a id="ade99993b76c0ff5ef74c24b45d03f90f" name="ade99993b76c0ff5ef74c24b45d03f90f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade99993b76c0ff5ef74c24b45d03f90f">&#9670;&#160;</a></span>calculateScore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,12 +240,12 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Calculate the relevance score of a lending for a given search query. </p>
+<p>Calculates relevance score of a lending for a given search query (just used for exact matches of fields). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lending</td><td>The lending to calculate the score for </td></tr>
@@ -333,6 +333,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 </div><div class="memdoc">
 
 <p>Gets a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> by its ID. </p>
+<p>Iterates through the lending set to find the lending with the specified ID. This is stupidly inefficient but whatever we need it for testing purposes only.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>The ID of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> to retrieve. </td></tr>
@@ -379,7 +380,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 </div><div class="memdoc">
 
 <p>Get the lending index. </p>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a> object for the lendings </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a> object for the lendings </dd></dl>
 
 </div>
 </div>
@@ -461,7 +462,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 </div><div class="memdoc">
 
 <p>Loads a <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> from a serialized version on disk. </p>
-<p>If the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file has changed since the last serialization, the <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> will be rebuilt from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file. Otherwise, it will be loaded as is. This includes re-hydrating the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a> and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> object itself. (This is done to avoid rebuilding the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>'s internal Cache from scratch)</p>
+<p>If the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file has changed since the last serialization, the <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> will be rebuilt from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file. Otherwise, it will be loaded as is. This includes re-hydrating the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a> and the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> object itself. (This is done to avoid rebuilding the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>'s internal Cache from scratch)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">serializationPath</td><td>The path to the serialized <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> </td></tr>
@@ -473,40 +474,6 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The loaded <span class="tt"><a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a></span> object </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Giovanni Orsini </dd></dl>
-
-</div>
-</div>
-<a id="aef947b62b5f6f31ee5b487715e482ace" name="aef947b62b5f6f31ee5b487715e482ace"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef947b62b5f6f31ee5b487715e482ace">&#9670;&#160;</a></span>rawSearch()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">List&lt; SearchResult&lt; <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a> &gt; &gt; poco.company.group01pocolib.mvc.model.LendingSet.rawSearch </td>
-          <td>(</td>
-          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>rawQuery</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Perform search on the indexed lendings without ranking. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">rawQuery</td><td>The raw search query </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A list of lendings matching the search query </dd></dl>
 
 </div>
 </div>
@@ -563,7 +530,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 </div><div class="memdoc">
 
 <p>Removes a <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>If the lending is still active (not returned), this method will automatically update the book and user counters (return the copy and decrement borrowed books). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lending</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html" title="Represents a Lending in the library.">Lending</a> to remove. </td></tr>
   </table>
@@ -572,8 +539,8 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 
 </div>
 </div>
-<a id="a09f86a8eff534e2fd12536a4ebe913a8" name="a09f86a8eff534e2fd12536a4ebe913a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09f86a8eff534e2fd12536a4ebe913a8">&#9670;&#160;</a></span>saveToSerialized()</h2>
+<a id="aee7e93cbcab9c206b55ed0605b4fc404" name="aee7e93cbcab9c206b55ed0605b4fc404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee7e93cbcab9c206b55ed0605b4fc404">&#9670;&#160;</a></span>restoreLendingCounter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -582,7 +549,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void poco.company.group01pocolib.mvc.model.LendingSet.saveToSerialized </td>
+          <td class="memname">void poco.company.group01pocolib.mvc.model.LendingSet.restoreLendingCounter </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -593,6 +560,26 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 <span class="mlabels"><span class="mlabel private">private</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+<p>Restores the lending counter from the current set of lendings. </p>
+<p>Finds the maximum lending ID in the set and sets the counter accordingly. This ensures new lendings won't reuse existing IDs. </p>
+
+</div>
+</div>
+<a id="a09f86a8eff534e2fd12536a4ebe913a8" name="a09f86a8eff534e2fd12536a4ebe913a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09f86a8eff534e2fd12536a4ebe913a8">&#9670;&#160;</a></span>saveToSerialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void poco.company.group01pocolib.mvc.model.LendingSet.saveToSerialized </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 <p>Saves the current state of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html" title="A collection of lendings that acts as the real data interface for the main controller to interact wit...">LendingSet</a> to a serialized file on disk. </p>
@@ -694,7 +681,7 @@ static final long&#160;</td><td class="memItemRight" valign="bottom"><b>serialVe
 <p>Set the lending index. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lendingIndex</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents a trigram index for fast searching of items based on a provided String.">Index</a> object to set <span class="tt">lendingIndex</span> to </td></tr>
+    <tr><td class="paramname">lendingIndex</td><td>The <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1omnisearch_1_1Index.html" title="Represents an ngram index for fast searching of items based on a provided String.">Index</a> object to set <span class="tt">lendingIndex</span> to </td></tr>
   </table>
   </dd>
 </dl>

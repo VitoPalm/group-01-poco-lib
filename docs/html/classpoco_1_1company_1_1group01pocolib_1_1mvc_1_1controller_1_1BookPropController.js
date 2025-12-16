@@ -15,6 +15,5 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropContr
     [ "setDialogStage", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#abfda3e8b385c5f32e77d7bf0b67de7a2", null ],
     [ "setMode", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#a31fc94c3e9da31c22cc94ade894e2a93", null ],
     [ "updateView", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#ae1df4abef6e182d2ef135e570481cc9a", null ],
-    [ "validateInput", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#a6c27575a6202574ccbc5aa3b13c3a090", null ],
     [ "copiesAvailableProperty", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1BookPropController.html#a80175e923776d34e1f8e14b470e08c00", null ]
 ];

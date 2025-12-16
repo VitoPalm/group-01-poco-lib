@@ -2,7 +2,6 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet =
 [
     [ "UserSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a8f89ca4299ad68357e61f66d4497c1b1", null ],
     [ "addOrEditUser", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a4908788deafa8b48d073b80d7f1b6b07", null ],
-    [ "calculateScore", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a2830f9baacecb44108143357381ccb11", null ],
     [ "getDBPath", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a32399ac13760a7dfe760a571376a64ad", null ],
     [ "getLastKnownDBHash", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a031ae96394e7f5420b287588678fbd73", null ],
     [ "getListOfUsers", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a5f982f0f5530ce7ab8b5a6f710623416", null ],
@@ -13,7 +12,6 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet =
     [ "getUserSet", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a7c8801bc341e042a2e728bdb87a47c3c", null ],
     [ "isStored", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#adeb9839975d9beaff00817618206d0d4", null ],
     [ "isStored", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a379edebed96f0474d51f5a83482ba5dc", null ],
-    [ "rawSearch", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#af804ec9af846b206e3f3f1b8a6100fae", null ],
     [ "rebuildFromDB", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#a2a27eba14eb88e371bec45f7b3dc6cc3", null ],
     [ "removeUser", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#ad54abab423b1c3de64276598af76db20", null ],
     [ "search", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html#af1aa911ec7588a08340012dc8e43f3b1", null ],

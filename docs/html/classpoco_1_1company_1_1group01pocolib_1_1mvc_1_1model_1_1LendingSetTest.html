@@ -113,9 +113,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>testUpdateLastKnownDB
 <tr class="memitem:a1ce8713aafdfe6889d6216206f49368a" id="r_a1ce8713aafdfe6889d6216206f49368a"><td class="memItemLeft" align="right" valign="top"><a id="a1ce8713aafdfe6889d6216206f49368a" name="a1ce8713aafdfe6889d6216206f49368a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>testGetAllLendingsAsList</b> ()</td></tr>
 <tr class="memdesc:a1ce8713aafdfe6889d6216206f49368a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests the getAllLendingsAsList method returns a list of the correct size. <br /></td></tr>
-<tr class="memitem:a23adc7f48343be7dffbff513d9ec659c" id="r_a23adc7f48343be7dffbff513d9ec659c"><td class="memItemLeft" align="right" valign="top"><a id="a23adc7f48343be7dffbff513d9ec659c" name="a23adc7f48343be7dffbff513d9ec659c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>testAddLending</b> ()</td></tr>
-<tr class="memdesc:a23adc7f48343be7dffbff513d9ec659c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests the addOrEditLending method adds a new lending correctly. <br /></td></tr>
 <tr class="memitem:ac412ec0d5cd75fbd29ac7f193af6ae60" id="r_ac412ec0d5cd75fbd29ac7f193af6ae60"><td class="memItemLeft" align="right" valign="top"><a id="ac412ec0d5cd75fbd29ac7f193af6ae60" name="ac412ec0d5cd75fbd29ac7f193af6ae60"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>testEditLending</b> ()</td></tr>
 <tr class="memdesc:ac412ec0d5cd75fbd29ac7f193af6ae60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests that addOrEditLending updates an existing lending based on ID. <br /></td></tr>
@@ -157,22 +154,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>testSerializationPres
 <tr class="memdesc:a899da4ae12e05938b88a9301ae88ad06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests serialization and deserialization preserves data. <br /></td></tr>
 <tr class="memitem:a7cdbe10f50fbd0888bd7b406d11edf1e" id="r_a7cdbe10f50fbd0888bd7b406d11edf1e"><td class="memItemLeft" align="right" valign="top"><a id="a7cdbe10f50fbd0888bd7b406d11edf1e" name="a7cdbe10f50fbd0888bd7b406d11edf1e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>testAddLendingSyncOnWrite</b> ()</td></tr>
-<tr class="memdesc:a7cdbe10f50fbd0888bd7b406d11edf1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests that addOrEditLending properly synchronizes with <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> and serialization. <br /></td></tr>
+<tr class="memdesc:a7cdbe10f50fbd0888bd7b406d11edf1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests that addOrEditLending properly synchronizes with <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>. <br /></td></tr>
 <tr class="memitem:ae157c9918da9044e5e75018c0eb1c93d" id="r_ae157c9918da9044e5e75018c0eb1c93d"><td class="memItemLeft" align="right" valign="top"><a id="ae157c9918da9044e5e75018c0eb1c93d" name="ae157c9918da9044e5e75018c0eb1c93d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>testRemoveLendingSyncOnWrite</b> ()</td></tr>
-<tr class="memdesc:ae157c9918da9044e5e75018c0eb1c93d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests that removeLending properly synchronizes with <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> and serialization. <br /></td></tr>
+<tr class="memdesc:ae157c9918da9044e5e75018c0eb1c93d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests that removeLending properly synchronizes with <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a>. <br /></td></tr>
 <tr class="memitem:a1bfc34eda539a0fc0ea8a98a9f137186" id="r_a1bfc34eda539a0fc0ea8a98a9f137186"><td class="memItemLeft" align="right" valign="top"><a id="a1bfc34eda539a0fc0ea8a98a9f137186" name="a1bfc34eda539a0fc0ea8a98a9f137186"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>testSearch</b> ()</td></tr>
 <tr class="memdesc:a1bfc34eda539a0fc0ea8a98a9f137186"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests the search method returns a list of matching lendings. <br /></td></tr>
-<tr class="memitem:ad8d1298c6e8fda4372936616787df410" id="r_ad8d1298c6e8fda4372936616787df410"><td class="memItemLeft" align="right" valign="top"><a id="ad8d1298c6e8fda4372936616787df410" name="ad8d1298c6e8fda4372936616787df410"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>testSearchNoResults</b> ()</td></tr>
-<tr class="memdesc:ad8d1298c6e8fda4372936616787df410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests that search returns empty list when no matches found. <br /></td></tr>
-<tr class="memitem:afdb17e887943c4181ab23910432ec3d2" id="r_afdb17e887943c4181ab23910432ec3d2"><td class="memItemLeft" align="right" valign="top"><a id="afdb17e887943c4181ab23910432ec3d2" name="afdb17e887943c4181ab23910432ec3d2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>testSearchNullQuery</b> ()</td></tr>
-<tr class="memdesc:afdb17e887943c4181ab23910432ec3d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests that search handles null and empty. <br /></td></tr>
-<tr class="memitem:a390fa7b1a85a94e2b839f64478706c11" id="r_a390fa7b1a85a94e2b839f64478706c11"><td class="memItemLeft" align="right" valign="top"><a id="a390fa7b1a85a94e2b839f64478706c11" name="a390fa7b1a85a94e2b839f64478706c11"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>testSearchRanking</b> ()</td></tr>
-<tr class="memdesc:a390fa7b1a85a94e2b839f64478706c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests that search returns ranked results. <br /></td></tr>
+<tr class="memitem:a424c433ba5e0ff66e6640a1fbaa3c29c" id="r_a424c433ba5e0ff66e6640a1fbaa3c29c"><td class="memItemLeft" align="right" valign="top"><a id="a424c433ba5e0ff66e6640a1fbaa3c29c" name="a424c433ba5e0ff66e6640a1fbaa3c29c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>testSearchNoMatches</b> ()</td></tr>
+<tr class="memdesc:a424c433ba5e0ff66e6640a1fbaa3c29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests the search method returns an empty list when no matches found. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -193,6 +184,12 @@ Private Attributes</h2></td></tr>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1User.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><b>user</b></td></tr>
 <tr class="memitem:a98817b3a037010d3c6580c24d8504973" id="r_a98817b3a037010d3c6580c24d8504973"><td class="memItemLeft" align="right" valign="top"><a id="a98817b3a037010d3c6580c24d8504973" name="a98817b3a037010d3c6580c24d8504973"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lending</b></td></tr>
+<tr class="memitem:a1912ecba0951ee685c89828d58f19f3a" id="r_a1912ecba0951ee685c89828d58f19f3a"><td class="memItemLeft" align="right" valign="top"><a id="a1912ecba0951ee685c89828d58f19f3a" name="a1912ecba0951ee685c89828d58f19f3a"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lending2</b></td></tr>
+<tr class="memitem:a9dbd351c0387eb560592cf116629b7cd" id="r_a9dbd351c0387eb560592cf116629b7cd"><td class="memItemLeft" align="right" valign="top"><a id="a9dbd351c0387eb560592cf116629b7cd" name="a9dbd351c0387eb560592cf116629b7cd"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lending3</b></td></tr>
+<tr class="memitem:a63ae61f9cfa249248249f86d39c58f07" id="r_a63ae61f9cfa249248249f86d39c58f07"><td class="memItemLeft" align="right" valign="top"><a id="a63ae61f9cfa249248249f86d39c58f07" name="a63ae61f9cfa249248249f86d39c58f07"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lending4</b></td></tr>
 <tr class="memitem:a0fcf882bb6efe7f0b67298e912f54ede" id="r_a0fcf882bb6efe7f0b67298e912f54ede"><td class="memItemLeft" align="right" valign="top"><a id="a0fcf882bb6efe7f0b67298e912f54ede" name="a0fcf882bb6efe7f0b67298e912f54ede"></a>
 <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html">DB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lendingDB</b></td></tr>
 </table>

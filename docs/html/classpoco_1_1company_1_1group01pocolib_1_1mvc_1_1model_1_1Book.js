@@ -1,10 +1,11 @@
 var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book =
 [
     [ "Book", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a0cacf238b07af1c2f6845e8d0c0f8dff", null ],
+    [ "Book", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a64db26f921c1ab58e772e491fded07f5", null ],
     [ "Book", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a6b0d07bcc6f32f27b65982acf64acf97", null ],
+    [ "Book", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#abe14ddcdecf4566706808f8396f9faa2", null ],
     [ "Book", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a87f5108867b10b117a883015b06c5fb8", null ],
     [ "addCopy", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#af7e61863fa579c32e9fa75e61cc043e7", null ],
-    [ "decrementCopiesLent", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#afb3f84f4e0909b06affc3b43f18ca674", null ],
     [ "equals", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a5624b46466907605ab3f362767b059a6", null ],
     [ "getAuthors", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a77f6e766af5c2220d18d631a90061928", null ],
     [ "getAuthorsString", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a1216a602199e77506ebb41da2e647abb", null ],
@@ -15,8 +16,9 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book =
     [ "getTitle", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a0a64f9e88ca21d5b25e4dcfa078823d0", null ],
     [ "getYear", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#aa0fd3dae7239c5168eff721aa45af58f", null ],
     [ "hashCode", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a5cb9e6c5aa6ae29dfe2be7f58bf6766f", null ],
-    [ "incrementCopiesLent", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a183a7bfcf3adbaeb64d54b4bd5df07c2", null ],
+    [ "lendCopy", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a4002c18a810ff847eadeefd5c321564c", null ],
     [ "removeCopy", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#af2790577ea5df0d0ab0da01565a13ae4", null ],
+    [ "returnCopy", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#ab3da3977beef92afd26efd4684ac8fa5", null ],
     [ "setAuthors", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#a3c72b93c92905dcd5750837cb0e46c78", null ],
     [ "setAuthors", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#aee7a2dd01c63dbba610f8fd3de542202", null ],
     [ "setCopiesAvailable", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Book.html#ac805107f4f67259e6095b4e9f040d4fa", null ],

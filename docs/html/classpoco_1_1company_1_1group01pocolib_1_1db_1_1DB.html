@@ -117,6 +117,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af91dcd7e8c8fb86b1e254a140f1f6863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the path to the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file from a <span class="tt">Path</span> object.  <br /></td></tr>
 <tr class="memitem:adea24927f4009323dab6221d27d8c814" id="r_adea24927f4009323dab6221d27d8c814"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adea24927f4009323dab6221d27d8c814">getDBFileHash</a> ()</td></tr>
 <tr class="memdesc:adea24927f4009323dab6221d27d8c814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stored hash of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file.  <br /></td></tr>
+<tr class="memitem:a99468d1c8ecf13558ad003fc72793283" id="r_a99468d1c8ecf13558ad003fc72793283"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99468d1c8ecf13558ad003fc72793283">getLineSeparator</a> ()</td></tr>
+<tr class="memdesc:a99468d1c8ecf13558ad003fc72793283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the line separator used in the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file.  <br /></td></tr>
 <tr class="memitem:aee2eecdca665a1a451442f62f4c217e1" id="r_aee2eecdca665a1a451442f62f4c217e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee2eecdca665a1a451442f62f4c217e1">updateDBFileHash</a> ()</td></tr>
 <tr class="memdesc:aee2eecdca665a1a451442f62f4c217e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the stored hash of the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file.  <br /></td></tr>
 <tr class="memitem:a0b0a0c04245f02a169bcd7a1809b25a8" id="r_a0b0a0c04245f02a169bcd7a1809b25a8"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b0a0c04245f02a169bcd7a1809b25a8">updateAndGetDBFileHash</a> ()</td></tr>
@@ -127,6 +129,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af85610cbb6a0f12439b593f2153b71d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects the line separator used in a file.  <br /></td></tr>
 <tr class="memitem:ab1f4016df321fe69059f8ce4a9c28659" id="r_ab1f4016df321fe69059f8ce4a9c28659"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1f4016df321fe69059f8ce4a9c28659">clear</a> ()</td></tr>
 <tr class="memdesc:ab1f4016df321fe69059f8ce4a9c28659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the entire <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file and the internal cache.  <br /></td></tr>
+<tr class="memitem:aa53494a9735fac70649ed59f2fc3f07a" id="r_aa53494a9735fac70649ed59f2fc3f07a"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa53494a9735fac70649ed59f2fc3f07a">rebuildDBFromString</a> (String newDBContent)</td></tr>
+<tr class="memdesc:aa53494a9735fac70649ed59f2fc3f07a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebuilds the whole database from a single input <span class="tt">String</span>.  <br /></td></tr>
 <tr class="memitem:a8a7bad99ddb966cc380f5138bc39999b" id="r_a8a7bad99ddb966cc380f5138bc39999b"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a7bad99ddb966cc380f5138bc39999b">buildCache</a> ()</td></tr>
 <tr class="memdesc:a8a7bad99ddb966cc380f5138bc39999b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the cache of lines from the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file.  <br /></td></tr>
 <tr class="memitem:aa97aca0ea71ea0fe4034b52ccc0f9f60" id="r_aa97aca0ea71ea0fe4034b52ccc0f9f60"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa97aca0ea71ea0fe4034b52ccc0f9f60">readNthLine</a> (int N)</td></tr>
@@ -465,6 +469,26 @@ static final int&#160;</td><td class="memItemRight" valign="bottom"><b>INITIAL_C
 
 </div>
 </div>
+<a id="a99468d1c8ecf13558ad003fc72793283" name="a99468d1c8ecf13558ad003fc72793283"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99468d1c8ecf13558ad003fc72793283">&#9670;&#160;</a></span>getLineSeparator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String poco.company.group01pocolib.db.DB.getLineSeparator </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the line separator used in the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file. </p>
+<dl class="section return"><dt>Returns</dt><dd>The line separator used in the <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1db_1_1DB.html" title="Allows creation and simple handling of a database (UTF-8 encoded file).">DB</a> file. </dd></dl>
+
+</div>
+</div>
 <a id="abc431ac44126ca9463ff694b64d6f08c" name="abc431ac44126ca9463ff694b64d6f08c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abc431ac44126ca9463ff694b64d6f08c">&#9670;&#160;</a></span>readFirstLineContainingPattern()</h2>
 
@@ -516,6 +540,26 @@ static final int&#160;</td><td class="memItemRight" valign="bottom"><b>INITIAL_C
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Content of N-th line, or <span class="tt">null</span> if line does not exist. </dd></dl>
+
+</div>
+</div>
+<a id="aa53494a9735fac70649ed59f2fc3f07a" name="aa53494a9735fac70649ed59f2fc3f07a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa53494a9735fac70649ed59f2fc3f07a">&#9670;&#160;</a></span>rebuildDBFromString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean poco.company.group01pocolib.db.DB.rebuildDBFromString </td>
+          <td>(</td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>newDBContent</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rebuilds the whole database from a single input <span class="tt">String</span>. </p>
+<p>This method completely overwrites the database file with the provided input string. It also rebuilds the internal cache to reflect the new content of the database file. </p>
 
 </div>
 </div>

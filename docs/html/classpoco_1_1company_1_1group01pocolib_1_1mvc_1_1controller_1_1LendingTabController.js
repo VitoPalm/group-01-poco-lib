@@ -12,5 +12,7 @@ var classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabCon
     [ "lendingTableHandler", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html#acc82ef434fb941c385eeb108a7c70c65", null ],
     [ "loadData", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html#a76f677ddd8beed78253f116c6d4174bd", null ],
     [ "setDataSets", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html#a33d7f0ab4d9bec977e3db7542dbc7d9b", null ],
-    [ "setDependencies", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html#ac2ac920441e6896adfedbc3ebd97b3d8", null ]
+    [ "setDependencies", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html#ac2ac920441e6896adfedbc3ebd97b3d8", null ],
+    [ "setSearchText", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html#a348274ed11790ae2069b88b00d636fb8", null ],
+    [ "updateRowStyle", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html#a08a8f2ec4a3d754ed7b2ad405e754e29", null ]
 ];

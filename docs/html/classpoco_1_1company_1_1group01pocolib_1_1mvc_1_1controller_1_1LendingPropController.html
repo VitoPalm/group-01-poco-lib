@@ -104,6 +104,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6454c0ec38f6a192a3ea2a36c1c60699"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the lending to be edited/viewed in the dialog.  <br /></td></tr>
 <tr class="memitem:acb6e71c419bf4d0a53d7e97a990a6f77" id="r_acb6e71c419bf4d0a53d7e97a990a6f77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb6e71c419bf4d0a53d7e97a990a6f77">updateView</a> ()</td></tr>
 <tr class="memdesc:acb6e71c419bf4d0a53d7e97a990a6f77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the view with the current lending details.  <br /></td></tr>
+<tr class="memitem:a669f86549845d0b97ac90fc61a26fb72" id="r_a669f86549845d0b97ac90fc61a26fb72"><td class="memItemLeft" align="right" valign="top"><a id="a669f86549845d0b97ac90fc61a26fb72" name="a669f86549845d0b97ac90fc61a26fb72"></a>
+Button&#160;</td><td class="memItemRight" valign="bottom"><b>getReturnButton</b> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -115,7 +117,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEdit</b> ()</td
 <tr class="memdesc:accfd3b756580f48af74b624448b9d289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the edit button click event. It opens the lending edit dialog and refreshes afterward. <br /></td></tr>
 <tr class="memitem:aa3b535a3a8977e4aae018447b4857029" id="r_aa3b535a3a8977e4aae018447b4857029"><td class="memItemLeft" align="right" valign="top"><a id="aa3b535a3a8977e4aae018447b4857029" name="aa3b535a3a8977e4aae018447b4857029"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleMarkAsReturned</b> ()</td></tr>
-<tr class="memdesc:aa3b535a3a8977e4aae018447b4857029"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the mark as returned button click event. It marks the lending as returned. <br /></td></tr>
+<tr class="memdesc:aa3b535a3a8977e4aae018447b4857029"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the mark as returned button click event. It marks the lending as returned for it to be updated on closure by <a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html">LendingTabController</a>. <br /></td></tr>
 <tr class="memitem:af0085a3c2c65601c0c283f6b92a9dd1e" id="r_af0085a3c2c65601c0c283f6b92a9dd1e"><td class="memItemLeft" align="right" valign="top"><a id="af0085a3c2c65601c0c283f6b92a9dd1e" name="af0085a3c2c65601c0c283f6b92a9dd1e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>handleDelete</b> ()</td></tr>
 <tr class="memdesc:af0085a3c2c65601c0c283f6b92a9dd1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the delete button click event. It deletes the lending after confirmation. <br /></td></tr>
@@ -136,6 +138,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handleViewUser</b> ()
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a9e399c3b1c84a8aa0dc86667ead876f4" id="r_a9e399c3b1c84a8aa0dc86667ead876f4"><td class="memItemLeft" align="right" valign="top"><a id="a9e399c3b1c84a8aa0dc86667ead876f4" name="a9e399c3b1c84a8aa0dc86667ead876f4"></a>
+Stage&#160;</td><td class="memItemRight" valign="bottom"><b>dialogStage</b></td></tr>
+<tr class="memitem:a10c133f9f2ff9e77002614b75b24acfe" id="r_a10c133f9f2ff9e77002614b75b24acfe"><td class="memItemLeft" align="right" valign="top"><a id="a10c133f9f2ff9e77002614b75b24acfe" name="a10c133f9f2ff9e77002614b75b24acfe"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lending</b></td></tr>
+<tr class="memitem:a2bca79aaa7da3aa019a8167df8e37fc1" id="r_a2bca79aaa7da3aa019a8167df8e37fc1"><td class="memItemLeft" align="right" valign="top"><a id="a2bca79aaa7da3aa019a8167df8e37fc1" name="a2bca79aaa7da3aa019a8167df8e37fc1"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html">LendingSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lendingSet</b></td></tr>
+<tr class="memitem:a36ea4bda05c401d5bcabdaed79711fcf" id="r_a36ea4bda05c401d5bcabdaed79711fcf"><td class="memItemLeft" align="right" valign="top"><a id="a36ea4bda05c401d5bcabdaed79711fcf" name="a36ea4bda05c401d5bcabdaed79711fcf"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bookSet</b></td></tr>
+<tr class="memitem:a507c5b82bb8e455db97b2428cec96acd" id="r_a507c5b82bb8e455db97b2428cec96acd"><td class="memItemLeft" align="right" valign="top"><a id="a507c5b82bb8e455db97b2428cec96acd" name="a507c5b82bb8e455db97b2428cec96acd"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>userSet</b></td></tr>
+<tr class="memitem:add4966500a3a324bda4f8729d1d96078" id="r_add4966500a3a324bda4f8729d1d96078"><td class="memItemLeft" align="right" valign="top"><a id="add4966500a3a324bda4f8729d1d96078" name="add4966500a3a324bda4f8729d1d96078"></a>
+<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html">PocoLibController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mainController</b></td></tr>
+<tr class="memitem:a792f1eea63f2a418d17753e1284ea942" id="r_a792f1eea63f2a418d17753e1284ea942"><td class="memItemLeft" align="right" valign="top"><a id="a792f1eea63f2a418d17753e1284ea942" name="a792f1eea63f2a418d17753e1284ea942"></a>
+final BooleanProperty&#160;</td><td class="memItemRight" valign="bottom"><b>validInput</b> = new SimpleBooleanProperty(true)</td></tr>
+<tr class="memitem:a4f71063185e93ebb1cb54dfd32c6b1a7" id="r_a4f71063185e93ebb1cb54dfd32c6b1a7"><td class="memItemLeft" align="right" valign="top"><a id="a4f71063185e93ebb1cb54dfd32c6b1a7" name="a4f71063185e93ebb1cb54dfd32c6b1a7"></a>
+boolean&#160;</td><td class="memItemRight" valign="bottom"><b>isNewLending</b> = false</td></tr>
 <tr class="memitem:afa0b026c98a5b149f881558d9b5ad7a7" id="r_afa0b026c98a5b149f881558d9b5ad7a7"><td class="memItemLeft" align="right" valign="top"><a id="afa0b026c98a5b149f881558d9b5ad7a7" name="afa0b026c98a5b149f881558d9b5ad7a7"></a>
 VBox&#160;</td><td class="memItemRight" valign="bottom"><b>viewBox</b></td></tr>
 <tr class="memitem:a8865ff8a9222202f0490d94677c7942c" id="r_a8865ff8a9222202f0490d94677c7942c"><td class="memItemLeft" align="right" valign="top"><a id="a8865ff8a9222202f0490d94677c7942c" name="a8865ff8a9222202f0490d94677c7942c"></a>
@@ -162,26 +180,8 @@ Hyperlink&#160;</td><td class="memItemRight" valign="bottom"><b>userLinkEdit</b>
 DatePicker&#160;</td><td class="memItemRight" valign="bottom"><b>returnDatePicker</b></td></tr>
 <tr class="memitem:ab29869a9ff6f14f7461e4d1439d564a1" id="r_ab29869a9ff6f14f7461e4d1439d564a1"><td class="memItemLeft" align="right" valign="top"><a id="ab29869a9ff6f14f7461e4d1439d564a1" name="ab29869a9ff6f14f7461e4d1439d564a1"></a>
 Label&#160;</td><td class="memItemRight" valign="bottom"><b>infoLabel</b></td></tr>
-<tr class="memitem:a785735a55ed01943d7a41b0644e7be9a" id="r_a785735a55ed01943d7a41b0644e7be9a"><td class="memItemLeft" align="right" valign="top"><a id="a785735a55ed01943d7a41b0644e7be9a" name="a785735a55ed01943d7a41b0644e7be9a"></a>
-Label&#160;</td><td class="memItemRight" valign="bottom"><b>errorLabel</b></td></tr>
 <tr class="memitem:a43b341e6628b548435ffde8596da524b" id="r_a43b341e6628b548435ffde8596da524b"><td class="memItemLeft" align="right" valign="top"><a id="a43b341e6628b548435ffde8596da524b" name="a43b341e6628b548435ffde8596da524b"></a>
 Button&#160;</td><td class="memItemRight" valign="bottom"><b>saveButton</b></td></tr>
-<tr class="memitem:a9e399c3b1c84a8aa0dc86667ead876f4" id="r_a9e399c3b1c84a8aa0dc86667ead876f4"><td class="memItemLeft" align="right" valign="top"><a id="a9e399c3b1c84a8aa0dc86667ead876f4" name="a9e399c3b1c84a8aa0dc86667ead876f4"></a>
-Stage&#160;</td><td class="memItemRight" valign="bottom"><b>dialogStage</b></td></tr>
-<tr class="memitem:a10c133f9f2ff9e77002614b75b24acfe" id="r_a10c133f9f2ff9e77002614b75b24acfe"><td class="memItemLeft" align="right" valign="top"><a id="a10c133f9f2ff9e77002614b75b24acfe" name="a10c133f9f2ff9e77002614b75b24acfe"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1Lending.html">Lending</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lending</b></td></tr>
-<tr class="memitem:a2bca79aaa7da3aa019a8167df8e37fc1" id="r_a2bca79aaa7da3aa019a8167df8e37fc1"><td class="memItemLeft" align="right" valign="top"><a id="a2bca79aaa7da3aa019a8167df8e37fc1" name="a2bca79aaa7da3aa019a8167df8e37fc1"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSet.html">LendingSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lendingSet</b></td></tr>
-<tr class="memitem:a36ea4bda05c401d5bcabdaed79711fcf" id="r_a36ea4bda05c401d5bcabdaed79711fcf"><td class="memItemLeft" align="right" valign="top"><a id="a36ea4bda05c401d5bcabdaed79711fcf" name="a36ea4bda05c401d5bcabdaed79711fcf"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1BookSet.html">BookSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>bookSet</b></td></tr>
-<tr class="memitem:a507c5b82bb8e455db97b2428cec96acd" id="r_a507c5b82bb8e455db97b2428cec96acd"><td class="memItemLeft" align="right" valign="top"><a id="a507c5b82bb8e455db97b2428cec96acd" name="a507c5b82bb8e455db97b2428cec96acd"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserSet.html">UserSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>userSet</b></td></tr>
-<tr class="memitem:add4966500a3a324bda4f8729d1d96078" id="r_add4966500a3a324bda4f8729d1d96078"><td class="memItemLeft" align="right" valign="top"><a id="add4966500a3a324bda4f8729d1d96078" name="add4966500a3a324bda4f8729d1d96078"></a>
-<a class="el" href="classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html">PocoLibController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mainController</b></td></tr>
-<tr class="memitem:a792f1eea63f2a418d17753e1284ea942" id="r_a792f1eea63f2a418d17753e1284ea942"><td class="memItemLeft" align="right" valign="top"><a id="a792f1eea63f2a418d17753e1284ea942" name="a792f1eea63f2a418d17753e1284ea942"></a>
-final BooleanProperty&#160;</td><td class="memItemRight" valign="bottom"><b>validInput</b> = new SimpleBooleanProperty(true)</td></tr>
-<tr class="memitem:a4f71063185e93ebb1cb54dfd32c6b1a7" id="r_a4f71063185e93ebb1cb54dfd32c6b1a7"><td class="memItemLeft" align="right" valign="top"><a id="a4f71063185e93ebb1cb54dfd32c6b1a7" name="a4f71063185e93ebb1cb54dfd32c6b1a7"></a>
-boolean&#160;</td><td class="memItemRight" valign="bottom"><b>isNewLending</b> = false</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="af1001440cefd758a2588aacbb7b49ade" name="af1001440cefd758a2588aacbb7b49ade"></a>
