@@ -194,8 +194,10 @@ public class UserPropController {
             User.isValidEmail(emailField.getText()), emailField.textProperty()));
 
         // Red border around invalid values
-        idField.styleProperty().bind(Bindings.when(Bindings.not(idIsValid)).then("-fx-background-color: red, white; -fx-background-insets: 0, 1; -fx-background-radius: 3, 2; -fx-padding: 4 7 4 0.60em;").otherwise(""));
-        emailField.styleProperty().bind(Bindings.when(Bindings.not(emailIsValid)).then("-fx-background-color: red, white; -fx-background-insets: 0, 1; -fx-background-radius: 3, 2; -fx-padding: 4 7 4 0.60em;").otherwise(""));
+        idField.styleProperty().bind(Bindings.when(Bindings.not(idIsValid).and(Bindings.not(Bindings.createBooleanBinding(() -> idField.getText().isBlank(), idField.textProperty()))))
+            .then("-fx-background-color: red, white; -fx-background-insets: 0, 1; -fx-background-radius: 3, 2; -fx-padding: 4 7 4 0.60em;").otherwise(""));
+        emailField.styleProperty().bind(Bindings.when(Bindings.not(emailIsValid).and(Bindings.not(Bindings.createBooleanBinding(() -> emailField.getText().isBlank(), emailField.textProperty()))))
+            .then("-fx-background-color: red, white; -fx-background-insets: 0, 1; -fx-background-radius: 3, 2; -fx-padding: 4 7 4 0.60em;").otherwise(""));
 
         // Save Button disabling logic
         saveButton.disableProperty().bind(emptyTextfieldsBinding.or(
