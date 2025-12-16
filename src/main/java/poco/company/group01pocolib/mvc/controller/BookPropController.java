@@ -357,8 +357,6 @@ public class BookPropController {
 
         bookSet.addOrEditBook(book);
 
-        //TODO: missing info label stuff and stuff if book is new (idk if we need that here) --- ????
-
         mainController.refreshTabData();
         dialogStage.close();
     }
@@ -369,7 +367,6 @@ public class BookPropController {
     @FXML
     private void handleCancel() {
         dialogStage.close();
-        // TODO: cancel in edit has to bring back to view
     }
 
     /**
