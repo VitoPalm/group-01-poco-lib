@@ -198,6 +198,7 @@ public class BookSet implements Serializable {
 
         // Check if the DB file has changed since the last serialization by comparing hashes
         if (currentDBHash.equals(bookSet.getLastKnownDBHash())) {
+            // Technically these three lines are not needed because these parameters are restored in serialization, but they ensure that the paths and DB object are correct
             bookSet.setDBPath(DBPath);
             bookSet.setSerializationPath(serializationPath);
             bookSet.setBookDB(currentDB);
