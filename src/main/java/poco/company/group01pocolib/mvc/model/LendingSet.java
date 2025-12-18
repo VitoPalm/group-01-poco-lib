@@ -193,9 +193,10 @@ public class LendingSet implements Serializable {
 
         // Check if the DB file has changed since the last serialization by comparing hashes
         if (currentDBHash.equals(lendingSet.getLastKnownDBHash())) {
+            // Technically these two lines are not needed because these parameters are restored in serialization, but they ensure that the paths and DB object are correct
             lendingSet.setDBPath(DBPath);
             lendingSet.setLendingDB(currentDB);
-            // Restore the lending counter from the loaded set
+            // Restore the lending counter from the loaded set, necessary because serialization does not preserve static fields like the lending counter
             lendingSet.restoreLendingCounter();
             return lendingSet;
         } else {

@@ -193,6 +193,7 @@ public class UserSet implements Serializable {
 
         // Check if the DB file has changed since the last serialization by comparing hashes
         if (currentDBHash.equals(userSet.getLastKnownDBHash())) {
+            // Technically these three lines are not needed because these parameters are restored in serialization, but they ensure that the paths and DB object are correct
             userSet.setDBPath(DBPath);
             userSet.setSerializationPath(serializationPath);
             userSet.setUserDB(currentDB);
