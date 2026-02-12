@@ -16,6 +16,7 @@ var hierarchy =
     [ "poco.company.group01pocolib.mvc.model.LendingSetTest", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingSetTest.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.LendingTabController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1LendingTabController.html", null ],
     [ "poco.company.group01pocolib.mvc.model.LendingTest", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1LendingTest.html", null ],
+    [ "poco.company.group01pocolib.Main", "classpoco_1_1company_1_1group01pocolib_1_1Main.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.PocoLibController", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PocoLibController.html", null ],
     [ "poco.company.group01pocolib.mvc.controller.PropMode", "enumpoco_1_1company_1_1group01pocolib_1_1mvc_1_1controller_1_1PropMode.html", null ],
     [ "RuntimeException", null, [

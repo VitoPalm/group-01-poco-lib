@@ -1,9 +1,6 @@
 /**
  * @file Book.java
  * @brief This file contains the definition of the Book class, which represents a Book in the library.
- * @author Daniele Pepe
- * @author Francesco Marino
- * @author Giovanni Orsini
  */
 package poco.company.group01pocolib.mvc.model;
 

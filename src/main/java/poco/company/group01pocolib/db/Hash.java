@@ -57,7 +57,7 @@ public class Hash {
      */
 public static String getFileHashFromLines(List<String> linesList, String lineSeparator) {
     String checksum;
-
+ 
     try {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
 

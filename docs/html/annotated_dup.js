@@ -42,7 +42,8 @@ var annotated_dup =
               [ "UserTest", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserTest.html", "classpoco_1_1company_1_1group01pocolib_1_1mvc_1_1model_1_1UserTest" ]
             ] ]
           ] ],
-          [ "Launcher", "classpoco_1_1company_1_1group01pocolib_1_1Launcher.html", "classpoco_1_1company_1_1group01pocolib_1_1Launcher" ]
+          [ "Launcher", "classpoco_1_1company_1_1group01pocolib_1_1Launcher.html", "classpoco_1_1company_1_1group01pocolib_1_1Launcher" ],
+          [ "Main", "classpoco_1_1company_1_1group01pocolib_1_1Main.html", null ]
         ] ]
       ] ]
     ] ]

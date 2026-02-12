@@ -1,8 +1,6 @@
 /**
  * @file BookSet.java
  * @brief This file contains the definition of BookSet class
- * @author Francesco Marino
- * @author Giovanni Orsini
  */
 
 package poco.company.group01pocolib.mvc.model;

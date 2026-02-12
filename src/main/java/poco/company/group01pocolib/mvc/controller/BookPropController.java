@@ -360,7 +360,7 @@ public class BookPropController {
         mainController.refreshTabData();
         dialogStage.close();
     }
-
+ 
     /**
      * @brief   Handles the cancel button click event. It simply closes the dialog without saving any changes.
      */

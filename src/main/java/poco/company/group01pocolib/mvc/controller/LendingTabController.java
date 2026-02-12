@@ -429,7 +429,7 @@ public class LendingTabController {
             lendingTable.getSortOrder().addListener(searchSortOrderListener);
         }
     }
-
+ 
     /**
      * @brief   Listener to re-apply default sorting when sort order becomes empty.
      */

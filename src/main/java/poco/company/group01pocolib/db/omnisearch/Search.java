@@ -54,7 +54,7 @@ public class Search {
             return Integer.compare(other.hits, this.hits); // Descending order
         }
     }
-
+ 
     /**
      * @brief   Searches the given index for items matching the query. It returns a list of SearchResult objects,
      *          each containing an item and the number of hits it had in the index.
